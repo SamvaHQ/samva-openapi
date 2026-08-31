@@ -1,0 +1,24 @@
+{
+  "$schema": "./manifest.schema.json",
+  "schemaVersion": 1,
+  "artifactVersion": "2026-08-31.1",
+  "generatedAt": "2026-08-31T00:42:17Z",
+  "generator": {
+    "name": "samva-openapi",
+    "version": "1"
+  },
+  "compatibility": {
+    "classification": "initial",
+    "baseline": null
+  },
+  "openapi": {
+    "artifact": "openapi.json",
+    "version": "3.1.0",
+    "apiVersion": "1.0.0",
+    "sha256": "4514478ed111a0768fc97b2633162169286fe2ea9e32f44645df450b5a6b45c7",
+    "bytes": 1355579,
+    "paths": 129,
+    "operations": 172,
+    "schemas": 147
+  }
+}

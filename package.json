@@ -1,0 +1,16 @@
+{
+  "name": "samva-openapi",
+  "private": true,
+  "version": "2026.8.31-1",
+  "description": "Canonical OpenAPI 3.1 artifact for the Samva email API",
+  "license": "MIT",
+  "packageManager": "bun@1.4.0",
+  "scripts": {
+    "validate": "bun run validate:artifact && bun run validate:openapi",
+    "validate:artifact": "node scripts/validate.mjs",
+    "validate:openapi": "redocly lint openapi.json"
+  },
+  "devDependencies": {
+    "@redocly/cli": "2.49.0"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "lockfileVersion": 2,
+  "configVersion": 1,
+  "workspaces": {
+    "": {
+      "name": "samva-openapi",
+      "devDependencies": {
+        "@redocly/cli": "2.49.0",
+      },
+    },
+  },
+  "packages": {
+    "@redocly/cli": ["@redocly/cli@2.49.0", "", { "bin": { "openapi": "bin/cli.js", "redocly": "bin/cli.js" } }, "sha512-87UuARXYrPIiHhd/UriamL4BApuPgB0E91coBtoPG6PK4giTwiuo3dI4RoyMGhsC7TwgAnL8PJuhCwGymgwbVA=="],
+  }
+}

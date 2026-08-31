@@ -1,0 +1,18 @@
+extends:
+  - recommended
+
+apis:
+  samva@2026-08-31.1:
+    root: ./openapi.json
+
+rules:
+  # The document is served from the requesting origin, so it intentionally has no fixed server.
+  no-empty-servers: off
+  # Repository licensing applies to the artifact; API use is governed separately.
+  info-license: off
+  # Static and parameter routes are disambiguated by the runtime router.
+  no-ambiguous-paths: off
+  # Email projection can reduce channel unions to one member and retain duplicate middleware errors.
+  no-illogical-composition-keywords: off
+  # Named request schemas are retained for stable generated SDK types even when bodies are inlined.
+  no-unused-components: off
