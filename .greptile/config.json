@@ -1,0 +1,29 @@
+{
+  "strictness": 2,
+  "commentTypes": ["logic", "syntax"],
+  "triggerOnUpdates": true,
+  "statusCheck": true,
+  "disabledLabels": ["no-greptile"],
+  "ignorePatterns": "**/node_modules/**\n**/bun.lock",
+  "instructions": "samva-openapi is the canonical OpenAPI 3.1 artifact for the Samva email API. openapi.json, manifest.json, and SHA256SUMS are generated. Consumers pin an immutable release tag and checksum. Compatibility classification lives in COMPATIBILITY.md and the manifest. Prefer artifact and checksum findings over style.",
+  "rules": [
+    {
+      "id": "generated-artifact",
+      "rule": "openapi.json, SHA256SUMS, and manifest.json are generated release artifacts. Do not hand-edit openapi.json, SHA256SUMS, or manifest checksum fields (openapi.sha256). A contract change ships as a new immutable artifact version after compatibility review. A pull request that edits these generated files by hand cannot be accepted.",
+      "scope": ["openapi.json", "SHA256SUMS", "manifest.json"],
+      "severity": "high"
+    },
+    {
+      "id": "immutable-consumer-pin",
+      "rule": "Consumers pin an immutable release tag (vYYYY-MM-DD.N) and verify the checksum from the release asset and manifest.json. A mutable live API URL is not a reproducible build input. Published versions stay immutable: withdraw a defective artifact and publish a replacement.",
+      "scope": ["README.md", "COMPATIBILITY.md", "CONTRIBUTING.md"],
+      "severity": "high"
+    },
+    {
+      "id": "compatibility-classification",
+      "rule": "Compatibility classification is initial, compatible, or breaking, and it lives in COMPATIBILITY.md and manifest.compatibility. Keep that classification there. A breaking artifact needs explicit maintainer approval and release notes that name the migration. The API version is not the artifact address.",
+      "scope": ["COMPATIBILITY.md", "manifest.json", "CHANGELOG.md", "README.md"],
+      "severity": "high"
+    }
+  ]
+}
