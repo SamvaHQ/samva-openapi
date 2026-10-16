@@ -6,8 +6,6 @@ apis:
     root: ./openapi.json
 
 rules:
-  # The initial artifact names no server; SDK-keyed releases name https://api.samva.dev.
-  no-empty-servers: off
   # Repository licensing applies to the artifact; API use is governed separately.
   info-license: off
   # Static and parameter routes are disambiguated by the runtime router.

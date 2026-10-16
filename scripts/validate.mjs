@@ -22,34 +22,25 @@ const operations = Object.values(artifact.paths).flatMap((path) =>
   Object.entries(path).filter(([method]) => method !== "parameters"),
 ).length;
 
-// The repository's first artifact predates SDK-keyed releases and keeps its date-versioned
-// manifest until the first SDK release replaces it.
-const INITIAL_ARTIFACT = "2026-08-31.1";
-const label =
-  manifest.schemaVersion === 1 ? manifest.artifactVersion : `v${manifest.version}`;
-if (manifest.schemaVersion === 1) {
-  assert(manifest.artifactVersion === INITIAL_ARTIFACT, "schema version 1 is only the initial artifact");
-} else {
-  assert(manifest.schemaVersion === 2, "unsupported manifest schema version");
-  assert(
-    /^[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z.-]+)?$/.test(manifest.version),
-    "manifest version must be the SDK's semantic version",
-  );
-  assert(
-    manifest.sdk?.package === "samva" && manifest.sdk?.version === manifest.version,
-    "manifest SDK release must match its version",
-  );
-  assert(/^[a-f0-9]{40}$/.test(manifest.source?.commit ?? ""), "manifest source commit is missing");
-  assert(
-    /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d+)?Z$/.test(manifest.releasedAt ?? "") &&
-      !Number.isNaN(Date.parse(manifest.releasedAt)),
-    "manifest releasedAt must be a UTC date-time",
-  );
-  assert(
-    ["initial", "compatible", "breaking"].includes(manifest.compatibility?.classification),
-    "manifest compatibility class is missing",
-  );
-}
+assert(manifest.schemaVersion === 2, "unsupported manifest schema version");
+assert(
+  /^[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z.-]+)?$/.test(manifest.version),
+  "manifest version must be the SDK's semantic version",
+);
+assert(
+  manifest.sdk?.package === "samva" && manifest.sdk?.version === manifest.version,
+  "manifest SDK release must match its version",
+);
+assert(/^[a-f0-9]{40}$/.test(manifest.source?.commit ?? ""), "manifest source commit is missing");
+assert(
+  /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d+)?Z$/.test(manifest.releasedAt ?? "") &&
+    !Number.isNaN(Date.parse(manifest.releasedAt)),
+  "manifest releasedAt must be a UTC date-time",
+);
+assert(
+  ["initial", "compatible", "breaking"].includes(manifest.compatibility?.classification),
+  "manifest compatibility class is missing",
+);
 
 assert(
   artifactBytes === `${JSON.stringify(artifact, null, 2)}\n`,
@@ -74,4 +65,4 @@ assert(
   "openapi.json contains a non-email channel operation, schema, or description",
 );
 
-process.stdout.write(`Validated ${label}: ${operations} operations, ${artifactHash}\n`);
+process.stdout.write(`Validated v${manifest.version}: ${operations} operations, ${artifactHash}\n`);

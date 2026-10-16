@@ -2,135 +2,83 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://samva.dev/schemas/openapi-release-manifest.json",
   "title": "Samva OpenAPI release manifest",
-  "oneOf": [
-    {
-      "$ref": "#/$defs/release"
-    },
-    {
-      "$ref": "#/$defs/initial"
-    }
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "version",
+    "releasedAt",
+    "source",
+    "sdk",
+    "compatibility",
+    "openapi"
   ],
-  "$defs": {
-    "release": {
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "schemaVersion": {
+      "const": 2
+    },
+    "version": {
+      "description": "The SDK release this document belongs to; the Git tag is v<version>.",
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+(-[0-9A-Za-z.-]+)?$"
+    },
+    "releasedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "source": {
       "type": "object",
       "additionalProperties": false,
       "required": [
-        "schemaVersion",
-        "version",
-        "releasedAt",
-        "source",
-        "sdk",
-        "compatibility",
-        "openapi"
+        "commit"
       ],
       "properties": {
-        "$schema": {
-          "type": "string"
-        },
-        "schemaVersion": {
-          "const": 2
-        },
-        "version": {
-          "description": "The SDK release this document belongs to; the Git tag is v<version>.",
+        "commit": {
           "type": "string",
-          "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+(-[0-9A-Za-z.-]+)?$"
-        },
-        "releasedAt": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "source": {
-          "type": "object",
-          "additionalProperties": false,
-          "required": [
-            "commit"
-          ],
-          "properties": {
-            "commit": {
-              "type": "string",
-              "pattern": "^[a-f0-9]{40}$"
-            }
-          }
-        },
-        "sdk": {
-          "type": "object",
-          "additionalProperties": false,
-          "required": [
-            "package",
-            "version"
-          ],
-          "properties": {
-            "package": {
-              "const": "samva"
-            },
-            "version": {
-              "type": "string"
-            }
-          }
-        },
-        "compatibility": {
-          "type": "object",
-          "additionalProperties": false,
-          "required": [
-            "classification",
-            "baseline"
-          ],
-          "properties": {
-            "classification": {
-              "enum": [
-                "initial",
-                "compatible",
-                "breaking"
-              ]
-            },
-            "baseline": {
-              "description": "The tag or artifact version of the previous release.",
-              "type": [
-                "string",
-                "null"
-              ]
-            }
-          }
-        },
-        "openapi": {
-          "$ref": "#/$defs/openapi"
+          "pattern": "^[a-f0-9]{40}$"
         }
       }
     },
-    "initial": {
-      "description": "The initial date-versioned artifact, kept until the first SDK-keyed release replaces it.",
+    "sdk": {
       "type": "object",
       "additionalProperties": false,
       "required": [
-        "schemaVersion",
-        "artifactVersion",
-        "generatedAt",
-        "generator",
-        "compatibility",
-        "openapi"
+        "package",
+        "version"
       ],
       "properties": {
-        "$schema": {
+        "package": {
+          "const": "samva"
+        },
+        "version": {
           "type": "string"
+        }
+      }
+    },
+    "compatibility": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "classification",
+        "baseline"
+      ],
+      "properties": {
+        "classification": {
+          "enum": [
+            "initial",
+            "compatible",
+            "breaking"
+          ]
         },
-        "schemaVersion": {
-          "const": 1
-        },
-        "artifactVersion": {
-          "const": "2026-08-31.1"
-        },
-        "generatedAt": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "generator": {
-          "type": "object"
-        },
-        "compatibility": {
-          "type": "object"
-        },
-        "openapi": {
-          "$ref": "#/$defs/openapi"
+        "baseline": {
+          "description": "The tag or artifact version of the previous release.",
+          "type": [
+            "string",
+            "null"
+          ]
         }
       }
     },
