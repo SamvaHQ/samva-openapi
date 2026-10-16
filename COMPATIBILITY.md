@@ -1,7 +1,7 @@
 # Compatibility and releases
 
 Each release is the OpenAPI document one release of the `samva` TypeScript SDK was generated from.
-The Git tag and the GitHub release use the SDK's version (`v0.18.1`), so the spec you pin matches
+The Git tag and the GitHub release use the SDK's version (`v0.18.0`), so the spec you pin matches
 the SDK you install. A release is published when the SDK is, and only when its document differs
 from the previous release.
 
