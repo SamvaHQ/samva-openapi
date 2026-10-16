@@ -1,5 +1,349 @@
 # Changelog
 
+## v0.18.0
+
+- The OpenAPI document Samva SDK `samva@0.18.0` was generated from: 325 operations, 238 paths, 450 schemas.
+- Breaking against 2026-08-31.1.
+- Removed operations:
+  - `DELETE /v1/api-keys/{id}`
+  - `DELETE /v1/api-keys/{id}/remove`
+  - `DELETE /v1/campaigns/{id}`
+  - `DELETE /v1/email/domains/{id}/default-sender`
+  - `DELETE /v1/email/domains/{id}/provisioning/connections/{connectionId}`
+  - `DELETE /v1/media/{mediaId}`
+  - `DELETE /v1/templates/families/{familyId}`
+  - `DELETE /v1/templates/families/{familyId}/members/{templateId}`
+  - `GET /v1/design`
+  - `GET /v1/email/domains/{id}/provisioning`
+  - `GET /v1/media/{mediaId}`
+  - `GET /v1/media/{mediaId}/url`
+  - `GET /v1/operations/{operationId}`
+  - `GET /v1/template-documents/{templateId}`
+  - `GET /v1/template-documents/{templateId}/versions`
+  - `GET /v1/templates/dashboard`
+  - `GET /v1/templates/families/{familyId}`
+  - `GET /v1/webhooks/{webhookId}/logs`
+  - `GET /v1/webhooks/{webhookId}/stats`
+  - `PATCH /v1/templates/families/{familyId}`
+  - `POST /v1/email/catch-all/disable`
+  - `POST /v1/email/catch-all/enable`
+  - `POST /v1/email/domains/{id}/provisioning/authorizations`
+  - `POST /v1/email/domains/{id}/provisioning/cleanup-plans`
+  - `POST /v1/email/domains/{id}/provisioning/cleanup-plans/{attemptId}/apply`
+  - `POST /v1/email/domains/{id}/provisioning/cleanup-plans/{attemptId}/authorize`
+  - `POST /v1/email/domains/{id}/provisioning/connections`
+  - `POST /v1/email/domains/{id}/provisioning/connections/existing`
+  - `POST /v1/email/domains/{id}/provisioning/plans`
+  - `POST /v1/email/domains/{id}/provisioning/plans/{attemptId}/apply`
+  - `POST /v1/email/domains/{id}/provisioning/plans/{attemptId}/authorize`
+  - `POST /v1/email/domains/{id}/receiving`
+  - `POST /v1/email/domains/{id}/verification`
+  - `POST /v1/email/provisioning/authorizations/complete`
+  - `POST /v1/media/{mediaId}/complete`
+  - `POST /v1/operations/{operationId}/retry`
+  - `POST /v1/organizations/bootstrap`
+  - `POST /v1/template-documents/bootstrap`
+  - `POST /v1/template-documents/{templateId}/agent-admission`
+  - `POST /v1/template-documents/{templateId}/agent-conversation/clear-completion`
+  - `POST /v1/template-documents/{templateId}/agent-proposals/apply`
+  - `POST /v1/template-documents/{templateId}/publish`
+  - `POST /v1/template-documents/{templateId}/render`
+  - `POST /v1/template-documents/{templateId}/save`
+  - `POST /v1/template-documents/{templateId}/send`
+  - `POST /v1/template-documents/{templateId}/send-test`
+  - `POST /v1/template-documents/{templateId}/source`
+  - `POST /v1/template-documents/{templateId}/spam-check`
+  - `POST /v1/template-documents/{templateId}/unpublish`
+  - `POST /v1/template-documents/{templateId}/versions/{versionId}/restore`
+  - `POST /v1/templates/families/{familyId}/channels/{channel}`
+  - `POST /v1/templates/families/{familyId}/members/{templateId}`
+  - `POST /v1/templates/{id}/approve`
+  - `POST /v1/webhooks/{webhookId}/deliveries/{deliveryId}/redeliver`
+  - `POST /v1/webhooks/{webhookId}/rotate-secret`
+  - `PUT /v1/design`
+  - `PUT /v1/email/domains/{id}/default-sender`
+- Added operations:
+  - `DELETE /v1/attachments/{id}`
+  - `DELETE /v1/brands/{slug}`
+  - `DELETE /v1/contact-groups/{id}`
+  - `DELETE /v1/contact-groups/{id}/members`
+  - `DELETE /v1/contacts/{id}/identities/{identityId}`
+  - `DELETE /v1/contacts/{id}/tags`
+  - `DELETE /v1/conversations/{id}/categories`
+  - `DELETE /v1/conversations/{id}/channels`
+  - `DELETE /v1/conversations/{id}/tags`
+  - `DELETE /v1/custom-fields/{id}`
+  - `DELETE /v1/email/domains/{id}/warming/batches/{batchId}`
+  - `DELETE /v1/extension-installations/{id}`
+  - `DELETE /v1/journeys/{id}`
+  - `DELETE /v1/mailboxes/{id}`
+  - `DELETE /v1/mailboxes/{id}/drafts/{draftId}`
+  - `DELETE /v1/mailboxes/{id}/endpoints/{endpointId}`
+  - `DELETE /v1/mailboxes/{id}/grants/{grantId}`
+  - `DELETE /v1/mailboxes/{id}/labels/{labelId}`
+  - `DELETE /v1/mailboxes/{id}/policies/{policyId}`
+  - `DELETE /v1/mailboxes/{id}/threads/{threadId}/labels`
+  - `DELETE /v1/mailboxes/{id}/threads/{threadId}/notes/{noteId}`
+  - `DELETE /v1/media/{id}`
+  - `DELETE /v1/namespaces/{id}`
+  - `DELETE /v1/templates/families/{id}`
+  - `DELETE /v1/templates/families/{id}/members/{templateId}`
+  - `DELETE /v1/unsubscribe-groups/{id}`
+  - `DELETE /v1/unsubscribe-groups/{id}/members`
+  - `GET /v1/analytics/channel-stats`
+  - `GET /v1/analytics/delivery-metrics`
+  - `GET /v1/analytics/hourly-distribution`
+  - `GET /v1/analytics/stats`
+  - `GET /v1/analytics/top-contacts`
+  - `GET /v1/attachments`
+  - `GET /v1/attachments/{id}`
+  - `GET /v1/attachments/{id}/download-url`
+  - `GET /v1/brands`
+  - `GET /v1/brands/{slug}`
+  - `GET /v1/contact-groups`
+  - `GET /v1/contact-groups/{id}`
+  - `GET /v1/contact-groups/{id}/members`
+  - `GET /v1/contacts/{id}/events`
+  - `GET /v1/custom-fields`
+  - `GET /v1/email/domains/{id}/receiving-status`
+  - `GET /v1/email/domains/{id}/warming`
+  - `GET /v1/email/onboarding-review`
+  - `GET /v1/email/senders/{id}`
+  - `GET /v1/email/suppressions/counts`
+  - `GET /v1/extension-installations`
+  - `GET /v1/extension-installations/{id}`
+  - `GET /v1/extension-installations/{id}/runs`
+  - `GET /v1/extension-installations/{id}/runs/{runId}`
+  - `GET /v1/extensions`
+  - `GET /v1/extensions/{id}`
+  - `GET /v1/extensions/{id}/versions`
+  - `GET /v1/extensions/{id}/versions/{versionId}`
+  - `GET /v1/journeys`
+  - `GET /v1/journeys/{id}`
+  - `GET /v1/journeys/{id}/runs`
+  - `GET /v1/journeys/{id}/runs/{runId}`
+  - `GET /v1/journeys/{id}/stats`
+  - `GET /v1/journeys/{id}/versions/{version}`
+  - `GET /v1/mailboxes`
+  - `GET /v1/mailboxes/{id}`
+  - `GET /v1/mailboxes/{id}/actions`
+  - `GET /v1/mailboxes/{id}/actions/{actionId}`
+  - `GET /v1/mailboxes/{id}/agent-activity`
+  - `GET /v1/mailboxes/{id}/drafts`
+  - `GET /v1/mailboxes/{id}/drafts/{draftId}`
+  - `GET /v1/mailboxes/{id}/events`
+  - `GET /v1/mailboxes/{id}/folders`
+  - `GET /v1/mailboxes/{id}/grants`
+  - `GET /v1/mailboxes/{id}/labels`
+  - `GET /v1/mailboxes/{id}/messages/{messageId}`
+  - `GET /v1/mailboxes/{id}/messages/{messageId}/attachments/{attachmentId}`
+  - `GET /v1/mailboxes/{id}/messages/{messageId}/raw`
+  - `GET /v1/mailboxes/{id}/policies`
+  - `GET /v1/mailboxes/{id}/policies/{policyId}`
+  - `GET /v1/mailboxes/{id}/quarantine`
+  - `GET /v1/mailboxes/{id}/threads`
+  - `GET /v1/mailboxes/{id}/threads/{threadId}`
+  - `GET /v1/mailboxes/{id}/threads/{threadId}/content`
+  - `GET /v1/mailboxes/{id}/threads/{threadId}/messages`
+  - `GET /v1/mailboxes/{id}/threads/{threadId}/notes`
+  - `GET /v1/media/{id}`
+  - `GET /v1/media/{id}/url`
+  - `GET /v1/messages/{id}/content`
+  - `GET /v1/messages/{id}/deliveries`
+  - `GET /v1/namespaces`
+  - `GET /v1/namespaces/{id}`
+  - `GET /v1/operations/{id}`
+  - `GET /v1/organizations/current/profile`
+  - `GET /v1/organizations/trust-tier`
+  - `GET /v1/templates/families/{id}`
+  - `GET /v1/templates/{id}/input-contracts`
+  - `GET /v1/templates/{id}/input-contracts/{inputContractId}`
+  - `GET /v1/templates/{id}/publications/{publicationId}`
+  - `GET /v1/templates/{id}/repository`
+  - `GET /v1/templates/{id}/workspace/history`
+  - `GET /v1/unsubscribe-groups`
+  - `GET /v1/unsubscribe-groups/check`
+  - `GET /v1/unsubscribe-groups/{id}/members`
+  - `GET /v1/webhooks/{id}/logs`
+  - `GET /v1/webhooks/{id}/stats`
+  - `GET /v1/whoami`
+  - `PATCH /v1/brands/{slug}`
+  - `PATCH /v1/contact-groups/{id}`
+  - `PATCH /v1/custom-fields/{id}`
+  - `PATCH /v1/email/domains/{id}/warming/policy`
+  - `PATCH /v1/journeys/{id}`
+  - `PATCH /v1/mailboxes/{id}`
+  - `PATCH /v1/mailboxes/{id}/drafts/{draftId}`
+  - `PATCH /v1/mailboxes/{id}/endpoints/{endpointId}`
+  - `PATCH /v1/mailboxes/{id}/grants/{grantId}`
+  - `PATCH /v1/mailboxes/{id}/labels/{labelId}`
+  - `PATCH /v1/mailboxes/{id}/policies/{policyId}`
+  - `PATCH /v1/mailboxes/{id}/threads/{threadId}`
+  - `PATCH /v1/mailboxes/{id}/threads/{threadId}/notes/{noteId}`
+  - `PATCH /v1/namespaces/{id}`
+  - `PATCH /v1/templates/families/{id}`
+  - `PATCH /v1/templates/{id}/workspace`
+  - `PATCH /v1/unsubscribe-groups/{id}`
+  - `POST /v1/analytics/export`
+  - `POST /v1/api-keys/{id}/revoke`
+  - `POST /v1/brands`
+  - `POST /v1/brands/{slug}/default`
+  - `POST /v1/campaigns/{id}/archive`
+  - `POST /v1/contact-groups`
+  - `POST /v1/contact-groups/preview`
+  - `POST /v1/contact-groups/{id}/evaluate`
+  - `POST /v1/contact-groups/{id}/members`
+  - `POST /v1/contacts/{id}/identities`
+  - `POST /v1/contacts/{id}/tags`
+  - `POST /v1/conversations/{id}/categories`
+  - `POST /v1/conversations/{id}/channels`
+  - `POST /v1/conversations/{id}/tags`
+  - `POST /v1/custom-fields`
+  - `POST /v1/email/domains/{id}/custom-tracking/recheck`
+  - `POST /v1/email/domains/{id}/disable-catch-all`
+  - `POST /v1/email/domains/{id}/enable-catch-all`
+  - `POST /v1/email/domains/{id}/enable-receiving`
+  - `POST /v1/email/domains/{id}/rotate-dkim`
+  - `POST /v1/email/domains/{id}/verify`
+  - `POST /v1/email/domains/{id}/warming`
+  - `POST /v1/email/domains/{id}/warming/complete`
+  - `POST /v1/email/domains/{id}/warming/pause`
+  - `POST /v1/email/domains/{id}/warming/resume`
+  - `POST /v1/email/onboarding-review/reapply`
+  - `POST /v1/email/onboarding-review/respond`
+  - `POST /v1/events`
+  - `POST /v1/events/batch`
+  - `POST /v1/extension-installations`
+  - `POST /v1/extension-installations/{id}/disable`
+  - `POST /v1/extension-installations/{id}/enable`
+  - `POST /v1/extension-installations/{id}/upgrade`
+  - `POST /v1/extensions`
+  - `POST /v1/feedback`
+  - `POST /v1/journeys`
+  - `POST /v1/journeys/{id}/archive`
+  - `POST /v1/journeys/{id}/pause`
+  - `POST /v1/journeys/{id}/publish`
+  - `POST /v1/journeys/{id}/resume`
+  - `POST /v1/mailboxes`
+  - `POST /v1/mailboxes/{id}/actions/{actionId}/approve`
+  - `POST /v1/mailboxes/{id}/actions/{actionId}/cancel`
+  - `POST /v1/mailboxes/{id}/actions/{actionId}/deny`
+  - `POST /v1/mailboxes/{id}/actions/{actionId}/retry`
+  - `POST /v1/mailboxes/{id}/drafts`
+  - `POST /v1/mailboxes/{id}/drafts/{draftId}/send`
+  - `POST /v1/mailboxes/{id}/endpoints`
+  - `POST /v1/mailboxes/{id}/grants`
+  - `POST /v1/mailboxes/{id}/labels`
+  - `POST /v1/mailboxes/{id}/messages`
+  - `POST /v1/mailboxes/{id}/messages/{messageId}/attachments/{attachmentId}/copy`
+  - `POST /v1/mailboxes/{id}/messages/{messageId}/discard`
+  - `POST /v1/mailboxes/{id}/messages/{messageId}/forward`
+  - `POST /v1/mailboxes/{id}/messages/{messageId}/release`
+  - `POST /v1/mailboxes/{id}/messages/{messageId}/reply`
+  - `POST /v1/mailboxes/{id}/messages/{messageId}/reply-all`
+  - `POST /v1/mailboxes/{id}/pause`
+  - `POST /v1/mailboxes/{id}/policies`
+  - `POST /v1/mailboxes/{id}/resume`
+  - `POST /v1/mailboxes/{id}/threads/{threadId}/labels`
+  - `POST /v1/mailboxes/{id}/threads/{threadId}/notes`
+  - `POST /v1/media/{id}/complete`
+  - `POST /v1/messages/scheduled/{id}/resume`
+  - `POST /v1/messages/validate/email`
+  - `POST /v1/namespaces`
+  - `POST /v1/operations/{id}/retry`
+  - `POST /v1/subscriptions`
+  - `POST /v1/templates/families/{id}/members/{templateId}`
+  - `POST /v1/templates/projects/{id}/entries`
+  - `POST /v1/templates/{id}/publications`
+  - `POST /v1/templates/{id}/publications/{publicationId}/render`
+  - `POST /v1/templates/{id}/repository/credentials`
+  - `POST /v1/templates/{id}/workspace`
+  - `POST /v1/templates/{id}/workspace/check`
+  - `POST /v1/templates/{id}/workspace/conflicts`
+  - `POST /v1/templates/{id}/workspace/diff`
+  - `POST /v1/templates/{id}/workspace/fixtures`
+  - `POST /v1/templates/{id}/workspace/resources`
+  - `POST /v1/templates/{id}/workspace/resources/{resourceId}/remove`
+  - `POST /v1/templates/{id}/workspace/restore`
+  - `POST /v1/templates/{id}/workspace/save`
+  - `POST /v1/unsubscribe-groups`
+  - `POST /v1/unsubscribe-groups/{id}/default`
+  - `POST /v1/unsubscribe-groups/{id}/members`
+  - `POST /v1/webhooks/{id}/deliveries/{deliveryId}/redeliver`
+  - `POST /v1/webhooks/{id}/rotate-secret`
+  - `PUT /v1/journeys/{id}/draft`
+  - `PUT /v1/templates/{id}/workspace/assets`
+- Changed schemas:
+  - `ActorId`
+  - `ActorTracking`
+  - `ApiKey`
+  - `ApiKeyPermissions`
+  - `ApiKeyWithSecret`
+  - `BillingProviderError`
+  - `CampaignContent`
+  - `CampaignContentInput`
+  - `CampaignLatestRun`
+  - `CampaignRun`
+  - `ConflictError`
+  - `Contact`
+  - `ContactAccessConfig`
+  - `ContactActivitySummary`
+  - `ContactIdentity`
+  - `ContactListItem`
+  - `ContactPreferences`
+  - `Conversation`
+  - `ConversationDetail`
+  - `ConversationMetadata`
+  - `ConversationMetrics`
+  - `ConversationParticipant`
+  - `CreateTemplatePayload`
+  - `CreateWebhookPayload`
+  - `CustomTrackingStatus`
+  - `DeliverabilityFacts`
+  - `Design`
+  - `DesignSettings`
+  - `DispatchSendMessagePayload`
+  - `DomainName`
+  - `EmailAttachment`
+  - `EmailCampaignContent`
+  - `EmailCampaignContentInput`
+  - `EmailChannelError`
+  - `EmailContent`
+  - `EmailDispatchContent`
+  - `EmailDispatchSendMessagePayload`
+  - `EmailDomainDetailed`
+  - `EmailDomainVerification`
+  - `ExternalServiceError`
+  - `FlagDisabledError`
+  - `ForbiddenError`
+  - `HumanProfile`
+  - `InternalError`
+  - `MailboxExtensionId`
+  - `Message`
+  - `MessageContact`
+  - `Operation`
+  - `Organization`
+  - `PaginationMeta`
+  - `PaymentRequiredError`
+  - `RateLimitedError`
+  - `ResourceNotFoundError`
+  - `SendMessagePayload`
+  - `Template`
+  - `TemplateCompliance`
+  - `TemplateFamily`
+  - `TemplatePerformance`
+  - `TemplateSourceVersionId`
+  - `TemplateSummary`
+  - `TemplateVariable`
+  - `ThemeColors`
+  - `UnauthorizedError`
+  - `UpdateTemplatePayload`
+  - `UpdateWebhookPayload`
+  - `ValidationError`
+  - `WebhookEndpoint`
+  - `WebhookEnqueueError`
+
+
 ## 2026-08-31.1
 
 - Initial canonical OpenAPI 3.1 artifact for the Samva email API.
