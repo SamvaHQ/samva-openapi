@@ -1,24 +1,34 @@
 # Compatibility and releases
 
-Artifact versions use `YYYY-MM-DD.N`, where `N` starts at 1 and increments for multiple releases on
-the same date. Git tags and release assets use the corresponding `vYYYY-MM-DD.N` form.
+Each release is the OpenAPI document one release of the `samva` TypeScript SDK was generated from.
+The Git tag and the GitHub release use the SDK's version (`v0.18.1`), so the spec you pin matches
+the SDK you install. A release is published when the SDK is, and only when its document differs
+from the previous release.
 
-Each manifest classifies its change against the preceding artifact:
+Each manifest records:
 
-- `initial` — the first published artifact.
-- `compatible` — additive or documentation-only changes that preserve existing clients.
-- `breaking` — a removed or narrowed operation, field, schema, status, or behavior that can require
-  a consumer change.
+- `version` and `sdk.version`: the SDK release this document belongs to.
+- `source.commit`: the Samva commit the document was generated from.
+- `openapi.sha256` and `SHA256SUMS`: the checksum of the exact `openapi.json` bytes.
+- `compatibility`: the change against the previous release.
+  - `compatible`: operations, fields, and enum members are only added, and no existing value
+    becomes required.
+  - `breaking`: an operation, path, schema, or field was removed or narrowed, or a value became
+    required.
 
-Breaking artifacts require explicit maintainer approval and release notes that name migration work.
-CalVer is used because artifact publication cadence is independent from the API's compatibility
-version. Reusing the API version alone was rejected because multiple compatible schema releases can
-share that version and would not be addressable immutably.
+The classification is conservative: a response that gains a required field reads as breaking. It
+describes the change; it does not hold a release back, because the SDK it matches has already
+shipped. Each release's changelog entry lists the removed and added operations and the changed
+schemas.
 
-Published versions are immutable. A defective artifact is not replaced or deleted: its release is
-marked withdrawn, a corrected version is published, and consumers are directed to the replacement.
-Deprecations remain in the schema before removal and are called out in the changelog.
+While the SDK is on 0.x, only the current release is maintained. Older releases stay published and
+are never replaced.
+
+Published releases are immutable. A defective release is not replaced or deleted: its GitHub
+release is marked as withdrawn, a corrected release is published, and its notes point to the
+replacement.
 
 Automated consumer updates must pin the release asset and checksum from `manifest.json`, run their
-generated-code diff and tests, and present compatibility evidence for review. Mutable live endpoints
-are not reproducible build inputs.
+generated-code diff and tests, and present the compatibility class for review. The live
+`https://api.samva.dev/v1/openapi.json` endpoint moves with the API and is not a reproducible build
+input.

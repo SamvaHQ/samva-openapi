@@ -4,12 +4,14 @@ The canonical OpenAPI 3.1 description for the [Samva](https://samva.dev) email A
 
 ## Artifacts
 
-- `openapi.json` is the generated API description.
-- `manifest.json` records the artifact version, compatibility classification, checksum, and shape.
+- `openapi.json` is the API description the `samva` TypeScript SDK of the same version was
+  generated from.
+- `manifest.json` records the SDK version, the Samva source commit, the compatibility class
+  against the previous release, the checksum, and the document's shape.
 - `SHA256SUMS` lets consumers verify the downloaded artifact before generation.
 
-The OpenAPI document is generated from Samva's API contracts. Do not edit it by hand. Contract
-changes produce a new immutable artifact version after compatibility review.
+The OpenAPI document is generated from Samva's API contracts and published with each SDK release.
+Do not edit it by hand.
 
 ## Verify
 
@@ -23,8 +25,17 @@ email surface without requiring another repository.
 
 ## Consume
 
-Reproducible SDK builds should pin an immutable release tag and verify the corresponding checksum.
-Do not use the mutable live API URL as a build input.
+Pin the release whose tag matches the `samva` SDK version you use, and verify its checksum before
+generating a client. Name the tag in your build rather than resolving the newest one:
+
+```sh
+version=v0.18.1 # the samva version your lockfile resolves
+curl -fsSLO "https://github.com/SamvaHQ/samva-openapi/releases/download/$version/openapi.json"
+curl -fsSLO "https://github.com/SamvaHQ/samva-openapi/releases/download/$version/SHA256SUMS"
+shasum -a 256 -c SHA256SUMS
+```
+
+Do not use the live API URL as a build input; it changes as the API does.
 
 See [COMPATIBILITY.md](./COMPATIBILITY.md) for versioning and release behavior.
 
