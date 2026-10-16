@@ -6,23 +6,36 @@
   "additionalProperties": false,
   "required": [
     "schemaVersion",
-    "artifactVersion",
-    "generatedAt",
-    "generator",
+    "version",
+    "releasedAt",
+    "source",
+    "sdk",
     "compatibility",
     "openapi"
   ],
   "properties": {
     "$schema": { "type": "string" },
-    "schemaVersion": { "const": 1 },
-    "artifactVersion": { "type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}\\.[1-9][0-9]*$" },
-    "generatedAt": { "type": "string", "format": "date-time" },
-    "generator": {
+    "schemaVersion": { "const": 2 },
+    "version": {
+      "description": "The SDK release this document belongs to; the Git tag is v<version>.",
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+(-[0-9A-Za-z.-]+)?$"
+    },
+    "releasedAt": { "type": "string", "format": "date-time" },
+    "source": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["name", "version"],
+      "required": ["commit"],
       "properties": {
-        "name": { "const": "samva-openapi" },
+        "commit": { "type": "string", "pattern": "^[a-f0-9]{40}$" }
+      }
+    },
+    "sdk": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["package", "version"],
+      "properties": {
+        "package": { "const": "samva" },
         "version": { "type": "string" }
       }
     },
@@ -32,7 +45,10 @@
       "required": ["classification", "baseline"],
       "properties": {
         "classification": { "enum": ["initial", "compatible", "breaking"] },
-        "baseline": { "type": ["string", "null"] }
+        "baseline": {
+          "description": "The tag or artifact version of the previous release.",
+          "type": ["string", "null"]
+        }
       }
     },
     "openapi": {

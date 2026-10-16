@@ -2,11 +2,11 @@ extends:
   - recommended
 
 apis:
-  samva@2026-08-31.1:
+  samva:
     root: ./openapi.json
 
 rules:
-  # The document is served from the requesting origin, so it intentionally has no fixed server.
+  # The initial artifact names no server; SDK-keyed releases name https://api.samva.dev.
   no-empty-servers: off
   # Repository licensing applies to the artifact; API use is governed separately.
   info-license: off
