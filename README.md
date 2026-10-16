@@ -26,10 +26,10 @@ email surface without requiring another repository.
 ## Consume
 
 Pin the release whose tag matches the `samva` SDK version you use, and verify its checksum before
-generating a client:
+generating a client. Name the tag in your build rather than resolving the newest one:
 
 ```sh
-version="v$(npm view samva version)"
+version=v0.18.1 # the samva version your lockfile resolves
 curl -fsSLO "https://github.com/SamvaHQ/samva-openapi/releases/download/$version/openapi.json"
 curl -fsSLO "https://github.com/SamvaHQ/samva-openapi/releases/download/$version/SHA256SUMS"
 shasum -a 256 -c SHA256SUMS

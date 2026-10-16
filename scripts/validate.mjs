@@ -41,6 +41,11 @@ if (manifest.schemaVersion === 1) {
   );
   assert(/^[a-f0-9]{40}$/.test(manifest.source?.commit ?? ""), "manifest source commit is missing");
   assert(
+    /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d+)?Z$/.test(manifest.releasedAt ?? "") &&
+      !Number.isNaN(Date.parse(manifest.releasedAt)),
+    "manifest releasedAt must be a UTC date-time",
+  );
+  assert(
     ["initial", "compatible", "breaking"].includes(manifest.compatibility?.classification),
     "manifest compatibility class is missing",
   );
