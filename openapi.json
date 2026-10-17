@@ -62316,6 +62316,16 @@
           },
           "text": {
             "type": "string"
+          },
+          "headCss": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
         "required": [
