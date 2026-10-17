@@ -1,5 +1,24 @@
 # Changelog
 
+## v0.19.0
+
+- The OpenAPI document Samva SDK `samva@0.19.0` was generated from: 326 operations, 239 paths, 461 schemas.
+- Breaking against v0.18.0.
+- Added operations:
+  - `PUT /v1/contacts/{id}/identities/{identityId}/consent/{channel}`
+- Changed schemas:
+  - `ContactIdentity`
+  - `ContactIdentityInput`
+  - `ConversationContact`
+  - `MailboxNonSendAction`
+  - `MailboxSendAction`
+  - `MessageDelivery`
+  - `Organization`
+  - `UnsubscribeGroupMemberPage`
+  - `UpdateWebhookPayload`
+  - `UpgradeExtensionPayload`
+
+
 ## v0.18.0
 
 - The OpenAPI document Samva SDK `samva@0.18.0` was generated from: 325 operations, 238 paths, 450 schemas.

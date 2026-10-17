@@ -16712,7 +16712,7 @@
             }
           }
         },
-        "description": "Looks up a single contact by email address or external ID and returns null when no contact matches.",
+        "description": "Looks up a single contact by exactly one of email address, phone number, or external ID and returns null when no contact matches. A phone number without `+` is read in the organization's default region.",
         "summary": "Find a contact",
         "requestBody": {
           "content": {
@@ -17699,6 +17699,133 @@
         },
         "description": "Removes one address from the contact and returns the contact.",
         "summary": "Remove a contact identity",
+        "x-samva-scope": "contacts:update"
+      }
+    },
+    "/v1/contacts/{id}/identities/{identityId}/consent/{channel}": {
+      "put": {
+        "tags": [
+          "Contacts"
+        ],
+        "operationId": "contacts.setConsent",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "$ref": "#/components/schemas/ContactId"
+            },
+            "required": true
+          },
+          {
+            "name": "identityId",
+            "in": "path",
+            "schema": {
+              "$ref": "#/components/schemas/ContactIdentityId"
+            },
+            "required": true
+          },
+          {
+            "name": "channel",
+            "in": "path",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "email"
+              ]
+            },
+            "required": true
+          }
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Contact",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Contact"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ResourceNotFoundError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Records the contact's consent on one channel at one of its addresses and returns the contact. `opted_out` stops every send on that channel to that address until the contact opts back in; `opted_in` is what channels that require opt-in check for. `source` and `capturedAt` say where and when the contact decided; `proof` keeps your evidence. A decision captured before the recorded one is ignored. A change publishes `contact.consent_changed`.",
+        "summary": "Record contact consent",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SetContactConsent"
+              }
+            }
+          },
+          "required": true
+        },
         "x-samva-scope": "contacts:update"
       }
     },
@@ -24808,7 +24935,7 @@
         "tags": [
           "Unsubscribe Groups"
         ],
-        "operationId": "unsubscribe.addEmails",
+        "operationId": "unsubscribe.addMembers",
         "parameters": [
           {
             "name": "id",
@@ -24860,6 +24987,16 @@
               }
             }
           },
+          "402": {
+            "description": "PaymentRequiredError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentRequiredError"
+                }
+              }
+            }
+          },
           "403": {
             "description": "ForbiddenError",
             "content": {
@@ -24900,6 +25037,16 @@
               }
             }
           },
+          "502": {
+            "description": "BillingProviderError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BillingProviderError"
+                }
+              }
+            }
+          },
           "504": {
             "description": "GatewayTimeoutError",
             "content": {
@@ -24911,7 +25058,7 @@
             }
           }
         },
-        "description": "Adds one or more email addresses to an unsubscribe group and returns the number added and the number skipped.",
+        "description": "Moves contacts out of an unsubscribe group's audience and returns the number added and the number skipped. Leaving a group stops that group's sends to the contact on every channel. Each member is a contact ID, an email address, or a phone number; an address no contact holds gets a new contact, so an import from another email service needs no contacts first.",
         "summary": "Add contacts to an unsubscribe group",
         "requestBody": {
           "content": {
@@ -24919,10 +25066,10 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "emails": {
+                  "members": {
                     "type": "array",
                     "items": {
-                      "type": "string"
+                      "$ref": "#/components/schemas/UnsubscribeGroupMemberRef"
                     },
                     "minItems": 1
                   },
@@ -24944,7 +25091,7 @@
                   }
                 },
                 "required": [
-                  "emails"
+                  "members"
                 ],
                 "additionalProperties": false
               }
@@ -24958,7 +25105,7 @@
         "tags": [
           "Unsubscribe Groups"
         ],
-        "operationId": "unsubscribe.removeEmails",
+        "operationId": "unsubscribe.removeMembers",
         "parameters": [
           {
             "name": "id",
@@ -25056,7 +25203,7 @@
             }
           }
         },
-        "description": "Removes one or more email addresses from an unsubscribe group and returns the number removed.",
+        "description": "Returns contacts to an unsubscribe group's audience and returns the number removed. Each member is a contact ID, an email address, or a phone number; an address no contact holds is skipped.",
         "summary": "Remove contacts from an unsubscribe group",
         "requestBody": {
           "content": {
@@ -25064,16 +25211,16 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "emails": {
+                  "members": {
                     "type": "array",
                     "items": {
-                      "type": "string"
+                      "$ref": "#/components/schemas/UnsubscribeGroupMemberRef"
                     },
                     "minItems": 1
                   }
                 },
                 "required": [
-                  "emails"
+                  "members"
                 ],
                 "additionalProperties": false
               }
@@ -25205,7 +25352,7 @@
             }
           }
         },
-        "description": "Returns the email addresses in an unsubscribe group, newest first. Pass `nextCursor` back as `cursor` for the next page; it is null on the last page.",
+        "description": "Returns the contacts that have left an unsubscribe group, newest first. Pass `nextCursor` back as `cursor` for the next page; it is null on the last page.",
         "summary": "List unsubscribe group members",
         "x-samva-scope": "contacts:read"
       }
@@ -25218,12 +25365,49 @@
         "operationId": "unsubscribe.checkSubscription",
         "parameters": [
           {
+            "name": "contactId",
+            "in": "query",
+            "schema": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/ContactId"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "required": false
+          },
+          {
             "name": "email",
             "in": "query",
             "schema": {
-              "type": "string"
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
             },
-            "required": true
+            "required": false
+          },
+          {
+            "name": "phone",
+            "in": "query",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "required": false
           },
           {
             "name": "groupIds",
@@ -25254,8 +25438,15 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "email": {
-                      "type": "string"
+                    "contactId": {
+                      "anyOf": [
+                        {
+                          "$ref": "#/components/schemas/ContactId"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
                     },
                     "unsubscribedGroups": {
                       "type": "array",
@@ -25282,7 +25473,7 @@
                     }
                   },
                   "required": [
-                    "email",
+                    "contactId",
                     "unsubscribedGroups"
                   ],
                   "additionalProperties": false
@@ -25341,7 +25532,7 @@
             }
           }
         },
-        "description": "Returns the unsubscribe groups that an email address has unsubscribed from, optionally limited to a specified set of groups.",
+        "description": "Returns the unsubscribe groups a contact has left, optionally limited to a specified set of groups. Name the contact by exactly one of `contactId`, `email`, or `phone`. Membership belongs to the contact, so the answer is the same whichever identifier names it; `contactId` is null, and no groups are returned, when no contact holds the email or phone.",
         "summary": "Check unsubscribe group membership",
         "x-samva-scope": "contacts:read"
       }
@@ -39701,10 +39892,17 @@
                       }
                     ]
                   },
-                  "countryCode": {
+                  "defaultRegion": {
                     "anyOf": [
                       {
-                        "type": "string"
+                        "anyOf": [
+                          {
+                            "$ref": "#/components/schemas/PhoneRegion"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
                       },
                       {
                         "type": "null"
@@ -49054,7 +49252,7 @@
             }
           }
         },
-        "description": "Cancels a definitely unsent action and reopens its draft atomically. Only an authorized person who proposed the send or can approve actions may cancel. Accepted sends return 409 with their winning receipt and cannot be withdrawn. An uncertain send requires reconciliation and cannot be cancelled as unsent.",
+        "description": "Cancels a definitely unsent action and reopens its draft atomically. Only an authorized person who proposed the send or can approve actions may cancel. Accepted sends return 409 with their winning receipt and cannot be withdrawn. An uncertain send requires reconciliation and cannot be cancelled as unsent. Cancelling a send held for approval records `resolution.outcome: cancelled` and publishes one `mailbox.action.resolved` event.",
         "summary": "Cancel a mailbox send",
         "x-samva-scope": "mailboxes:manage"
       }
@@ -49434,7 +49632,7 @@
             }
           }
         },
-        "description": "Records approval of a send and returns 202 while it is pending. A send is queued for automatic retry within 15 minutes of approval; repeating approval does not extend this deadline. Accepted, completed, and notSent replays return 200. No expiry applies before approval. Only a person signed in or through OAuth may approve, and never the proposer. Non-send approvals execute synchronously and return 200 with their own execution states.",
+        "description": "Records approval of a send and returns 202 while it is pending. A send is queued for automatic retry within 15 minutes of approval; repeating approval does not extend this deadline. Accepted, completed, and notSent replays return 200. No expiry applies before approval. Only a person signed in or through OAuth may approve, and never the proposer. Non-send approvals execute synchronously and return 200 with their own execution states. The action's `resolution` names the approver; approving a held send publishes one `mailbox.action.resolved` event.",
         "summary": "Approve a mailbox action",
         "x-samva-scope": "mailboxes:manage"
       }
@@ -49557,7 +49755,7 @@
             }
           }
         },
-        "description": "Denies an action waiting for approval with a reason and returns it without executing it. Only a person signed in or through OAuth may deny, and never the one who proposed it.",
+        "description": "Denies an action waiting for approval with a reason and returns it without executing it. Only a person signed in or through OAuth may deny, and never the one who proposed it. The action's `resolution` records the denier and reason; denying a held send publishes one `mailbox.action.resolved` event.",
         "summary": "Deny a mailbox action",
         "requestBody": {
           "content": {
@@ -52113,6 +52311,7 @@
               "mailbox.message.received",
               "mailbox.message.sent",
               "mailbox.action.pending_approval",
+              "mailbox.action.resolved",
               "mailbox.message.quarantined",
               "mailbox.message.released",
               "mailbox.message.discarded"
@@ -52202,6 +52401,7 @@
               "mailbox.message.received",
               "mailbox.message.sent",
               "mailbox.action.pending_approval",
+              "mailbox.action.resolved",
               "mailbox.message.quarantined",
               "mailbox.message.released",
               "mailbox.message.discarded"
@@ -52329,6 +52529,7 @@
                 "mailbox.message.received",
                 "mailbox.message.sent",
                 "mailbox.action.pending_approval",
+                "mailbox.action.resolved",
                 "mailbox.message.quarantined",
                 "mailbox.message.released",
                 "mailbox.message.discarded"
@@ -52587,6 +52788,7 @@
                 "event:mailbox.message.received",
                 "event:mailbox.message.sent",
                 "event:mailbox.action.pending_approval",
+                "event:mailbox.action.resolved",
                 "event:mailbox.message.quarantined",
                 "event:mailbox.message.released",
                 "event:mailbox.message.discarded"
@@ -52605,6 +52807,7 @@
                 "event:mailbox.message.received",
                 "event:mailbox.message.sent",
                 "event:mailbox.action.pending_approval",
+                "event:mailbox.action.resolved",
                 "event:mailbox.message.quarantined",
                 "event:mailbox.message.released",
                 "event:mailbox.message.discarded"
@@ -52658,6 +52861,7 @@
                     "event:mailbox.message.received",
                     "event:mailbox.message.sent",
                     "event:mailbox.action.pending_approval",
+                    "event:mailbox.action.resolved",
                     "event:mailbox.message.quarantined",
                     "event:mailbox.message.released",
                     "event:mailbox.message.discarded"
@@ -52986,6 +53190,7 @@
                     "mailbox.message.received",
                     "mailbox.message.sent",
                     "mailbox.action.pending_approval",
+                    "mailbox.action.resolved",
                     "mailbox.message.quarantined",
                     "mailbox.message.released",
                     "mailbox.message.discarded"
@@ -53236,6 +53441,7 @@
                     "mailbox.message.received",
                     "mailbox.message.sent",
                     "mailbox.action.pending_approval",
+                    "mailbox.action.resolved",
                     "mailbox.message.quarantined",
                     "mailbox.message.released",
                     "mailbox.message.discarded"
@@ -54282,6 +54488,17 @@
               }
             ]
           },
+          "resolution": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/MailboxActionResolution"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "How a held action's approval ended: who approved, denied, or cancelled it, when, and the denial reason. Null while it waits for approval and for an action that never needed one."
+          },
           "createdAt": {
             "type": "string"
           },
@@ -54321,12 +54538,94 @@
           "threadId",
           "draftId",
           "decision",
+          "resolution",
           "createdAt",
           "updatedAt",
           "type",
           "state"
         ],
         "additionalProperties": false
+      },
+      "MailboxActionResolution": {
+        "type": "object",
+        "properties": {
+          "outcome": {
+            "type": "string",
+            "enum": [
+              "approved",
+              "denied",
+              "cancelled"
+            ]
+          },
+          "actor": {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "type": "string",
+                "enum": [
+                  "user",
+                  "apiKey",
+                  "extension",
+                  "externalAgent",
+                  "samvaAgent",
+                  "system"
+                ]
+              },
+              "id": {
+                "type": "string"
+              },
+              "displayName": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "source": {
+                "type": "string",
+                "enum": [
+                  "humanUi",
+                  "externalApi",
+                  "externalAgent",
+                  "extension",
+                  "system"
+                ]
+              }
+            },
+            "required": [
+              "kind",
+              "id",
+              "source"
+            ],
+            "additionalProperties": false,
+            "description": "Who resolved the approval."
+          },
+          "resolvedAt": {
+            "type": "string"
+          },
+          "reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "The denial reason; null for an approval or a cancellation."
+          }
+        },
+        "required": [
+          "outcome",
+          "actor",
+          "resolvedAt",
+          "reason"
+        ],
+        "additionalProperties": false,
+        "description": "How the action's approval ended."
       },
       "MailboxSendAction": {
         "type": "object",
@@ -54410,6 +54709,17 @@
               }
             ]
           },
+          "resolution": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/MailboxActionResolution"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "How a held action's approval ended: who approved, denied, or cancelled it, when, and the denial reason. Null while it waits for approval and for an action that never needed one."
+          },
           "createdAt": {
             "type": "string"
           },
@@ -54455,6 +54765,7 @@
           "threadId",
           "draftId",
           "decision",
+          "resolution",
           "createdAt",
           "updatedAt",
           "type",
@@ -59568,8 +59879,15 @@
           "slug": {
             "type": "string"
           },
-          "countryCode": {
-            "type": "string"
+          "defaultRegion": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PhoneRegion"
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
           "timezone": {
             "type": "string"
@@ -59659,7 +59977,7 @@
           "billingAccountId",
           "name",
           "slug",
-          "countryCode",
+          "defaultRegion",
           "timezone",
           "plan",
           "isActive",
@@ -59678,6 +59996,11 @@
           "messagesResetAt"
         ],
         "additionalProperties": false
+      },
+      "PhoneRegion": {
+        "type": "string",
+        "pattern": "^[A-Z]{2}$",
+        "description": "An ISO 3166-1 alpha-2 region code, such as US or IN."
       },
       "IanaTimezone": {
         "type": "string"
@@ -60027,6 +60350,7 @@
                 "contact.subscribed",
                 "contact.unsubscribed",
                 "contact.resubscribed",
+                "contact.consent_changed",
                 "conversation.created",
                 "conversation.updated",
                 "conversation.archived",
@@ -60039,6 +60363,7 @@
                 "mailbox.message.received",
                 "mailbox.message.sent",
                 "mailbox.action.pending_approval",
+                "mailbox.action.resolved",
                 "mailbox.message.quarantined",
                 "mailbox.message.released",
                 "mailbox.message.discarded",
@@ -60194,6 +60519,7 @@
                     "contact.subscribed",
                     "contact.unsubscribed",
                     "contact.resubscribed",
+                    "contact.consent_changed",
                     "conversation.created",
                     "conversation.updated",
                     "conversation.archived",
@@ -60206,6 +60532,7 @@
                     "mailbox.message.received",
                     "mailbox.message.sent",
                     "mailbox.action.pending_approval",
+                    "mailbox.action.resolved",
                     "mailbox.message.quarantined",
                     "mailbox.message.released",
                     "mailbox.message.discarded",
@@ -60374,6 +60701,7 @@
                 "contact.subscribed",
                 "contact.unsubscribed",
                 "contact.resubscribed",
+                "contact.consent_changed",
                 "conversation.created",
                 "conversation.updated",
                 "conversation.archived",
@@ -60386,6 +60714,7 @@
                 "mailbox.message.received",
                 "mailbox.message.sent",
                 "mailbox.action.pending_approval",
+                "mailbox.action.resolved",
                 "mailbox.message.quarantined",
                 "mailbox.message.released",
                 "mailbox.message.discarded",
@@ -60562,6 +60891,7 @@
                 "contact.subscribed",
                 "contact.unsubscribed",
                 "contact.resubscribed",
+                "contact.consent_changed",
                 "conversation.created",
                 "conversation.updated",
                 "conversation.archived",
@@ -60574,6 +60904,7 @@
                 "mailbox.message.received",
                 "mailbox.message.sent",
                 "mailbox.action.pending_approval",
+                "mailbox.action.resolved",
                 "mailbox.message.quarantined",
                 "mailbox.message.released",
                 "mailbox.message.discarded",
@@ -62293,6 +62624,11 @@
         ],
         "additionalProperties": false
       },
+      "ContactId": {
+        "type": "string",
+        "pattern": "^contact_[0-9a-hjkmnp-tv-z]{16,24}$",
+        "x-samva-brand": "ContactId"
+      },
       "UnsubscribeGroupMemberPage": {
         "type": "object",
         "properties": {
@@ -62302,20 +62638,10 @@
               "type": "object",
               "properties": {
                 "id": {
-                  "type": "string"
-                },
-                "email": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/UnsubscribeGroupMemberId"
                 },
                 "contactId": {
-                  "anyOf": [
-                    {
-                      "type": "string"
-                    },
-                    {
-                      "type": "null"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/ContactId"
                 },
                 "source": {
                   "type": "string",
@@ -62335,7 +62661,6 @@
               },
               "required": [
                 "id",
-                "email",
                 "contactId",
                 "source",
                 "unsubscribedAt",
@@ -62358,6 +62683,60 @@
         "required": [
           "items",
           "nextCursor"
+        ],
+        "additionalProperties": false
+      },
+      "UnsubscribeGroupMemberId": {
+        "type": "string",
+        "pattern": "^unsubm_[0-9a-hjkmnp-tv-z]{16,24}$",
+        "x-samva-brand": "UnsubscribeGroupMemberId"
+      },
+      "UnsubscribeGroupMemberRef": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/UnsubscribeGroupMemberByContact"
+          },
+          {
+            "$ref": "#/components/schemas/UnsubscribeGroupMemberByEmail"
+          },
+          {
+            "$ref": "#/components/schemas/UnsubscribeGroupMemberByPhone"
+          }
+        ]
+      },
+      "UnsubscribeGroupMemberByPhone": {
+        "type": "object",
+        "properties": {
+          "phone": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "phone"
+        ],
+        "additionalProperties": false
+      },
+      "UnsubscribeGroupMemberByEmail": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "email"
+        ],
+        "additionalProperties": false
+      },
+      "UnsubscribeGroupMemberByContact": {
+        "type": "object",
+        "properties": {
+          "contactId": {
+            "$ref": "#/components/schemas/ContactId"
+          }
+        },
+        "required": [
+          "contactId"
         ],
         "additionalProperties": false
       },
@@ -62517,11 +62896,6 @@
         ],
         "additionalProperties": false
       },
-      "ContactId": {
-        "type": "string",
-        "pattern": "^contact_[0-9a-hjkmnp-tv-z]{16,24}$",
-        "x-samva-brand": "ContactId"
-      },
       "ContactGroupId": {
         "type": "string",
         "pattern": "^cgrp_[0-9a-hjkmnp-tv-z]{16,24}$",
@@ -62667,10 +63041,11 @@
           "id": {
             "$ref": "#/components/schemas/ContactIdentityId"
           },
-          "channel": {
+          "type": {
             "type": "string",
             "enum": [
-              "email"
+              "email",
+              "phone"
             ]
           },
           "identifier": {
@@ -62678,15 +63053,98 @@
           },
           "verified": {
             "type": "boolean"
+          },
+          "channels": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ContactIdentityChannel"
+            }
           }
         },
         "required": [
           "id",
-          "channel",
+          "type",
           "identifier",
-          "verified"
+          "verified",
+          "channels"
         ],
         "additionalProperties": false
+      },
+      "ContactIdentityChannel": {
+        "type": "object",
+        "properties": {
+          "channel": {
+            "type": "string",
+            "enum": [
+              "email"
+            ]
+          },
+          "reachability": {
+            "type": "string",
+            "enum": [
+              "unknown",
+              "reachable",
+              "unreachable"
+            ]
+          },
+          "consent": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ContactConsent"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "channel",
+          "reachability",
+          "consent"
+        ],
+        "additionalProperties": false
+      },
+      "ContactConsent": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "opted_in",
+              "opted_out"
+            ]
+          },
+          "source": {
+            "type": "string"
+          },
+          "capturedAt": {
+            "type": "string"
+          },
+          "proof": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/JsonObject"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "status",
+          "source",
+          "capturedAt",
+          "proof"
+        ],
+        "additionalProperties": false
+      },
+      "JsonObject": {
+        "type": "object",
+        "additionalProperties": {
+          "$ref": "#/components/schemas/JsonValue"
+        }
       },
       "ContactIdentityId": {
         "type": "string",
@@ -63289,12 +63747,6 @@
           "properties"
         ],
         "additionalProperties": false
-      },
-      "JsonObject": {
-        "type": "object",
-        "additionalProperties": {
-          "$ref": "#/components/schemas/JsonValue"
-        }
       },
       "JourneyRunExitReason": {
         "type": "string",
@@ -65240,10 +65692,11 @@
       "ContactIdentityInput": {
         "type": "object",
         "properties": {
-          "channel": {
+          "type": {
             "type": "string",
             "enum": [
-              "email"
+              "email",
+              "phone"
             ]
           },
           "identifier": {
@@ -65261,7 +65714,7 @@
           }
         },
         "required": [
-          "channel",
+          "type",
           "identifier"
         ],
         "additionalProperties": false
@@ -65409,6 +65862,51 @@
         },
         "required": [
           "tags"
+        ],
+        "additionalProperties": false
+      },
+      "SetContactConsent": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "opted_in",
+              "opted_out"
+            ]
+          },
+          "source": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200,
+            "description": "Where the consent was captured, such as a form URL or a checkout step.",
+            "x-samva-string-checks": [
+              {
+                "id": "effect/schema/isMaxLength",
+                "payload": {
+                  "maxLength": 200
+                }
+              }
+            ]
+          },
+          "capturedAt": {
+            "type": "string"
+          },
+          "proof": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/JsonObject"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "status",
+          "source",
+          "capturedAt"
         ],
         "additionalProperties": false
       },
@@ -66016,10 +66514,11 @@
             "items": {
               "type": "object",
               "properties": {
-                "channel": {
+                "type": {
                   "type": "string",
                   "enum": [
-                    "email"
+                    "email",
+                    "phone"
                   ]
                 },
                 "identifier": {
@@ -66030,7 +66529,7 @@
                 }
               },
               "required": [
-                "channel",
+                "type",
                 "identifier",
                 "verified"
               ],
@@ -72415,6 +72914,16 @@
               }
             ]
           },
+          "estimatedProviderCost": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/EstimatedProviderCost"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "createdAt": {
             "type": "string"
           },
@@ -72434,8 +72943,33 @@
           "readAt",
           "failedAt",
           "error",
+          "estimatedProviderCost",
           "createdAt",
           "updatedAt"
+        ],
+        "additionalProperties": false
+      },
+      "EstimatedProviderCost": {
+        "type": "object",
+        "properties": {
+          "amount": {
+            "type": "string",
+            "pattern": "^\\d+\\.\\d+$"
+          },
+          "currency": {
+            "type": "string"
+          },
+          "billingMode": {
+            "type": "string",
+            "enum": [
+              "pass_through"
+            ]
+          }
+        },
+        "required": [
+          "amount",
+          "currency",
+          "billingMode"
         ],
         "additionalProperties": false
       },
