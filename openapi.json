@@ -26973,7 +26973,27 @@
                   "type": "null"
                 }
               ],
-              "description": "Only templates in this namespace. A namespace-scoped key lists its own namespace's templates only."
+              "description": "Only the templates this namespace uses: its own and those shared with every namespace (add `shared=false` for its own only). A namespace-scoped key lists its own namespace's and shared templates."
+            },
+            "required": false
+          },
+          {
+            "name": "shared",
+            "in": "query",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "enum": [
+                    "true",
+                    "false"
+                  ]
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Only templates whose project is shared with every namespace (true), or only unshared ones (false)."
             },
             "required": false
           }
@@ -62364,7 +62384,11 @@
                 "type": "null"
               }
             ],
-            "description": "The namespace the template's project belongs to; every entry in a project shares it. Null at organization level. A namespace-scoped key reaches only its own namespace's templates."
+            "description": "The namespace the template's project belongs to; every entry in a project shares it. Null at organization level. A namespace-scoped key reaches only its own namespace's templates and shared ones."
+          },
+          "shared": {
+            "type": "boolean",
+            "description": "Whether the template's project is shared with every namespace. Every entry in a project shares it. A namespace-scoped key reads and sends a shared template in its own namespace but cannot change it. Only an organization-level project is shared."
           },
           "entryPath": {
             "type": "string",
@@ -62613,6 +62637,7 @@
           "channel",
           "projectId",
           "namespaceId",
+          "shared",
           "entryPath",
           "status",
           "isActive",
@@ -62823,6 +62848,17 @@
                     "type": "null"
                   }
                 ]
+              },
+              "shared": {
+                "anyOf": [
+                  {
+                    "type": "boolean"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "Share the template's project with every namespace, or stop sharing it. Applies to every entry in the project. Only an organization-level project is shared."
               }
             },
             "additionalProperties": false
@@ -63059,6 +63095,17 @@
             ],
             "description": "The namespace the new template project belongs to; the project and every entry added to it share it. Omit for organization level. A namespace-scoped key always creates in its own namespace."
           },
+          "shared": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Share the new organization-level project with every namespace: namespace-scoped keys read and send its entries but cannot change them. Defaults to false. Not with `namespaceId`, and not from a namespace-scoped key."
+          },
           "idempotencyKey": {
             "type": "string",
             "minLength": 1,
@@ -63256,7 +63303,11 @@
                 "type": "null"
               }
             ],
-            "description": "The namespace the template's project belongs to; every entry in a project shares it. Null at organization level. A namespace-scoped key reaches only its own namespace's templates."
+            "description": "The namespace the template's project belongs to; every entry in a project shares it. Null at organization level. A namespace-scoped key reaches only its own namespace's templates and shared ones."
+          },
+          "shared": {
+            "type": "boolean",
+            "description": "Whether the template's project is shared with every namespace. Every entry in a project shares it. A namespace-scoped key reads and sends a shared template in its own namespace but cannot change it. Only an organization-level project is shared."
           },
           "entryPath": {
             "type": "string",
@@ -63343,6 +63394,7 @@
           "channel",
           "projectId",
           "namespaceId",
+          "shared",
           "entryPath",
           "status",
           "isActive",

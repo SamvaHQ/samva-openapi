@@ -1,5 +1,14 @@
 # Changelog
 
+## v0.21.0
+
+- 329 operations, 242 paths, 465 schemas, 32 webhook events.
+- Breaking against v0.20.2.
+- Changed schemas:
+  - `Template`
+  - `TemplateSummary`
+
+
 ## v0.20.2
 
 - 329 operations, 242 paths, 465 schemas, 32 webhook events.
