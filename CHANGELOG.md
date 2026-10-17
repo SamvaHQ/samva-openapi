@@ -1,5 +1,27 @@
 # Changelog
 
+## v0.20.0
+
+- The OpenAPI document Samva SDK `samva@0.20.0` was generated from: 329 operations, 242 paths, 465 schemas.
+- Breaking against v0.19.0.
+- Added operations:
+  - `DELETE /v1/namespaces/{id}/resources/{type}/{resourceId}`
+  - `GET /v1/namespaces/{id}/usage`
+  - `POST /v1/namespaces/{id}/resources`
+- Changed schemas:
+  - `ApiKeyAccess`
+  - `CampaignRecipientPage`
+  - `CampaignRun`
+  - `Contact`
+  - `ContactSummary`
+  - `EmailDomainDetailed`
+  - `EmailDomainPage`
+  - `EmailSenderPage`
+  - `MailboxChannelUnsupportedError`
+  - `Template`
+  - `TemplateSummary`
+
+
 ## v0.19.0
 
 - The OpenAPI document Samva SDK `samva@0.19.0` was generated from: 326 operations, 239 paths, 461 schemas.

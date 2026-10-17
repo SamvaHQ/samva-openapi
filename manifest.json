@@ -1,27 +1,27 @@
 {
   "$schema": "./manifest.schema.json",
   "schemaVersion": 2,
-  "version": "0.19.0",
-  "releasedAt": "2026-10-17T17:40:58.119Z",
+  "version": "0.20.0",
+  "releasedAt": "2026-10-17T17:43:12.994Z",
   "source": {
-    "commit": "97b81b491d41c186f1d5443bc892d4eba61e70a8"
+    "commit": "6a488c4e8d72b970796fd883a57970ef8eba8465"
   },
   "sdk": {
     "package": "samva",
-    "version": "0.19.0"
+    "version": "0.20.0"
   },
   "compatibility": {
     "classification": "breaking",
-    "baseline": "v0.18.0"
+    "baseline": "v0.19.0"
   },
   "openapi": {
     "artifact": "openapi.json",
     "version": "3.1.0",
     "apiVersion": "1.0.0",
-    "sha256": "45a8ce1b25fe06f7ae67c307e9b2c21b70c5be6557f6ae2f9339ade6bff20e00",
-    "bytes": 2128911,
-    "paths": 239,
-    "operations": 326,
-    "schemas": 461
+    "sha256": "e02c0d3a57e8327ea7872420e527946a42cc28e52d9867e57254372c9ac990e5",
+    "bytes": 2154329,
+    "paths": 242,
+    "operations": 329,
+    "schemas": 465
   }
 }

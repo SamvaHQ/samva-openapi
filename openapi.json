@@ -153,6 +153,22 @@
             "required": false
           },
           {
+            "name": "namespaceId",
+            "in": "query",
+            "schema": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/NamespaceId"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Only this namespace's messages. A key scoped to a namespace always lists its own."
+            },
+            "required": false
+          },
+          {
             "name": "after",
             "in": "query",
             "schema": {
@@ -5481,6 +5497,16 @@
               }
             }
           },
+          "404": {
+            "description": "ResourceNotFoundError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundError"
+                }
+              }
+            }
+          },
           "409": {
             "description": "ConflictError",
             "content": {
@@ -5549,7 +5575,7 @@
             }
           }
         },
-        "description": "Registers a domain for sending and returns it with the DNS records required to verify ownership and configure DKIM. Responds with 201. Supplying a connection attaches the domain to that DNS account; the domain must sit inside the zone given with it. When Samva cannot register another sending domain right now, this responds with 429 and no domain is created. A banned organization is refused with 403.",
+        "description": "Registers a domain for sending and returns it with the DNS records required to verify ownership and configure DKIM. Responds with 201. Supplying a connection attaches the domain to that DNS account; the domain must sit inside the zone given with it. When Samva cannot register another sending domain right now, this responds with 429 and no domain is created. A banned organization is refused with 403. `namespaceId` places the domain in a namespace, and only that namespace's keys and organization-wide callers reach it; a namespace-scoped key always adds to its own namespace.",
         "summary": "Add a sending domain",
         "requestBody": {
           "content": {
@@ -5577,6 +5603,16 @@
                           "zone"
                         ],
                         "additionalProperties": false
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "namespaceId": {
+                    "anyOf": [
+                      {
+                        "$ref": "#/components/schemas/NamespaceId"
                       },
                       {
                         "type": "null"
@@ -5641,6 +5677,21 @@
                   "enum": [
                     "true"
                   ]
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "required": false
+          },
+          {
+            "name": "namespaceId",
+            "in": "query",
+            "schema": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/NamespaceId"
                 },
                 {
                   "type": "null"
@@ -5717,7 +5768,7 @@
             }
           }
         },
-        "description": "Returns the organization's sending domains, newest first. Pass `nextCursor` back as `cursor` for the next page; it is null on the last page. `sendable=true` lists only domains a send can use now: active, and verified, or verified before and degraded since. Each row carries `deliverability` (bounce and complaint rates over the last 24 hours, the window the 5% bounce limit is enforced over) and `series`, the last 14 days of daily email sends attributed to the domain, oldest first.",
+        "description": "Returns the organization's sending domains, newest first. A namespace-scoped key lists only its namespace's domains; an organization-wide caller lists every domain, or one namespace's with `namespaceId`. Pass `nextCursor` back as `cursor` for the next page; it is null on the last page. `sendable=true` lists only domains a send can use now: active, and verified, or verified before and degraded since. Each row carries `deliverability` (bounce and complaint rates over the last 24 hours, the window the 5% bounce limit is enforced over) and `series`, the last 14 days of daily email sends attributed to the domain, oldest first.",
         "summary": "List sending domains",
         "x-samva-scope": "domains:read"
       }
@@ -6368,6 +6419,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ForbiddenError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ResourceNotFoundError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundError"
                 }
               }
             }
@@ -7538,6 +7599,16 @@
               }
             }
           },
+          "404": {
+            "description": "ResourceNotFoundError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundError"
+                }
+              }
+            }
+          },
           "409": {
             "description": "ConflictError",
             "content": {
@@ -7674,6 +7745,16 @@
               }
             }
           },
+          "404": {
+            "description": "ResourceNotFoundError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundError"
+                }
+              }
+            }
+          },
           "422": {
             "description": "ValidationError",
             "content": {
@@ -7756,6 +7837,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ForbiddenError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ResourceNotFoundError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundError"
                 }
               }
             }
@@ -8202,6 +8293,16 @@
               }
             }
           },
+          "404": {
+            "description": "ResourceNotFoundError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundError"
+                }
+              }
+            }
+          },
           "422": {
             "description": "ValidationError",
             "content": {
@@ -8447,7 +8548,7 @@
             }
           }
         },
-        "description": "Creates a sender. The required Idempotency-Key replays the original sender for an identical request and conflicts when reused with different input.",
+        "description": "Creates a sender. A sender on a domain takes the domain's namespace, and a `namespaceId` that names another namespace is refused; a sender with no domain joins `namespaceId`, or its key's namespace. A namespace-scoped key cannot add a sender on a domain outside its namespace. The required Idempotency-Key replays the original sender for an identical request and conflicts when reused with different input.",
         "summary": "Add a sender",
         "requestBody": {
           "content": {
@@ -8499,6 +8600,16 @@
                             "type": "null"
                           }
                         ]
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "namespaceId": {
+                    "anyOf": [
+                      {
+                        "$ref": "#/components/schemas/NamespaceId"
                       },
                       {
                         "type": "null"
@@ -8603,6 +8714,21 @@
               ]
             },
             "required": false
+          },
+          {
+            "name": "namespaceId",
+            "in": "query",
+            "schema": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/NamespaceId"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "required": false
           }
         ],
         "security": [
@@ -8672,7 +8798,7 @@
             }
           }
         },
-        "description": "Returns senders, newest first, optionally filtered by verification status, active state, or default flag. Pass `nextCursor` back as `cursor` for the next page; it is null on the last page. Each row carries `deliverability` (bounce and complaint rates over the last 24 hours) and `series`, the last 14 days of daily email sends from the address, oldest first.",
+        "description": "Returns senders, newest first. A namespace-scoped key lists only its namespace's senders; an organization-wide caller lists every sender, or one namespace's with `namespaceId`. Optionally filtered by verification status, active state, or default flag. Pass `nextCursor` back as `cursor` for the next page; it is null on the last page. Each row carries `deliverability` (bounce and complaint rates over the last 24 hours) and `series`, the last 14 days of daily email sends from the address, oldest first.",
         "summary": "List senders",
         "x-samva-scope": "domains:read"
       }
@@ -8876,6 +9002,17 @@
                         }
                       ]
                     },
+                    "namespaceId": {
+                      "anyOf": [
+                        {
+                          "$ref": "#/components/schemas/NamespaceId"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "description": "The namespace the sender belongs to, or null at organization level. A sender on a domain takes the domain's namespace."
+                    },
                     "verificationStatus": {
                       "type": "string",
                       "enum": [
@@ -8961,6 +9098,7 @@
                     "email",
                     "name",
                     "domainId",
+                    "namespaceId",
                     "verificationStatus",
                     "verifiedAt",
                     "verificationToken",
@@ -9234,8 +9372,8 @@
             }
           }
         },
-        "description": "Marks a verified, active sender as the organization default, atomically clearing any previous default. Omitted-`from` sends use it when neither the request nor the template names a `from`; with no default, the organization's sole verified sender is used.",
-        "summary": "Set the organization default sender",
+        "description": "Marks a verified, active sender as the default of its scope, atomically clearing the previous default of the same scope: the organization level, or the sender's namespace. Omitted-`from` sends use it when neither the request nor the template names a `from`; with no default, the organization's sole verified sender is used.",
+        "summary": "Set the default sender",
         "x-samva-scope": "domains:update"
       }
     },
@@ -16151,6 +16289,21 @@
             "required": false
           },
           {
+            "name": "namespaceId",
+            "in": "query",
+            "schema": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/NamespaceId"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "required": false
+          },
+          {
             "name": "search",
             "in": "query",
             "schema": {
@@ -16385,6 +16538,16 @@
               }
             }
           },
+          "404": {
+            "description": "ResourceNotFoundError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundError"
+                }
+              }
+            }
+          },
           "409": {
             "description": "ConflictError",
             "content": {
@@ -16444,6 +16607,16 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "namespaceId": {
+                    "anyOf": [
+                      {
+                        "$ref": "#/components/schemas/NamespaceId"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
                   "name": {
                     "type": "string"
                   },
@@ -16671,6 +16844,16 @@
               }
             }
           },
+          "404": {
+            "description": "ResourceNotFoundError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundError"
+                }
+              }
+            }
+          },
           "409": {
             "description": "ConflictError",
             "content": {
@@ -16720,6 +16903,16 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "namespaceId": {
+                    "anyOf": [
+                      {
+                        "$ref": "#/components/schemas/NamespaceId"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
                   "email": {
                     "anyOf": [
                       {
@@ -16826,6 +17019,16 @@
               }
             }
           },
+          "404": {
+            "description": "ResourceNotFoundError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundError"
+                }
+              }
+            }
+          },
           "409": {
             "description": "ConflictError",
             "content": {
@@ -16885,6 +17088,16 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "namespaceId": {
+                    "anyOf": [
+                      {
+                        "$ref": "#/components/schemas/NamespaceId"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
                   "lookup": {
                     "$ref": "#/components/schemas/ContactLookup"
                   },
@@ -18315,6 +18528,16 @@
               }
             }
           },
+          "404": {
+            "description": "ResourceNotFoundError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundError"
+                }
+              }
+            }
+          },
           "422": {
             "description": "ValidationError",
             "content": {
@@ -18364,6 +18587,16 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "namespaceId": {
+                    "anyOf": [
+                      {
+                        "$ref": "#/components/schemas/NamespaceId"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
                   "contacts": {
                     "type": "array",
                     "items": {
@@ -19958,11 +20191,18 @@
             }
           },
           "403": {
-            "description": "ForbiddenError",
+            "description": "FlagDisabledError | ForbiddenError",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ForbiddenError"
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/FlagDisabledError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ForbiddenError"
+                    }
+                  ]
                 }
               }
             }
@@ -20406,11 +20646,18 @@
             }
           },
           "403": {
-            "description": "ForbiddenError",
+            "description": "FlagDisabledError | ForbiddenError",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ForbiddenError"
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/FlagDisabledError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ForbiddenError"
+                    }
+                  ]
                 }
               }
             }
@@ -20544,11 +20791,18 @@
             }
           },
           "403": {
-            "description": "ForbiddenError",
+            "description": "FlagDisabledError | ForbiddenError",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ForbiddenError"
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/FlagDisabledError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ForbiddenError"
+                    }
+                  ]
                 }
               }
             }
@@ -20790,11 +21044,18 @@
             }
           },
           "403": {
-            "description": "ForbiddenError",
+            "description": "FlagDisabledError | ForbiddenError",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ForbiddenError"
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/FlagDisabledError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ForbiddenError"
+                    }
+                  ]
                 }
               }
             }
@@ -26699,6 +26960,22 @@
               ]
             },
             "required": false
+          },
+          {
+            "name": "namespaceId",
+            "in": "query",
+            "schema": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/NamespaceId"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Only templates in this namespace. A namespace-scoped key lists its own namespace's templates only."
+            },
+            "required": false
           }
         ],
         "security": [
@@ -26810,6 +27087,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ForbiddenError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ResourceNotFoundError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundError"
                 }
               }
             }
@@ -42107,11 +42394,18 @@
             }
           },
           "403": {
-            "description": "ForbiddenError",
+            "description": "FlagDisabledError | ForbiddenError",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ForbiddenError"
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/FlagDisabledError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ForbiddenError"
+                    }
+                  ]
                 }
               }
             }
@@ -42137,18 +42431,11 @@
             }
           },
           "422": {
-            "description": "ValidationError | MailboxChannelUnsupportedError",
+            "description": "ValidationError",
             "content": {
               "application/json": {
                 "schema": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/ValidationError"
-                    },
-                    {
-                      "$ref": "#/components/schemas/MailboxChannelUnsupportedError"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/ValidationError"
                 }
               }
             }
@@ -42184,7 +42471,7 @@
             }
           }
         },
-        "description": "Creates a mailbox with one endpoint and returns it with status 201; the caller gets an admin grant on it. Email is the channel a mailbox endpoint uses today; another channel is refused (422). An email endpoint's address must be under the organization's Samva-hosted mail domain or a verified domain with receiving enabled, and the mailbox sends from it. The slug defaults to the address's local part. Pass `slug` when that is taken or not a valid slug. The mailbox receives mail from now on; mail that arrived earlier is not added to it. Conflicts if the address or slug is already in use. Returns 402 when the organization is at its plan's mailbox allowance or at its mailbox storage allowance; incoming mail is still received past the storage allowance.",
+        "description": "Creates a mailbox with one endpoint and returns it with status 201; the caller gets an admin grant on it. An email endpoint's address must be under the organization's Samva-hosted mail domain or a verified domain with receiving enabled, and the mailbox sends from it. A phone endpoint's address is a number the organization connected on that channel, in E.164 form. The slug defaults to the address's local part, or a phone number's digits. Pass `slug` when that is taken or not a valid slug. The mailbox receives mail from now on; mail that arrived earlier is not added to it. Conflicts if the address or slug is already in use. Returns 402 when the organization is at its plan's mailbox allowance or at its mailbox storage allowance; incoming mail is still received past the storage allowance.",
         "summary": "Create a mailbox",
         "requestBody": {
           "content": {
@@ -42552,11 +42839,18 @@
             }
           },
           "403": {
-            "description": "ForbiddenError",
+            "description": "FlagDisabledError | ForbiddenError",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ForbiddenError"
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/FlagDisabledError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ForbiddenError"
+                    }
+                  ]
                 }
               }
             }
@@ -42582,18 +42876,11 @@
             }
           },
           "422": {
-            "description": "ValidationError | MailboxChannelUnsupportedError",
+            "description": "ValidationError",
             "content": {
               "application/json": {
                 "schema": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/ValidationError"
-                    },
-                    {
-                      "$ref": "#/components/schemas/MailboxChannelUnsupportedError"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/ValidationError"
                 }
               }
             }
@@ -42619,7 +42906,7 @@
             }
           }
         },
-        "description": "Adds an endpoint to a mailbox and returns the mailbox with status 201. It follows the same rules as the endpoint of a new mailbox: email is the channel a mailbox endpoint uses today (422 otherwise), the address must be under the organization's Samva-hosted mail domain or a verified domain with receiving enabled, and no mailbox may already hold it (409). Messages sent to it reach the mailbox from now on. It becomes the default on its channel only when the mailbox has no endpoint there yet.",
+        "description": "Adds an endpoint to a mailbox and returns the mailbox with status 201. It follows the same rules as the endpoint of a new mailbox: an email address must be under the organization's Samva-hosted mail domain or a verified domain with receiving enabled, a phone number must be one the organization connected on that channel, and no mailbox may already hold it (409). Messages sent to it reach the mailbox from now on. It becomes the default on its channel only when the mailbox has no endpoint there yet.",
         "summary": "Add an endpoint to a mailbox",
         "requestBody": {
           "content": {
@@ -46289,11 +46576,14 @@
             }
           },
           "403": {
-            "description": "MailboxSendRefusedError | OnboardingReviewRequiredError | ForbiddenError",
+            "description": "FlagDisabledError | MailboxSendRefusedError | OnboardingReviewRequiredError | ForbiddenError",
             "content": {
               "application/json": {
                 "schema": {
                   "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/FlagDisabledError"
+                    },
                     {
                       "$ref": "#/components/schemas/MailboxSendRefusedError"
                     },
@@ -46336,18 +46626,11 @@
             }
           },
           "422": {
-            "description": "MailboxChannelUnsupportedError | ValidationError",
+            "description": "Samva API operation.",
             "content": {
               "application/json": {
                 "schema": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/MailboxChannelUnsupportedError"
-                    },
-                    {
-                      "$ref": "#/components/schemas/ValidationError"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/ValidationError"
                 }
               }
             }
@@ -46403,7 +46686,7 @@
             }
           }
         },
-        "description": "Starts a new conversation from the mailbox's default endpoint on the channel the body names (email when omitted); a channel the mailbox cannot send on yet is refused (422). Records a send action and returns 202 with its current receipt and a Location for action status. An installation, grant, or policy may require approval; otherwise the send is queued. Observe the same action through acceptance and mailbox completion. A policy refusal returns 403 with the recorded receipt.",
+        "description": "Starts a new conversation from the mailbox's default endpoint on the channel the body names (email when omitted); a mailbox with no endpoint on that channel is refused (422). A message to a number joins the mailbox's thread with that number when it has one. Records a send action and returns 202 with its current receipt and a Location for action status. An installation, grant, or policy may require approval; otherwise the send is queued. Observe the same action through acceptance and mailbox completion. A policy refusal returns 403 with the recorded receipt.",
         "summary": "Send a new message",
         "requestBody": {
           "content": {
@@ -46966,11 +47249,14 @@
             }
           },
           "403": {
-            "description": "MailboxSendRefusedError | OnboardingReviewRequiredError | ForbiddenError",
+            "description": "FlagDisabledError | MailboxSendRefusedError | OnboardingReviewRequiredError | ForbiddenError",
             "content": {
               "application/json": {
                 "schema": {
                   "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/FlagDisabledError"
+                    },
                     {
                       "$ref": "#/components/schemas/MailboxSendRefusedError"
                     },
@@ -47013,18 +47299,11 @@
             }
           },
           "422": {
-            "description": "MailboxChannelUnsupportedError | ValidationError",
+            "description": "Samva API operation.",
             "content": {
               "application/json": {
                 "schema": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/MailboxChannelUnsupportedError"
-                    },
-                    {
-                      "$ref": "#/components/schemas/ValidationError"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/ValidationError"
                 }
               }
             }
@@ -47080,7 +47359,7 @@
             }
           }
         },
-        "description": "Replies to the message's Reply-To address, or its sender, in the same thread and from the thread's endpoint. The server sets the recipients, subject, and threading headers. The body's `channel` must match the thread's.",
+        "description": "Replies to the message's Reply-To address, or its sender, in the same thread and from the thread's endpoint. The server sets the recipients, subject, and threading headers. The body's `channel` must match the thread's. On a phone channel the reply goes to the number on the other side of the thread.",
         "summary": "Reply to a message",
         "requestBody": {
           "content": {
@@ -47193,11 +47472,14 @@
             }
           },
           "403": {
-            "description": "MailboxSendRefusedError | OnboardingReviewRequiredError | ForbiddenError",
+            "description": "FlagDisabledError | MailboxSendRefusedError | OnboardingReviewRequiredError | ForbiddenError",
             "content": {
               "application/json": {
                 "schema": {
                   "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/FlagDisabledError"
+                    },
                     {
                       "$ref": "#/components/schemas/MailboxSendRefusedError"
                     },
@@ -47240,18 +47522,11 @@
             }
           },
           "422": {
-            "description": "MailboxChannelUnsupportedError | ValidationError",
+            "description": "Samva API operation.",
             "content": {
               "application/json": {
                 "schema": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/MailboxChannelUnsupportedError"
-                    },
-                    {
-                      "$ref": "#/components/schemas/ValidationError"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/ValidationError"
                 }
               }
             }
@@ -47307,7 +47582,7 @@
             }
           }
         },
-        "description": "Replies to the sender and every other recipient of the message except the mailbox itself, in the same thread and from the thread's endpoint.",
+        "description": "Replies to the sender and every other recipient of the message except the mailbox itself, in the same thread and from the thread's endpoint. A phone thread has one other side, so it answers like a reply.",
         "summary": "Reply to all recipients of a message",
         "requestBody": {
           "content": {
@@ -47420,11 +47695,14 @@
             }
           },
           "403": {
-            "description": "MailboxSendRefusedError | OnboardingReviewRequiredError | ForbiddenError",
+            "description": "FlagDisabledError | MailboxSendRefusedError | OnboardingReviewRequiredError | ForbiddenError",
             "content": {
               "application/json": {
                 "schema": {
                   "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/FlagDisabledError"
+                    },
                     {
                       "$ref": "#/components/schemas/MailboxSendRefusedError"
                     },
@@ -47467,18 +47745,11 @@
             }
           },
           "422": {
-            "description": "MailboxChannelUnsupportedError | ValidationError",
+            "description": "Samva API operation.",
             "content": {
               "application/json": {
                 "schema": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/MailboxChannelUnsupportedError"
-                    },
-                    {
-                      "$ref": "#/components/schemas/ValidationError"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/ValidationError"
                 }
               }
             }
@@ -48154,18 +48425,11 @@
             }
           },
           "422": {
-            "description": "MailboxChannelUnsupportedError | ValidationError",
+            "description": "ValidationError",
             "content": {
               "application/json": {
                 "schema": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/MailboxChannelUnsupportedError"
-                    },
-                    {
-                      "$ref": "#/components/schemas/ValidationError"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/ValidationError"
                 }
               }
             }
@@ -48191,7 +48455,7 @@
             }
           }
         },
-        "description": "Saves a draft of a new message, or of a reply when `inReplyToMessageId` names a message in the mailbox, and returns it with status 201. Email drafts are the kind a mailbox saves today; another channel is refused (422). Send it with `POST /v1/mailboxes/{id}/drafts/{draftId}/send`.",
+        "description": "Saves a draft of a new message, or of a reply when `inReplyToMessageId` names a message in the mailbox, and returns it with status 201. A phone channel's draft holds a recipient number and text. Send it with `POST /v1/mailboxes/{id}/drafts/{draftId}/send`.",
         "summary": "Create a draft",
         "requestBody": {
           "content": {
@@ -48637,11 +48901,14 @@
             }
           },
           "403": {
-            "description": "MailboxSendRefusedError | OnboardingReviewRequiredError | ForbiddenError",
+            "description": "FlagDisabledError | MailboxSendRefusedError | OnboardingReviewRequiredError | ForbiddenError",
             "content": {
               "application/json": {
                 "schema": {
                   "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/FlagDisabledError"
+                    },
                     {
                       "$ref": "#/components/schemas/MailboxSendRefusedError"
                     },
@@ -48684,18 +48951,11 @@
             }
           },
           "422": {
-            "description": "MailboxChannelUnsupportedError | ValidationError",
+            "description": "Samva API operation.",
             "content": {
               "application/json": {
                 "schema": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/MailboxChannelUnsupportedError"
-                    },
-                    {
-                      "$ref": "#/components/schemas/ValidationError"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/ValidationError"
                 }
               }
             }
@@ -49138,11 +49398,14 @@
             }
           },
           "403": {
-            "description": "MailboxSendRefusedError | OnboardingReviewRequiredError | ForbiddenError",
+            "description": "FlagDisabledError | MailboxSendRefusedError | OnboardingReviewRequiredError | ForbiddenError",
             "content": {
               "application/json": {
                 "schema": {
                   "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/FlagDisabledError"
+                    },
                     {
                       "$ref": "#/components/schemas/MailboxSendRefusedError"
                     },
@@ -49185,18 +49448,11 @@
             }
           },
           "422": {
-            "description": "MailboxChannelUnsupportedError | ValidationError",
+            "description": "Samva API operation.",
             "content": {
               "application/json": {
                 "schema": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/MailboxChannelUnsupportedError"
-                    },
-                    {
-                      "$ref": "#/components/schemas/ValidationError"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/ValidationError"
                 }
               }
             }
@@ -49328,11 +49584,14 @@
             }
           },
           "403": {
-            "description": "MailboxSendRefusedError | OnboardingReviewRequiredError | ForbiddenError",
+            "description": "FlagDisabledError | MailboxSendRefusedError | OnboardingReviewRequiredError | ForbiddenError",
             "content": {
               "application/json": {
                 "schema": {
                   "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/FlagDisabledError"
+                    },
                     {
                       "$ref": "#/components/schemas/MailboxSendRefusedError"
                     },
@@ -49375,18 +49634,11 @@
             }
           },
           "422": {
-            "description": "MailboxChannelUnsupportedError | ValidationError",
+            "description": "Samva API operation.",
             "content": {
               "application/json": {
                 "schema": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/MailboxChannelUnsupportedError"
-                    },
-                    {
-                      "$ref": "#/components/schemas/ValidationError"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/ValidationError"
                 }
               }
             }
@@ -49518,11 +49770,14 @@
             }
           },
           "403": {
-            "description": "MailboxSendRefusedError | OnboardingReviewRequiredError | ForbiddenError",
+            "description": "FlagDisabledError | MailboxSendRefusedError | OnboardingReviewRequiredError | ForbiddenError",
             "content": {
               "application/json": {
                 "schema": {
                   "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/FlagDisabledError"
+                    },
                     {
                       "$ref": "#/components/schemas/MailboxSendRefusedError"
                     },
@@ -49565,18 +49820,11 @@
             }
           },
           "422": {
-            "description": "MailboxChannelUnsupportedError | ValidationError",
+            "description": "Samva API operation.",
             "content": {
               "application/json": {
                 "schema": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/MailboxChannelUnsupportedError"
-                    },
-                    {
-                      "$ref": "#/components/schemas/ValidationError"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/ValidationError"
                 }
               }
             }
@@ -50480,9 +50728,379 @@
             }
           }
         },
-        "description": "Deletes an empty namespace. A namespace that still holds mailboxes, API keys, or webhook endpoints conflicts: remove them first.",
+        "description": "Deletes an empty namespace. A namespace that still holds anything conflicts, and the error counts what remains: mailboxes, API keys, webhook endpoints filtered to it, domains, senders, contacts, or template projects. Delete each, or return it to organization level with `DELETE /v1/namespaces/{id}/resources/{type}/{resourceId}`; mailboxes, keys, and webhook endpoints cannot move and are deleted. Messages keep the namespace they ran in.",
         "summary": "Delete a namespace",
-        "x-samva-scope": "organization:delete"
+        "x-samva-scope": "organization:update"
+      }
+    },
+    "/v1/namespaces/{id}/resources": {
+      "post": {
+        "tags": [
+          "Namespaces"
+        ],
+        "operationId": "namespaces.assignResource",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "$ref": "#/components/schemas/NamespaceId"
+            },
+            "required": true
+          }
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "NamespaceResource",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NamespaceResource"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ResourceNotFoundError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "ConflictError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConflictError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Moves a resource from organization level or another namespace into this one. A domain brings its senders; a sender on a domain cannot move alone (assign the domain); a contact brings its identities; a template brings every template in its project. A moved resource stops being a default. An address or external id the namespace already holds conflicts. Keys scoped to the old namespace stop reaching the resource at once. Mailboxes, API keys, and webhook endpoints keep the namespace they were created in.",
+        "summary": "Move a resource into a namespace",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AssignNamespaceResourcePayload"
+              }
+            }
+          },
+          "required": true
+        },
+        "x-samva-scope": "organization:update"
+      }
+    },
+    "/v1/namespaces/{id}/resources/{type}/{resourceId}": {
+      "delete": {
+        "tags": [
+          "Namespaces"
+        ],
+        "operationId": "namespaces.removeResource",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "$ref": "#/components/schemas/NamespaceId"
+            },
+            "required": true
+          },
+          {
+            "name": "type",
+            "in": "path",
+            "schema": {
+              "$ref": "#/components/schemas/NamespaceResourceType"
+            },
+            "required": true
+          },
+          {
+            "name": "resourceId",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "NamespaceResource",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NamespaceResource"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ResourceNotFoundError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "ConflictError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConflictError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Moves a resource out of this namespace to organization level, with what follows it as in `POST /v1/namespaces/{id}/resources`. A resource in a different namespace is not found.",
+        "summary": "Return a resource to organization level",
+        "x-samva-scope": "organization:update"
+      }
+    },
+    "/v1/namespaces/{id}/usage": {
+      "get": {
+        "tags": [
+          "Namespaces"
+        ],
+        "operationId": "namespaces.getUsage",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "$ref": "#/components/schemas/NamespaceId"
+            },
+            "required": true
+          },
+          {
+            "name": "after",
+            "in": "query",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "required": false
+          },
+          {
+            "name": "before",
+            "in": "query",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "required": false
+          }
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "NamespaceUsage",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NamespaceUsage"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ResourceNotFoundError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Counts the messages the namespace sent and received in the window that count toward usage, by channel, with the same statuses as `GET /v1/organizations/usage`. A message counts toward the namespace it was sent or received in: that of the sender, mailbox, or key it used. The organization is billed for every namespace; read this to charge your own customer.",
+        "summary": "Get namespace usage",
+        "x-samva-scope": "organization:read"
       }
     },
     "/v1/extensions": {
@@ -53514,6 +54132,87 @@
         ],
         "additionalProperties": false
       },
+      "NamespaceUsage": {
+        "type": "object",
+        "properties": {
+          "namespaceId": {
+            "$ref": "#/components/schemas/NamespaceId"
+          },
+          "periodStart": {
+            "type": "string"
+          },
+          "periodEnd": {
+            "type": "string"
+          },
+          "emailCount": {
+            "type": "number"
+          },
+          "totalMessages": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "namespaceId",
+          "periodStart",
+          "periodEnd",
+          "emailCount",
+          "totalMessages"
+        ],
+        "additionalProperties": false
+      },
+      "NamespaceResource": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/NamespaceResourceType"
+          },
+          "id": {
+            "type": "string"
+          },
+          "namespaceId": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/NamespaceId"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "type",
+          "id",
+          "namespaceId"
+        ],
+        "additionalProperties": false
+      },
+      "NamespaceResourceType": {
+        "type": "string",
+        "enum": [
+          "domain",
+          "sender",
+          "contact",
+          "template"
+        ]
+      },
+      "AssignNamespaceResourcePayload": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/NamespaceResourceType"
+          },
+          "resourceId": {
+            "type": "string",
+            "description": "The resource's id, such as `dom_...` for a domain."
+          }
+        },
+        "required": [
+          "type",
+          "resourceId"
+        ],
+        "additionalProperties": false
+      },
       "Namespace": {
         "type": "object",
         "properties": {
@@ -54916,6 +55615,22 @@
         "pattern": "^conv_[0-9a-hjkmnp-tv-z]{16,24}$",
         "x-samva-brand": "ConversationId"
       },
+      "JsonObject": {
+        "type": "object",
+        "additionalProperties": {
+          "$ref": "#/components/schemas/JsonValue"
+        }
+      },
+      "TemplateId": {
+        "type": "string",
+        "pattern": "^tmpl_[0-9a-hjkmnp-tv-z]{16,24}$",
+        "x-samva-brand": "TemplateId"
+      },
+      "MailboxEndpointId": {
+        "type": "string",
+        "pattern": "^mbxep_[0-9a-hjkmnp-tv-z]{16,24}$",
+        "x-samva-brand": "MailboxEndpointId"
+      },
       "EmailAttachment": {
         "type": "object",
         "properties": {
@@ -55198,28 +55913,29 @@
         ],
         "additionalProperties": false
       },
-      "MailboxChannelUnsupportedError": {
+      "FlagDisabledError": {
         "type": "object",
         "properties": {
           "_tag": {
             "type": "string",
             "enum": [
-              "MailboxChannelUnsupportedError"
+              "FlagDisabledError"
             ]
           },
-          "message": {
+          "flag": {
             "type": "string"
           },
-          "channel": {
+          "message": {
             "type": "string"
           }
         },
         "required": [
           "_tag",
-          "message",
-          "channel"
+          "flag",
+          "message"
         ],
-        "additionalProperties": false
+        "additionalProperties": false,
+        "x-retryable": false
       },
       "MailboxPendingAction": {
         "anyOf": [
@@ -55574,11 +56290,6 @@
           "locked",
           "sent"
         ]
-      },
-      "MailboxEndpointId": {
-        "type": "string",
-        "pattern": "^mbxep_[0-9a-hjkmnp-tv-z]{16,24}$",
-        "x-samva-brand": "MailboxEndpointId"
       },
       "UpdateMailboxDraftPayload": {
         "type": "object",
@@ -58924,7 +59635,7 @@
                     "type": "null"
                   }
                 ],
-                "description": "Confines the key to one namespace: it reaches only that namespace's mailboxes. A key scoped to a namespace or to listed mailboxes holds mailbox access only."
+                "description": "Confines the key to one namespace: it reaches only that namespace's domains, senders, numbers, mailboxes, contacts, templates, and messages, never organization-level ones, and only endpoints that confine to a namespace (others answer 403). It holds grants only on `mailboxes`, `messages`, `email`, `domains`, `contacts`, and `templates`. A key scoped to listed mailboxes holds mailbox access only."
               }
             },
             "required": [
@@ -61417,11 +62128,6 @@
         "pattern": "^tproj_[0-9a-hjkmnp-tv-z]{16,24}$",
         "x-samva-brand": "TemplateProjectId"
       },
-      "TemplateId": {
-        "type": "string",
-        "pattern": "^tmpl_[0-9a-hjkmnp-tv-z]{16,24}$",
-        "x-samva-brand": "TemplateId"
-      },
       "TemplateInputContractId": {
         "type": "string",
         "pattern": "^tcon_[0-9a-hjkmnp-tv-z]{16,24}$",
@@ -61638,6 +62344,17 @@
           },
           "projectId": {
             "$ref": "#/components/schemas/TemplateProjectId"
+          },
+          "namespaceId": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/NamespaceId"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "The namespace the template's project belongs to; every entry in a project shares it. Null at organization level. A namespace-scoped key reaches only its own namespace's templates."
           },
           "entryPath": {
             "type": "string",
@@ -61885,6 +62602,7 @@
           "name",
           "channel",
           "projectId",
+          "namespaceId",
           "entryPath",
           "status",
           "isActive",
@@ -62320,6 +63038,17 @@
               }
             ]
           },
+          "namespaceId": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/NamespaceId"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "The namespace the new template project belongs to; the project and every entry added to it share it. Omit for organization level. A namespace-scoped key always creates in its own namespace."
+          },
           "idempotencyKey": {
             "type": "string",
             "minLength": 1,
@@ -62508,6 +63237,17 @@
           "projectId": {
             "$ref": "#/components/schemas/TemplateProjectId"
           },
+          "namespaceId": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/NamespaceId"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "The namespace the template's project belongs to; every entry in a project shares it. Null at organization level. A namespace-scoped key reaches only its own namespace's templates."
+          },
           "entryPath": {
             "type": "string",
             "pattern": "^(?!\\/)(?!.*\\\\)(?!.*(?:^|\\/)\\.{1,2}(?:\\/|$))(?!.*(?:^|\\/)\\.git(?:\\/|$))(?:templates|emails)\\/.+\\.tsx$",
@@ -62592,6 +63332,7 @@
           "name",
           "channel",
           "projectId",
+          "namespaceId",
           "entryPath",
           "status",
           "isActive",
@@ -63140,12 +63881,6 @@
         ],
         "additionalProperties": false
       },
-      "JsonObject": {
-        "type": "object",
-        "additionalProperties": {
-          "$ref": "#/components/schemas/JsonValue"
-        }
-      },
       "ContactIdentityId": {
         "type": "string",
         "pattern": "^cident_[0-9a-hjkmnp-tv-z]{16,24}$",
@@ -63324,30 +64059,6 @@
           "transient"
         ],
         "x-retryable": true
-      },
-      "FlagDisabledError": {
-        "type": "object",
-        "properties": {
-          "_tag": {
-            "type": "string",
-            "enum": [
-              "FlagDisabledError"
-            ]
-          },
-          "flag": {
-            "type": "string"
-          },
-          "message": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "_tag",
-          "flag",
-          "message"
-        ],
-        "additionalProperties": false,
-        "x-retryable": false
       },
       "CampaignFooterRequiredError": {
         "type": "object",
@@ -65725,6 +66436,16 @@
           "id": {
             "$ref": "#/components/schemas/ContactId"
           },
+          "namespaceId": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/NamespaceId"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "name": {
             "type": "string"
           },
@@ -65828,6 +66549,7 @@
         },
         "required": [
           "id",
+          "namespaceId",
           "name",
           "displayName",
           "avatar",
@@ -66107,6 +66829,16 @@
           "id": {
             "$ref": "#/components/schemas/ContactId"
           },
+          "namespaceId": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/NamespaceId"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "name": {
             "type": "string"
           },
@@ -66186,6 +66918,7 @@
         },
         "required": [
           "id",
+          "namespaceId",
           "name",
           "displayName",
           "status",
@@ -68712,6 +69445,17 @@
                     }
                   ]
                 },
+                "namespaceId": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/NamespaceId"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "description": "The namespace the sender belongs to, or null at organization level. A sender on a domain takes the domain's namespace."
+                },
                 "verificationStatus": {
                   "type": "string",
                   "enum": [
@@ -68797,6 +69541,7 @@
                 "email",
                 "name",
                 "domainId",
+                "namespaceId",
                 "verificationStatus",
                 "verifiedAt",
                 "verificationToken",
@@ -69457,6 +70202,17 @@
               }
             ]
           },
+          "namespaceId": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/NamespaceId"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "The namespace the domain belongs to, or null at organization level. Only that namespace's keys and organization-wide callers reach it."
+          },
           "isDefault": {
             "type": "boolean"
           },
@@ -69476,6 +70232,7 @@
           "phase",
           "dnsRecords",
           "verifiedAt",
+          "namespaceId",
           "isDefault",
           "deliverability",
           "createdAt",
@@ -70372,6 +71129,17 @@
                     }
                   ]
                 },
+                "namespaceId": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/NamespaceId"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "description": "The namespace the domain belongs to, or null at organization level. Only that namespace's keys and organization-wide callers reach it."
+                },
                 "isDefault": {
                   "type": "boolean"
                 },
@@ -70392,6 +71160,7 @@
                 "id",
                 "domain",
                 "phase",
+                "namespaceId",
                 "isDefault",
                 "deliverability",
                 "series",
@@ -70800,6 +71569,8 @@
                         "unsubscribed",
                         "blocked",
                         "suppressed",
+                        "opted_out",
+                        "unreachable",
                         "no_identity",
                         "inactive",
                         "run_cancelled",
@@ -70955,6 +71726,12 @@
           "skippedCount": {
             "type": "number"
           },
+          "skippedReasons": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CampaignRunSkippedReason"
+            }
+          },
           "estimatedCompletionAt": {
             "anyOf": [
               {
@@ -71043,6 +71820,7 @@
           "dispatchedCount",
           "failedCount",
           "skippedCount",
+          "skippedReasons",
           "estimatedCompletionAt",
           "failureReason",
           "holdReason",
@@ -71053,6 +71831,33 @@
           "memberRole",
           "createdAt",
           "updatedAt"
+        ],
+        "additionalProperties": false
+      },
+      "CampaignRunSkippedReason": {
+        "type": "object",
+        "properties": {
+          "reason": {
+            "type": "string",
+            "enum": [
+              "unsubscribed",
+              "blocked",
+              "suppressed",
+              "opted_out",
+              "unreachable",
+              "no_identity",
+              "inactive",
+              "run_cancelled",
+              "run_failed"
+            ]
+          },
+          "count": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "reason",
+          "count"
         ],
         "additionalProperties": false
       },
@@ -73580,7 +74385,7 @@
     },
     {
       "name": "Namespaces",
-      "description": "Sub-tenants that confine mailboxes and API keys inside an organization"
+      "description": "Sub-tenants that confine domains, senders, mailboxes, contacts, templates, and API keys inside an organization"
     },
     {
       "name": "Extensions",
