@@ -4,8 +4,8 @@ The canonical OpenAPI 3.1 description for the [Samva](https://samva.dev) email A
 
 ## Artifacts
 
-- `openapi.json` is the API description: every public operation, and in its `webhooks` section
-  the body of every webhook event Samva sends.
+- `openapi.json` is the API description: every public operation and, in releases after v0.20.0,
+  a `webhooks` section with the body of every webhook event Samva sends.
 - `manifest.json` records the version, the Samva source commit, the compatibility class against
   the previous release, the checksum, and the document's shape.
 - `SHA256SUMS` lets consumers verify the downloaded artifact before generation.
