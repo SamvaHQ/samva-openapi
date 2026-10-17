@@ -9,7 +9,6 @@
     "version",
     "releasedAt",
     "source",
-    "sdk",
     "compatibility",
     "openapi"
   ],
@@ -21,7 +20,7 @@
       "const": 2
     },
     "version": {
-      "description": "The SDK release this document belongs to; the Git tag is v<version>.",
+      "description": "The document's own semantic version; the Git tag is v<version>.",
       "type": "string",
       "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+(-[0-9A-Za-z.-]+)?$"
     },
@@ -43,6 +42,7 @@
       }
     },
     "sdk": {
+      "description": "The samva SDK release of the same version; only v0.18.0 to v0.20.0 carry it.",
       "type": "object",
       "additionalProperties": false,
       "required": [
@@ -124,6 +124,11 @@
         "schemas": {
           "type": "integer",
           "minimum": 1
+        },
+        "webhooks": {
+          "description": "The number of webhook events in the document's webhooks section.",
+          "type": "integer",
+          "minimum": 0
         }
       }
     }

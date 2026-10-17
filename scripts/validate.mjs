@@ -25,11 +25,7 @@ const operations = Object.values(artifact.paths).flatMap((path) =>
 assert(manifest.schemaVersion === 2, "unsupported manifest schema version");
 assert(
   /^[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z.-]+)?$/.test(manifest.version),
-  "manifest version must be the SDK's semantic version",
-);
-assert(
-  manifest.sdk?.package === "samva" && manifest.sdk?.version === manifest.version,
-  "manifest SDK release must match its version",
+  "manifest version must be a semantic version",
 );
 assert(/^[a-f0-9]{40}$/.test(manifest.source?.commit ?? ""), "manifest source commit is missing");
 assert(
@@ -55,6 +51,10 @@ assert(manifest.openapi.operations === operations, "manifest operation count is 
 assert(
   manifest.openapi.schemas === Object.keys(artifact.components.schemas).length,
   "manifest schema count is stale",
+);
+assert(
+  (manifest.openapi.webhooks ?? 0) === Object.keys(artifact.webhooks ?? {}).length,
+  "manifest webhook event count is stale",
 );
 assert(
   checksums === `${artifactHash}  openapi.json\n`,
