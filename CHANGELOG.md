@@ -1,5 +1,44 @@
 # Changelog
 
+## v0.20.1
+
+- 329 operations, 242 paths, 465 schemas, 32 webhook events.
+- Compatible against v0.20.0.
+- Added webhook events:
+  - `contact.consent_changed`
+  - `contact.created`
+  - `contact.deleted`
+  - `contact.resubscribed`
+  - `contact.subscribed`
+  - `contact.unsubscribed`
+  - `contact.updated`
+  - `conversation.archived`
+  - `conversation.created`
+  - `conversation.updated`
+  - `domain.updated`
+  - `domain.warming.updated`
+  - `journey.webhook`
+  - `mailbox.action.pending_approval`
+  - `mailbox.action.resolved`
+  - `mailbox.message.discarded`
+  - `mailbox.message.quarantined`
+  - `mailbox.message.received`
+  - `mailbox.message.released`
+  - `mailbox.message.sent`
+  - `message.bounced`
+  - `message.clicked`
+  - `message.complained`
+  - `message.delivered`
+  - `message.failed`
+  - `message.opened`
+  - `message.received`
+  - `message.sent`
+  - `webhook.created`
+  - `webhook.deleted`
+  - `webhook.test`
+  - `webhook.updated`
+
+
 ## v0.20.0
 
 - The OpenAPI document Samva SDK `samva@0.20.0` was generated from: 329 operations, 242 paths, 465 schemas.
