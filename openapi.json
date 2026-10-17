@@ -64372,6 +64372,26 @@
               }
             ]
           },
+          "holdReason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "holdUntil": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "trigger": {
             "$ref": "#/components/schemas/JourneyRunTrigger"
           },
@@ -64404,6 +64424,8 @@
           "exitReason",
           "failureReason",
           "currentNodeId",
+          "holdReason",
+          "holdUntil",
           "trigger",
           "enteredAt",
           "endedAt",
@@ -64622,6 +64644,26 @@
               }
             ]
           },
+          "holdReason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "holdUntil": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "trigger": {
             "$ref": "#/components/schemas/JourneyRunTrigger"
           },
@@ -64648,6 +64690,8 @@
           "exitReason",
           "failureReason",
           "currentNodeId",
+          "holdReason",
+          "holdUntil",
           "trigger",
           "enteredAt",
           "endedAt"
@@ -71788,6 +71832,9 @@
           "skippedCount": {
             "type": "number"
           },
+          "pendingCount": {
+            "type": "number"
+          },
           "skippedReasons": {
             "type": "array",
             "items": {
@@ -71828,6 +71875,26 @@
             "anyOf": [
               {
                 "$ref": "#/components/schemas/EmailDomainId"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "holdUntil": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "capacityWarning": {
+            "anyOf": [
+              {
+                "type": "string"
               },
               {
                 "type": "null"
@@ -71882,11 +71949,14 @@
           "dispatchedCount",
           "failedCount",
           "skippedCount",
+          "pendingCount",
           "skippedReasons",
           "estimatedCompletionAt",
           "failureReason",
           "holdReason",
           "holdDomainId",
+          "holdUntil",
+          "capacityWarning",
           "lastContactId",
           "createdBy",
           "actorEmail",
@@ -72399,6 +72469,9 @@
           "skippedCount": {
             "type": "number"
           },
+          "pendingCount": {
+            "type": "number"
+          },
           "estimatedCompletionAt": {
             "anyOf": [
               {
@@ -72419,6 +72492,7 @@
           "dispatchedCount",
           "failedCount",
           "skippedCount",
+          "pendingCount",
           "estimatedCompletionAt"
         ],
         "additionalProperties": false

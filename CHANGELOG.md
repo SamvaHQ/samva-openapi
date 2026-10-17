@@ -1,5 +1,16 @@
 # Changelog
 
+## v0.22.0
+
+- 329 operations, 242 paths, 465 schemas, 32 webhook events.
+- Breaking against v0.21.0.
+- Changed schemas:
+  - `CampaignLatestRun`
+  - `CampaignRun`
+  - `JourneyRun`
+  - `JourneyRunDetail`
+
+
 ## v0.21.0
 
 - 329 operations, 242 paths, 465 schemas, 32 webhook events.
