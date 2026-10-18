@@ -39887,7 +39887,7 @@
         "tags": [
           "Webhooks"
         ],
-        "operationId": "webhooks.getSecretHint",
+        "operationId": "webhooks.getSecret",
         "parameters": [
           {
             "name": "id",
@@ -39905,11 +39905,11 @@
         ],
         "responses": {
           "200": {
-            "description": "WebhookSecretHint",
+            "description": "WebhookSigningSecret",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/WebhookSecretHint"
+                  "$ref": "#/components/schemas/WebhookSigningSecret"
                 }
               }
             }
@@ -39975,116 +39975,8 @@
             }
           }
         },
-        "description": "Returns the current signing secret's prefix with its first and last characters, enough to recognise it without the secret, and when a rotated-out secret stops verifying.",
-        "summary": "Get a webhook signing secret's hint",
-        "x-samva-scope": "webhooks:read"
-      }
-    },
-    "/v1/webhooks/{id}/secret/reveal": {
-      "post": {
-        "tags": [
-          "Webhooks"
-        ],
-        "operationId": "webhooks.revealSecret",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "schema": {
-              "$ref": "#/components/schemas/WebhookEndpointId"
-            },
-            "required": true
-          }
-        ],
-        "security": [
-          {
-            "apiKey": []
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "secret": {
-                      "type": "string",
-                      "x-sensitive": true
-                    }
-                  },
-                  "required": [
-                    "secret"
-                  ],
-                  "additionalProperties": false
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "UnauthorizedError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UnauthorizedError"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "ForbiddenError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenError"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "ResourceNotFoundError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResourceNotFoundError"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "ValidationError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationError"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "InternalError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/InternalError"
-                }
-              }
-            }
-          },
-          "504": {
-            "description": "GatewayTimeoutError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GatewayTimeoutError"
-                }
-              }
-            }
-          }
-        },
-        "description": "Returns the endpoint's current signing secret. It needs the same permission as rotating the secret, and every reveal is recorded with the caller that made it.",
-        "summary": "Reveal a webhook signing secret",
+        "description": "Returns the endpoint's current signing secret and when a rotated-out secret stops verifying. It needs the same permission as rotating the secret.",
+        "summary": "Get a webhook signing secret",
         "x-samva-scope": "webhooks:update"
       }
     },
@@ -60964,28 +60856,12 @@
       "IanaTimezone": {
         "type": "string"
       },
-      "WebhookSecretHint": {
+      "WebhookSigningSecret": {
         "type": "object",
         "properties": {
-          "start": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "end": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ]
+          "secret": {
+            "type": "string",
+            "x-sensitive": true
           },
           "createdAt": {
             "type": "string"
@@ -61002,8 +60878,7 @@
           }
         },
         "required": [
-          "start",
-          "end",
+          "secret",
           "createdAt",
           "previousExpiresAt"
         ],

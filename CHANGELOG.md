@@ -1,5 +1,15 @@
 # Changelog
 
+## v0.24.0
+
+- 330 operations, 243 paths, 466 schemas, 32 webhook events.
+- Breaking against v0.23.0.
+- Removed operations:
+  - `POST /v1/webhooks/{id}/secret/reveal`
+- Changed schemas:
+  - `WebhookSecretHint`
+
+
 ## v0.23.0
 
 - 331 operations, 244 paths, 466 schemas, 32 webhook events.
