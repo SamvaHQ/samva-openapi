@@ -1,5 +1,17 @@
 # Changelog
 
+## v0.23.0
+
+- 331 operations, 244 paths, 466 schemas, 32 webhook events.
+- Breaking against v0.22.0.
+- Added operations:
+  - `GET /v1/webhooks/{id}/secret`
+  - `POST /v1/webhooks/{id}/secret/reveal`
+- Changed schemas:
+  - `ApiKey`
+  - `ApiKeyWithSecret`
+
+
 ## v0.22.0
 
 - 329 operations, 242 paths, 465 schemas, 32 webhook events.
