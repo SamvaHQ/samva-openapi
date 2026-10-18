@@ -1,6 +1,8 @@
 import { createHash } from "node:crypto";
 import { readFile } from "node:fs/promises";
 
+import { nonEmailChannelAt } from "./channel-vocabulary.mjs";
+
 const read = (path) => readFile(new URL(`../${path}`, import.meta.url), "utf8");
 const fail = (message) => {
   throw new Error(message);
@@ -60,18 +62,10 @@ assert(
   checksums === `${artifactHash}  openapi.json\n`,
   "SHA256SUMS does not exactly describe openapi.json",
 );
-// The API surface is email-only. Webhook bodies describe every channel Samva signs them for, so a
-// shared event such as `message.received` names its staged channels too. An endpoint can subscribe
-// to every published event, so the API surface may name an event type the webhooks section
-// publishes, such as `whatsapp.number.connected`, as an exact string value.
-const { webhooks = {}, ...apiSurface } = artifact;
-const apiSurfaceText = Object.keys(webhooks).reduce(
-  (text, type) => text.replaceAll(JSON.stringify(type), '""'),
-  JSON.stringify(apiSurface),
-);
+const channelAt = nonEmailChannelAt(artifact);
 assert(
-  !/(sms|whatsapp|cpaas)/i.test(apiSurfaceText),
-  "openapi.json contains a non-email channel operation, schema, or description",
+  channelAt === undefined,
+  `openapi.json contains a non-email channel operation, schema, or description at ${channelAt}`,
 );
 
 process.stdout.write(`Validated v${manifest.version}: ${operations} operations, ${artifactHash}\n`);
