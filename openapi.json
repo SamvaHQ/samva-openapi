@@ -74893,6 +74893,11 @@
       "description": "Extension versions installed into the organization, each acting as its own principal"
     }
   ],
+  "servers": [
+    {
+      "url": "https://api.samva.dev"
+    }
+  ],
   "webhooks": {
     "message.sent": {
       "post": {
@@ -74931,6 +74936,8 @@
                       "channel": {
                         "type": "string",
                         "enum": [
+                          "sms",
+                          "whatsapp",
                           "email"
                         ]
                       },
@@ -75034,6 +75041,21 @@
                           }
                         ]
                       },
+                      "templateCategory": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "enum": [
+                              "marketing",
+                              "utility",
+                              "authentication"
+                            ]
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
                       "subject": {
                         "anyOf": [
                           {
@@ -75067,6 +75089,16 @@
                           }
                         ]
                       },
+                      "waId": {
+                        "anyOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
                       "hasAttachments": {
                         "anyOf": [
                           {
@@ -75081,6 +75113,16 @@
                         "anyOf": [
                           {
                             "type": "boolean"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "segments": {
+                        "anyOf": [
+                          {
+                            "type": "number"
                           },
                           {
                             "type": "null"
@@ -75132,6 +75174,26 @@
                         ]
                       },
                       "errorMessage": {
+                        "anyOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "parts": {
+                        "anyOf": [
+                          {
+                            "type": "number"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "carrier": {
                         "anyOf": [
                           {
                             "type": "string"
@@ -75210,6 +75272,8 @@
                       "channel": {
                         "type": "string",
                         "enum": [
+                          "sms",
+                          "whatsapp",
                           "email"
                         ]
                       },
@@ -75313,6 +75377,21 @@
                           }
                         ]
                       },
+                      "templateCategory": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "enum": [
+                              "marketing",
+                              "utility",
+                              "authentication"
+                            ]
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
                       "subject": {
                         "anyOf": [
                           {
@@ -75346,6 +75425,16 @@
                           }
                         ]
                       },
+                      "waId": {
+                        "anyOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
                       "hasAttachments": {
                         "anyOf": [
                           {
@@ -75360,6 +75449,16 @@
                         "anyOf": [
                           {
                             "type": "boolean"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "segments": {
+                        "anyOf": [
+                          {
+                            "type": "number"
                           },
                           {
                             "type": "null"
@@ -75411,6 +75510,26 @@
                         ]
                       },
                       "errorMessage": {
+                        "anyOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "parts": {
+                        "anyOf": [
+                          {
+                            "type": "number"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "carrier": {
                         "anyOf": [
                           {
                             "type": "string"
@@ -75489,6 +75608,8 @@
                       "channel": {
                         "type": "string",
                         "enum": [
+                          "sms",
+                          "whatsapp",
                           "email"
                         ]
                       },
@@ -75592,6 +75713,21 @@
                           }
                         ]
                       },
+                      "templateCategory": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "enum": [
+                              "marketing",
+                              "utility",
+                              "authentication"
+                            ]
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
                       "subject": {
                         "anyOf": [
                           {
@@ -75625,6 +75761,16 @@
                           }
                         ]
                       },
+                      "waId": {
+                        "anyOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
                       "hasAttachments": {
                         "anyOf": [
                           {
@@ -75639,6 +75785,16 @@
                         "anyOf": [
                           {
                             "type": "boolean"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "segments": {
+                        "anyOf": [
+                          {
+                            "type": "number"
                           },
                           {
                             "type": "null"
@@ -75690,6 +75846,26 @@
                         ]
                       },
                       "errorMessage": {
+                        "anyOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "parts": {
+                        "anyOf": [
+                          {
+                            "type": "number"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "carrier": {
                         "anyOf": [
                           {
                             "type": "string"
@@ -75768,6 +75944,8 @@
                       "channel": {
                         "type": "string",
                         "enum": [
+                          "sms",
+                          "whatsapp",
                           "email"
                         ]
                       },
@@ -75857,6 +76035,21 @@
                           }
                         ]
                       },
+                      "templateCategory": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "enum": [
+                              "marketing",
+                              "utility",
+                              "authentication"
+                            ]
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
                       "subject": {
                         "anyOf": [
                           {
@@ -75890,6 +76083,16 @@
                           }
                         ]
                       },
+                      "waId": {
+                        "anyOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
                       "hasAttachments": {
                         "anyOf": [
                           {
@@ -75904,6 +76107,16 @@
                         "anyOf": [
                           {
                             "type": "boolean"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "segments": {
+                        "anyOf": [
+                          {
+                            "type": "number"
                           },
                           {
                             "type": "null"
@@ -75955,6 +76168,26 @@
                         ]
                       },
                       "errorMessage": {
+                        "anyOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "parts": {
+                        "anyOf": [
+                          {
+                            "type": "number"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "carrier": {
                         "anyOf": [
                           {
                             "type": "string"
@@ -76035,6 +76268,8 @@
                       "channel": {
                         "type": "string",
                         "enum": [
+                          "sms",
+                          "whatsapp",
                           "email"
                         ]
                       },
@@ -76124,6 +76359,21 @@
                           }
                         ]
                       },
+                      "templateCategory": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "enum": [
+                              "marketing",
+                              "utility",
+                              "authentication"
+                            ]
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
                       "subject": {
                         "anyOf": [
                           {
@@ -76157,6 +76407,16 @@
                           }
                         ]
                       },
+                      "waId": {
+                        "anyOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
                       "hasAttachments": {
                         "anyOf": [
                           {
@@ -76171,6 +76431,16 @@
                         "anyOf": [
                           {
                             "type": "boolean"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "segments": {
+                        "anyOf": [
+                          {
+                            "type": "number"
                           },
                           {
                             "type": "null"
@@ -76222,6 +76492,26 @@
                         ]
                       },
                       "errorMessage": {
+                        "anyOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "parts": {
+                        "anyOf": [
+                          {
+                            "type": "number"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "carrier": {
                         "anyOf": [
                           {
                             "type": "string"
@@ -76302,6 +76592,8 @@
                       "channel": {
                         "type": "string",
                         "enum": [
+                          "sms",
+                          "whatsapp",
                           "email"
                         ]
                       },
@@ -76405,6 +76697,21 @@
                           }
                         ]
                       },
+                      "templateCategory": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "enum": [
+                              "marketing",
+                              "utility",
+                              "authentication"
+                            ]
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
                       "subject": {
                         "anyOf": [
                           {
@@ -76438,6 +76745,16 @@
                           }
                         ]
                       },
+                      "waId": {
+                        "anyOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
                       "hasAttachments": {
                         "anyOf": [
                           {
@@ -76452,6 +76769,16 @@
                         "anyOf": [
                           {
                             "type": "boolean"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "segments": {
+                        "anyOf": [
+                          {
+                            "type": "number"
                           },
                           {
                             "type": "null"
@@ -76506,6 +76833,1289 @@
                         "anyOf": [
                           {
                             "type": "string"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "parts": {
+                        "anyOf": [
+                          {
+                            "type": "number"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "carrier": {
+                        "anyOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "whatsapp": {
+                        "anyOf": [
+                          {
+                            "type": "object",
+                            "properties": {
+                              "text": {
+                                "anyOf": [
+                                  {
+                                    "type": "string"
+                                  },
+                                  {
+                                    "type": "null"
+                                  }
+                                ]
+                              },
+                              "template": {
+                                "anyOf": [
+                                  {
+                                    "type": "object",
+                                    "properties": {
+                                      "name": {
+                                        "type": "string"
+                                      },
+                                      "language": {
+                                        "type": "string"
+                                      },
+                                      "components": {
+                                        "type": "array",
+                                        "items": {
+                                          "type": "object",
+                                          "properties": {
+                                            "type": {
+                                              "type": "string",
+                                              "enum": [
+                                                "header",
+                                                "body",
+                                                "footer",
+                                                "button"
+                                              ]
+                                            },
+                                            "sub_type": {
+                                              "anyOf": [
+                                                {
+                                                  "type": "string",
+                                                  "enum": [
+                                                    "url",
+                                                    "quick_reply",
+                                                    "copy_code",
+                                                    "flow"
+                                                  ]
+                                                },
+                                                {
+                                                  "type": "null"
+                                                }
+                                              ]
+                                            },
+                                            "index": {
+                                              "anyOf": [
+                                                {
+                                                  "type": "string"
+                                                },
+                                                {
+                                                  "type": "null"
+                                                }
+                                              ]
+                                            },
+                                            "parameters": {
+                                              "type": "array",
+                                              "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                  "type": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                      "text",
+                                                      "currency",
+                                                      "date_time",
+                                                      "image",
+                                                      "document",
+                                                      "video",
+                                                      "coupon_code",
+                                                      "action"
+                                                    ]
+                                                  },
+                                                  "text": {
+                                                    "anyOf": [
+                                                      {
+                                                        "type": "string"
+                                                      },
+                                                      {
+                                                        "type": "null"
+                                                      }
+                                                    ]
+                                                  },
+                                                  "currency": {
+                                                    "anyOf": [
+                                                      {
+                                                        "type": "object",
+                                                        "properties": {
+                                                          "fallback_value": {
+                                                            "type": "string"
+                                                          },
+                                                          "code": {
+                                                            "type": "string"
+                                                          },
+                                                          "amount_1000": {
+                                                            "type": "number"
+                                                          }
+                                                        },
+                                                        "required": [
+                                                          "fallback_value",
+                                                          "code",
+                                                          "amount_1000"
+                                                        ],
+                                                        "additionalProperties": true
+                                                      },
+                                                      {
+                                                        "type": "null"
+                                                      }
+                                                    ]
+                                                  },
+                                                  "date_time": {
+                                                    "anyOf": [
+                                                      {
+                                                        "type": "object",
+                                                        "properties": {
+                                                          "fallback_value": {
+                                                            "type": "string"
+                                                          }
+                                                        },
+                                                        "required": [
+                                                          "fallback_value"
+                                                        ],
+                                                        "additionalProperties": true
+                                                      },
+                                                      {
+                                                        "type": "null"
+                                                      }
+                                                    ]
+                                                  },
+                                                  "image": {
+                                                    "anyOf": [
+                                                      {
+                                                        "type": "object",
+                                                        "properties": {
+                                                          "link": {
+                                                            "type": "string"
+                                                          }
+                                                        },
+                                                        "required": [
+                                                          "link"
+                                                        ],
+                                                        "additionalProperties": true
+                                                      },
+                                                      {
+                                                        "type": "null"
+                                                      }
+                                                    ]
+                                                  },
+                                                  "document": {
+                                                    "anyOf": [
+                                                      {
+                                                        "type": "object",
+                                                        "properties": {
+                                                          "link": {
+                                                            "type": "string"
+                                                          },
+                                                          "filename": {
+                                                            "anyOf": [
+                                                              {
+                                                                "type": "string"
+                                                              },
+                                                              {
+                                                                "type": "null"
+                                                              }
+                                                            ]
+                                                          }
+                                                        },
+                                                        "required": [
+                                                          "link"
+                                                        ],
+                                                        "additionalProperties": true
+                                                      },
+                                                      {
+                                                        "type": "null"
+                                                      }
+                                                    ]
+                                                  },
+                                                  "video": {
+                                                    "anyOf": [
+                                                      {
+                                                        "type": "object",
+                                                        "properties": {
+                                                          "link": {
+                                                            "type": "string"
+                                                          }
+                                                        },
+                                                        "required": [
+                                                          "link"
+                                                        ],
+                                                        "additionalProperties": true
+                                                      },
+                                                      {
+                                                        "type": "null"
+                                                      }
+                                                    ]
+                                                  },
+                                                  "coupon_code": {
+                                                    "anyOf": [
+                                                      {
+                                                        "type": "string"
+                                                      },
+                                                      {
+                                                        "type": "null"
+                                                      }
+                                                    ]
+                                                  },
+                                                  "action": {
+                                                    "anyOf": [
+                                                      {
+                                                        "type": "object",
+                                                        "properties": {
+                                                          "flow_token": {
+                                                            "type": "string"
+                                                          }
+                                                        },
+                                                        "required": [
+                                                          "flow_token"
+                                                        ],
+                                                        "additionalProperties": true
+                                                      },
+                                                      {
+                                                        "type": "null"
+                                                      }
+                                                    ]
+                                                  }
+                                                },
+                                                "required": [
+                                                  "type"
+                                                ],
+                                                "additionalProperties": true
+                                              }
+                                            }
+                                          },
+                                          "required": [
+                                            "type",
+                                            "parameters"
+                                          ],
+                                          "additionalProperties": true
+                                        }
+                                      }
+                                    },
+                                    "required": [
+                                      "name",
+                                      "language",
+                                      "components"
+                                    ],
+                                    "additionalProperties": true
+                                  },
+                                  {
+                                    "type": "null"
+                                  }
+                                ]
+                              },
+                              "interactive": {
+                                "anyOf": [
+                                  {
+                                    "type": "object",
+                                    "properties": {
+                                      "type": {
+                                        "type": "string",
+                                        "enum": [
+                                          "buttons"
+                                        ]
+                                      },
+                                      "header": {
+                                        "anyOf": [
+                                          {
+                                            "type": "object",
+                                            "properties": {
+                                              "type": {
+                                                "type": "string",
+                                                "enum": [
+                                                  "text"
+                                                ]
+                                              },
+                                              "text": {
+                                                "type": "string",
+                                                "minLength": 1,
+                                                "maxLength": 60
+                                              }
+                                            },
+                                            "required": [
+                                              "type",
+                                              "text"
+                                            ],
+                                            "additionalProperties": true
+                                          },
+                                          {
+                                            "anyOf": [
+                                              {
+                                                "type": "object",
+                                                "properties": {
+                                                  "type": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                      "image"
+                                                    ]
+                                                  },
+                                                  "url": {
+                                                    "type": "string"
+                                                  }
+                                                },
+                                                "required": [
+                                                  "type",
+                                                  "url"
+                                                ],
+                                                "additionalProperties": true
+                                              },
+                                              {
+                                                "type": "object",
+                                                "properties": {
+                                                  "type": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                      "image"
+                                                    ]
+                                                  },
+                                                  "mediaId": {
+                                                    "type": "string",
+                                                    "pattern": "^media_[0-9a-hjkmnp-tv-z]{16,24}$"
+                                                  }
+                                                },
+                                                "required": [
+                                                  "type",
+                                                  "mediaId"
+                                                ],
+                                                "additionalProperties": true
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "anyOf": [
+                                              {
+                                                "type": "object",
+                                                "properties": {
+                                                  "type": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                      "video"
+                                                    ]
+                                                  },
+                                                  "url": {
+                                                    "type": "string"
+                                                  }
+                                                },
+                                                "required": [
+                                                  "type",
+                                                  "url"
+                                                ],
+                                                "additionalProperties": true
+                                              },
+                                              {
+                                                "type": "object",
+                                                "properties": {
+                                                  "type": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                      "video"
+                                                    ]
+                                                  },
+                                                  "mediaId": {
+                                                    "type": "string",
+                                                    "pattern": "^media_[0-9a-hjkmnp-tv-z]{16,24}$"
+                                                  }
+                                                },
+                                                "required": [
+                                                  "type",
+                                                  "mediaId"
+                                                ],
+                                                "additionalProperties": true
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "anyOf": [
+                                              {
+                                                "type": "object",
+                                                "properties": {
+                                                  "type": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                      "document"
+                                                    ]
+                                                  },
+                                                  "filename": {
+                                                    "type": "string",
+                                                    "minLength": 1,
+                                                    "maxLength": 255
+                                                  },
+                                                  "url": {
+                                                    "type": "string"
+                                                  }
+                                                },
+                                                "required": [
+                                                  "type",
+                                                  "url"
+                                                ],
+                                                "additionalProperties": true
+                                              },
+                                              {
+                                                "type": "object",
+                                                "properties": {
+                                                  "type": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                      "document"
+                                                    ]
+                                                  },
+                                                  "filename": {
+                                                    "type": "string",
+                                                    "minLength": 1,
+                                                    "maxLength": 255
+                                                  },
+                                                  "mediaId": {
+                                                    "type": "string",
+                                                    "pattern": "^media_[0-9a-hjkmnp-tv-z]{16,24}$"
+                                                  }
+                                                },
+                                                "required": [
+                                                  "type",
+                                                  "mediaId"
+                                                ],
+                                                "additionalProperties": true
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      },
+                                      "body": {
+                                        "type": "string",
+                                        "minLength": 1,
+                                        "maxLength": 1024
+                                      },
+                                      "footer": {
+                                        "type": "string",
+                                        "minLength": 1,
+                                        "maxLength": 60
+                                      },
+                                      "buttons": {
+                                        "type": "array",
+                                        "items": {
+                                          "type": "object",
+                                          "properties": {
+                                            "id": {
+                                              "type": "string",
+                                              "minLength": 1,
+                                              "maxLength": 256
+                                            },
+                                            "title": {
+                                              "type": "string",
+                                              "minLength": 1,
+                                              "maxLength": 20
+                                            }
+                                          },
+                                          "required": [
+                                            "id",
+                                            "title"
+                                          ],
+                                          "additionalProperties": true
+                                        },
+                                        "minItems": 1,
+                                        "maxItems": 3
+                                      }
+                                    },
+                                    "required": [
+                                      "type",
+                                      "body",
+                                      "buttons"
+                                    ],
+                                    "additionalProperties": true
+                                  },
+                                  {
+                                    "type": "object",
+                                    "properties": {
+                                      "type": {
+                                        "type": "string",
+                                        "enum": [
+                                          "list"
+                                        ]
+                                      },
+                                      "header": {
+                                        "type": "object",
+                                        "properties": {
+                                          "type": {
+                                            "type": "string",
+                                            "enum": [
+                                              "text"
+                                            ]
+                                          },
+                                          "text": {
+                                            "type": "string",
+                                            "minLength": 1,
+                                            "maxLength": 60
+                                          }
+                                        },
+                                        "required": [
+                                          "type",
+                                          "text"
+                                        ],
+                                        "additionalProperties": true
+                                      },
+                                      "body": {
+                                        "type": "string",
+                                        "minLength": 1,
+                                        "maxLength": 4096
+                                      },
+                                      "footer": {
+                                        "type": "string",
+                                        "minLength": 1,
+                                        "maxLength": 60
+                                      },
+                                      "button": {
+                                        "type": "string",
+                                        "minLength": 1,
+                                        "maxLength": 20
+                                      },
+                                      "sections": {
+                                        "type": "array",
+                                        "items": {
+                                          "type": "object",
+                                          "properties": {
+                                            "title": {
+                                              "type": "string",
+                                              "minLength": 1,
+                                              "maxLength": 24
+                                            },
+                                            "rows": {
+                                              "type": "array",
+                                              "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                  "id": {
+                                                    "type": "string",
+                                                    "minLength": 1,
+                                                    "maxLength": 200
+                                                  },
+                                                  "title": {
+                                                    "type": "string",
+                                                    "minLength": 1,
+                                                    "maxLength": 24
+                                                  },
+                                                  "description": {
+                                                    "type": "string",
+                                                    "minLength": 1,
+                                                    "maxLength": 72
+                                                  }
+                                                },
+                                                "required": [
+                                                  "id",
+                                                  "title"
+                                                ],
+                                                "additionalProperties": true
+                                              },
+                                              "minItems": 1
+                                            }
+                                          },
+                                          "required": [
+                                            "rows"
+                                          ],
+                                          "additionalProperties": true
+                                        },
+                                        "minItems": 1,
+                                        "maxItems": 10
+                                      }
+                                    },
+                                    "required": [
+                                      "type",
+                                      "body",
+                                      "button",
+                                      "sections"
+                                    ],
+                                    "additionalProperties": true
+                                  },
+                                  {
+                                    "type": "object",
+                                    "properties": {
+                                      "type": {
+                                        "type": "string",
+                                        "enum": [
+                                          "cta_url"
+                                        ]
+                                      },
+                                      "header": {
+                                        "anyOf": [
+                                          {
+                                            "type": "object",
+                                            "properties": {
+                                              "type": {
+                                                "type": "string",
+                                                "enum": [
+                                                  "text"
+                                                ]
+                                              },
+                                              "text": {
+                                                "type": "string",
+                                                "minLength": 1,
+                                                "maxLength": 60
+                                              }
+                                            },
+                                            "required": [
+                                              "type",
+                                              "text"
+                                            ],
+                                            "additionalProperties": true
+                                          },
+                                          {
+                                            "anyOf": [
+                                              {
+                                                "type": "object",
+                                                "properties": {
+                                                  "type": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                      "image"
+                                                    ]
+                                                  },
+                                                  "url": {
+                                                    "type": "string"
+                                                  }
+                                                },
+                                                "required": [
+                                                  "type",
+                                                  "url"
+                                                ],
+                                                "additionalProperties": true
+                                              },
+                                              {
+                                                "type": "object",
+                                                "properties": {
+                                                  "type": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                      "image"
+                                                    ]
+                                                  },
+                                                  "mediaId": {
+                                                    "type": "string",
+                                                    "pattern": "^media_[0-9a-hjkmnp-tv-z]{16,24}$"
+                                                  }
+                                                },
+                                                "required": [
+                                                  "type",
+                                                  "mediaId"
+                                                ],
+                                                "additionalProperties": true
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "anyOf": [
+                                              {
+                                                "type": "object",
+                                                "properties": {
+                                                  "type": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                      "video"
+                                                    ]
+                                                  },
+                                                  "url": {
+                                                    "type": "string"
+                                                  }
+                                                },
+                                                "required": [
+                                                  "type",
+                                                  "url"
+                                                ],
+                                                "additionalProperties": true
+                                              },
+                                              {
+                                                "type": "object",
+                                                "properties": {
+                                                  "type": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                      "video"
+                                                    ]
+                                                  },
+                                                  "mediaId": {
+                                                    "type": "string",
+                                                    "pattern": "^media_[0-9a-hjkmnp-tv-z]{16,24}$"
+                                                  }
+                                                },
+                                                "required": [
+                                                  "type",
+                                                  "mediaId"
+                                                ],
+                                                "additionalProperties": true
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "anyOf": [
+                                              {
+                                                "type": "object",
+                                                "properties": {
+                                                  "type": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                      "document"
+                                                    ]
+                                                  },
+                                                  "filename": {
+                                                    "type": "string",
+                                                    "minLength": 1,
+                                                    "maxLength": 255
+                                                  },
+                                                  "url": {
+                                                    "type": "string"
+                                                  }
+                                                },
+                                                "required": [
+                                                  "type",
+                                                  "url"
+                                                ],
+                                                "additionalProperties": true
+                                              },
+                                              {
+                                                "type": "object",
+                                                "properties": {
+                                                  "type": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                      "document"
+                                                    ]
+                                                  },
+                                                  "filename": {
+                                                    "type": "string",
+                                                    "minLength": 1,
+                                                    "maxLength": 255
+                                                  },
+                                                  "mediaId": {
+                                                    "type": "string",
+                                                    "pattern": "^media_[0-9a-hjkmnp-tv-z]{16,24}$"
+                                                  }
+                                                },
+                                                "required": [
+                                                  "type",
+                                                  "mediaId"
+                                                ],
+                                                "additionalProperties": true
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      },
+                                      "body": {
+                                        "type": "string",
+                                        "minLength": 1,
+                                        "maxLength": 1024
+                                      },
+                                      "footer": {
+                                        "type": "string",
+                                        "minLength": 1,
+                                        "maxLength": 60
+                                      },
+                                      "displayText": {
+                                        "type": "string",
+                                        "minLength": 1,
+                                        "maxLength": 20
+                                      },
+                                      "url": {
+                                        "type": "string"
+                                      }
+                                    },
+                                    "required": [
+                                      "type",
+                                      "body",
+                                      "displayText",
+                                      "url"
+                                    ],
+                                    "additionalProperties": true
+                                  },
+                                  {
+                                    "type": "object",
+                                    "properties": {
+                                      "type": {
+                                        "type": "string",
+                                        "enum": [
+                                          "flow"
+                                        ]
+                                      },
+                                      "header": {
+                                        "type": "object",
+                                        "properties": {
+                                          "type": {
+                                            "type": "string",
+                                            "enum": [
+                                              "text"
+                                            ]
+                                          },
+                                          "text": {
+                                            "type": "string",
+                                            "minLength": 1,
+                                            "maxLength": 60
+                                          }
+                                        },
+                                        "required": [
+                                          "type",
+                                          "text"
+                                        ],
+                                        "additionalProperties": true
+                                      },
+                                      "body": {
+                                        "type": "string",
+                                        "minLength": 1,
+                                        "maxLength": 1024
+                                      },
+                                      "footer": {
+                                        "type": "string",
+                                        "minLength": 1,
+                                        "maxLength": 60
+                                      },
+                                      "flowId": {
+                                        "type": "string",
+                                        "pattern": "^waflow_[0-9a-hjkmnp-tv-z]{16,24}$"
+                                      },
+                                      "cta": {
+                                        "type": "string",
+                                        "minLength": 1,
+                                        "maxLength": 30
+                                      },
+                                      "token": {
+                                        "type": "string",
+                                        "minLength": 1,
+                                        "maxLength": 1024
+                                      },
+                                      "action": {
+                                        "type": "string",
+                                        "enum": [
+                                          "navigate",
+                                          "data_exchange"
+                                        ]
+                                      },
+                                      "screen": {
+                                        "type": "string",
+                                        "pattern": "^[A-Za-z_]{1,100}$"
+                                      },
+                                      "data": {
+                                        "type": "object"
+                                      },
+                                      "flowVersionId": {
+                                        "type": "string",
+                                        "pattern": "^wafver_[0-9a-hjkmnp-tv-z]{16,24}$"
+                                      },
+                                      "providerFlowId": {
+                                        "type": "string"
+                                      }
+                                    },
+                                    "required": [
+                                      "type",
+                                      "body",
+                                      "flowId",
+                                      "cta",
+                                      "flowVersionId",
+                                      "providerFlowId"
+                                    ],
+                                    "additionalProperties": true
+                                  }
+                                ]
+                              },
+                              "media": {
+                                "anyOf": [
+                                  {
+                                    "anyOf": [
+                                      {
+                                        "type": "object",
+                                        "properties": {
+                                          "type": {
+                                            "type": "string",
+                                            "enum": [
+                                              "image",
+                                              "video",
+                                              "audio",
+                                              "document",
+                                              "sticker"
+                                            ]
+                                          },
+                                          "url": {
+                                            "type": "string"
+                                          },
+                                          "caption": {
+                                            "type": "string"
+                                          },
+                                          "filename": {
+                                            "type": "string"
+                                          }
+                                        },
+                                        "required": [
+                                          "type",
+                                          "url"
+                                        ],
+                                        "additionalProperties": true
+                                      },
+                                      {
+                                        "type": "object",
+                                        "properties": {
+                                          "type": {
+                                            "type": "string",
+                                            "enum": [
+                                              "image",
+                                              "video",
+                                              "audio",
+                                              "document",
+                                              "sticker"
+                                            ]
+                                          },
+                                          "mediaId": {
+                                            "type": "string",
+                                            "pattern": "^media_[0-9a-hjkmnp-tv-z]{16,24}$"
+                                          },
+                                          "caption": {
+                                            "type": "string"
+                                          },
+                                          "filename": {
+                                            "type": "string"
+                                          }
+                                        },
+                                        "required": [
+                                          "type",
+                                          "mediaId"
+                                        ],
+                                        "additionalProperties": true
+                                      },
+                                      {
+                                        "type": "object",
+                                        "properties": {
+                                          "type": {
+                                            "type": "string",
+                                            "enum": [
+                                              "image",
+                                              "video",
+                                              "audio",
+                                              "document",
+                                              "sticker"
+                                            ]
+                                          },
+                                          "providerMediaId": {
+                                            "type": "string"
+                                          },
+                                          "mimeType": {
+                                            "anyOf": [
+                                              {
+                                                "type": "string"
+                                              },
+                                              {
+                                                "type": "null"
+                                              }
+                                            ]
+                                          },
+                                          "caption": {
+                                            "anyOf": [
+                                              {
+                                                "type": "string"
+                                              },
+                                              {
+                                                "type": "null"
+                                              }
+                                            ]
+                                          },
+                                          "filename": {
+                                            "type": "string"
+                                          }
+                                        },
+                                        "required": [
+                                          "type",
+                                          "providerMediaId"
+                                        ],
+                                        "additionalProperties": true
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "null"
+                                  }
+                                ]
+                              },
+                              "reaction": {
+                                "type": "object",
+                                "properties": {
+                                  "messageId": {
+                                    "anyOf": [
+                                      {
+                                        "type": "string",
+                                        "pattern": "^msg_[0-9a-hjkmnp-tv-z]{16,24}$"
+                                      },
+                                      {
+                                        "type": "null"
+                                      }
+                                    ]
+                                  },
+                                  "providerMessageId": {
+                                    "type": "string"
+                                  },
+                                  "emoji": {
+                                    "anyOf": [
+                                      {
+                                        "type": "string"
+                                      },
+                                      {
+                                        "type": "null"
+                                      }
+                                    ]
+                                  }
+                                },
+                                "required": [
+                                  "messageId",
+                                  "providerMessageId",
+                                  "emoji"
+                                ],
+                                "additionalProperties": true
+                              },
+                              "location": {
+                                "type": "object",
+                                "properties": {
+                                  "latitude": {
+                                    "type": "number"
+                                  },
+                                  "longitude": {
+                                    "type": "number"
+                                  },
+                                  "name": {
+                                    "type": "string"
+                                  },
+                                  "address": {
+                                    "type": "string"
+                                  },
+                                  "url": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "latitude",
+                                  "longitude"
+                                ],
+                                "additionalProperties": true
+                              },
+                              "contacts": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "name": {
+                                      "type": "object",
+                                      "properties": {
+                                        "formattedName": {
+                                          "type": "string"
+                                        },
+                                        "firstName": {
+                                          "type": "string"
+                                        },
+                                        "lastName": {
+                                          "type": "string"
+                                        },
+                                        "middleName": {
+                                          "type": "string"
+                                        },
+                                        "prefix": {
+                                          "type": "string"
+                                        },
+                                        "suffix": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      "additionalProperties": true
+                                    },
+                                    "phones": {
+                                      "type": "array",
+                                      "items": {
+                                        "type": "object",
+                                        "properties": {
+                                          "phone": {
+                                            "type": "string"
+                                          },
+                                          "type": {
+                                            "type": "string"
+                                          },
+                                          "waId": {
+                                            "type": "string"
+                                          }
+                                        },
+                                        "additionalProperties": true
+                                      }
+                                    },
+                                    "emails": {
+                                      "type": "array",
+                                      "items": {
+                                        "type": "object",
+                                        "properties": {
+                                          "email": {
+                                            "type": "string"
+                                          },
+                                          "type": {
+                                            "type": "string"
+                                          }
+                                        },
+                                        "additionalProperties": true
+                                      }
+                                    },
+                                    "urls": {
+                                      "type": "array",
+                                      "items": {
+                                        "type": "object",
+                                        "properties": {
+                                          "url": {
+                                            "type": "string"
+                                          },
+                                          "type": {
+                                            "type": "string"
+                                          }
+                                        },
+                                        "additionalProperties": true
+                                      }
+                                    },
+                                    "org": {
+                                      "type": "object",
+                                      "properties": {
+                                        "company": {
+                                          "type": "string"
+                                        },
+                                        "department": {
+                                          "type": "string"
+                                        },
+                                        "title": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      "additionalProperties": true
+                                    },
+                                    "addresses": {
+                                      "type": "array",
+                                      "items": {
+                                        "type": "object",
+                                        "properties": {
+                                          "street": {
+                                            "type": "string"
+                                          },
+                                          "city": {
+                                            "type": "string"
+                                          },
+                                          "state": {
+                                            "type": "string"
+                                          },
+                                          "zip": {
+                                            "type": "string"
+                                          },
+                                          "country": {
+                                            "type": "string"
+                                          },
+                                          "countryCode": {
+                                            "type": "string"
+                                          },
+                                          "type": {
+                                            "type": "string"
+                                          }
+                                        },
+                                        "additionalProperties": true
+                                      }
+                                    },
+                                    "birthday": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "additionalProperties": true
+                                }
+                              },
+                              "reply": {
+                                "type": "object",
+                                "properties": {
+                                  "type": {
+                                    "type": "string",
+                                    "enum": [
+                                      "button",
+                                      "list",
+                                      "template_button"
+                                    ]
+                                  },
+                                  "id": {
+                                    "type": "string"
+                                  },
+                                  "title": {
+                                    "type": "string"
+                                  },
+                                  "description": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "type",
+                                  "id",
+                                  "title"
+                                ],
+                                "additionalProperties": true
+                              },
+                              "flowResponse": {
+                                "type": "object",
+                                "properties": {
+                                  "flowToken": {
+                                    "anyOf": [
+                                      {
+                                        "type": "string"
+                                      },
+                                      {
+                                        "type": "null"
+                                      }
+                                    ]
+                                  },
+                                  "response": {
+                                    "type": "object"
+                                  },
+                                  "body": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "flowToken",
+                                  "response"
+                                ],
+                                "additionalProperties": true
+                              },
+                              "context": {
+                                "type": "object",
+                                "properties": {
+                                  "messageId": {
+                                    "anyOf": [
+                                      {
+                                        "type": "string",
+                                        "pattern": "^msg_[0-9a-hjkmnp-tv-z]{16,24}$"
+                                      },
+                                      {
+                                        "type": "null"
+                                      }
+                                    ]
+                                  },
+                                  "providerMessageId": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "messageId",
+                                  "providerMessageId"
+                                ],
+                                "additionalProperties": true
+                              }
+                            },
+                            "additionalProperties": true
                           },
                           {
                             "type": "null"
@@ -77960,6 +79570,8 @@
                       "channel": {
                         "type": "string",
                         "enum": [
+                          "sms",
+                          "whatsapp",
                           "email"
                         ]
                       },
@@ -78074,6 +79686,8 @@
                         "items": {
                           "type": "string",
                           "enum": [
+                            "sms",
+                            "whatsapp",
                             "email"
                           ]
                         }
@@ -78081,6 +79695,8 @@
                       "primaryChannel": {
                         "type": "string",
                         "enum": [
+                          "sms",
+                          "whatsapp",
                           "email"
                         ]
                       },
@@ -78201,6 +79817,8 @@
                         "items": {
                           "type": "string",
                           "enum": [
+                            "sms",
+                            "whatsapp",
                             "email"
                           ]
                         }
@@ -78208,6 +79826,8 @@
                       "primaryChannel": {
                         "type": "string",
                         "enum": [
+                          "sms",
+                          "whatsapp",
                           "email"
                         ]
                       },
@@ -78328,6 +79948,8 @@
                         "items": {
                           "type": "string",
                           "enum": [
+                            "sms",
+                            "whatsapp",
                             "email"
                           ]
                         }
@@ -78335,6 +79957,8 @@
                       "primaryChannel": {
                         "type": "string",
                         "enum": [
+                          "sms",
+                          "whatsapp",
                           "email"
                         ]
                       },
@@ -79179,7 +80803,9 @@
                           "channel": {
                             "type": "string",
                             "enum": [
-                              "email"
+                              "email",
+                              "whatsapp",
+                              "sms"
                             ],
                             "description": "Deliveries recorded before this field existed omit it; they are email."
                           },
@@ -79478,7 +81104,9 @@
                           "channel": {
                             "type": "string",
                             "enum": [
-                              "email"
+                              "email",
+                              "whatsapp",
+                              "sms"
                             ],
                             "description": "Deliveries recorded before this field existed omit it; they are email."
                           },
@@ -80374,7 +82002,9 @@
                           "channel": {
                             "type": "string",
                             "enum": [
-                              "email"
+                              "email",
+                              "whatsapp",
+                              "sms"
                             ],
                             "description": "Deliveries recorded before this field existed omit it; they are email."
                           },
@@ -80859,10 +82489,5 @@
         }
       }
     }
-  },
-  "servers": [
-    {
-      "url": "https://api.samva.dev"
-    }
-  ]
+  }
 }
