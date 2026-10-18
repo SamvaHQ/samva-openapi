@@ -60,8 +60,11 @@ assert(
   checksums === `${artifactHash}  openapi.json\n`,
   "SHA256SUMS does not exactly describe openapi.json",
 );
+// The API surface is email-only. Webhook bodies describe every channel Samva signs them for, so a
+// shared event such as `message.received` names its staged channels too.
+const { webhooks: _webhooks, ...apiSurface } = artifact;
 assert(
-  !/(sms|whatsapp|cpaas)/i.test(artifactBytes),
+  !/(sms|whatsapp|cpaas)/i.test(JSON.stringify(apiSurface)),
   "openapi.json contains a non-email channel operation, schema, or description",
 );
 
