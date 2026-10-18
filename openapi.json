@@ -28332,6 +28332,115 @@
         "x-samva-scope": "templates:delete"
       }
     },
+    "/v1/templates/from-website": {
+      "post": {
+        "tags": [
+          "Templates"
+        ],
+        "operationId": "templates.createFromWebsite",
+        "parameters": [],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TemplateFromWebsite"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ResourceNotFoundError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "ConflictError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConflictError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Checks that the website is a public page Samva can read, creates an email template project from Samva's canonical TSX starter, and returns the template with status 201 and the request that makes the template assistant match the site. The assistant runs when the request is sent in the editor; it rebuilds the project's theme and blocks from the site and proposes a brand that applies only after the customer approves it. A 422 names why the site cannot be matched: not a web address, not public, no answer, a missing page, refused automated visits, or not a web page.",
+        "summary": "Create a template from a website",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateTemplateFromWebsitePayload"
+              }
+            }
+          },
+          "required": true
+        },
+        "x-samva-scope": "templates:create"
+      }
+    },
     "/v1/templates/projects/{id}/entries": {
       "post": {
         "tags": [
@@ -63098,6 +63207,110 @@
           "entryPath",
           "name",
           "slug"
+        ],
+        "additionalProperties": false
+      },
+      "TemplateFromWebsite": {
+        "type": "object",
+        "properties": {
+          "template": {
+            "$ref": "#/components/schemas/Template"
+          },
+          "website": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string",
+                "description": "The address Samva checked, normalized."
+              },
+              "host": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "url",
+              "host"
+            ],
+            "additionalProperties": false
+          },
+          "ask": {
+            "type": "string",
+            "description": "The request to send the template assistant in the editor. The assistant reads the site, rebuilds the project's theme and blocks to match it, and proposes a brand that changes nothing until the customer applies it."
+          }
+        },
+        "required": [
+          "template",
+          "website",
+          "ask"
+        ],
+        "additionalProperties": false
+      },
+      "CreateTemplateFromWebsitePayload": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2048,
+            "description": "The website whose look the template should match: a public https address, or a bare domain such as `example.com`.",
+            "x-samva-string-checks": [
+              {
+                "id": "effect/schema/isMaxLength",
+                "payload": {
+                  "maxLength": 2048
+                }
+              }
+            ]
+          },
+          "name": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200,
+                "x-samva-string-checks": [
+                  {
+                    "id": "effect/schema/isMaxLength",
+                    "payload": {
+                      "maxLength": 200
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "namespaceId": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/NamespaceId"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "The namespace the new template project belongs to. Omit for organization level. A namespace-scoped key always creates in its own namespace."
+          },
+          "idempotencyKey": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 255,
+            "description": "Repeating a request with the same key, address, name, and namespace returns the project the first one created, even if the site has since stopped answering. The same key with another address, name, or namespace is refused with a 409.",
+            "x-samva-string-checks": [
+              {
+                "id": "effect/schema/isMaxLength",
+                "payload": {
+                  "maxLength": 255
+                }
+              }
+            ]
+          }
+        },
+        "required": [
+          "url",
+          "idempotencyKey"
         ],
         "additionalProperties": false
       },

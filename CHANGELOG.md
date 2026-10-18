@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.24.1
+
+- 331 operations, 244 paths, 468 schemas, 32 webhook events.
+- Compatible against v0.24.0.
+- Added operations:
+  - `POST /v1/templates/from-website`
+
+
 ## v0.24.0
 
 - 330 operations, 243 paths, 466 schemas, 32 webhook events.
