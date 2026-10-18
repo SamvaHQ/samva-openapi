@@ -75571,6 +75571,342 @@
         }
       }
     },
+    "message.read": {
+      "post": {
+        "operationId": "webhooks.message.read",
+        "summary": "Message read",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "message.read"
+                    ]
+                  },
+                  "timestamp": {
+                    "type": "string"
+                  },
+                  "data": {
+                    "type": "object",
+                    "properties": {
+                      "mailboxId": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "pattern": "^mbx_[0-9a-hjkmnp-tv-z]{16,24}$"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "channel": {
+                        "type": "string",
+                        "enum": [
+                          "sms",
+                          "whatsapp",
+                          "email"
+                        ]
+                      },
+                      "status": {
+                        "anyOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "metadata": {
+                        "anyOf": [
+                          {
+                            "type": "object"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "cost": {
+                        "anyOf": [
+                          {
+                            "type": "number"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "recipient": {
+                        "anyOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "occurredAt": {
+                        "anyOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "failureReason": {
+                        "anyOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "errorCode": {
+                        "anyOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "conversationId": {
+                        "anyOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "isBillable": {
+                        "anyOf": [
+                          {
+                            "type": "boolean"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "messageType": {
+                        "anyOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "templateCategory": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "enum": [
+                              "marketing",
+                              "utility",
+                              "authentication"
+                            ]
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "subject": {
+                        "anyOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "toEmails": {
+                        "anyOf": [
+                          {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "providerMessageId": {
+                        "anyOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "waId": {
+                        "anyOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "hasAttachments": {
+                        "anyOf": [
+                          {
+                            "type": "boolean"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "isAutoReply": {
+                        "anyOf": [
+                          {
+                            "type": "boolean"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "segments": {
+                        "anyOf": [
+                          {
+                            "type": "number"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "to": {
+                        "anyOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "from": {
+                        "anyOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "body": {
+                        "anyOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "direction": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "enum": [
+                              "inbound",
+                              "outbound"
+                            ]
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "errorMessage": {
+                        "anyOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "parts": {
+                        "anyOf": [
+                          {
+                            "type": "number"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "carrier": {
+                        "anyOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "messageId": {
+                        "type": "string"
+                      },
+                      "organizationId": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "channel",
+                      "messageId",
+                      "organizationId"
+                    ],
+                    "additionalProperties": true
+                  }
+                },
+                "required": [
+                  "type",
+                  "timestamp",
+                  "data"
+                ],
+                "additionalProperties": true
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Any 2xx status acknowledges the event."
+          }
+        }
+      }
+    },
     "message.failed": {
       "post": {
         "operationId": "webhooks.message.failed",
@@ -80734,6 +81070,569 @@
                       "holdReason",
                       "batch",
                       "updatedAt"
+                    ],
+                    "additionalProperties": true
+                  }
+                },
+                "required": [
+                  "type",
+                  "timestamp",
+                  "data"
+                ],
+                "additionalProperties": true
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Any 2xx status acknowledges the event."
+          }
+        }
+      }
+    },
+    "template.registration.updated": {
+      "post": {
+        "operationId": "webhooks.template.registration.updated",
+        "summary": "Template registration updated",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "template.registration.updated"
+                    ]
+                  },
+                  "timestamp": {
+                    "type": "string"
+                  },
+                  "data": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "pattern": "^treg_[0-9a-hjkmnp-tv-z]{16,24}$"
+                      },
+                      "templateId": {
+                        "type": "string",
+                        "pattern": "^tmpl_[0-9a-hjkmnp-tv-z]{16,24}$"
+                      },
+                      "publicationId": {
+                        "type": "string",
+                        "pattern": "^tpub_[0-9a-hjkmnp-tv-z]{16,24}$"
+                      },
+                      "target": {
+                        "anyOf": [
+                          {
+                            "type": "object",
+                            "properties": {
+                              "provider": {
+                                "type": "string",
+                                "enum": [
+                                  "whatsapp"
+                                ]
+                              },
+                              "wabaId": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "provider",
+                              "wabaId"
+                            ],
+                            "additionalProperties": true
+                          },
+                          {
+                            "type": "object",
+                            "properties": {
+                              "provider": {
+                                "type": "string",
+                                "enum": [
+                                  "dlt"
+                                ]
+                              },
+                              "entityId": {
+                                "type": "string"
+                              },
+                              "headerId": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "provider",
+                              "entityId",
+                              "headerId"
+                            ],
+                            "additionalProperties": true
+                          }
+                        ]
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "language": {
+                        "type": "string"
+                      },
+                      "status": {
+                        "type": "string",
+                        "enum": [
+                          "draft",
+                          "submitted",
+                          "approved",
+                          "rejected",
+                          "paused",
+                          "disabled"
+                        ]
+                      },
+                      "category": {
+                        "type": "string",
+                        "enum": [
+                          "marketing",
+                          "utility",
+                          "authentication",
+                          "transactional",
+                          "service_implicit",
+                          "service_explicit",
+                          "promotional"
+                        ]
+                      },
+                      "providerCategory": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "enum": [
+                              "marketing",
+                              "utility",
+                              "authentication",
+                              "transactional",
+                              "service_implicit",
+                              "service_explicit",
+                              "promotional"
+                            ]
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "providerTemplateId": {
+                        "anyOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "reason": {
+                        "anyOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "submittedAt": {
+                        "anyOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "statusChangedAt": {
+                        "type": "string"
+                      },
+                      "createdAt": {
+                        "type": "string"
+                      },
+                      "updatedAt": {
+                        "type": "string"
+                      },
+                      "organizationId": {
+                        "type": "string",
+                        "pattern": "^org_[0-9a-hjkmnp-tv-z]{16,24}$"
+                      },
+                      "previousStatus": {
+                        "type": "string",
+                        "enum": [
+                          "draft",
+                          "submitted",
+                          "approved",
+                          "rejected",
+                          "paused",
+                          "disabled"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "templateId",
+                      "publicationId",
+                      "target",
+                      "name",
+                      "language",
+                      "status",
+                      "category",
+                      "providerCategory",
+                      "providerTemplateId",
+                      "reason",
+                      "submittedAt",
+                      "statusChangedAt",
+                      "createdAt",
+                      "updatedAt",
+                      "organizationId",
+                      "previousStatus"
+                    ],
+                    "additionalProperties": true
+                  }
+                },
+                "required": [
+                  "type",
+                  "timestamp",
+                  "data"
+                ],
+                "additionalProperties": true
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Any 2xx status acknowledges the event."
+          }
+        }
+      }
+    },
+    "flow.registration.updated": {
+      "post": {
+        "operationId": "webhooks.flow.registration.updated",
+        "summary": "Flow registration updated",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "flow.registration.updated"
+                    ]
+                  },
+                  "timestamp": {
+                    "type": "string"
+                  },
+                  "data": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "pattern": "^wafreg_[0-9a-hjkmnp-tv-z]{16,24}$"
+                      },
+                      "flowId": {
+                        "type": "string",
+                        "pattern": "^waflow_[0-9a-hjkmnp-tv-z]{16,24}$"
+                      },
+                      "versionId": {
+                        "type": "string",
+                        "pattern": "^wafver_[0-9a-hjkmnp-tv-z]{16,24}$"
+                      },
+                      "versionNumber": {
+                        "type": "integer"
+                      },
+                      "wabaId": {
+                        "type": "string"
+                      },
+                      "providerFlowId": {
+                        "anyOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "status": {
+                        "type": "string",
+                        "enum": [
+                          "draft",
+                          "published",
+                          "throttled",
+                          "blocked",
+                          "deprecated"
+                        ]
+                      },
+                      "validationErrors": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "error": {
+                              "type": "string"
+                            },
+                            "message": {
+                              "type": "string"
+                            },
+                            "path": {
+                              "type": "string"
+                            },
+                            "line": {
+                              "type": "integer"
+                            },
+                            "column": {
+                              "type": "integer"
+                            }
+                          },
+                          "required": [
+                            "error",
+                            "message"
+                          ],
+                          "additionalProperties": true
+                        }
+                      },
+                      "endpointAlerts": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "kind": {
+                              "type": "string"
+                            },
+                            "message": {
+                              "type": "string"
+                            },
+                            "value": {
+                              "anyOf": [
+                                {
+                                  "type": "number"
+                                },
+                                {
+                                  "type": "null"
+                                }
+                              ]
+                            },
+                            "threshold": {
+                              "anyOf": [
+                                {
+                                  "type": "number"
+                                },
+                                {
+                                  "type": "null"
+                                }
+                              ]
+                            },
+                            "activatedAt": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "kind",
+                            "message",
+                            "value",
+                            "threshold",
+                            "activatedAt"
+                          ],
+                          "additionalProperties": true
+                        }
+                      },
+                      "publishedAt": {
+                        "anyOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "statusChangedAt": {
+                        "type": "string"
+                      },
+                      "createdAt": {
+                        "type": "string"
+                      },
+                      "updatedAt": {
+                        "type": "string"
+                      },
+                      "organizationId": {
+                        "type": "string",
+                        "pattern": "^org_[0-9a-hjkmnp-tv-z]{16,24}$"
+                      },
+                      "previousStatus": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "enum": [
+                              "draft",
+                              "published",
+                              "throttled",
+                              "blocked",
+                              "deprecated"
+                            ]
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "flowId",
+                      "versionId",
+                      "versionNumber",
+                      "wabaId",
+                      "providerFlowId",
+                      "name",
+                      "status",
+                      "validationErrors",
+                      "endpointAlerts",
+                      "publishedAt",
+                      "statusChangedAt",
+                      "createdAt",
+                      "updatedAt",
+                      "organizationId",
+                      "previousStatus"
+                    ],
+                    "additionalProperties": true
+                  }
+                },
+                "required": [
+                  "type",
+                  "timestamp",
+                  "data"
+                ],
+                "additionalProperties": true
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Any 2xx status acknowledges the event."
+          }
+        }
+      }
+    },
+    "whatsapp.number.connected": {
+      "post": {
+        "operationId": "webhooks.whatsapp.number.connected",
+        "summary": "WhatsApp number connected",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "whatsapp.number.connected"
+                    ]
+                  },
+                  "timestamp": {
+                    "type": "string"
+                  },
+                  "data": {
+                    "type": "object",
+                    "properties": {
+                      "organizationId": {
+                        "type": "string",
+                        "pattern": "^org_[0-9a-hjkmnp-tv-z]{16,24}$"
+                      },
+                      "namespaceId": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "pattern": "^ns_[0-9a-hjkmnp-tv-z]{16,24}$"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "businessAccountId": {
+                        "type": "string",
+                        "pattern": "^waba_[0-9a-hjkmnp-tv-z]{16,24}$"
+                      },
+                      "phoneNumber": {
+                        "type": "string"
+                      },
+                      "phoneNumberId": {
+                        "type": "string"
+                      },
+                      "whatsappBusinessAccountId": {
+                        "type": "string"
+                      },
+                      "displayName": {
+                        "type": "string"
+                      },
+                      "verificationStatus": {
+                        "type": "string",
+                        "enum": [
+                          "pending",
+                          "verified",
+                          "failed",
+                          "suspended"
+                        ]
+                      },
+                      "reconnected": {
+                        "type": "boolean"
+                      },
+                      "setupLink": {
+                        "anyOf": [
+                          {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "string",
+                                "pattern": "^wasl_[0-9a-hjkmnp-tv-z]{16,24}$"
+                              },
+                              "metadata": {
+                                "type": "object",
+                                "additionalProperties": true
+                              }
+                            },
+                            "required": [
+                              "id",
+                              "metadata"
+                            ],
+                            "additionalProperties": true
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      }
+                    },
+                    "required": [
+                      "organizationId",
+                      "namespaceId",
+                      "businessAccountId",
+                      "phoneNumber",
+                      "phoneNumberId",
+                      "whatsappBusinessAccountId",
+                      "displayName",
+                      "verificationStatus",
+                      "reconnected",
+                      "setupLink"
                     ],
                     "additionalProperties": true
                   }

@@ -1,5 +1,16 @@
 # Changelog
 
+## v0.24.3
+
+- 331 operations, 244 paths, 468 schemas, 36 webhook events.
+- Compatible against v0.24.2.
+- Added webhook events:
+  - `flow.registration.updated`
+  - `message.read`
+  - `template.registration.updated`
+  - `whatsapp.number.connected`
+
+
 ## v0.24.2
 
 - 331 operations, 244 paths, 468 schemas, 32 webhook events.
