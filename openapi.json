@@ -41116,7 +41116,7 @@
                             }
                           ]
                         },
-                        "includedEmails": {
+                        "includedCredits": {
                           "anyOf": [
                             {
                               "type": "number"
@@ -41126,7 +41126,7 @@
                             }
                           ]
                         },
-                        "usedEmails": {
+                        "usedCredits": {
                           "anyOf": [
                             {
                               "type": "number"
@@ -41136,7 +41136,7 @@
                             }
                           ]
                         },
-                        "overageEmails": {
+                        "overageCredits": {
                           "anyOf": [
                             {
                               "type": "number"
@@ -41160,9 +41160,9 @@
                       "required": [
                         "currency",
                         "planName",
-                        "includedEmails",
-                        "usedEmails",
-                        "overageEmails",
+                        "includedCredits",
+                        "usedCredits",
+                        "overageCredits",
                         "overageCost"
                       ],
                       "additionalProperties": false
