@@ -1,5 +1,62 @@
 # Changelog
 
+## v0.25.0
+
+- 331 operations, 244 paths, 468 schemas, 36 webhook events.
+- Breaking against v0.24.4.
+- Changed schemas:
+  - `AttachmentList`
+  - `BatchEventsResult`
+  - `BlockPage`
+  - `BulkUpdateResult`
+  - `ContactGroupPage`
+  - `Conversation`
+  - `ConversationSummary`
+  - `CustomFieldList`
+  - `DeliverabilityFacts`
+  - `EmailDomainDetailed`
+  - `EmailDomainProvisioningExecution`
+  - `EmailDomainVerification`
+  - `ExtensionBundle`
+  - `ExtensionRun`
+  - `ExtensionRunSummary`
+  - `ForwardingRuleList`
+  - `IdentityClearanceStatus`
+  - `Journey`
+  - `JourneyListItem`
+  - `JourneyNodeStats`
+  - `JourneyRun`
+  - `JourneyRunCounts`
+  - `JourneyRunDetail`
+  - `JourneyStats`
+  - `JourneyVersion`
+  - `MailboxAgentActivity`
+  - `MailboxFolderCount`
+  - `MailboxMessage`
+  - `MailboxSendSnapshot`
+  - `MailboxThread`
+  - `MailboxThreadSummary`
+  - `OnboardingReviewStatus`
+  - `ReapplyOnboardingReviewInput`
+  - `ReceivingStatus`
+  - `RespondToOnboardingInformationRequestInput`
+  - `SendsSeries`
+  - `SuppressionCounts`
+  - `Template`
+  - `TemplateInputContractPage`
+  - `TemplateSummary`
+  - `UnsubscribeGroupList`
+  - `ValidateEmailResponse`
+  - `WebhookDailyDeliveries`
+  - `WebhookDeliveryCounts`
+  - `WebhookDeliveryPage`
+  - `WebhookStatsResponse`
+- Changed webhook events:
+  - `domain.updated`
+  - `flow.registration.updated`
+  - `journey.webhook`
+
+
 ## v0.24.4
 
 - 331 operations, 244 paths, 468 schemas, 36 webhook events.

@@ -1364,7 +1364,8 @@
                       "anyOf": [
                         {
                           "type": "integer",
-                          "minimum": 0
+                          "minimum": 0,
+                          "maximum": 9007199254740991
                         },
                         {
                           "type": "null"
@@ -1537,7 +1538,8 @@
                     },
                     "attachmentCount": {
                       "type": "integer",
-                      "minimum": 0
+                      "minimum": 0,
+                      "maximum": 9007199254740991
                     },
                     "attachments": {
                       "type": "array",
@@ -1555,7 +1557,8 @@
                           },
                           "size": {
                             "type": "integer",
-                            "minimum": 0
+                            "minimum": 0,
+                            "maximum": 9007199254740991
                           },
                           "isInline": {
                             "type": "boolean"
@@ -9430,19 +9433,23 @@
                   "properties": {
                     "totalSent": {
                       "type": "integer",
-                      "minimum": 0
+                      "minimum": 0,
+                      "maximum": 9007199254740991
                     },
                     "totalDelivered": {
                       "type": "integer",
-                      "minimum": 0
+                      "minimum": 0,
+                      "maximum": 9007199254740991
                     },
                     "totalBounced": {
                       "type": "integer",
-                      "minimum": 0
+                      "minimum": 0,
+                      "maximum": 9007199254740991
                     },
                     "totalComplained": {
                       "type": "integer",
-                      "minimum": 0
+                      "minimum": 0,
+                      "maximum": 9007199254740991
                     },
                     "deliveryRate": {
                       "type": "number"
@@ -9959,7 +9966,8 @@
                     },
                     "emailCount": {
                       "type": "integer",
-                      "minimum": 0
+                      "minimum": 0,
+                      "maximum": 9007199254740991
                     },
                     "lastEmailAt": {
                       "anyOf": [
@@ -10116,7 +10124,8 @@
                     },
                     "catchAllEmailCount": {
                       "type": "integer",
-                      "minimum": 0
+                      "minimum": 0,
+                      "maximum": 9007199254740991
                     },
                     "catchAllLastEmailAt": {
                       "anyOf": [
@@ -10135,7 +10144,8 @@
                           "properties": {
                             "emailsReceived": {
                               "type": "integer",
-                              "minimum": 0
+                              "minimum": 0,
+                              "maximum": 9007199254740991
                             },
                             "firstEmail": {
                               "anyOf": [
@@ -13840,7 +13850,8 @@
                     },
                     "size": {
                       "type": "integer",
-                      "minimum": 0
+                      "minimum": 0,
+                      "maximum": 9007199254740991
                     },
                     "contentId": {
                       "anyOf": [
@@ -14218,7 +14229,8 @@
                         },
                         "size": {
                           "type": "integer",
-                          "minimum": 0
+                          "minimum": 0,
+                          "maximum": 9007199254740991
                         },
                         "contentId": {
                           "anyOf": [
@@ -14688,7 +14700,8 @@
                     "anyOf": [
                       {
                         "type": "integer",
-                        "minimum": 0
+                        "minimum": 0,
+                        "maximum": 9007199254740991
                       },
                       {
                         "type": "null"
@@ -15132,7 +15145,8 @@
                     "anyOf": [
                       {
                         "type": "integer",
-                        "minimum": 0
+                        "minimum": 0,
+                        "maximum": 9007199254740991
                       },
                       {
                         "type": "null"
@@ -18287,19 +18301,23 @@
                   "properties": {
                     "totalMessages": {
                       "type": "integer",
-                      "minimum": 0
+                      "minimum": 0,
+                      "maximum": 9007199254740991
                     },
                     "messagesSent": {
                       "type": "integer",
-                      "minimum": 0
+                      "minimum": 0,
+                      "maximum": 9007199254740991
                     },
                     "messagesReceived": {
                       "type": "integer",
-                      "minimum": 0
+                      "minimum": 0,
+                      "maximum": 9007199254740991
                     },
                     "activeConversations": {
                       "type": "integer",
-                      "minimum": 0
+                      "minimum": 0,
+                      "maximum": 9007199254740991
                     },
                     "lastActivityAt": {
                       "anyOf": [
@@ -18315,7 +18333,8 @@
                       "type": "object",
                       "additionalProperties": {
                         "type": "integer",
-                        "minimum": 0
+                        "minimum": 0,
+                        "maximum": 9007199254740991
                       }
                     }
                   },
@@ -18420,23 +18439,28 @@
                   "properties": {
                     "total": {
                       "type": "integer",
-                      "minimum": 0
+                      "minimum": 0,
+                      "maximum": 9007199254740991
                     },
                     "created": {
                       "type": "integer",
-                      "minimum": 0
+                      "minimum": 0,
+                      "maximum": 9007199254740991
                     },
                     "updated": {
                       "type": "integer",
-                      "minimum": 0
+                      "minimum": 0,
+                      "maximum": 9007199254740991
                     },
                     "skipped": {
                       "type": "integer",
-                      "minimum": 0
+                      "minimum": 0,
+                      "maximum": 9007199254740991
                     },
                     "errors": {
                       "type": "integer",
-                      "minimum": 0
+                      "minimum": 0,
+                      "maximum": 9007199254740991
                     },
                     "results": {
                       "type": "array",
@@ -18445,7 +18469,8 @@
                         "properties": {
                           "index": {
                             "type": "integer",
-                            "minimum": 0
+                            "minimum": 0,
+                            "maximum": 9007199254740991
                           },
                           "status": {
                             "type": "string",
@@ -18822,11 +18847,13 @@
                   "properties": {
                     "deleted": {
                       "type": "integer",
-                      "minimum": 0
+                      "minimum": 0,
+                      "maximum": 9007199254740991
                     },
                     "failed": {
                       "type": "integer",
-                      "minimum": 0
+                      "minimum": 0,
+                      "maximum": 9007199254740991
                     }
                   },
                   "required": [
@@ -19230,7 +19257,8 @@
                     },
                     "count": {
                       "type": "integer",
-                      "minimum": 0
+                      "minimum": 0,
+                      "maximum": 9007199254740991
                     }
                   },
                   "required": [
@@ -22160,7 +22188,8 @@
                     },
                     "contactCount": {
                       "type": "integer",
-                      "minimum": 0
+                      "minimum": 0,
+                      "maximum": 9007199254740991
                     },
                     "lastCalculatedAt": {
                       "anyOf": [
@@ -22510,7 +22539,8 @@
                     },
                     "contactCount": {
                       "type": "integer",
-                      "minimum": 0
+                      "minimum": 0,
+                      "maximum": 9007199254740991
                     },
                     "lastCalculatedAt": {
                       "anyOf": [
@@ -22727,7 +22757,8 @@
                     },
                     "contactCount": {
                       "type": "integer",
-                      "minimum": 0
+                      "minimum": 0,
+                      "maximum": 9007199254740991
                     },
                     "lastCalculatedAt": {
                       "anyOf": [
@@ -23117,11 +23148,13 @@
                   "properties": {
                     "added": {
                       "type": "integer",
-                      "minimum": 0
+                      "minimum": 0,
+                      "maximum": 9007199254740991
                     },
                     "skipped": {
                       "type": "integer",
-                      "minimum": 0
+                      "minimum": 0,
+                      "maximum": 9007199254740991
                     }
                   },
                   "required": [
@@ -23271,7 +23304,8 @@
                   "properties": {
                     "removed": {
                       "type": "integer",
-                      "minimum": 0
+                      "minimum": 0,
+                      "maximum": 9007199254740991
                     }
                   },
                   "required": [
@@ -23533,15 +23567,18 @@
                   "properties": {
                     "added": {
                       "type": "integer",
-                      "minimum": 0
+                      "minimum": 0,
+                      "maximum": 9007199254740991
                     },
                     "removed": {
                       "type": "integer",
-                      "minimum": 0
+                      "minimum": 0,
+                      "maximum": 9007199254740991
                     },
                     "total": {
                       "type": "integer",
-                      "minimum": 0
+                      "minimum": 0,
+                      "maximum": 9007199254740991
                     }
                   },
                   "required": [
@@ -23642,7 +23679,8 @@
                   "properties": {
                     "count": {
                       "type": "integer",
-                      "minimum": 0
+                      "minimum": 0,
+                      "maximum": 9007199254740991
                     },
                     "sample": {
                       "type": "array",
@@ -23972,7 +24010,8 @@
                     },
                     "sortOrder": {
                       "type": "integer",
-                      "minimum": 0
+                      "minimum": 0,
+                      "maximum": 9007199254740991
                     },
                     "createdAt": {
                       "type": "string"
@@ -24128,7 +24167,8 @@
                     "anyOf": [
                       {
                         "type": "integer",
-                        "minimum": 0
+                        "minimum": 0,
+                        "maximum": 9007199254740991
                       },
                       {
                         "type": "null"
@@ -24229,7 +24269,8 @@
                     },
                     "sortOrder": {
                       "type": "integer",
-                      "minimum": 0
+                      "minimum": 0,
+                      "maximum": 9007199254740991
                     },
                     "createdAt": {
                       "type": "string"
@@ -24379,7 +24420,8 @@
                     "anyOf": [
                       {
                         "type": "integer",
-                        "minimum": 0
+                        "minimum": 0,
+                        "maximum": 9007199254740991
                       },
                       {
                         "type": "null"
@@ -24622,7 +24664,8 @@
                     },
                     "memberCount": {
                       "type": "integer",
-                      "minimum": 0
+                      "minimum": 0,
+                      "maximum": 9007199254740991
                     },
                     "createdAt": {
                       "type": "string"
@@ -24802,7 +24845,8 @@
                     },
                     "memberCount": {
                       "type": "integer",
-                      "minimum": 0
+                      "minimum": 0,
+                      "maximum": 9007199254740991
                     },
                     "createdAt": {
                       "type": "string"
@@ -25101,7 +25145,8 @@
                     },
                     "memberCount": {
                       "type": "integer",
-                      "minimum": 0
+                      "minimum": 0,
+                      "maximum": 9007199254740991
                     },
                     "createdAt": {
                       "type": "string"
@@ -25222,11 +25267,13 @@
                   "properties": {
                     "added": {
                       "type": "integer",
-                      "minimum": 0
+                      "minimum": 0,
+                      "maximum": 9007199254740991
                     },
                     "skipped": {
                       "type": "integer",
-                      "minimum": 0
+                      "minimum": 0,
+                      "maximum": 9007199254740991
                     }
                   },
                   "required": [
@@ -25392,7 +25439,8 @@
                   "properties": {
                     "removed": {
                       "type": "integer",
-                      "minimum": 0
+                      "minimum": 0,
+                      "maximum": 9007199254740991
                     }
                   },
                   "required": [
@@ -25899,7 +25947,8 @@
                           },
                           "email": {
                             "type": "integer",
-                            "minimum": 0
+                            "minimum": 0,
+                            "maximum": 9007199254740991
                           }
                         },
                         "required": [
@@ -26042,29 +26091,34 @@
                       "properties": {
                         "sent": {
                           "type": "integer",
-                          "minimum": 0
+                          "minimum": 0,
+                          "maximum": 9007199254740991
                         },
                         "deliveryRate": {
                           "type": "number"
                         },
                         "uniqueOpenedMessages": {
                           "type": "integer",
-                          "minimum": 0
+                          "minimum": 0,
+                          "maximum": 9007199254740991
                         },
                         "openTrackingEligibleDeliveredMessages": {
                           "type": "integer",
-                          "minimum": 0
+                          "minimum": 0,
+                          "maximum": 9007199254740991
                         },
                         "uniqueMessageOpenRate": {
                           "type": "number"
                         },
                         "uniqueClickedMessages": {
                           "type": "integer",
-                          "minimum": 0
+                          "minimum": 0,
+                          "maximum": 9007199254740991
                         },
                         "clickTrackingEligibleDeliveredMessages": {
                           "type": "integer",
-                          "minimum": 0
+                          "minimum": 0,
+                          "maximum": 9007199254740991
                         },
                         "uniqueMessageClickRate": {
                           "type": "number"
@@ -26286,7 +26340,8 @@
                       },
                       "messageCount": {
                         "type": "integer",
-                        "minimum": 0
+                        "minimum": 0,
+                        "maximum": 9007199254740991
                       }
                     },
                     "required": [
@@ -26428,7 +26483,8 @@
                       },
                       "count": {
                         "type": "integer",
-                        "minimum": 0
+                        "minimum": 0,
+                        "maximum": 9007199254740991
                       }
                     },
                     "required": [
@@ -28606,7 +28662,8 @@
                         },
                         "ownerEpoch": {
                           "type": "integer",
-                          "minimum": 0
+                          "minimum": 0,
+                          "maximum": 9007199254740991
                         },
                         "repositoryName": {
                           "type": "string",
@@ -28828,11 +28885,13 @@
                                   },
                                   "fileCount": {
                                     "type": "integer",
-                                    "minimum": 1
+                                    "minimum": 1,
+                                    "maximum": 9007199254740991
                                   },
                                   "byteSize": {
                                     "type": "integer",
-                                    "minimum": 1
+                                    "minimum": 1,
+                                    "maximum": 9007199254740991
                                   },
                                   "kind": {
                                     "type": "string",
@@ -28912,11 +28971,13 @@
                                   },
                                   "fileCount": {
                                     "type": "integer",
-                                    "minimum": 1
+                                    "minimum": 1,
+                                    "maximum": 9007199254740991
                                   },
                                   "byteSize": {
                                     "type": "integer",
-                                    "minimum": 1
+                                    "minimum": 1,
+                                    "maximum": 9007199254740991
                                   },
                                   "kind": {
                                     "type": "string",
@@ -28982,11 +29043,13 @@
                                   },
                                   "fileCount": {
                                     "type": "integer",
-                                    "minimum": 1
+                                    "minimum": 1,
+                                    "maximum": 9007199254740991
                                   },
                                   "byteSize": {
                                     "type": "integer",
-                                    "minimum": 1
+                                    "minimum": 1,
+                                    "maximum": 9007199254740991
                                   },
                                   "kind": {
                                     "type": "string",
@@ -29260,7 +29323,8 @@
                         },
                         "ownerEpoch": {
                           "type": "integer",
-                          "minimum": 0
+                          "minimum": 0,
+                          "maximum": 9007199254740991
                         },
                         "repositoryName": {
                           "type": "string",
@@ -29482,11 +29546,13 @@
                                   },
                                   "fileCount": {
                                     "type": "integer",
-                                    "minimum": 1
+                                    "minimum": 1,
+                                    "maximum": 9007199254740991
                                   },
                                   "byteSize": {
                                     "type": "integer",
-                                    "minimum": 1
+                                    "minimum": 1,
+                                    "maximum": 9007199254740991
                                   },
                                   "kind": {
                                     "type": "string",
@@ -29566,11 +29632,13 @@
                                   },
                                   "fileCount": {
                                     "type": "integer",
-                                    "minimum": 1
+                                    "minimum": 1,
+                                    "maximum": 9007199254740991
                                   },
                                   "byteSize": {
                                     "type": "integer",
-                                    "minimum": 1
+                                    "minimum": 1,
+                                    "maximum": 9007199254740991
                                   },
                                   "kind": {
                                     "type": "string",
@@ -29636,11 +29704,13 @@
                                   },
                                   "fileCount": {
                                     "type": "integer",
-                                    "minimum": 1
+                                    "minimum": 1,
+                                    "maximum": 9007199254740991
                                   },
                                   "byteSize": {
                                     "type": "integer",
-                                    "minimum": 1
+                                    "minimum": 1,
+                                    "maximum": 9007199254740991
                                   },
                                   "kind": {
                                     "type": "string",
@@ -30242,7 +30312,8 @@
                         },
                         "ownerEpoch": {
                           "type": "integer",
-                          "minimum": 0
+                          "minimum": 0,
+                          "maximum": 9007199254740991
                         },
                         "repositoryName": {
                           "type": "string",
@@ -30464,11 +30535,13 @@
                                   },
                                   "fileCount": {
                                     "type": "integer",
-                                    "minimum": 1
+                                    "minimum": 1,
+                                    "maximum": 9007199254740991
                                   },
                                   "byteSize": {
                                     "type": "integer",
-                                    "minimum": 1
+                                    "minimum": 1,
+                                    "maximum": 9007199254740991
                                   },
                                   "kind": {
                                     "type": "string",
@@ -30548,11 +30621,13 @@
                                   },
                                   "fileCount": {
                                     "type": "integer",
-                                    "minimum": 1
+                                    "minimum": 1,
+                                    "maximum": 9007199254740991
                                   },
                                   "byteSize": {
                                     "type": "integer",
-                                    "minimum": 1
+                                    "minimum": 1,
+                                    "maximum": 9007199254740991
                                   },
                                   "kind": {
                                     "type": "string",
@@ -30618,11 +30693,13 @@
                                   },
                                   "fileCount": {
                                     "type": "integer",
-                                    "minimum": 1
+                                    "minimum": 1,
+                                    "maximum": 9007199254740991
                                   },
                                   "byteSize": {
                                     "type": "integer",
-                                    "minimum": 1
+                                    "minimum": 1,
+                                    "maximum": 9007199254740991
                                   },
                                   "kind": {
                                     "type": "string",
@@ -30953,7 +31030,8 @@
                         },
                         "ownerEpoch": {
                           "type": "integer",
-                          "minimum": 0
+                          "minimum": 0,
+                          "maximum": 9007199254740991
                         },
                         "repositoryName": {
                           "type": "string",
@@ -31175,11 +31253,13 @@
                                   },
                                   "fileCount": {
                                     "type": "integer",
-                                    "minimum": 1
+                                    "minimum": 1,
+                                    "maximum": 9007199254740991
                                   },
                                   "byteSize": {
                                     "type": "integer",
-                                    "minimum": 1
+                                    "minimum": 1,
+                                    "maximum": 9007199254740991
                                   },
                                   "kind": {
                                     "type": "string",
@@ -31259,11 +31339,13 @@
                                   },
                                   "fileCount": {
                                     "type": "integer",
-                                    "minimum": 1
+                                    "minimum": 1,
+                                    "maximum": 9007199254740991
                                   },
                                   "byteSize": {
                                     "type": "integer",
-                                    "minimum": 1
+                                    "minimum": 1,
+                                    "maximum": 9007199254740991
                                   },
                                   "kind": {
                                     "type": "string",
@@ -31329,11 +31411,13 @@
                                   },
                                   "fileCount": {
                                     "type": "integer",
-                                    "minimum": 1
+                                    "minimum": 1,
+                                    "maximum": 9007199254740991
                                   },
                                   "byteSize": {
                                     "type": "integer",
-                                    "minimum": 1
+                                    "minimum": 1,
+                                    "maximum": 9007199254740991
                                   },
                                   "kind": {
                                     "type": "string",
@@ -31742,11 +31826,13 @@
                                 },
                                 "lineNumber": {
                                   "type": "integer",
-                                  "minimum": 1
+                                  "minimum": 1,
+                                  "maximum": 9007199254740991
                                 },
                                 "columnNumber": {
                                   "type": "integer",
-                                  "minimum": 1
+                                  "minimum": 1,
+                                  "maximum": 9007199254740991
                                 }
                               },
                               "required": [
@@ -31817,11 +31903,13 @@
                                       },
                                       "lineNumber": {
                                         "type": "integer",
-                                        "minimum": 1
+                                        "minimum": 1,
+                                        "maximum": 9007199254740991
                                       },
                                       "columnNumber": {
                                         "type": "integer",
-                                        "minimum": 1
+                                        "minimum": 1,
+                                        "maximum": 9007199254740991
                                       }
                                     },
                                     "required": [
@@ -31906,11 +31994,13 @@
                                 },
                                 "lineNumber": {
                                   "type": "integer",
-                                  "minimum": 1
+                                  "minimum": 1,
+                                  "maximum": 9007199254740991
                                 },
                                 "columnNumber": {
                                   "type": "integer",
-                                  "minimum": 1
+                                  "minimum": 1,
+                                  "maximum": 9007199254740991
                                 }
                               },
                               "required": [
@@ -31981,11 +32071,13 @@
                                       },
                                       "lineNumber": {
                                         "type": "integer",
-                                        "minimum": 1
+                                        "minimum": 1,
+                                        "maximum": 9007199254740991
                                       },
                                       "columnNumber": {
                                         "type": "integer",
-                                        "minimum": 1
+                                        "minimum": 1,
+                                        "maximum": 9007199254740991
                                       }
                                     },
                                     "required": [
@@ -32236,7 +32328,8 @@
                             },
                             "ownerEpoch": {
                               "type": "integer",
-                              "minimum": 0
+                              "minimum": 0,
+                              "maximum": 9007199254740991
                             },
                             "repositoryName": {
                               "type": "string",
@@ -32458,11 +32551,13 @@
                                       },
                                       "fileCount": {
                                         "type": "integer",
-                                        "minimum": 1
+                                        "minimum": 1,
+                                        "maximum": 9007199254740991
                                       },
                                       "byteSize": {
                                         "type": "integer",
-                                        "minimum": 1
+                                        "minimum": 1,
+                                        "maximum": 9007199254740991
                                       },
                                       "kind": {
                                         "type": "string",
@@ -32542,11 +32637,13 @@
                                       },
                                       "fileCount": {
                                         "type": "integer",
-                                        "minimum": 1
+                                        "minimum": 1,
+                                        "maximum": 9007199254740991
                                       },
                                       "byteSize": {
                                         "type": "integer",
-                                        "minimum": 1
+                                        "minimum": 1,
+                                        "maximum": 9007199254740991
                                       },
                                       "kind": {
                                         "type": "string",
@@ -32612,11 +32709,13 @@
                                       },
                                       "fileCount": {
                                         "type": "integer",
-                                        "minimum": 1
+                                        "minimum": 1,
+                                        "maximum": 9007199254740991
                                       },
                                       "byteSize": {
                                         "type": "integer",
-                                        "minimum": 1
+                                        "minimum": 1,
+                                        "maximum": 9007199254740991
                                       },
                                       "kind": {
                                         "type": "string",
@@ -33274,11 +33373,13 @@
                                 },
                                 "lineNumber": {
                                   "type": "integer",
-                                  "minimum": 1
+                                  "minimum": 1,
+                                  "maximum": 9007199254740991
                                 },
                                 "columnNumber": {
                                   "type": "integer",
-                                  "minimum": 1
+                                  "minimum": 1,
+                                  "maximum": 9007199254740991
                                 }
                               },
                               "required": [
@@ -33349,11 +33450,13 @@
                                       },
                                       "lineNumber": {
                                         "type": "integer",
-                                        "minimum": 1
+                                        "minimum": 1,
+                                        "maximum": 9007199254740991
                                       },
                                       "columnNumber": {
                                         "type": "integer",
-                                        "minimum": 1
+                                        "minimum": 1,
+                                        "maximum": 9007199254740991
                                       }
                                     },
                                     "required": [
@@ -33438,11 +33541,13 @@
                                 },
                                 "lineNumber": {
                                   "type": "integer",
-                                  "minimum": 1
+                                  "minimum": 1,
+                                  "maximum": 9007199254740991
                                 },
                                 "columnNumber": {
                                   "type": "integer",
-                                  "minimum": 1
+                                  "minimum": 1,
+                                  "maximum": 9007199254740991
                                 }
                               },
                               "required": [
@@ -33513,11 +33618,13 @@
                                       },
                                       "lineNumber": {
                                         "type": "integer",
-                                        "minimum": 1
+                                        "minimum": 1,
+                                        "maximum": 9007199254740991
                                       },
                                       "columnNumber": {
                                         "type": "integer",
-                                        "minimum": 1
+                                        "minimum": 1,
+                                        "maximum": 9007199254740991
                                       }
                                     },
                                     "required": [
@@ -33836,11 +33943,13 @@
                                 },
                                 "lineNumber": {
                                   "type": "integer",
-                                  "minimum": 1
+                                  "minimum": 1,
+                                  "maximum": 9007199254740991
                                 },
                                 "columnNumber": {
                                   "type": "integer",
-                                  "minimum": 1
+                                  "minimum": 1,
+                                  "maximum": 9007199254740991
                                 }
                               },
                               "required": [
@@ -33911,11 +34020,13 @@
                                       },
                                       "lineNumber": {
                                         "type": "integer",
-                                        "minimum": 1
+                                        "minimum": 1,
+                                        "maximum": 9007199254740991
                                       },
                                       "columnNumber": {
                                         "type": "integer",
-                                        "minimum": 1
+                                        "minimum": 1,
+                                        "maximum": 9007199254740991
                                       }
                                     },
                                     "required": [
@@ -34000,11 +34111,13 @@
                                 },
                                 "lineNumber": {
                                   "type": "integer",
-                                  "minimum": 1
+                                  "minimum": 1,
+                                  "maximum": 9007199254740991
                                 },
                                 "columnNumber": {
                                   "type": "integer",
-                                  "minimum": 1
+                                  "minimum": 1,
+                                  "maximum": 9007199254740991
                                 }
                               },
                               "required": [
@@ -34075,11 +34188,13 @@
                                       },
                                       "lineNumber": {
                                         "type": "integer",
-                                        "minimum": 1
+                                        "minimum": 1,
+                                        "maximum": 9007199254740991
                                       },
                                       "columnNumber": {
                                         "type": "integer",
-                                        "minimum": 1
+                                        "minimum": 1,
+                                        "maximum": 9007199254740991
                                       }
                                     },
                                     "required": [
@@ -34206,11 +34321,13 @@
                                         },
                                         "lineNumber": {
                                           "type": "integer",
-                                          "minimum": 1
+                                          "minimum": 1,
+                                          "maximum": 9007199254740991
                                         },
                                         "columnNumber": {
                                           "type": "integer",
-                                          "minimum": 1
+                                          "minimum": 1,
+                                          "maximum": 9007199254740991
                                         }
                                       },
                                       "required": [
@@ -34226,22 +34343,26 @@
                                   },
                                   "occurrence": {
                                     "type": "integer",
-                                    "minimum": 1
+                                    "minimum": 1,
+                                    "maximum": 9007199254740991
                                   },
                                   "occurrences": {
                                     "type": "integer",
-                                    "minimum": 1
+                                    "minimum": 1,
+                                    "maximum": 9007199254740991
                                   },
                                   "parentPath": {
                                     "type": "string"
                                   },
                                   "start": {
                                     "type": "integer",
-                                    "minimum": 0
+                                    "minimum": 0,
+                                    "maximum": 9007199254740991
                                   },
                                   "end": {
                                     "type": "integer",
-                                    "minimum": 0
+                                    "minimum": 0,
+                                    "maximum": 9007199254740991
                                   }
                                 },
                                 "required": [
@@ -34477,7 +34598,8 @@
                           "properties": {
                             "version": {
                               "type": "integer",
-                              "minimum": 1
+                              "minimum": 1,
+                              "maximum": 9007199254740991
                             },
                             "digest": {
                               "type": "string",
@@ -34485,7 +34607,8 @@
                             },
                             "bytes": {
                               "type": "integer",
-                              "minimum": 0
+                              "minimum": 0,
+                              "maximum": 9007199254740991
                             }
                           },
                           "required": [
@@ -34552,7 +34675,8 @@
                                   },
                                   "bytes": {
                                     "type": "integer",
-                                    "minimum": 0
+                                    "minimum": 0,
+                                    "maximum": 9007199254740991
                                   },
                                   "contentType": {
                                     "type": "string",
@@ -34719,7 +34843,8 @@
                           },
                           "bytes": {
                             "type": "integer",
-                            "minimum": 0
+                            "minimum": 0,
+                            "maximum": 9007199254740991
                           },
                           "contentType": {
                             "type": "string",
@@ -34770,11 +34895,13 @@
                                 },
                                 "lineNumber": {
                                   "type": "integer",
-                                  "minimum": 1
+                                  "minimum": 1,
+                                  "maximum": 9007199254740991
                                 },
                                 "columnNumber": {
                                   "type": "integer",
-                                  "minimum": 1
+                                  "minimum": 1,
+                                  "maximum": 9007199254740991
                                 }
                               },
                               "required": [
@@ -34845,11 +34972,13 @@
                                       },
                                       "lineNumber": {
                                         "type": "integer",
-                                        "minimum": 1
+                                        "minimum": 1,
+                                        "maximum": 9007199254740991
                                       },
                                       "columnNumber": {
                                         "type": "integer",
-                                        "minimum": 1
+                                        "minimum": 1,
+                                        "maximum": 9007199254740991
                                       }
                                     },
                                     "required": [
@@ -34934,11 +35063,13 @@
                                 },
                                 "lineNumber": {
                                   "type": "integer",
-                                  "minimum": 1
+                                  "minimum": 1,
+                                  "maximum": 9007199254740991
                                 },
                                 "columnNumber": {
                                   "type": "integer",
-                                  "minimum": 1
+                                  "minimum": 1,
+                                  "maximum": 9007199254740991
                                 }
                               },
                               "required": [
@@ -35009,11 +35140,13 @@
                                       },
                                       "lineNumber": {
                                         "type": "integer",
-                                        "minimum": 1
+                                        "minimum": 1,
+                                        "maximum": 9007199254740991
                                       },
                                       "columnNumber": {
                                         "type": "integer",
-                                        "minimum": 1
+                                        "minimum": 1,
+                                        "maximum": 9007199254740991
                                       }
                                     },
                                     "required": [
@@ -35332,7 +35465,8 @@
                           "properties": {
                             "version": {
                               "type": "integer",
-                              "minimum": 1
+                              "minimum": 1,
+                              "maximum": 9007199254740991
                             },
                             "digest": {
                               "type": "string",
@@ -35340,7 +35474,8 @@
                             },
                             "bytes": {
                               "type": "integer",
-                              "minimum": 0
+                              "minimum": 0,
+                              "maximum": 9007199254740991
                             }
                           },
                           "required": [
@@ -35407,7 +35542,8 @@
                                   },
                                   "bytes": {
                                     "type": "integer",
-                                    "minimum": 0
+                                    "minimum": 0,
+                                    "maximum": 9007199254740991
                                   },
                                   "contentType": {
                                     "type": "string",
@@ -35574,7 +35710,8 @@
                           },
                           "bytes": {
                             "type": "integer",
-                            "minimum": 0
+                            "minimum": 0,
+                            "maximum": 9007199254740991
                           },
                           "contentType": {
                             "type": "string",
@@ -35625,11 +35762,13 @@
                                 },
                                 "lineNumber": {
                                   "type": "integer",
-                                  "minimum": 1
+                                  "minimum": 1,
+                                  "maximum": 9007199254740991
                                 },
                                 "columnNumber": {
                                   "type": "integer",
-                                  "minimum": 1
+                                  "minimum": 1,
+                                  "maximum": 9007199254740991
                                 }
                               },
                               "required": [
@@ -35700,11 +35839,13 @@
                                       },
                                       "lineNumber": {
                                         "type": "integer",
-                                        "minimum": 1
+                                        "minimum": 1,
+                                        "maximum": 9007199254740991
                                       },
                                       "columnNumber": {
                                         "type": "integer",
-                                        "minimum": 1
+                                        "minimum": 1,
+                                        "maximum": 9007199254740991
                                       }
                                     },
                                     "required": [
@@ -35789,11 +35930,13 @@
                                 },
                                 "lineNumber": {
                                   "type": "integer",
-                                  "minimum": 1
+                                  "minimum": 1,
+                                  "maximum": 9007199254740991
                                 },
                                 "columnNumber": {
                                   "type": "integer",
-                                  "minimum": 1
+                                  "minimum": 1,
+                                  "maximum": 9007199254740991
                                 }
                               },
                               "required": [
@@ -35864,11 +36007,13 @@
                                       },
                                       "lineNumber": {
                                         "type": "integer",
-                                        "minimum": 1
+                                        "minimum": 1,
+                                        "maximum": 9007199254740991
                                       },
                                       "columnNumber": {
                                         "type": "integer",
-                                        "minimum": 1
+                                        "minimum": 1,
+                                        "maximum": 9007199254740991
                                       }
                                     },
                                     "required": [
@@ -36337,7 +36482,8 @@
                     },
                     "version": {
                       "type": "integer",
-                      "minimum": 1
+                      "minimum": 1,
+                      "maximum": 9007199254740991
                     },
                     "validationDigest": {
                       "type": "string",
@@ -36766,7 +36912,8 @@
                     },
                     "ownerEpoch": {
                       "type": "integer",
-                      "minimum": 0
+                      "minimum": 0,
+                      "maximum": 9007199254740991
                     },
                     "repositoryName": {
                       "type": "string",
@@ -36988,11 +37135,13 @@
                               },
                               "fileCount": {
                                 "type": "integer",
-                                "minimum": 1
+                                "minimum": 1,
+                                "maximum": 9007199254740991
                               },
                               "byteSize": {
                                 "type": "integer",
-                                "minimum": 1
+                                "minimum": 1,
+                                "maximum": 9007199254740991
                               },
                               "kind": {
                                 "type": "string",
@@ -37072,11 +37221,13 @@
                               },
                               "fileCount": {
                                 "type": "integer",
-                                "minimum": 1
+                                "minimum": 1,
+                                "maximum": 9007199254740991
                               },
                               "byteSize": {
                                 "type": "integer",
-                                "minimum": 1
+                                "minimum": 1,
+                                "maximum": 9007199254740991
                               },
                               "kind": {
                                 "type": "string",
@@ -37142,11 +37293,13 @@
                               },
                               "fileCount": {
                                 "type": "integer",
-                                "minimum": 1
+                                "minimum": 1,
+                                "maximum": 9007199254740991
                               },
                               "byteSize": {
                                 "type": "integer",
-                                "minimum": 1
+                                "minimum": 1,
+                                "maximum": 9007199254740991
                               },
                               "kind": {
                                 "type": "string",
@@ -37523,7 +37676,8 @@
                     },
                     "ownerEpoch": {
                       "type": "integer",
-                      "minimum": 0
+                      "minimum": 0,
+                      "maximum": 9007199254740991
                     },
                     "repositoryName": {
                       "type": "string",
@@ -37745,11 +37899,13 @@
                               },
                               "fileCount": {
                                 "type": "integer",
-                                "minimum": 1
+                                "minimum": 1,
+                                "maximum": 9007199254740991
                               },
                               "byteSize": {
                                 "type": "integer",
-                                "minimum": 1
+                                "minimum": 1,
+                                "maximum": 9007199254740991
                               },
                               "kind": {
                                 "type": "string",
@@ -37829,11 +37985,13 @@
                               },
                               "fileCount": {
                                 "type": "integer",
-                                "minimum": 1
+                                "minimum": 1,
+                                "maximum": 9007199254740991
                               },
                               "byteSize": {
                                 "type": "integer",
-                                "minimum": 1
+                                "minimum": 1,
+                                "maximum": 9007199254740991
                               },
                               "kind": {
                                 "type": "string",
@@ -37899,11 +38057,13 @@
                               },
                               "fileCount": {
                                 "type": "integer",
-                                "minimum": 1
+                                "minimum": 1,
+                                "maximum": 9007199254740991
                               },
                               "byteSize": {
                                 "type": "integer",
-                                "minimum": 1
+                                "minimum": 1,
+                                "maximum": 9007199254740991
                               },
                               "kind": {
                                 "type": "string",
@@ -42037,15 +42197,18 @@
                   "properties": {
                     "totalRequests": {
                       "type": "integer",
-                      "minimum": 0
+                      "minimum": 0,
+                      "maximum": 9007199254740991
                     },
                     "successfulRequests": {
                       "type": "integer",
-                      "minimum": 0
+                      "minimum": 0,
+                      "maximum": 9007199254740991
                     },
                     "failedRequests": {
                       "type": "integer",
-                      "minimum": 0
+                      "minimum": 0,
+                      "maximum": 9007199254740991
                     },
                     "dailyVolume": {
                       "type": "array",
@@ -42057,7 +42220,8 @@
                           },
                           "requests": {
                             "type": "integer",
-                            "minimum": 0
+                            "minimum": 0,
+                            "maximum": 9007199254740991
                           }
                         },
                         "required": [
@@ -53163,13 +53327,17 @@
             ]
           },
           "attempt": {
-            "type": "integer"
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
           },
           "startedAt": {
             "type": "string"
           },
           "durationMs": {
-            "type": "integer"
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
           },
           "outcome": {
             "type": "string",
@@ -53253,13 +53421,17 @@
             ]
           },
           "attempt": {
-            "type": "integer"
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
           },
           "startedAt": {
             "type": "string"
           },
           "durationMs": {
-            "type": "integer"
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
           },
           "outcome": {
             "type": "string",
@@ -54084,7 +54256,9 @@
             "type": "string"
           },
           "sizeBytes": {
-            "type": "integer"
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
           }
         },
         "required": [
@@ -55712,6 +55886,7 @@
           },
           "draftRevision": {
             "type": "integer",
+            "maximum": 9007199254740991,
             "exclusiveMinimum": 0
           },
           "from": {
@@ -55889,8 +56064,8 @@
           },
           "size": {
             "type": "integer",
-            "exclusiveMinimum": 0,
-            "maximum": 26214400
+            "maximum": 26214400,
+            "exclusiveMinimum": 0
           }
         },
         "required": [
@@ -57250,8 +57425,8 @@
           },
           "size": {
             "type": "integer",
-            "exclusiveMinimum": 0,
-            "maximum": 26214400
+            "maximum": 26214400,
+            "exclusiveMinimum": 0
           }
         },
         "required": [
@@ -57469,7 +57644,8 @@
                 },
                 "size": {
                   "type": "integer",
-                  "minimum": 0
+                  "minimum": 0,
+                  "maximum": 9007199254740991
                 },
                 "isInline": {
                   "type": "boolean"
@@ -58300,7 +58476,8 @@
           },
           "messageCount": {
             "type": "integer",
-            "minimum": 0
+            "minimum": 0,
+            "maximum": 9007199254740991
           },
           "hasAttachments": {
             "type": "boolean"
@@ -58545,7 +58722,8 @@
           },
           "messageCount": {
             "type": "integer",
-            "minimum": 0
+            "minimum": 0,
+            "maximum": 9007199254740991
           },
           "hasAttachments": {
             "type": "boolean"
@@ -58772,11 +58950,13 @@
           },
           "count": {
             "type": "integer",
-            "minimum": 0
+            "minimum": 0,
+            "maximum": 9007199254740991
           },
           "unreadCount": {
             "type": "integer",
-            "minimum": 0
+            "minimum": 0,
+            "maximum": 9007199254740991
           }
         },
         "required": [
@@ -59181,7 +59361,8 @@
                     },
                     "count": {
                       "type": "integer",
-                      "minimum": 0
+                      "minimum": 0,
+                      "maximum": 9007199254740991
                     }
                   },
                   "required": [
@@ -59217,7 +59398,8 @@
                     },
                     "count": {
                       "type": "integer",
-                      "minimum": 0
+                      "minimum": 0,
+                      "maximum": 9007199254740991
                     }
                   },
                   "required": [
@@ -59263,7 +59445,8 @@
                     },
                     "count": {
                       "type": "integer",
-                      "minimum": 0
+                      "minimum": 0,
+                      "maximum": 9007199254740991
                     }
                   },
                   "required": [
@@ -59281,7 +59464,8 @@
           },
           "pendingApprovals": {
             "type": "integer",
-            "minimum": 0
+            "minimum": 0,
+            "maximum": 9007199254740991
           }
         },
         "required": [
@@ -61008,23 +61192,28 @@
         "properties": {
           "total": {
             "type": "integer",
-            "minimum": 0
+            "minimum": 0,
+            "maximum": 9007199254740991
           },
           "pending": {
             "type": "integer",
-            "minimum": 0
+            "minimum": 0,
+            "maximum": 9007199254740991
           },
           "delivered": {
             "type": "integer",
-            "minimum": 0
+            "minimum": 0,
+            "maximum": 9007199254740991
           },
           "exhausted": {
             "type": "integer",
-            "minimum": 0
+            "minimum": 0,
+            "maximum": 9007199254740991
           },
           "cancelled": {
             "type": "integer",
-            "minimum": 0
+            "minimum": 0,
+            "maximum": 9007199254740991
           },
           "daily": {
             "type": "array",
@@ -61051,19 +61240,23 @@
           },
           "pending": {
             "type": "integer",
-            "minimum": 0
+            "minimum": 0,
+            "maximum": 9007199254740991
           },
           "delivered": {
             "type": "integer",
-            "minimum": 0
+            "minimum": 0,
+            "maximum": 9007199254740991
           },
           "exhausted": {
             "type": "integer",
-            "minimum": 0
+            "minimum": 0,
+            "maximum": 9007199254740991
           },
           "cancelled": {
             "type": "integer",
-            "minimum": 0
+            "minimum": 0,
+            "maximum": 9007199254740991
           }
         },
         "required": [
@@ -61109,7 +61302,8 @@
                 },
                 "automaticAttempts": {
                   "type": "integer",
-                  "minimum": 0
+                  "minimum": 0,
+                  "maximum": 9007199254740991
                 },
                 "nextAttemptAt": {
                   "anyOf": [
@@ -61157,6 +61351,7 @@
                       },
                       "attemptNumber": {
                         "type": "integer",
+                        "maximum": 9007199254740991,
                         "exclusiveMinimum": 0
                       },
                       "classification": {
@@ -61175,7 +61370,9 @@
                       "responseStatus": {
                         "anyOf": [
                           {
-                            "type": "integer"
+                            "type": "integer",
+                            "minimum": -9007199254740991,
+                            "maximum": 9007199254740991
                           },
                           {
                             "type": "null"
@@ -61821,23 +62018,28 @@
         "properties": {
           "total": {
             "type": "integer",
-            "minimum": 0
+            "minimum": 0,
+            "maximum": 9007199254740991
           },
           "pending": {
             "type": "integer",
-            "minimum": 0
+            "minimum": 0,
+            "maximum": 9007199254740991
           },
           "delivered": {
             "type": "integer",
-            "minimum": 0
+            "minimum": 0,
+            "maximum": 9007199254740991
           },
           "exhausted": {
             "type": "integer",
-            "minimum": 0
+            "minimum": 0,
+            "maximum": 9007199254740991
           },
           "cancelled": {
             "type": "integer",
-            "minimum": 0
+            "minimum": 0,
+            "maximum": 9007199254740991
           }
         },
         "required": [
@@ -62441,7 +62643,8 @@
                 },
                 "version": {
                   "type": "integer",
-                  "minimum": 1
+                  "minimum": 1,
+                  "maximum": 9007199254740991
                 },
                 "validationDigest": {
                   "type": "string",
@@ -62718,7 +62921,8 @@
           },
           "usageCount": {
             "type": "integer",
-            "minimum": 0
+            "minimum": 0,
+            "maximum": 9007199254740991
           },
           "lastUsedAt": {
             "anyOf": [
@@ -63741,7 +63945,8 @@
           },
           "usageCount": {
             "type": "integer",
-            "minimum": 0
+            "minimum": 0,
+            "maximum": 9007199254740991
           },
           "lastUsedAt": {
             "anyOf": [
@@ -63948,7 +64153,8 @@
                 },
                 "memberCount": {
                   "type": "integer",
-                  "minimum": 0
+                  "minimum": 0,
+                  "maximum": 9007199254740991
                 },
                 "createdAt": {
                   "type": "string"
@@ -64040,7 +64246,8 @@
                 },
                 "sortOrder": {
                   "type": "integer",
-                  "minimum": 0
+                  "minimum": 0,
+                  "maximum": 9007199254740991
                 },
                 "createdAt": {
                   "type": "string"
@@ -64410,7 +64617,8 @@
                 },
                 "contactCount": {
                   "type": "integer",
-                  "minimum": 0
+                  "minimum": 0,
+                  "maximum": 9007199254740991
                 },
                 "lastCalculatedAt": {
                   "anyOf": [
@@ -64707,7 +64915,9 @@
             "$ref": "#/components/schemas/JourneyId"
           },
           "version": {
-            "type": "integer"
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
           },
           "contactId": {
             "$ref": "#/components/schemas/ContactId"
@@ -64979,7 +65189,9 @@
             "$ref": "#/components/schemas/JourneyId"
           },
           "version": {
-            "type": "integer"
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
           },
           "contactId": {
             "$ref": "#/components/schemas/ContactId"
@@ -65078,7 +65290,9 @@
             "$ref": "#/components/schemas/JourneyId"
           },
           "version": {
-            "type": "integer"
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
           },
           "runs": {
             "$ref": "#/components/schemas/JourneyRunCounts"
@@ -65105,10 +65319,14 @@
             "$ref": "#/components/schemas/JourneyNodeId"
           },
           "current": {
-            "type": "integer"
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
           },
           "entered": {
-            "type": "integer"
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
           }
         },
         "required": [
@@ -65122,16 +65340,24 @@
         "type": "object",
         "properties": {
           "active": {
-            "type": "integer"
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
           },
           "paused": {
-            "type": "integer"
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
           },
           "exited": {
-            "type": "integer"
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
           },
           "failed": {
-            "type": "integer"
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
           }
         },
         "required": [
@@ -65149,7 +65375,9 @@
             "$ref": "#/components/schemas/JourneyId"
           },
           "version": {
-            "type": "integer"
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
           },
           "definition": {
             "$ref": "#/components/schemas/JourneyDefinition"
@@ -65771,8 +65999,8 @@
           },
           "timeoutSeconds": {
             "type": "integer",
-            "exclusiveMinimum": 0,
-            "maximum": 7776000
+            "maximum": 7776000,
+            "exclusiveMinimum": 0
           }
         },
         "required": [
@@ -65816,8 +66044,8 @@
         "properties": {
           "durationSeconds": {
             "type": "integer",
-            "exclusiveMinimum": 0,
-            "maximum": 7776000
+            "maximum": 7776000,
+            "exclusiveMinimum": 0
           }
         },
         "required": [
@@ -66080,7 +66308,9 @@
           "publishedVersion": {
             "anyOf": [
               {
-                "type": "integer"
+                "type": "integer",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
               },
               {
                 "type": "null"
@@ -66174,7 +66404,9 @@
           "publishedVersion": {
             "anyOf": [
               {
-                "type": "integer"
+                "type": "integer",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
               },
               {
                 "type": "null"
@@ -66279,13 +66511,19 @@
         "type": "object",
         "properties": {
           "total": {
-            "type": "integer"
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
           },
           "accepted": {
-            "type": "integer"
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
           },
           "errors": {
-            "type": "integer"
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
           },
           "results": {
             "type": "array",
@@ -66293,7 +66531,9 @@
               "type": "object",
               "properties": {
                 "index": {
-                  "type": "integer"
+                  "type": "integer",
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991
                 },
                 "status": {
                   "type": "string",
@@ -66653,11 +66893,13 @@
         "properties": {
           "updated": {
             "type": "integer",
-            "minimum": 0
+            "minimum": 0,
+            "maximum": 9007199254740991
           },
           "failed": {
             "type": "integer",
-            "minimum": 0
+            "minimum": 0,
+            "maximum": 9007199254740991
           }
         },
         "required": [
@@ -67498,7 +67740,8 @@
           },
           "priority": {
             "type": "integer",
-            "minimum": 0
+            "minimum": 0,
+            "maximum": 9007199254740991
           },
           "urgency": {
             "type": "string",
@@ -67520,7 +67763,8 @@
           },
           "messageCount": {
             "type": "integer",
-            "minimum": 0
+            "minimum": 0,
+            "maximum": 9007199254740991
           },
           "lastActivityAt": {
             "type": "string"
@@ -68156,7 +68400,8 @@
           },
           "priority": {
             "type": "integer",
-            "minimum": 0
+            "minimum": 0,
+            "maximum": 9007199254740991
           },
           "urgency": {
             "type": "string",
@@ -68178,7 +68423,8 @@
           },
           "messageCount": {
             "type": "integer",
-            "minimum": 0
+            "minimum": 0,
+            "maximum": 9007199254740991
           },
           "lastActivityAt": {
             "type": "string"
@@ -68229,7 +68475,8 @@
                 },
                 "size": {
                   "type": "integer",
-                  "minimum": 0
+                  "minimum": 0,
+                  "maximum": 9007199254740991
                 },
                 "contentId": {
                   "anyOf": [
@@ -68611,8 +68858,8 @@
           },
           "sizeBytes": {
             "type": "integer",
-            "exclusiveMinimum": 0,
-            "maximum": 26214400
+            "maximum": 26214400,
+            "exclusiveMinimum": 0
           },
           "purpose": {
             "type": "string",
@@ -69103,8 +69350,8 @@
           },
           "targetDailyRecipients": {
             "type": "integer",
-            "exclusiveMinimum": 0,
-            "maximum": 1000000
+            "maximum": 1000000,
+            "exclusiveMinimum": 0
           },
           "note": {
             "anyOf": [
@@ -69145,8 +69392,8 @@
           },
           "initialDailyRecipients": {
             "type": "integer",
-            "exclusiveMinimum": 0,
-            "maximum": 1000000
+            "maximum": 1000000,
+            "exclusiveMinimum": 0
           },
           "dailyGrowthPercent": {
             "type": "integer",
@@ -69155,8 +69402,8 @@
           },
           "targetDailyRecipients": {
             "type": "integer",
-            "exclusiveMinimum": 0,
-            "maximum": 1000000
+            "maximum": 1000000,
+            "exclusiveMinimum": 0
           }
         },
         "required": [
@@ -69353,11 +69600,13 @@
                 },
                 "forwardCount": {
                   "type": "integer",
-                  "minimum": 0
+                  "minimum": 0,
+                  "maximum": 9007199254740991
                 },
                 "failureCount": {
                   "type": "integer",
-                  "minimum": 0
+                  "minimum": 0,
+                  "maximum": 9007199254740991
                 },
                 "lastForwardedAt": {
                   "anyOf": [
@@ -69642,7 +69891,8 @@
                 },
                 "blockCount": {
                   "type": "integer",
-                  "minimum": 0
+                  "minimum": 0,
+                  "maximum": 9007199254740991
                 },
                 "lastBlockedAt": {
                   "anyOf": [
@@ -69749,19 +69999,23 @@
         "properties": {
           "bounce": {
             "type": "integer",
-            "minimum": 0
+            "minimum": 0,
+            "maximum": 9007199254740991
           },
           "complaint": {
             "type": "integer",
-            "minimum": 0
+            "minimum": 0,
+            "maximum": 9007199254740991
           },
           "unsubscribe": {
             "type": "integer",
-            "minimum": 0
+            "minimum": 0,
+            "maximum": 9007199254740991
           },
           "manual": {
             "type": "integer",
-            "minimum": 0
+            "minimum": 0,
+            "maximum": 9007199254740991
           }
         },
         "required": [
@@ -70058,7 +70312,8 @@
         "type": "array",
         "items": {
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "maximum": 9007199254740991
         },
         "description": "Daily email sends for the last 14 calendar days in the organization's own timezone, oldest first and zero-filled. Always fourteen entries; an entity that has never sent reports fourteen zeroes."
       },
@@ -70077,7 +70332,8 @@
           },
           "windowSends": {
             "type": "integer",
-            "minimum": 0
+            "minimum": 0,
+            "maximum": 9007199254740991
           },
           "sendingStatus": {
             "type": "string",
@@ -70440,11 +70696,13 @@
               },
               "forwardingRules": {
                 "type": "integer",
-                "minimum": 0
+                "minimum": 0,
+                "maximum": 9007199254740991
               },
               "mailboxes": {
                 "type": "integer",
-                "minimum": 0
+                "minimum": 0,
+                "maximum": 9007199254740991
               }
             },
             "required": [
@@ -70494,7 +70752,8 @@
                   },
                   "priority": {
                     "type": "integer",
-                    "minimum": 0
+                    "minimum": 0,
+                    "maximum": 9007199254740991
                   }
                 },
                 "required": [
@@ -70513,7 +70772,8 @@
                     },
                     "priority": {
                       "type": "integer",
-                      "minimum": 0
+                      "minimum": 0,
+                      "maximum": 9007199254740991
                     }
                   },
                   "required": [
@@ -70655,7 +70915,8 @@
                   "anyOf": [
                     {
                       "type": "integer",
-                      "minimum": 0
+                      "minimum": 0,
+                      "maximum": 9007199254740991
                     },
                     {
                       "type": "null"
@@ -70746,19 +71007,29 @@
                 "type": "boolean"
               },
               "total": {
-                "type": "integer"
+                "type": "integer",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
               },
               "satisfied": {
-                "type": "integer"
+                "type": "integer",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
               },
               "missing": {
-                "type": "integer"
+                "type": "integer",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
               },
               "mismatch": {
-                "type": "integer"
+                "type": "integer",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
               },
               "unknown": {
-                "type": "integer"
+                "type": "integer",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
               }
             },
             "required": [
@@ -70827,7 +71098,8 @@
                       "anyOf": [
                         {
                           "type": "integer",
-                          "minimum": 0
+                          "minimum": 0,
+                          "maximum": 9007199254740991
                         },
                         {
                           "type": "null"
@@ -71550,10 +71822,14 @@
             ]
           },
           "generation": {
-            "type": "integer"
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
           },
           "revision": {
-            "type": "integer"
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
           }
         },
         "required": [
@@ -71765,7 +72041,9 @@
             ]
           },
           "generation": {
-            "type": "integer"
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
           },
           "canSend": {
             "type": "boolean"
@@ -71890,7 +72168,9 @@
             ]
           },
           "generation": {
-            "type": "integer"
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
           },
           "canSend": {
             "type": "boolean"
@@ -71951,6 +72231,7 @@
         "properties": {
           "expectedGeneration": {
             "type": "integer",
+            "maximum": 9007199254740991,
             "exclusiveMinimum": 0
           },
           "responseText": {
@@ -71985,7 +72266,9 @@
         "type": "object",
         "properties": {
           "expectedGeneration": {
-            "type": "integer"
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
           }
         },
         "required": [
@@ -73713,7 +73996,9 @@
             "additionalProperties": false
           },
           "recipientCount": {
-            "type": "integer"
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
           },
           "content": {
             "type": "object",
@@ -80781,19 +81066,29 @@
                             "type": "boolean"
                           },
                           "total": {
-                            "type": "integer"
+                            "type": "integer",
+                            "minimum": -9007199254740991,
+                            "maximum": 9007199254740991
                           },
                           "satisfied": {
-                            "type": "integer"
+                            "type": "integer",
+                            "minimum": -9007199254740991,
+                            "maximum": 9007199254740991
                           },
                           "missing": {
-                            "type": "integer"
+                            "type": "integer",
+                            "minimum": -9007199254740991,
+                            "maximum": 9007199254740991
                           },
                           "mismatch": {
-                            "type": "integer"
+                            "type": "integer",
+                            "minimum": -9007199254740991,
+                            "maximum": 9007199254740991
                           },
                           "unknown": {
-                            "type": "integer"
+                            "type": "integer",
+                            "minimum": -9007199254740991,
+                            "maximum": 9007199254740991
                           }
                         },
                         "required": [
@@ -81362,7 +81657,9 @@
                         "pattern": "^wafver_[0-9a-hjkmnp-tv-z]{16,24}$"
                       },
                       "versionNumber": {
-                        "type": "integer"
+                        "type": "integer",
+                        "minimum": -9007199254740991,
+                        "maximum": 9007199254740991
                       },
                       "wabaId": {
                         "type": "string"
@@ -81405,10 +81702,14 @@
                               "type": "string"
                             },
                             "line": {
-                              "type": "integer"
+                              "type": "integer",
+                              "minimum": -9007199254740991,
+                              "maximum": 9007199254740991
                             },
                             "column": {
-                              "type": "integer"
+                              "type": "integer",
+                              "minimum": -9007199254740991,
+                              "maximum": 9007199254740991
                             }
                           },
                           "required": [
@@ -83323,7 +83624,9 @@
                         "pattern": "^jrny_[0-9a-hjkmnp-tv-z]{16,24}$"
                       },
                       "journeyVersion": {
-                        "type": "integer"
+                        "type": "integer",
+                        "minimum": -9007199254740991,
+                        "maximum": 9007199254740991
                       },
                       "runId": {
                         "type": "string",
