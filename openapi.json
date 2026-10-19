@@ -30148,11 +30148,23 @@
                               "modified",
                               "deleted"
                             ]
+                          },
+                          "digest": {
+                            "anyOf": [
+                              {
+                                "type": "string",
+                                "pattern": "^[a-f0-9]{64}$"
+                              },
+                              {
+                                "type": "null"
+                              }
+                            ]
                           }
                         },
                         "required": [
                           "path",
-                          "status"
+                          "status",
+                          "digest"
                         ],
                         "additionalProperties": false
                       }
@@ -34377,13 +34389,25 @@
                                 ],
                                 "additionalProperties": false
                               }
+                            },
+                            "sentBytes": {
+                              "type": "integer",
+                              "minimum": -9007199254740991,
+                              "maximum": 9007199254740991
+                            },
+                            "previewBytes": {
+                              "type": "integer",
+                              "minimum": -9007199254740991,
+                              "maximum": 9007199254740991
                             }
                           },
                           "required": [
                             "subject",
                             "html",
                             "text",
-                            "selections"
+                            "selections",
+                            "sentBytes",
+                            "previewBytes"
                           ],
                           "additionalProperties": false
                         },
