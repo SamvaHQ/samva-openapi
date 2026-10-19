@@ -34593,7 +34593,7 @@
                           "type": "string",
                           "minLength": 1
                         },
-                        "ir": {
+                        "compiled": {
                           "type": "object",
                           "properties": {
                             "version": {
@@ -34789,7 +34789,7 @@
                       },
                       "required": [
                         "templateKey",
-                        "ir",
+                        "compiled",
                         "compiler",
                         "input",
                         "assets",
@@ -34797,7 +34797,7 @@
                       ],
                       "additionalProperties": false
                     },
-                    "ir": {
+                    "compiled": {
                       "type": "object",
                       "properties": {
                         "key": {
@@ -35233,7 +35233,7 @@
                     "entryPath",
                     "buildIdentity",
                     "manifest",
-                    "ir",
+                    "compiled",
                     "assets",
                     "warnings",
                     "incompatibilities",
@@ -35318,7 +35318,7 @@
             }
           }
         },
-        "description": "Builds an exact Git commit and entry path, stores the immutable compiled IR and its assets, records the input contract it validates against, and makes that publication current. A commit that compiles to the same build as an existing publication makes that publication current again instead of recording another.",
+        "description": "Builds an exact Git commit and entry path, stores the immutable compiled template and its assets, records the input contract it validates against, and makes that publication current. A commit that compiles to the same build as an existing publication makes that publication current again instead of recording another.",
         "summary": "Publish an exact template commit",
         "requestBody": {
           "content": {
@@ -35460,7 +35460,7 @@
                           "type": "string",
                           "minLength": 1
                         },
-                        "ir": {
+                        "compiled": {
                           "type": "object",
                           "properties": {
                             "version": {
@@ -35656,7 +35656,7 @@
                       },
                       "required": [
                         "templateKey",
-                        "ir",
+                        "compiled",
                         "compiler",
                         "input",
                         "assets",
@@ -35664,7 +35664,7 @@
                       ],
                       "additionalProperties": false
                     },
-                    "ir": {
+                    "compiled": {
                       "type": "object",
                       "properties": {
                         "key": {
@@ -36100,7 +36100,7 @@
                     "entryPath",
                     "buildIdentity",
                     "manifest",
-                    "ir",
+                    "compiled",
                     "assets",
                     "warnings",
                     "incompatibilities",
@@ -62787,22 +62787,6 @@
       "BrandRenderedFooter": {
         "type": "object",
         "properties": {
-          "withUnsubscribe": {
-            "$ref": "#/components/schemas/BrandFooterBlock"
-          },
-          "withoutUnsubscribe": {
-            "$ref": "#/components/schemas/BrandFooterBlock"
-          }
-        },
-        "required": [
-          "withUnsubscribe",
-          "withoutUnsubscribe"
-        ],
-        "additionalProperties": false
-      },
-      "BrandFooterBlock": {
-        "type": "object",
-        "properties": {
           "html": {
             "type": "string"
           },
@@ -62810,19 +62794,13 @@
             "type": "string"
           },
           "headCss": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ]
+            "type": "string"
           }
         },
         "required": [
           "html",
-          "text"
+          "text",
+          "headCss"
         ],
         "additionalProperties": false
       },
