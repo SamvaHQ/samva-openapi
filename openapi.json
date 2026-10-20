@@ -41299,6 +41299,46 @@
                               "type": "null"
                             }
                           ]
+                        },
+                        "includedAiCredits": {
+                          "anyOf": [
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "usedAiCredits": {
+                          "anyOf": [
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "overageAiCredits": {
+                          "anyOf": [
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "overageAiCost": {
+                          "anyOf": [
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
                         }
                       },
                       "required": [
@@ -41307,7 +41347,11 @@
                         "includedCredits",
                         "usedCredits",
                         "overageCredits",
-                        "overageCost"
+                        "overageCost",
+                        "includedAiCredits",
+                        "usedAiCredits",
+                        "overageAiCredits",
+                        "overageAiCost"
                       ],
                       "additionalProperties": false
                     }
