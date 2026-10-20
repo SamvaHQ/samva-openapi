@@ -1,5 +1,15 @@
 # Changelog
 
+## v0.29.0
+
+- 332 operations, 245 paths, 467 schemas, 36 webhook events.
+- Breaking against v0.28.0.
+- Added operations:
+  - `POST /v1/organizations/current/avatar-upload`
+- Changed schemas:
+  - `Organization`
+
+
 ## v0.28.0
 
 - 331 operations, 244 paths, 467 schemas, 36 webhook events.

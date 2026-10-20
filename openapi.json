@@ -40562,7 +40562,7 @@
             }
           }
         },
-        "description": "Updates the current organization's profile, regional defaults, and reply-to default and returns the saved organization. `metadata` is merged into the stored value; every other field is replaced.",
+        "description": "Updates the current organization's profile, avatar, regional defaults, and reply-to default and returns the saved organization. `avatarUrl` accepts only the `src` returned by an avatar upload, and null removes the avatar. `metadata` is merged into the stored value; every other field is replaced.",
         "summary": "Update the current organization",
         "requestBody": {
           "content": {
@@ -40584,6 +40584,24 @@
                     "anyOf": [
                       {
                         "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "avatarUrl": {
+                    "anyOf": [
+                      {
+                        "anyOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ],
+                        "description": "The `src` returned by an avatar upload (see `POST /v1/organizations/current/avatar-upload`). Null removes the avatar."
                       },
                       {
                         "type": "null"
@@ -41047,6 +41065,108 @@
         "description": "Returns the current trust tier, plan and probation sending limits, and measured probation graduation progress. Limits are additional to billing allowance, domain readiness, and enforcement. Graduation is evaluated on delivery events.",
         "summary": "Get organization trust tier and sending limits",
         "x-samva-scope": "organization:read"
+      }
+    },
+    "/v1/organizations/current/avatar-upload": {
+      "post": {
+        "tags": [
+          "Organizations"
+        ],
+        "operationId": "organizations.createAvatarUpload",
+        "parameters": [],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "uploadUrl": {
+                      "type": "string",
+                      "description": "The URL to PUT the image bytes to."
+                    },
+                    "maxBytes": {
+                      "type": "number",
+                      "description": "The largest image the upload accepts, in bytes."
+                    },
+                    "contentTypes": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "description": "The image content types the upload accepts."
+                    }
+                  },
+                  "required": [
+                    "uploadUrl",
+                    "maxBytes",
+                    "contentTypes"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Returns where to upload the organization avatar. PUT the png, jpeg, or webp bytes (at most `maxBytes`) to `uploadUrl` with the same credential and a matching `Content-Type`; the response is `{ src }`. Then send `PATCH /v1/organizations/current` with `{ avatarUrl: src }`.",
+        "summary": "Get the organization avatar upload URL",
+        "x-samva-scope": "organization:update"
       }
     },
     "/v1/organizations/usage": {
@@ -61047,6 +61167,17 @@
           "slug": {
             "type": "string"
           },
+          "avatarUrl": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "URL of the organization's avatar image, hosted by Samva. Null when no avatar is set."
+          },
           "defaultRegion": {
             "anyOf": [
               {
@@ -61145,6 +61276,7 @@
           "billingAccountId",
           "name",
           "slug",
+          "avatarUrl",
           "defaultRegion",
           "timezone",
           "plan",
