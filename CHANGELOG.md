@@ -1,5 +1,29 @@
 # Changelog
 
+## v0.34.0
+
+- 341 operations, 251 paths, 494 schemas, 39 webhook events.
+- Breaking against v0.33.0.
+- Added operations:
+  - `DELETE /v1/agents/{id}`
+  - `GET /v1/agents`
+  - `GET /v1/agents/{id}`
+  - `GET /v1/agents/{id}/versions`
+  - `GET /v1/agents/{id}/versions/{version}`
+  - `PATCH /v1/agents/{id}`
+  - `POST /v1/agents`
+  - `POST /v1/agents/{id}/publish`
+  - `PUT /v1/agents/{id}/draft`
+- Changed schemas:
+  - `MailboxNonSendAction`
+- Added webhook events:
+  - `mailbox.message.delivered`
+  - `mailbox.message.failed`
+  - `mailbox.message.read`
+- Changed webhook events:
+  - `mailbox.action.pending_approval`
+
+
 ## v0.33.0
 
 - 332 operations, 245 paths, 469 schemas, 36 webhook events.

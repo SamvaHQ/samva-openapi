@@ -21781,6 +21781,983 @@
         "x-samva-scope": "messages:read"
       }
     },
+    "/v1/agents": {
+      "get": {
+        "tags": [
+          "Agents"
+        ],
+        "operationId": "agents.list",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "required": false
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "schema": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/Cursor"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "required": false
+          }
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "AgentPage",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AgentPage"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Returns the agents the caller can reach, newest first, without their drafts. Pass nextCursor back as cursor for the next page.",
+        "summary": "List agents",
+        "x-samva-scope": "agents:read"
+      },
+      "post": {
+        "tags": [
+          "Agents"
+        ],
+        "operationId": "agents.create",
+        "parameters": [],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Agent",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Agent"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ResourceNotFoundError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Creates an agent with a draft and returns it with status 201. The agent answers nothing until its draft is published. A new agent starts in supervised mode, so each reply waits for a person to approve it. The namespace is set at creation and cannot change.",
+        "summary": "Create an agent",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateAgentPayload"
+              }
+            }
+          },
+          "required": true
+        },
+        "x-samva-scope": "agents:create"
+      }
+    },
+    "/v1/agents/{id}": {
+      "get": {
+        "tags": [
+          "Agents"
+        ],
+        "operationId": "agents.get",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "$ref": "#/components/schemas/AgentId"
+            },
+            "required": true
+          }
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Agent",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Agent"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ResourceNotFoundError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Returns an agent with its draft, its current revision, and its newest published version number.",
+        "summary": "Get an agent",
+        "x-samva-scope": "agents:read"
+      },
+      "patch": {
+        "tags": [
+          "Agents"
+        ],
+        "operationId": "agents.update",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "$ref": "#/components/schemas/AgentId"
+            },
+            "required": true
+          }
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Agent",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Agent"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ResourceNotFoundError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Renames an agent.",
+        "summary": "Rename an agent",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateAgentPayload"
+              }
+            }
+          },
+          "required": true
+        },
+        "x-samva-scope": "agents:update"
+      },
+      "delete": {
+        "tags": [
+          "Agents"
+        ],
+        "operationId": "agents.remove",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "$ref": "#/components/schemas/AgentId"
+            },
+            "required": true
+          }
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "DeleteAgentResponse",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteAgentResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ResourceNotFoundError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Deletes an agent with its draft and published versions. The endpoints it answered on stop being answered by an agent. A reply already running finishes on the version it started on.",
+        "summary": "Delete an agent",
+        "x-samva-scope": "agents:delete"
+      }
+    },
+    "/v1/agents/{id}/draft": {
+      "put": {
+        "tags": [
+          "Agents"
+        ],
+        "operationId": "agents.replaceDraft",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "$ref": "#/components/schemas/AgentId"
+            },
+            "required": true
+          }
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Agent",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Agent"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ResourceNotFoundError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "ConflictError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConflictError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Replaces the whole draft and returns the agent with a new revision. The request names the revision it read; a stale revision returns 409. Published versions, and the conversations answered on them, do not change. An endpoint answers for one agent at a time: a draft that names an endpoint another agent answers on returns 409.",
+        "summary": "Replace an agent draft",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReplaceAgentDraftPayload"
+              }
+            }
+          },
+          "required": true
+        },
+        "x-samva-scope": "agents:update"
+      }
+    },
+    "/v1/agents/{id}/publish": {
+      "post": {
+        "tags": [
+          "Agents"
+        ],
+        "operationId": "agents.publish",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "$ref": "#/components/schemas/AgentId"
+            },
+            "required": true
+          }
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "PublishAgentResponse",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PublishAgentResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ResourceNotFoundError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "ConflictError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConflictError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Publishes the draft as the next immutable version. Each conversation moves to it from its next agent reply; a reply already running finishes on the version it started on. The request names the revision it read; a stale revision returns 409. Publishing a draft identical to the newest version changes nothing and answers published false. An endpoint answers for one agent at a time: publishing a draft whose endpoint another agent answers on returns 409. In supervised mode each reply waits for a person to approve it.",
+        "summary": "Publish an agent",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PublishAgentPayload"
+              }
+            }
+          },
+          "required": true
+        },
+        "x-samva-scope": "agents:update"
+      }
+    },
+    "/v1/agents/{id}/versions": {
+      "get": {
+        "tags": [
+          "Agents"
+        ],
+        "operationId": "agents.listVersions",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "$ref": "#/components/schemas/AgentId"
+            },
+            "required": true
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "required": false
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "schema": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/VersionCursor"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "required": false
+          }
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "AgentVersionPage",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AgentVersionPage"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ResourceNotFoundError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Returns an agent's published versions, newest first, without their definitions. Pass nextCursor back as cursor for the next page.",
+        "summary": "List published agent versions",
+        "x-samva-scope": "agents:read"
+      }
+    },
+    "/v1/agents/{id}/versions/{version}": {
+      "get": {
+        "tags": [
+          "Agents"
+        ],
+        "operationId": "agents.getVersion",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "$ref": "#/components/schemas/AgentId"
+            },
+            "required": true
+          },
+          {
+            "name": "version",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "AgentVersion",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AgentVersion"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ResourceNotFoundError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Returns the immutable definition of one published version.",
+        "summary": "Get a published agent version",
+        "x-samva-scope": "agents:read"
+      }
+    },
     "/v1/subscriptions": {
       "post": {
         "tags": [
@@ -55840,7 +56817,8 @@
               "assignThread",
               "changeThreadState",
               "call",
-              "extensionRequest"
+              "extensionRequest",
+              "toolCall"
             ]
           },
           "state": {
@@ -55856,6 +56834,17 @@
               "executed",
               "failed"
             ]
+          },
+          "tool": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/MailboxToolCall"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "The tool a `toolCall` runs, with its arguments and their hash; an approval covers exactly this call. Null for every other action type."
           }
         },
         "required": [
@@ -55869,7 +56858,42 @@
           "createdAt",
           "updatedAt",
           "type",
-          "state"
+          "state",
+          "tool"
+        ],
+        "additionalProperties": false
+      },
+      "MailboxToolCall": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128,
+            "x-samva-string-checks": [
+              {
+                "id": "effect/schema/isMaxLength",
+                "payload": {
+                  "maxLength": 128
+                }
+              }
+            ]
+          },
+          "argumentsHash": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "arguments": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/JsonValue"
+            }
+          }
+        },
+        "required": [
+          "name",
+          "argumentsHash",
+          "arguments"
         ],
         "additionalProperties": false
       },
@@ -55918,6 +56942,7 @@
                   "externalApi",
                   "externalAgent",
                   "extension",
+                  "samvaManagedAgent",
                   "system"
                 ]
               }
@@ -59583,7 +60608,8 @@
                         "assignThread",
                         "changeThreadState",
                         "call",
-                        "extensionRequest"
+                        "extensionRequest",
+                        "toolCall"
                       ]
                     },
                     "count": {
@@ -60437,6 +61463,20 @@
             ]
           },
           "templates": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "read",
+                  "write"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "agents": {
             "anyOf": [
               {
                 "type": "string",
@@ -61794,6 +62834,9 @@
                 "mailbox.message.quarantined",
                 "mailbox.message.released",
                 "mailbox.message.discarded",
+                "mailbox.message.delivered",
+                "mailbox.message.read",
+                "mailbox.message.failed",
                 "journey.webhook"
               ]
             }
@@ -61966,6 +63009,9 @@
                     "mailbox.message.quarantined",
                     "mailbox.message.released",
                     "mailbox.message.discarded",
+                    "mailbox.message.delivered",
+                    "mailbox.message.read",
+                    "mailbox.message.failed",
                     "journey.webhook"
                   ]
                 },
@@ -62151,6 +63197,9 @@
                 "mailbox.message.quarantined",
                 "mailbox.message.released",
                 "mailbox.message.discarded",
+                "mailbox.message.delivered",
+                "mailbox.message.read",
+                "mailbox.message.failed",
                 "journey.webhook"
               ]
             }
@@ -62349,6 +63398,9 @@
                 "mailbox.message.quarantined",
                 "mailbox.message.released",
                 "mailbox.message.discarded",
+                "mailbox.message.delivered",
+                "mailbox.message.read",
+                "mailbox.message.failed",
                 "journey.webhook"
               ]
             },
@@ -65170,6 +66222,541 @@
           "email",
           "contactGroupId",
           "from"
+        ],
+        "additionalProperties": false
+      },
+      "AgentVersion": {
+        "type": "object",
+        "properties": {
+          "agentId": {
+            "$ref": "#/components/schemas/AgentId"
+          },
+          "version": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
+          },
+          "definition": {
+            "$ref": "#/components/schemas/AgentDefinition"
+          },
+          "publishedAt": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "agentId",
+          "version",
+          "definition",
+          "publishedAt"
+        ],
+        "additionalProperties": false
+      },
+      "ClockTime": {
+        "type": "string",
+        "pattern": "^(?:[01]\\d|2[0-3]):[0-5]\\d$"
+      },
+      "Weekday": {
+        "type": "string",
+        "enum": [
+          "monday",
+          "tuesday",
+          "wednesday",
+          "thursday",
+          "friday",
+          "saturday",
+          "sunday"
+        ]
+      },
+      "TimeZone": {
+        "type": "string"
+      },
+      "AgentApprovalPolicy": {
+        "type": "string",
+        "enum": [
+          "toolActions",
+          "none"
+        ]
+      },
+      "AgentModel": {
+        "type": "string",
+        "enum": [
+          "standard",
+          "max"
+        ]
+      },
+      "AgentMode": {
+        "type": "string",
+        "enum": [
+          "live",
+          "supervised"
+        ]
+      },
+      "AgentIntegrationReference": {
+        "type": "string",
+        "pattern": "^[a-z]{2,8}_[0-9a-z]{16}$"
+      },
+      "AgentId": {
+        "type": "string",
+        "pattern": "^agt_[0-9a-hjkmnp-tv-z]{16,24}$",
+        "x-samva-brand": "AgentId"
+      },
+      "AgentVersionPage": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AgentVersionSummary"
+            }
+          },
+          "nextCursor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "items",
+          "nextCursor"
+        ],
+        "additionalProperties": false
+      },
+      "AgentVersionSummary": {
+        "type": "object",
+        "properties": {
+          "agentId": {
+            "$ref": "#/components/schemas/AgentId"
+          },
+          "version": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
+          },
+          "publishedAt": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "agentId",
+          "version",
+          "publishedAt"
+        ],
+        "additionalProperties": false
+      },
+      "PublishAgentResponse": {
+        "type": "object",
+        "properties": {
+          "agent": {
+            "$ref": "#/components/schemas/Agent"
+          },
+          "version": {
+            "$ref": "#/components/schemas/AgentVersion"
+          },
+          "published": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "agent",
+          "version",
+          "published"
+        ],
+        "additionalProperties": false
+      },
+      "PublishAgentPayload": {
+        "type": "object",
+        "properties": {
+          "revision": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "revision"
+        ],
+        "additionalProperties": false
+      },
+      "ReplaceAgentDraftPayload": {
+        "type": "object",
+        "properties": {
+          "revision": {
+            "type": "string",
+            "minLength": 1
+          },
+          "definition": {
+            "$ref": "#/components/schemas/AgentDefinition"
+          }
+        },
+        "required": [
+          "revision",
+          "definition"
+        ],
+        "additionalProperties": false
+      },
+      "AgentDefinition": {
+        "type": "object",
+        "properties": {
+          "instructions": {
+            "type": "string",
+            "maxLength": 20000,
+            "x-samva-string-checks": [
+              {
+                "id": "effect/schema/isMaxLength",
+                "payload": {
+                  "maxLength": 20000
+                }
+              }
+            ]
+          },
+          "knowledge": {
+            "type": "string",
+            "maxLength": 100000,
+            "x-samva-string-checks": [
+              {
+                "id": "effect/schema/isMaxLength",
+                "payload": {
+                  "maxLength": 100000
+                }
+              }
+            ]
+          },
+          "endpointIds": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MailboxEndpointId"
+            },
+            "maxItems": 20
+          },
+          "integrationIds": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AgentIntegrationReference"
+            },
+            "maxItems": 20
+          },
+          "mode": {
+            "$ref": "#/components/schemas/AgentMode"
+          },
+          "model": {
+            "$ref": "#/components/schemas/AgentModel"
+          },
+          "approvalPolicy": {
+            "$ref": "#/components/schemas/AgentApprovalPolicy"
+          },
+          "workingHours": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/WorkingHours"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "takeoverTimeoutMinutes": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 10080
+          }
+        },
+        "required": [
+          "instructions",
+          "knowledge",
+          "endpointIds",
+          "integrationIds",
+          "mode",
+          "model",
+          "approvalPolicy",
+          "workingHours",
+          "takeoverTimeoutMinutes"
+        ],
+        "additionalProperties": false
+      },
+      "WorkingHours": {
+        "type": "object",
+        "properties": {
+          "timeZone": {
+            "$ref": "#/components/schemas/TimeZone"
+          },
+          "ranges": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WorkingHoursRange"
+            },
+            "minItems": 1,
+            "maxItems": 28
+          }
+        },
+        "required": [
+          "timeZone",
+          "ranges"
+        ],
+        "additionalProperties": false
+      },
+      "WorkingHoursRange": {
+        "type": "object",
+        "properties": {
+          "day": {
+            "$ref": "#/components/schemas/Weekday"
+          },
+          "opens": {
+            "$ref": "#/components/schemas/ClockTime"
+          },
+          "closes": {
+            "$ref": "#/components/schemas/ClockTime"
+          }
+        },
+        "required": [
+          "day",
+          "opens",
+          "closes"
+        ],
+        "additionalProperties": false
+      },
+      "DeleteAgentResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "$ref": "#/components/schemas/AgentId"
+          },
+          "deleted": {
+            "type": "boolean",
+            "enum": [
+              true
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "deleted"
+        ],
+        "additionalProperties": false
+      },
+      "UpdateAgentPayload": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "$ref": "#/components/schemas/AgentName"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "additionalProperties": false
+      },
+      "AgentName": {
+        "type": "string",
+        "pattern": "^\\S[\\s\\S]*\\S$|^\\S$|^$",
+        "minLength": 1,
+        "maxLength": 120,
+        "x-samva-string-checks": [
+          {
+            "id": "effect/schema/isMaxLength",
+            "payload": {
+              "maxLength": 120
+            }
+          }
+        ]
+      },
+      "Agent": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "$ref": "#/components/schemas/AgentId"
+          },
+          "name": {
+            "type": "string"
+          },
+          "namespaceId": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/NamespaceId"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "revision": {
+            "type": "string"
+          },
+          "draft": {
+            "$ref": "#/components/schemas/AgentDefinition"
+          },
+          "publishedVersion": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "publishedAt": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "namespaceId",
+          "revision",
+          "draft",
+          "publishedVersion",
+          "publishedAt",
+          "createdAt",
+          "updatedAt"
+        ],
+        "additionalProperties": false
+      },
+      "CreateAgentPayload": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "$ref": "#/components/schemas/AgentName"
+          },
+          "namespaceId": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/NamespaceId"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "The namespace the agent belongs to; it cannot move later. Omit for an organization-level agent. A namespace-scoped key always creates in its own namespace."
+          },
+          "definition": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/AgentDefinition"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "The first draft. Defaults to an agent with no instructions, knowledge, or endpoints, in supervised mode on the standard model.",
+            "default": {
+              "instructions": "",
+              "knowledge": "",
+              "endpointIds": [],
+              "integrationIds": [],
+              "mode": "supervised",
+              "model": "standard",
+              "approvalPolicy": "toolActions",
+              "workingHours": null,
+              "takeoverTimeoutMinutes": 30
+            }
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "additionalProperties": false
+      },
+      "AgentPage": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AgentListItem"
+            }
+          },
+          "nextCursor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "items",
+          "nextCursor"
+        ],
+        "additionalProperties": false
+      },
+      "AgentListItem": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "$ref": "#/components/schemas/AgentId"
+          },
+          "name": {
+            "type": "string"
+          },
+          "namespaceId": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/NamespaceId"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "publishedVersion": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "publishedAt": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "namespaceId",
+          "publishedVersion",
+          "publishedAt",
+          "createdAt",
+          "updatedAt"
         ],
         "additionalProperties": false
       },
@@ -75406,6 +76993,10 @@
       "description": "Event-triggered, per-contact email flows defined as versioned node graphs"
     },
     {
+      "name": "Agents",
+      "description": "Agents that answer conversations on your mailbox endpoints, with a draft, published versions, and rules for supervision, hours, and staff takeover"
+    },
+    {
       "name": "Subscriptions",
       "description": "Recipient-confirmed contact list subscriptions"
     },
@@ -82575,6 +84166,7 @@
                               "externalApi",
                               "externalAgent",
                               "extension",
+                              "samvaManagedAgent",
                               "system"
                             ]
                           }
@@ -82799,7 +84391,8 @@
                               "assignThread",
                               "changeThreadState",
                               "call",
-                              "extensionRequest"
+                              "extensionRequest",
+                              "toolCall"
                             ]
                           },
                           "state": {
@@ -82925,6 +84518,7 @@
                                   "externalApi",
                                   "externalAgent",
                                   "extension",
+                                  "samvaManagedAgent",
                                   "system"
                                 ]
                               }
@@ -82951,37 +84545,76 @@
                         "additionalProperties": true
                       },
                       "draft": {
-                        "type": "object",
-                        "properties": {
-                          "to": {
-                            "type": "array",
-                            "items": {
-                              "type": "string"
-                            }
-                          },
-                          "cc": {
-                            "type": "array",
-                            "items": {
-                              "type": "string"
-                            }
-                          },
-                          "subject": {
-                            "anyOf": [
-                              {
-                                "type": "string"
+                        "anyOf": [
+                          {
+                            "type": "object",
+                            "properties": {
+                              "to": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string"
+                                }
                               },
-                              {
-                                "type": "null"
+                              "cc": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string"
+                                }
+                              },
+                              "subject": {
+                                "anyOf": [
+                                  {
+                                    "type": "string"
+                                  },
+                                  {
+                                    "type": "null"
+                                  }
+                                ]
                               }
-                            ]
+                            },
+                            "required": [
+                              "to",
+                              "cc",
+                              "subject"
+                            ],
+                            "additionalProperties": true
+                          },
+                          {
+                            "type": "null"
                           }
-                        },
-                        "required": [
-                          "to",
-                          "cc",
-                          "subject"
                         ],
-                        "additionalProperties": true
+                        "description": "Who a held send goes to; null for a held tool call."
+                      },
+                      "tool": {
+                        "anyOf": [
+                          {
+                            "type": "object",
+                            "properties": {
+                              "name": {
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 128
+                              },
+                              "argumentsHash": {
+                                "type": "string",
+                                "pattern": "^[0-9a-f]{64}$"
+                              },
+                              "arguments": {
+                                "type": "object"
+                              }
+                            },
+                            "required": [
+                              "name",
+                              "argumentsHash",
+                              "arguments"
+                            ],
+                            "additionalProperties": true
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ],
+                        "description": "The tool a held tool call runs and its arguments; null for a held send. Deliveries recorded before this field existed omit it."
                       }
                     },
                     "required": [
@@ -83065,7 +84698,8 @@
                               "assignThread",
                               "changeThreadState",
                               "call",
-                              "extensionRequest"
+                              "extensionRequest",
+                              "toolCall"
                             ]
                           },
                           "threadId": {
@@ -83113,6 +84747,7 @@
                                   "externalApi",
                                   "externalAgent",
                                   "extension",
+                                  "samvaManagedAgent",
                                   "system"
                                 ]
                               }
@@ -83182,6 +84817,7 @@
                                   "externalApi",
                                   "externalAgent",
                                   "extension",
+                                  "samvaManagedAgent",
                                   "system"
                                 ]
                               }
@@ -83461,6 +85097,7 @@
                               "externalApi",
                               "externalAgent",
                               "extension",
+                              "samvaManagedAgent",
                               "system"
                             ]
                           }
@@ -83762,6 +85399,7 @@
                               "externalApi",
                               "externalAgent",
                               "extension",
+                              "samvaManagedAgent",
                               "system"
                             ]
                           }
@@ -83851,6 +85489,352 @@
                       "disposition",
                       "reason",
                       "message"
+                    ],
+                    "additionalProperties": true
+                  }
+                },
+                "required": [
+                  "type",
+                  "timestamp",
+                  "data"
+                ],
+                "additionalProperties": true
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Any 2xx status acknowledges the event."
+          }
+        }
+      }
+    },
+    "mailbox.message.delivered": {
+      "post": {
+        "operationId": "webhooks.mailbox.message.delivered",
+        "summary": "Mailbox message delivered",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "mailbox.message.delivered"
+                    ]
+                  },
+                  "timestamp": {
+                    "type": "string"
+                  },
+                  "data": {
+                    "type": "object",
+                    "properties": {
+                      "mailboxId": {
+                        "type": "string",
+                        "pattern": "^mbx_[0-9a-hjkmnp-tv-z]{16,24}$"
+                      },
+                      "namespaceId": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "pattern": "^ns_[0-9a-hjkmnp-tv-z]{16,24}$"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "threadId": {
+                        "type": "string",
+                        "pattern": "^thread_[0-9a-hjkmnp-tv-z]{16,24}$"
+                      },
+                      "actionId": {
+                        "type": "string",
+                        "pattern": "^mbxact_[0-9a-hjkmnp-tv-z]{16,24}$",
+                        "description": "The mailbox send action that sent the message."
+                      },
+                      "messageId": {
+                        "type": "string",
+                        "pattern": "^msg_[0-9a-hjkmnp-tv-z]{16,24}$"
+                      },
+                      "channel": {
+                        "type": "string",
+                        "enum": [
+                          "email",
+                          "whatsapp",
+                          "sms"
+                        ],
+                        "description": "The channel an endpoint, thread, or message belongs to."
+                      },
+                      "recipient": {
+                        "type": "string",
+                        "description": "The address or number the status is about."
+                      },
+                      "occurredAt": {
+                        "type": "string"
+                      },
+                      "status": {
+                        "type": "string",
+                        "enum": [
+                          "delivered"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "mailboxId",
+                      "namespaceId",
+                      "threadId",
+                      "actionId",
+                      "messageId",
+                      "channel",
+                      "recipient",
+                      "occurredAt",
+                      "status"
+                    ],
+                    "additionalProperties": true
+                  }
+                },
+                "required": [
+                  "type",
+                  "timestamp",
+                  "data"
+                ],
+                "additionalProperties": true
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Any 2xx status acknowledges the event."
+          }
+        }
+      }
+    },
+    "mailbox.message.read": {
+      "post": {
+        "operationId": "webhooks.mailbox.message.read",
+        "summary": "Mailbox message read",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "mailbox.message.read"
+                    ]
+                  },
+                  "timestamp": {
+                    "type": "string"
+                  },
+                  "data": {
+                    "type": "object",
+                    "properties": {
+                      "mailboxId": {
+                        "type": "string",
+                        "pattern": "^mbx_[0-9a-hjkmnp-tv-z]{16,24}$"
+                      },
+                      "namespaceId": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "pattern": "^ns_[0-9a-hjkmnp-tv-z]{16,24}$"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "threadId": {
+                        "type": "string",
+                        "pattern": "^thread_[0-9a-hjkmnp-tv-z]{16,24}$"
+                      },
+                      "actionId": {
+                        "type": "string",
+                        "pattern": "^mbxact_[0-9a-hjkmnp-tv-z]{16,24}$",
+                        "description": "The mailbox send action that sent the message."
+                      },
+                      "messageId": {
+                        "type": "string",
+                        "pattern": "^msg_[0-9a-hjkmnp-tv-z]{16,24}$"
+                      },
+                      "channel": {
+                        "type": "string",
+                        "enum": [
+                          "email",
+                          "whatsapp",
+                          "sms"
+                        ],
+                        "description": "The channel an endpoint, thread, or message belongs to."
+                      },
+                      "recipient": {
+                        "type": "string",
+                        "description": "The address or number the status is about."
+                      },
+                      "occurredAt": {
+                        "type": "string"
+                      },
+                      "status": {
+                        "type": "string",
+                        "enum": [
+                          "read"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "mailboxId",
+                      "namespaceId",
+                      "threadId",
+                      "actionId",
+                      "messageId",
+                      "channel",
+                      "recipient",
+                      "occurredAt",
+                      "status"
+                    ],
+                    "additionalProperties": true
+                  }
+                },
+                "required": [
+                  "type",
+                  "timestamp",
+                  "data"
+                ],
+                "additionalProperties": true
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Any 2xx status acknowledges the event."
+          }
+        }
+      }
+    },
+    "mailbox.message.failed": {
+      "post": {
+        "operationId": "webhooks.mailbox.message.failed",
+        "summary": "Mailbox message failed",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "mailbox.message.failed"
+                    ]
+                  },
+                  "timestamp": {
+                    "type": "string"
+                  },
+                  "data": {
+                    "type": "object",
+                    "properties": {
+                      "mailboxId": {
+                        "type": "string",
+                        "pattern": "^mbx_[0-9a-hjkmnp-tv-z]{16,24}$"
+                      },
+                      "namespaceId": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "pattern": "^ns_[0-9a-hjkmnp-tv-z]{16,24}$"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "threadId": {
+                        "type": "string",
+                        "pattern": "^thread_[0-9a-hjkmnp-tv-z]{16,24}$"
+                      },
+                      "actionId": {
+                        "type": "string",
+                        "pattern": "^mbxact_[0-9a-hjkmnp-tv-z]{16,24}$",
+                        "description": "The mailbox send action that sent the message."
+                      },
+                      "messageId": {
+                        "type": "string",
+                        "pattern": "^msg_[0-9a-hjkmnp-tv-z]{16,24}$"
+                      },
+                      "channel": {
+                        "type": "string",
+                        "enum": [
+                          "email",
+                          "whatsapp",
+                          "sms"
+                        ],
+                        "description": "The channel an endpoint, thread, or message belongs to."
+                      },
+                      "recipient": {
+                        "type": "string",
+                        "description": "The address or number the status is about."
+                      },
+                      "occurredAt": {
+                        "type": "string"
+                      },
+                      "status": {
+                        "type": "string",
+                        "enum": [
+                          "failed"
+                        ]
+                      },
+                      "error": {
+                        "type": "object",
+                        "properties": {
+                          "code": {
+                            "anyOf": [
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "type": "null"
+                              }
+                            ]
+                          },
+                          "message": {
+                            "anyOf": [
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "type": "null"
+                              }
+                            ]
+                          }
+                        },
+                        "required": [
+                          "code",
+                          "message"
+                        ],
+                        "additionalProperties": true
+                      }
+                    },
+                    "required": [
+                      "mailboxId",
+                      "namespaceId",
+                      "threadId",
+                      "actionId",
+                      "messageId",
+                      "channel",
+                      "recipient",
+                      "occurredAt",
+                      "status",
+                      "error"
                     ],
                     "additionalProperties": true
                   }
