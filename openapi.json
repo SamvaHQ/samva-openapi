@@ -63200,30 +63200,7 @@
           "trackingDefault": {
             "anyOf": [
               {
-                "type": "object",
-                "properties": {
-                  "opens": {
-                    "anyOf": [
-                      {
-                        "type": "boolean"
-                      },
-                      {
-                        "type": "null"
-                      }
-                    ]
-                  },
-                  "clicks": {
-                    "anyOf": [
-                      {
-                        "type": "boolean"
-                      },
-                      {
-                        "type": "null"
-                      }
-                    ]
-                  }
-                },
-                "additionalProperties": false
+                "$ref": "#/components/schemas/TemplateTrackingDefault"
               },
               {
                 "type": "null"
@@ -63336,6 +63313,32 @@
           "inputContractId",
           "inputSchema"
         ],
+        "additionalProperties": false
+      },
+      "TemplateTrackingDefault": {
+        "type": "object",
+        "properties": {
+          "opens": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "clicks": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
         "additionalProperties": false
       },
       "TemplateFamilyId": {
@@ -63516,6 +63519,24 @@
                     "type": "null"
                   }
                 ]
+              },
+              "trackingDefault": {
+                "anyOf": [
+                  {
+                    "anyOf": [
+                      {
+                        "$ref": "#/components/schemas/TemplateTrackingDefault"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "Engagement tracking for sends of this template: `opens` and `clicks`, each inherited from the domain and organization defaults when omitted. A send request's own `tracking` still wins. Null clears the template's default."
               },
               "isActive": {
                 "anyOf": [
