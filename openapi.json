@@ -42355,6 +42355,66 @@
                               "type": "null"
                             }
                           ]
+                        },
+                        "aiPackCredits": {
+                          "anyOf": [
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "aiResetsAt": {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "creditsResetsAt": {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "standardGranted": {
+                          "anyOf": [
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "standardRemaining": {
+                          "anyOf": [
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "standardResetsAt": {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
                         }
                       },
                       "required": [
@@ -42367,7 +42427,13 @@
                         "includedAiCredits",
                         "usedAiCredits",
                         "overageAiCredits",
-                        "overageAiCost"
+                        "overageAiCost",
+                        "aiPackCredits",
+                        "aiResetsAt",
+                        "creditsResetsAt",
+                        "standardGranted",
+                        "standardRemaining",
+                        "standardResetsAt"
                       ],
                       "additionalProperties": false
                     }
