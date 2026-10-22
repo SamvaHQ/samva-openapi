@@ -3,7 +3,7 @@
   "private": true,
   "description": "Canonical OpenAPI 3.1 artifact for the Samva email API",
   "license": "MIT",
-  "packageManager": "bun@1.4.0",
+  "packageManager": "bun@1.4.4",
   "scripts": {
     "validate": "bun run validate:checks && bun run validate:artifact && bun run validate:openapi",
     "validate:checks": "node --test scripts/channel-vocabulary.test.mjs",
