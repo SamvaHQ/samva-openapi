@@ -74832,9 +74832,27 @@
           },
           "footer": {
             "$ref": "#/components/schemas/EmailFooterOverride"
+          },
+          "headers": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/EmailCustomHeaders"
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
         "additionalProperties": false
+      },
+      "EmailCustomHeaders": {
+        "type": "object",
+        "additionalProperties": {
+          "type": "string"
+        },
+        "maxProperties": 11,
+        "description": "Custom headers copied onto the outgoing message. Each name is an RFC 5322 field name and each value is one non-empty line of printable ASCII. Names Samva or the transport own are rejected."
       },
       "EmailFooterOverride": {
         "type": "object",
@@ -75246,6 +75264,16 @@
           },
           "footer": {
             "$ref": "#/components/schemas/EmailFooterOverride"
+          },
+          "headers": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/EmailCustomHeaders"
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
         "additionalProperties": false
