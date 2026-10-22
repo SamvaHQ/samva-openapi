@@ -75097,7 +75097,8 @@
               "scheduled",
               "mailbox",
               "forwarding",
-              "journey"
+              "journey",
+              "businessApp"
             ]
           },
           "transport": {
