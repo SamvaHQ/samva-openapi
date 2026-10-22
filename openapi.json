@@ -380,11 +380,18 @@
             }
           },
           "422": {
-            "description": "ValidationError",
+            "description": "ValidationError | FromAddressRequiredError",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ValidationError"
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/ValidationError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/FromAddressRequiredError"
+                    }
+                  ]
                 }
               }
             }
@@ -1827,11 +1834,18 @@
             }
           },
           "422": {
-            "description": "ValidationError",
+            "description": "ValidationError | FromAddressRequiredError",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ValidationError"
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/ValidationError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/FromAddressRequiredError"
+                    }
+                  ]
                 }
               }
             }
@@ -3076,11 +3090,18 @@
             }
           },
           "422": {
-            "description": "ValidationError",
+            "description": "FromAddressRequiredError | ValidationError",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ValidationError"
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/FromAddressRequiredError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ValidationError"
+                    }
+                  ]
                 }
               }
             }
@@ -3886,11 +3907,14 @@
             }
           },
           "422": {
-            "description": "ValidationError | BrandAddressRequiredError | CampaignFooterRequiredError",
+            "description": "FromAddressRequiredError | ValidationError | BrandAddressRequiredError | CampaignFooterRequiredError",
             "content": {
               "application/json": {
                 "schema": {
                   "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/FromAddressRequiredError"
+                    },
                     {
                       "$ref": "#/components/schemas/ValidationError"
                     },
@@ -21829,13 +21853,16 @@
             }
           },
           "422": {
-            "description": "ValidationError | BrandAddressRequiredError | CampaignFooterRequiredError",
+            "description": "ValidationError | FromAddressRequiredError | BrandAddressRequiredError | CampaignFooterRequiredError",
             "content": {
               "application/json": {
                 "schema": {
                   "anyOf": [
                     {
                       "$ref": "#/components/schemas/ValidationError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/FromAddressRequiredError"
                     },
                     {
                       "$ref": "#/components/schemas/BrandAddressRequiredError"
@@ -64929,6 +64956,36 @@
           "brand"
         ],
         "additionalProperties": false
+      },
+      "FromAddressRequiredError": {
+        "type": "object",
+        "properties": {
+          "_tag": {
+            "type": "string",
+            "enum": [
+              "FromAddressRequiredError"
+            ]
+          },
+          "message": {
+            "type": "string"
+          },
+          "verifiedDomains": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "_tag",
+          "message",
+          "verifiedDomains"
+        ],
+        "additionalProperties": false,
+        "x-category": [
+          "validation"
+        ],
+        "x-retryable": false
       },
       "ExternalServiceError": {
         "type": "object",

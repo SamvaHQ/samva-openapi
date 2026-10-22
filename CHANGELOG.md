@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.31.0
+
+- 332 operations, 245 paths, 468 schemas, 36 webhook events.
+- Breaking against v0.30.0.
+
+
 ## v0.30.0
 
 - 332 operations, 245 paths, 467 schemas, 36 webhook events.
