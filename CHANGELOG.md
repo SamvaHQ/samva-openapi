@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.33.0
+
+- 332 operations, 245 paths, 469 schemas, 36 webhook events.
+- Breaking against v0.32.1.
+- Changed schemas:
+  - `CustomTrackingStatus`
+
+
 ## v0.32.1
 
 - 332 operations, 245 paths, 469 schemas, 36 webhook events.

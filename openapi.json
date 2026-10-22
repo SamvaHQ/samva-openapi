@@ -7694,7 +7694,7 @@
             }
           }
         },
-        "description": "Provisions a custom tracking domain (default label `track`) for a verified sending domain so open/click links redirect through the customer's own subdomain. Requires a plan that includes custom tracking domains. Returns the resulting state including the two DNS records the customer must create.",
+        "description": "Provisions a custom tracking domain for a verified sending domain so open/click links redirect through the customer's own host, `<label>.<parentDomain>` (default `track.<sending domain>`). `parentDomain` may be a parent of the sending domain, so `send.example.com` can use `track.example.com`. Calling it again with a different label or parent moves the host. Requires a plan that includes custom tracking domains. Returns the resulting state including the two DNS records the customer must create; a hostname another domain already uses is a conflict.",
         "summary": "Enable a custom tracking domain",
         "requestBody": {
           "content": {
@@ -7705,7 +7705,19 @@
                   "label": {
                     "anyOf": [
                       {
-                        "type": "string"
+                        "type": "string",
+                        "description": "First label of the tracking host. Defaults to `track`."
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "parentDomain": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "description": "Domain the tracking host sits directly under: the sending domain (the default) or one of its parents up to its registrable domain, listed in `parentDomains`."
                       },
                       {
                         "type": "null"
@@ -70723,6 +70735,9 @@
                   "hostname": {
                     "type": "string"
                   },
+                  "parentDomain": {
+                    "type": "string"
+                  },
                   "region": {
                     "type": "string"
                   },
@@ -70800,6 +70815,7 @@
                   "status",
                   "label",
                   "hostname",
+                  "parentDomain",
                   "region",
                   "sslStatus",
                   "certificate",
@@ -70814,11 +70830,18 @@
                 "type": "null"
               }
             ]
+          },
+          "parentDomains": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           }
         },
         "required": [
           "enabled",
-          "customTracking"
+          "customTracking",
+          "parentDomains"
         ],
         "additionalProperties": false
       },
