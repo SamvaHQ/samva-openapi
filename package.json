@@ -11,6 +11,6 @@
     "validate:openapi": "redocly lint openapi.json"
   },
   "devDependencies": {
-    "@redocly/cli": "2.49.0"
+    "@redocly/cli": "2.69.0"
   }
 }
