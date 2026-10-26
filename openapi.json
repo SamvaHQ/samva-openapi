@@ -71525,6 +71525,81 @@
                       "importedAt": {
                         "type": "string"
                       },
+                      "summary": {
+                        "anyOf": [
+                          {
+                            "type": "object",
+                            "properties": {
+                              "signupAt": {
+                                "anyOf": [
+                                  {
+                                    "type": "object",
+                                    "properties": {
+                                      "value": {
+                                        "type": "string",
+                                        "maxLength": 160,
+                                        "x-samva-string-checks": [
+                                          {
+                                            "id": "effect/schema/isMaxLength",
+                                            "payload": {
+                                              "maxLength": 160
+                                            }
+                                          }
+                                        ]
+                                      },
+                                      "kind": {
+                                        "type": "string",
+                                        "enum": [
+                                          "time",
+                                          "text"
+                                        ]
+                                      }
+                                    },
+                                    "required": [
+                                      "value",
+                                      "kind"
+                                    ],
+                                    "additionalProperties": false
+                                  },
+                                  {
+                                    "type": "null"
+                                  }
+                                ]
+                              },
+                              "sources": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string",
+                                  "maxLength": 160,
+                                  "x-samva-string-checks": [
+                                    {
+                                      "id": "effect/schema/isMaxLength",
+                                      "payload": {
+                                        "maxLength": 160
+                                      }
+                                    }
+                                  ]
+                                },
+                                "maxItems": 8
+                              },
+                              "omittedSources": {
+                                "type": "integer",
+                                "minimum": 0,
+                                "maximum": 9007199254740991
+                              }
+                            },
+                            "required": [
+                              "signupAt",
+                              "sources",
+                              "omittedSources"
+                            ],
+                            "additionalProperties": false
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
                       "evidence": {
                         "type": "array",
                         "items": {
@@ -71658,6 +71733,81 @@
                       },
                       "importedAt": {
                         "type": "string"
+                      },
+                      "summary": {
+                        "anyOf": [
+                          {
+                            "type": "object",
+                            "properties": {
+                              "signupAt": {
+                                "anyOf": [
+                                  {
+                                    "type": "object",
+                                    "properties": {
+                                      "value": {
+                                        "type": "string",
+                                        "maxLength": 160,
+                                        "x-samva-string-checks": [
+                                          {
+                                            "id": "effect/schema/isMaxLength",
+                                            "payload": {
+                                              "maxLength": 160
+                                            }
+                                          }
+                                        ]
+                                      },
+                                      "kind": {
+                                        "type": "string",
+                                        "enum": [
+                                          "time",
+                                          "text"
+                                        ]
+                                      }
+                                    },
+                                    "required": [
+                                      "value",
+                                      "kind"
+                                    ],
+                                    "additionalProperties": false
+                                  },
+                                  {
+                                    "type": "null"
+                                  }
+                                ]
+                              },
+                              "sources": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string",
+                                  "maxLength": 160,
+                                  "x-samva-string-checks": [
+                                    {
+                                      "id": "effect/schema/isMaxLength",
+                                      "payload": {
+                                        "maxLength": 160
+                                      }
+                                    }
+                                  ]
+                                },
+                                "maxItems": 8
+                              },
+                              "omittedSources": {
+                                "type": "integer",
+                                "minimum": 0,
+                                "maximum": 9007199254740991
+                              }
+                            },
+                            "required": [
+                              "signupAt",
+                              "sources",
+                              "omittedSources"
+                            ],
+                            "additionalProperties": false
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
                       },
                       "evidence": {
                         "type": "array",
