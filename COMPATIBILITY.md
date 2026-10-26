@@ -9,9 +9,8 @@ the previous release:
 | `breaking`   | minor      | major    |
 | `compatible` | patch      | minor    |
 
-Samva's SDKs record the release they were generated from. Releases v0.18.0 to v0.20.0 took their
-version from the `samva` TypeScript SDK release of the same number; later releases are versioned
-by the document alone.
+Releases v0.18.0 to v0.20.0 took their version from the `samva` TypeScript SDK release of the same
+number; later releases are versioned by the document alone.
 
 Each manifest records:
 
@@ -26,7 +25,7 @@ Each manifest records:
 
 The classification is conservative: a response or webhook body that gains a required field reads
 as breaking. Each release's changelog entry lists the removed and added operations and webhook
-events, and the changed schemas and webhook events.
+events, the operations that narrowed, and the changed schemas and webhook events.
 
 While the document is on 0.x, only the current release is maintained. Older releases stay
 published and are never replaced.

@@ -4,14 +4,7 @@
   "title": "Samva OpenAPI release manifest",
   "type": "object",
   "additionalProperties": false,
-  "required": [
-    "schemaVersion",
-    "version",
-    "releasedAt",
-    "source",
-    "compatibility",
-    "openapi"
-  ],
+  "required": ["schemaVersion", "version", "releasedAt", "source", "compatibility", "openapi"],
   "properties": {
     "$schema": {
       "type": "string"
@@ -31,9 +24,7 @@
     "source": {
       "type": "object",
       "additionalProperties": false,
-      "required": [
-        "commit"
-      ],
+      "required": ["commit"],
       "properties": {
         "commit": {
           "type": "string",
@@ -45,10 +36,7 @@
       "description": "The samva SDK release of the same version; only v0.18.0 to v0.20.0 carry it.",
       "type": "object",
       "additionalProperties": false,
-      "required": [
-        "package",
-        "version"
-      ],
+      "required": ["package", "version"],
       "properties": {
         "package": {
           "const": "samva"
@@ -61,24 +49,14 @@
     "compatibility": {
       "type": "object",
       "additionalProperties": false,
-      "required": [
-        "classification",
-        "baseline"
-      ],
+      "required": ["classification", "baseline"],
       "properties": {
         "classification": {
-          "enum": [
-            "initial",
-            "compatible",
-            "breaking"
-          ]
+          "enum": ["initial", "compatible", "breaking"]
         },
         "baseline": {
           "description": "The tag or artifact version of the previous release.",
-          "type": [
-            "string",
-            "null"
-          ]
+          "type": ["string", "null"]
         }
       }
     },
