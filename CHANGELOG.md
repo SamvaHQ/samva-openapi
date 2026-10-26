@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.39.0
+
+- 351 operations, 258 paths, 518 schemas, 39 webhook events.
+- Breaking against v0.38.0.
+- Changed schemas:
+  - `ConversationContacts`
+
+
 ## v0.38.0
 
 - 351 operations, 258 paths, 518 schemas, 39 webhook events.

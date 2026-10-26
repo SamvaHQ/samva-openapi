@@ -16613,7 +16613,7 @@
             }
           }
         },
-        "description": "Attaches one or more contacts to a conversation and returns the updated conversation.",
+        "description": "Attaches one or more contacts to a conversation and returns the updated conversation. One request carries at most 1000 ids.",
         "summary": "Add contacts to a conversation",
         "requestBody": {
           "content": {
@@ -16719,7 +16719,7 @@
             }
           }
         },
-        "description": "Detaches one or more contacts from a conversation and returns the updated conversation.",
+        "description": "Detaches one or more contacts from a conversation and returns the updated conversation. One request carries at most 1000 ids.",
         "summary": "Remove contacts from a conversation",
         "requestBody": {
           "content": {
@@ -20319,7 +20319,7 @@
             }
           }
         },
-        "description": "Permanently deletes multiple contacts by ID, returning counts of deleted and failed records.",
+        "description": "Permanently deletes multiple contacts by ID, returning counts of deleted and failed records. One request carries at most 1000 ids.",
         "summary": "Bulk delete contacts",
         "requestBody": {
           "content": {
@@ -20337,7 +20337,8 @@
                     "minItems": 1,
                     "items": {
                       "$ref": "#/components/schemas/ContactId"
-                    }
+                    },
+                    "maxItems": 1000
                   }
                 },
                 "required": [
@@ -20426,7 +20427,7 @@
             }
           }
         },
-        "description": "Adds, removes, or replaces tags on multiple contacts in one request, returning counts of updated and failed records.",
+        "description": "Adds, removes, or replaces tags on multiple contacts in one request, returning counts of updated and failed records. One request carries at most 1000 ids.",
         "summary": "Bulk update contact tags",
         "requestBody": {
           "content": {
@@ -20444,7 +20445,8 @@
                     "minItems": 1,
                     "items": {
                       "$ref": "#/components/schemas/ContactId"
-                    }
+                    },
+                    "maxItems": 1000
                   },
                   "operation": {
                     "type": "string",
@@ -20575,7 +20577,7 @@
             }
           }
         },
-        "description": "Sets the status on multiple contacts in one request, returning counts of updated and failed records.",
+        "description": "Sets the status on multiple contacts in one request, returning counts of updated and failed records. One request carries at most 1000 ids.",
         "summary": "Bulk update contact status",
         "requestBody": {
           "content": {
@@ -20593,7 +20595,8 @@
                     "minItems": 1,
                     "items": {
                       "$ref": "#/components/schemas/ContactId"
-                    }
+                    },
+                    "maxItems": 1000
                   },
                   "status": {
                     "type": "string",
@@ -20715,7 +20718,7 @@
             }
           }
         },
-        "description": "Exports contacts as JSON or CSV, returning the serialized data and a count of exported records.",
+        "description": "Exports contacts as JSON or CSV, returning the serialized data and a count of exported records. The ids filter takes at most 1000 ids.",
         "summary": "Export contacts",
         "requestBody": {
           "content": {
@@ -20729,7 +20732,8 @@
                         "type": "array",
                         "items": {
                           "$ref": "#/components/schemas/ContactId"
-                        }
+                        },
+                        "maxItems": 1000
                       },
                       {
                         "type": "null"
@@ -25625,7 +25629,7 @@
             }
           }
         },
-        "description": "Adds one or more contacts to a contact group, returning counts of added and skipped members.",
+        "description": "Adds one or more contacts to a contact group, returning counts of added and skipped members. One request carries at most 1000 ids.",
         "summary": "Add members to a contact group",
         "requestBody": {
           "content": {
@@ -25643,7 +25647,8 @@
                     "minItems": 1,
                     "items": {
                       "$ref": "#/components/schemas/ContactId"
-                    }
+                    },
+                    "maxItems": 1000
                   },
                   "role": {
                     "anyOf": [
@@ -25775,7 +25780,7 @@
             }
           }
         },
-        "description": "Removes one or more contacts from a contact group, returning the count of removed members.",
+        "description": "Removes one or more contacts from a contact group, returning the count of removed members. One request carries at most 1000 ids.",
         "summary": "Remove members from a contact group",
         "requestBody": {
           "content": {
@@ -25793,7 +25798,8 @@
                     "minItems": 1,
                     "items": {
                       "$ref": "#/components/schemas/ContactId"
-                    }
+                    },
+                    "maxItems": 1000
                   }
                 },
                 "required": [
@@ -73483,7 +73489,8 @@
             "minItems": 1,
             "items": {
               "$ref": "#/components/schemas/ContactId"
-            }
+            },
+            "maxItems": 1000
           }
         },
         "required": [
