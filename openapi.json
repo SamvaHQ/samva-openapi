@@ -29966,11 +29966,18 @@
             }
           },
           "422": {
-            "description": "ValidationError",
+            "description": "TemplateSourceError | ValidationError",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ValidationError"
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/TemplateSourceError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ValidationError"
+                    }
+                  ]
                 }
               }
             }
@@ -31233,11 +31240,18 @@
             }
           },
           "422": {
-            "description": "ValidationError",
+            "description": "TemplateSourceError | ValidationError",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ValidationError"
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/TemplateSourceError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ValidationError"
+                    }
+                  ]
                 }
               }
             }
@@ -32024,11 +32038,18 @@
             }
           },
           "422": {
-            "description": "ValidationError",
+            "description": "TemplateSourceError | ValidationError",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ValidationError"
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/TemplateSourceError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ValidationError"
+                    }
+                  ]
                 }
               }
             }
@@ -32685,11 +32706,18 @@
             }
           },
           "422": {
-            "description": "ValidationError",
+            "description": "TemplateSourceError | ValidationError",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ValidationError"
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/TemplateSourceError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ValidationError"
+                    }
+                  ]
                 }
               }
             }
@@ -33004,11 +33032,18 @@
             }
           },
           "422": {
-            "description": "ValidationError",
+            "description": "TemplateSourceError | ValidationError",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ValidationError"
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/TemplateSourceError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ValidationError"
+                    }
+                  ]
                 }
               }
             }
@@ -33686,11 +33721,18 @@
             }
           },
           "422": {
-            "description": "ValidationError",
+            "description": "TemplateSourceError | ValidationError",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ValidationError"
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/TemplateSourceError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ValidationError"
+                    }
+                  ]
                 }
               }
             }
@@ -34404,11 +34446,18 @@
             }
           },
           "422": {
-            "description": "ValidationError",
+            "description": "TemplateSourceError | ValidationError",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ValidationError"
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/TemplateSourceError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ValidationError"
+                    }
+                  ]
                 }
               }
             }
@@ -34984,11 +35033,18 @@
             }
           },
           "422": {
-            "description": "ValidationError",
+            "description": "TemplateSourceError | ValidationError",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ValidationError"
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/TemplateSourceError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ValidationError"
+                    }
+                  ]
                 }
               }
             }
@@ -35735,11 +35791,18 @@
             }
           },
           "422": {
-            "description": "ValidationError",
+            "description": "TemplateSourceError | ValidationError",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ValidationError"
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/TemplateSourceError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ValidationError"
+                    }
+                  ]
                 }
               }
             }
@@ -35979,11 +36042,18 @@
             }
           },
           "422": {
-            "description": "ValidationError",
+            "description": "TemplateSourceError | ValidationError",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ValidationError"
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/TemplateSourceError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ValidationError"
+                    }
+                  ]
                 }
               }
             }
@@ -36530,11 +36600,18 @@
             }
           },
           "422": {
-            "description": "ValidationError",
+            "description": "TemplateSourceError | ValidationError",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ValidationError"
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/TemplateSourceError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ValidationError"
+                    }
+                  ]
                 }
               }
             }
@@ -37256,11 +37333,18 @@
             }
           },
           "422": {
-            "description": "ValidationError",
+            "description": "TemplateSourceError | ValidationError",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ValidationError"
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/TemplateSourceError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ValidationError"
+                    }
+                  ]
                 }
               }
             }
@@ -38095,11 +38179,18 @@
             }
           },
           "422": {
-            "description": "ValidationError",
+            "description": "TemplateSourceError | ValidationError",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ValidationError"
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/TemplateSourceError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ValidationError"
+                    }
+                  ]
                 }
               }
             }
@@ -39486,11 +39577,18 @@
             }
           },
           "422": {
-            "description": "ValidationError",
+            "description": "TemplateSourceError | ValidationError",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ValidationError"
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/TemplateSourceError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ValidationError"
+                    }
+                  ]
                 }
               }
             }
@@ -39620,11 +39718,18 @@
             }
           },
           "422": {
-            "description": "ValidationError",
+            "description": "TemplateSourceError | ValidationError",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ValidationError"
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/TemplateSourceError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ValidationError"
+                    }
+                  ]
                 }
               }
             }
@@ -40290,11 +40395,18 @@
             }
           },
           "422": {
-            "description": "ValidationError",
+            "description": "TemplateSourceError | ValidationError",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ValidationError"
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/TemplateSourceError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ValidationError"
+                    }
+                  ]
                 }
               }
             }
@@ -41054,11 +41166,18 @@
             }
           },
           "422": {
-            "description": "ValidationError",
+            "description": "TemplateSourceError | ValidationError",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ValidationError"
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/TemplateSourceError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ValidationError"
+                    }
+                  ]
                 }
               }
             }
@@ -65858,6 +65977,208 @@
           "items"
         ],
         "additionalProperties": false
+      },
+      "TemplateSourceError": {
+        "type": "object",
+        "properties": {
+          "_tag": {
+            "type": "string",
+            "enum": [
+              "TemplateSourceError"
+            ]
+          },
+          "message": {
+            "type": "string"
+          },
+          "diagnostics": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "string"
+                },
+                "severity": {
+                  "type": "string",
+                  "enum": [
+                    "error",
+                    "warning",
+                    "info"
+                  ]
+                },
+                "message": {
+                  "type": "string"
+                },
+                "origins": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "fileName": {
+                        "type": "string"
+                      },
+                      "lineNumber": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 9007199254740991
+                      },
+                      "columnNumber": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 9007199254740991
+                      }
+                    },
+                    "required": [
+                      "fileName",
+                      "lineNumber",
+                      "columnNumber"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "clients": {
+                  "anyOf": [
+                    {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "notes": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "provenance": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "fixtures": {
+                  "anyOf": [
+                    {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "occurrences": {
+                  "anyOf": [
+                    {
+                      "type": "array",
+                      "items": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "fileName": {
+                              "type": "string"
+                            },
+                            "lineNumber": {
+                              "type": "integer",
+                              "minimum": 1,
+                              "maximum": 9007199254740991
+                            },
+                            "columnNumber": {
+                              "type": "integer",
+                              "minimum": 1,
+                              "maximum": 9007199254740991
+                            }
+                          },
+                          "required": [
+                            "fileName",
+                            "lineNumber",
+                            "columnNumber"
+                          ],
+                          "additionalProperties": false
+                        }
+                      }
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "compatibility": {
+                  "anyOf": [
+                    {
+                      "type": "object",
+                      "properties": {
+                        "assessment": {
+                          "type": "string",
+                          "enum": [
+                            "risk",
+                            "degradation",
+                            "unverified",
+                            "not-applicable"
+                          ]
+                        },
+                        "title": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "assessment",
+                        "title"
+                      ],
+                      "additionalProperties": false
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              },
+              "required": [
+                "code",
+                "severity",
+                "message",
+                "origins"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "revision": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "_tag",
+          "message",
+          "diagnostics"
+        ],
+        "additionalProperties": false,
+        "x-category": [
+          "validation"
+        ],
+        "x-retryable": false
       },
       "TemplateProjectId": {
         "type": "string",
