@@ -1,5 +1,65 @@
 # Changelog
 
+## v0.36.0
+
+- 351 operations, 258 paths, 517 schemas, 39 webhook events.
+- Breaking against v0.35.1.
+- Removed operations:
+  - `DELETE /v1/unsubscribe-groups/{id}`
+  - `DELETE /v1/unsubscribe-groups/{id}/members`
+  - `GET /v1/unsubscribe-groups`
+  - `GET /v1/unsubscribe-groups/check`
+  - `GET /v1/unsubscribe-groups/{id}/members`
+  - `PATCH /v1/unsubscribe-groups/{id}`
+  - `POST /v1/contacts/bulk-import`
+  - `POST /v1/unsubscribe-groups`
+  - `POST /v1/unsubscribe-groups/{id}/default`
+  - `POST /v1/unsubscribe-groups/{id}/members`
+- Added operations:
+  - `DELETE /v1/topics/{id}`
+  - `DELETE /v1/topics/{id}/forms/{formId}`
+  - `GET /v1/campaigns/{id}/runs/{runId}/report`
+  - `GET /v1/contacts/imports/{id}`
+  - `GET /v1/topics`
+  - `GET /v1/topics/check`
+  - `GET /v1/topics/{id}`
+  - `GET /v1/topics/{id}/forms`
+  - `GET /v1/topics/{id}/forms/{formId}`
+  - `GET /v1/topics/{id}/subscriptions`
+  - `PATCH /v1/topics/{id}`
+  - `PATCH /v1/topics/{id}/forms/{formId}`
+  - `POST /v1/campaigns/preview`
+  - `POST /v1/campaigns/test-send`
+  - `POST /v1/contacts/imports`
+  - `POST /v1/contacts/imports/plan`
+  - `POST /v1/topics`
+  - `POST /v1/topics/{id}/default`
+  - `POST /v1/topics/{id}/forms`
+  - `POST /v1/topics/{id}/subscriptions`
+- Changed schemas:
+  - `CampaignAudience`
+  - `CampaignContent`
+  - `CampaignContentInput`
+  - `CampaignPolicy`
+  - `Contact`
+  - `EmailContent`
+  - `EmailDispatchContent`
+  - `SkippedRecipient`
+  - `SubscribePayload`
+  - `UnsubscribeGroupList`
+  - `UnsubscribeGroupMemberByContact`
+  - `UnsubscribeGroupMemberByEmail`
+  - `UnsubscribeGroupMemberByPhone`
+  - `UnsubscribeGroupMemberId`
+  - `UnsubscribeGroupMemberPage`
+  - `UnsubscribeGroupMemberRef`
+  - `UnsubscribeId`
+- Changed webhook events:
+  - `contact.resubscribed`
+  - `contact.subscribed`
+  - `contact.unsubscribed`
+
+
 ## v0.35.1
 
 - 341 operations, 251 paths, 495 schemas, 39 webhook events.
