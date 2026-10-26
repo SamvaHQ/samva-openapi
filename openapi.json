@@ -19,7 +19,10 @@
             "schema": {
               "anyOf": [
                 {
-                  "type": "string"
+                  "type": "integer",
+                  "maximum": 100,
+                  "exclusiveMinimum": 0,
+                  "description": "Items per page, at most 100."
                 },
                 {
                   "type": "null"
@@ -911,8 +914,7 @@
             "schema": {
               "anyOf": [
                 {
-                  "type": "string",
-                  "contentMediaType": "application/json"
+                  "type": "boolean"
                 },
                 {
                   "type": "null"
@@ -927,7 +929,9 @@
             "schema": {
               "anyOf": [
                 {
-                  "type": "string"
+                  "type": "integer",
+                  "maximum": 604800,
+                  "exclusiveMinimum": 0
                 },
                 {
                   "type": "null"
@@ -2044,7 +2048,10 @@
             "schema": {
               "anyOf": [
                 {
-                  "type": "string"
+                  "type": "integer",
+                  "maximum": 100,
+                  "exclusiveMinimum": 0,
+                  "description": "Items per page, at most 100."
                 },
                 {
                   "type": "null"
@@ -2164,7 +2171,10 @@
             "schema": {
               "anyOf": [
                 {
-                  "type": "string"
+                  "type": "integer",
+                  "maximum": 100,
+                  "exclusiveMinimum": 0,
+                  "description": "Items per page, at most 100."
                 },
                 {
                   "type": "null"
@@ -2678,7 +2688,10 @@
             "schema": {
               "anyOf": [
                 {
-                  "type": "string"
+                  "type": "integer",
+                  "maximum": 100,
+                  "exclusiveMinimum": 0,
+                  "description": "Items per page, at most 100."
                 },
                 {
                   "type": "null"
@@ -3643,7 +3656,10 @@
             "schema": {
               "anyOf": [
                 {
-                  "type": "string"
+                  "type": "integer",
+                  "maximum": 100,
+                  "exclusiveMinimum": 0,
+                  "description": "Items per page, at most 100."
                 },
                 {
                   "type": "null"
@@ -4347,7 +4363,10 @@
             "schema": {
               "anyOf": [
                 {
-                  "type": "string"
+                  "type": "integer",
+                  "maximum": 100,
+                  "exclusiveMinimum": 0,
+                  "description": "Items per page, at most 100."
                 },
                 {
                   "type": "null"
@@ -5095,7 +5114,10 @@
             "schema": {
               "anyOf": [
                 {
-                  "type": "string"
+                  "type": "integer",
+                  "maximum": 100,
+                  "exclusiveMinimum": 0,
+                  "description": "Items per page, at most 100."
                 },
                 {
                   "type": "null"
@@ -6061,7 +6083,10 @@
             "schema": {
               "anyOf": [
                 {
-                  "type": "string"
+                  "type": "integer",
+                  "maximum": 100,
+                  "exclusiveMinimum": 0,
+                  "description": "Items per page, at most 100."
                 },
                 {
                   "type": "null"
@@ -6091,10 +6116,8 @@
             "schema": {
               "anyOf": [
                 {
-                  "type": "string",
-                  "enum": [
-                    "true"
-                  ]
+                  "type": "boolean",
+                  "const": true
                 },
                 {
                   "type": "null"
@@ -9071,7 +9094,10 @@
             "schema": {
               "anyOf": [
                 {
-                  "type": "string"
+                  "type": "integer",
+                  "maximum": 100,
+                  "exclusiveMinimum": 0,
+                  "description": "Items per page, at most 100."
                 },
                 {
                   "type": "null"
@@ -9121,7 +9147,7 @@
             "schema": {
               "anyOf": [
                 {
-                  "type": "string"
+                  "type": "boolean"
                 },
                 {
                   "type": "null"
@@ -9136,7 +9162,7 @@
             "schema": {
               "anyOf": [
                 {
-                  "type": "string"
+                  "type": "boolean"
                 },
                 {
                   "type": "null"
@@ -10766,7 +10792,10 @@
             "schema": {
               "anyOf": [
                 {
-                  "type": "string"
+                  "type": "integer",
+                  "maximum": 100,
+                  "exclusiveMinimum": 0,
+                  "description": "Items per page, at most 100."
                 },
                 {
                   "type": "null"
@@ -11275,8 +11304,7 @@
             "schema": {
               "anyOf": [
                 {
-                  "type": "string",
-                  "contentMediaType": "application/json"
+                  "type": "boolean"
                 },
                 {
                   "type": "null"
@@ -11291,7 +11319,10 @@
             "schema": {
               "anyOf": [
                 {
-                  "type": "string"
+                  "type": "integer",
+                  "maximum": 100,
+                  "exclusiveMinimum": 0,
+                  "description": "Items per page, at most 100."
                 },
                 {
                   "type": "null"
@@ -11770,7 +11801,10 @@
             "schema": {
               "anyOf": [
                 {
-                  "type": "string"
+                  "type": "integer",
+                  "maximum": 100,
+                  "exclusiveMinimum": 0,
+                  "description": "Items per page, at most 100."
                 },
                 {
                   "type": "null"
@@ -12319,8 +12353,7 @@
             "schema": {
               "anyOf": [
                 {
-                  "type": "string",
-                  "contentMediaType": "application/json"
+                  "type": "boolean"
                 },
                 {
                   "type": "null"
@@ -12853,7 +12886,10 @@
             "schema": {
               "anyOf": [
                 {
-                  "type": "string"
+                  "type": "integer",
+                  "maximum": 100,
+                  "exclusiveMinimum": 0,
+                  "description": "Items per page, at most 100."
                 },
                 {
                   "type": "null"
@@ -14607,7 +14643,7 @@
             "schema": {
               "anyOf": [
                 {
-                  "type": "string"
+                  "type": "number"
                 },
                 {
                   "type": "null"
@@ -14779,7 +14815,10 @@
             "schema": {
               "anyOf": [
                 {
-                  "type": "string"
+                  "type": "integer",
+                  "maximum": 100,
+                  "exclusiveMinimum": 0,
+                  "description": "Items per page, at most 100."
                 },
                 {
                   "type": "null"
@@ -15699,7 +15738,10 @@
             "schema": {
               "anyOf": [
                 {
-                  "type": "string"
+                  "type": "integer",
+                  "maximum": 100,
+                  "exclusiveMinimum": 0,
+                  "description": "Items per page, at most 100."
                 },
                 {
                   "type": "null"
@@ -16705,7 +16747,10 @@
             "schema": {
               "anyOf": [
                 {
-                  "type": "string"
+                  "type": "integer",
+                  "maximum": 100,
+                  "exclusiveMinimum": 0,
+                  "description": "Items per page, at most 100."
                 },
                 {
                   "type": "null"
@@ -20791,7 +20836,10 @@
             "schema": {
               "anyOf": [
                 {
-                  "type": "string"
+                  "type": "integer",
+                  "maximum": 100,
+                  "exclusiveMinimum": 0,
+                  "description": "Items per page, at most 100."
                 },
                 {
                   "type": "null"
@@ -20937,7 +20985,10 @@
             "schema": {
               "anyOf": [
                 {
-                  "type": "string"
+                  "type": "integer",
+                  "maximum": 100,
+                  "exclusiveMinimum": 0,
+                  "description": "Items per page, at most 100."
                 },
                 {
                   "type": "null"
@@ -21293,7 +21344,10 @@
             "schema": {
               "anyOf": [
                 {
-                  "type": "string"
+                  "type": "integer",
+                  "maximum": 100,
+                  "exclusiveMinimum": 0,
+                  "description": "Items per page, at most 100."
                 },
                 {
                   "type": "null"
@@ -21428,7 +21482,10 @@
             "schema": {
               "anyOf": [
                 {
-                  "type": "string"
+                  "type": "integer",
+                  "maximum": 100,
+                  "exclusiveMinimum": 0,
+                  "description": "Items per page, at most 100."
                 },
                 {
                   "type": "null"
@@ -22737,7 +22794,9 @@
             "schema": {
               "anyOf": [
                 {
-                  "type": "string"
+                  "type": "integer",
+                  "maximum": 9007199254740991,
+                  "exclusiveMinimum": 0
                 },
                 {
                   "type": "null"
@@ -22880,7 +22939,10 @@
             "schema": {
               "anyOf": [
                 {
-                  "type": "string"
+                  "type": "integer",
+                  "maximum": 100,
+                  "exclusiveMinimum": 0,
+                  "description": "Items per page, at most 100."
                 },
                 {
                   "type": "null"
@@ -23106,7 +23168,10 @@
             "schema": {
               "anyOf": [
                 {
-                  "type": "string"
+                  "type": "integer",
+                  "maximum": 100,
+                  "exclusiveMinimum": 0,
+                  "description": "Items per page, at most 100."
                 },
                 {
                   "type": "null"
@@ -23857,7 +23922,10 @@
             "schema": {
               "anyOf": [
                 {
-                  "type": "string"
+                  "type": "integer",
+                  "maximum": 100,
+                  "exclusiveMinimum": 0,
+                  "description": "Items per page, at most 100."
                 },
                 {
                   "type": "null"
@@ -24269,7 +24337,10 @@
             "schema": {
               "anyOf": [
                 {
-                  "type": "string"
+                  "type": "integer",
+                  "maximum": 100,
+                  "exclusiveMinimum": 0,
+                  "description": "Items per page, at most 100."
                 },
                 {
                   "type": "null"
@@ -24334,8 +24405,7 @@
             "schema": {
               "anyOf": [
                 {
-                  "type": "string",
-                  "contentMediaType": "application/json"
+                  "type": "boolean"
                 },
                 {
                   "type": "null"
@@ -25757,7 +25827,10 @@
             "schema": {
               "anyOf": [
                 {
-                  "type": "string"
+                  "type": "integer",
+                  "maximum": 100,
+                  "exclusiveMinimum": 0,
+                  "description": "Items per page, at most 100."
                 },
                 {
                   "type": "null"
@@ -27687,7 +27760,10 @@
             "schema": {
               "anyOf": [
                 {
-                  "type": "string"
+                  "type": "integer",
+                  "maximum": 100,
+                  "exclusiveMinimum": 0,
+                  "description": "Items per page, at most 100."
                 },
                 {
                   "type": "null"
@@ -28961,7 +29037,9 @@
             "schema": {
               "anyOf": [
                 {
-                  "type": "string"
+                  "type": "integer",
+                  "maximum": 100,
+                  "exclusiveMinimum": 0
                 },
                 {
                   "type": "null"
@@ -29599,7 +29677,10 @@
             "schema": {
               "anyOf": [
                 {
-                  "type": "string"
+                  "type": "integer",
+                  "maximum": 100,
+                  "exclusiveMinimum": 0,
+                  "description": "Items per page, at most 100."
                 },
                 {
                   "type": "null"
@@ -29740,11 +29821,7 @@
             "schema": {
               "anyOf": [
                 {
-                  "type": "string",
-                  "enum": [
-                    "true",
-                    "false"
-                  ]
+                  "type": "boolean"
                 },
                 {
                   "type": "null"
@@ -29947,7 +30024,10 @@
             "schema": {
               "anyOf": [
                 {
-                  "type": "string"
+                  "type": "integer",
+                  "maximum": 100,
+                  "exclusiveMinimum": 0,
+                  "description": "Items per page, at most 100."
                 },
                 {
                   "type": "null"
@@ -35749,7 +35829,9 @@
             "schema": {
               "anyOf": [
                 {
-                  "type": "string"
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 100
                 },
                 {
                   "type": "null"
@@ -39052,7 +39134,10 @@
             "schema": {
               "anyOf": [
                 {
-                  "type": "string"
+                  "type": "integer",
+                  "maximum": 100,
+                  "exclusiveMinimum": 0,
+                  "description": "Items per page, at most 100."
                 },
                 {
                   "type": "null"
@@ -41789,7 +41874,10 @@
             "schema": {
               "anyOf": [
                 {
-                  "type": "string"
+                  "type": "integer",
+                  "maximum": 100,
+                  "exclusiveMinimum": 0,
+                  "description": "Items per page, at most 100."
                 },
                 {
                   "type": "null"
@@ -42389,7 +42477,10 @@
             "schema": {
               "anyOf": [
                 {
-                  "type": "string"
+                  "type": "integer",
+                  "maximum": 100,
+                  "exclusiveMinimum": 0,
+                  "description": "Items per page, at most 100."
                 },
                 {
                   "type": "null"
@@ -44506,7 +44597,10 @@
             "schema": {
               "anyOf": [
                 {
-                  "type": "string"
+                  "type": "integer",
+                  "maximum": 100,
+                  "exclusiveMinimum": 0,
+                  "description": "Items per page, at most 100."
                 },
                 {
                   "type": "null"
@@ -45285,7 +45379,10 @@
             "schema": {
               "anyOf": [
                 {
-                  "type": "string"
+                  "type": "integer",
+                  "maximum": 100,
+                  "exclusiveMinimum": 0,
+                  "description": "Items per page, at most 100."
                 },
                 {
                   "type": "null"
@@ -45571,7 +45668,10 @@
             "schema": {
               "anyOf": [
                 {
-                  "type": "string"
+                  "type": "integer",
+                  "maximum": 100,
+                  "exclusiveMinimum": 0,
+                  "description": "Items per page, at most 100."
                 },
                 {
                   "type": "null"
@@ -46832,7 +46932,10 @@
             "schema": {
               "anyOf": [
                 {
-                  "type": "string"
+                  "type": "integer",
+                  "maximum": 100,
+                  "exclusiveMinimum": 0,
+                  "description": "Items per page, at most 100."
                 },
                 {
                   "type": "null"
@@ -48386,7 +48489,10 @@
             "schema": {
               "anyOf": [
                 {
-                  "type": "string"
+                  "type": "integer",
+                  "maximum": 100,
+                  "exclusiveMinimum": 0,
+                  "description": "Items per page, at most 100."
                 },
                 {
                   "type": "null"
@@ -48491,11 +48597,7 @@
             "schema": {
               "anyOf": [
                 {
-                  "type": "string",
-                  "enum": [
-                    "true",
-                    "false"
-                  ]
+                  "type": "boolean"
                 },
                 {
                   "type": "null"
@@ -48510,11 +48612,7 @@
             "schema": {
               "anyOf": [
                 {
-                  "type": "string",
-                  "enum": [
-                    "true",
-                    "false"
-                  ]
+                  "type": "boolean"
                 },
                 {
                   "type": "null"
@@ -48529,11 +48627,7 @@
             "schema": {
               "anyOf": [
                 {
-                  "type": "string",
-                  "enum": [
-                    "true",
-                    "false"
-                  ]
+                  "type": "boolean"
                 },
                 {
                   "type": "null"
@@ -49104,7 +49198,10 @@
             "schema": {
               "anyOf": [
                 {
-                  "type": "string"
+                  "type": "integer",
+                  "maximum": 100,
+                  "exclusiveMinimum": 0,
+                  "description": "Items per page, at most 100."
                 },
                 {
                   "type": "null"
@@ -49240,7 +49337,10 @@
             "schema": {
               "anyOf": [
                 {
-                  "type": "string"
+                  "type": "integer",
+                  "maximum": 100,
+                  "exclusiveMinimum": 0,
+                  "description": "Items per page, at most 100."
                 },
                 {
                   "type": "null"
@@ -49376,7 +49476,10 @@
             "schema": {
               "anyOf": [
                 {
-                  "type": "string"
+                  "type": "integer",
+                  "maximum": 100,
+                  "exclusiveMinimum": 0,
+                  "description": "Items per page, at most 100."
                 },
                 {
                   "type": "null"
@@ -51188,7 +51291,10 @@
             "schema": {
               "anyOf": [
                 {
-                  "type": "string"
+                  "type": "integer",
+                  "maximum": 100,
+                  "exclusiveMinimum": 0,
+                  "description": "Items per page, at most 100."
                 },
                 {
                   "type": "null"
@@ -51588,7 +51694,10 @@
             "schema": {
               "anyOf": [
                 {
-                  "type": "string"
+                  "type": "integer",
+                  "maximum": 100,
+                  "exclusiveMinimum": 0,
+                  "description": "Items per page, at most 100."
                 },
                 {
                   "type": "null"
@@ -52384,7 +52493,10 @@
             "schema": {
               "anyOf": [
                 {
-                  "type": "string"
+                  "type": "integer",
+                  "maximum": 100,
+                  "exclusiveMinimum": 0,
+                  "description": "Items per page, at most 100."
                 },
                 {
                   "type": "null"
@@ -53385,7 +53497,10 @@
             "schema": {
               "anyOf": [
                 {
-                  "type": "string"
+                  "type": "integer",
+                  "maximum": 100,
+                  "exclusiveMinimum": 0,
+                  "description": "Items per page, at most 100."
                 },
                 {
                   "type": "null"
@@ -53535,7 +53650,10 @@
             "schema": {
               "anyOf": [
                 {
-                  "type": "string"
+                  "type": "integer",
+                  "maximum": 100,
+                  "exclusiveMinimum": 0,
+                  "description": "Items per page, at most 100."
                 },
                 {
                   "type": "null"
@@ -54462,7 +54580,10 @@
             "schema": {
               "anyOf": [
                 {
-                  "type": "string"
+                  "type": "integer",
+                  "maximum": 100,
+                  "exclusiveMinimum": 0,
+                  "description": "Items per page, at most 100."
                 },
                 {
                   "type": "null"
@@ -54847,7 +54968,10 @@
             "schema": {
               "anyOf": [
                 {
-                  "type": "string"
+                  "type": "integer",
+                  "maximum": 100,
+                  "exclusiveMinimum": 0,
+                  "description": "Items per page, at most 100."
                 },
                 {
                   "type": "null"
@@ -55095,7 +55219,10 @@
             "schema": {
               "anyOf": [
                 {
-                  "type": "string"
+                  "type": "integer",
+                  "maximum": 100,
+                  "exclusiveMinimum": 0,
+                  "description": "Items per page, at most 100."
                 },
                 {
                   "type": "null"
