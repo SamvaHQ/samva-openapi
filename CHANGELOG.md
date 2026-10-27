@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.40.0
+
+- 351 operations, 258 paths, 518 schemas, 39 webhook events.
+- Breaking against v0.39.0.
+- Changed operations:
+  - `GET /v1/organizations/usage`
+
+
 ## v0.39.0
 
 - 351 operations, 258 paths, 518 schemas, 39 webhook events.

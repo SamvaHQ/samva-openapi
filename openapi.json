@@ -44286,36 +44286,6 @@
                               "type": "null"
                             }
                           ]
-                        },
-                        "standardGranted": {
-                          "anyOf": [
-                            {
-                              "type": "number"
-                            },
-                            {
-                              "type": "null"
-                            }
-                          ]
-                        },
-                        "standardRemaining": {
-                          "anyOf": [
-                            {
-                              "type": "number"
-                            },
-                            {
-                              "type": "null"
-                            }
-                          ]
-                        },
-                        "standardResetsAt": {
-                          "anyOf": [
-                            {
-                              "type": "string"
-                            },
-                            {
-                              "type": "null"
-                            }
-                          ]
                         }
                       },
                       "required": [
@@ -44331,10 +44301,7 @@
                         "overageAiCost",
                         "aiPackCredits",
                         "aiResetsAt",
-                        "creditsResetsAt",
-                        "standardGranted",
-                        "standardRemaining",
-                        "standardResetsAt"
+                        "creditsResetsAt"
                       ],
                       "additionalProperties": false
                     }
