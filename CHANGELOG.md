@@ -1,5 +1,15 @@
 # Changelog
 
+## v0.41.0
+
+- 351 operations, 258 paths, 517 schemas, 39 webhook events.
+- Breaking against v0.40.0.
+- Changed schemas:
+  - `AgentApprovalPolicy`
+  - `AgentDefinition`
+  - `CreateAgentPayload`
+
+
 ## v0.40.0
 
 - 351 operations, 258 paths, 518 schemas, 39 webhook events.

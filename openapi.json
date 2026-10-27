@@ -69317,13 +69317,6 @@
       "TimeZone": {
         "type": "string"
       },
-      "AgentApprovalPolicy": {
-        "type": "string",
-        "enum": [
-          "toolActions",
-          "none"
-        ]
-      },
       "AgentModel": {
         "type": "string",
         "enum": [
@@ -69492,9 +69485,6 @@
           "model": {
             "$ref": "#/components/schemas/AgentModel"
           },
-          "approvalPolicy": {
-            "$ref": "#/components/schemas/AgentApprovalPolicy"
-          },
           "workingHours": {
             "anyOf": [
               {
@@ -69518,7 +69508,6 @@
           "integrationIds",
           "mode",
           "model",
-          "approvalPolicy",
           "workingHours",
           "takeoverTimeoutMinutes"
         ],
@@ -69711,7 +69700,6 @@
               "integrationIds": [],
               "mode": "supervised",
               "model": "standard",
-              "approvalPolicy": "toolActions",
               "workingHours": null,
               "takeoverTimeoutMinutes": 30
             }
