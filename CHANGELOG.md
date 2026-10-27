@@ -1,5 +1,19 @@
 # Changelog
 
+## v0.44.0
+
+- 365 operations, 269 paths, 527 schemas, 39 webhook events.
+- Breaking against v0.43.0.
+- Changed operations:
+  - `DELETE /v1/topics/{id}/forms/{formId}`
+  - `GET /v1/topics/{id}/forms`
+  - `GET /v1/topics/{id}/forms/{formId}`
+  - `PATCH /v1/topics/{id}/forms/{formId}`
+  - `POST /v1/contacts/imports`
+  - `POST /v1/contacts/imports/plan`
+  - `POST /v1/topics/{id}/forms`
+
+
 ## v0.43.0
 
 - 365 operations, 269 paths, 527 schemas, 39 webhook events.

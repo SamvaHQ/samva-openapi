@@ -18956,18 +18956,11 @@
             }
           },
           "403": {
-            "description": "ForbiddenError | FlagDisabledError",
+            "description": "ForbiddenError",
             "content": {
               "application/json": {
                 "schema": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/ForbiddenError"
-                    },
-                    {
-                      "$ref": "#/components/schemas/FlagDisabledError"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/ForbiddenError"
                 }
               }
             }
@@ -19013,7 +19006,7 @@
             }
           }
         },
-        "description": "The complete encoded JSON request must not exceed 3000000 bytes. Reads multiple declared export files without changing contacts. Restrictive evidence wins per address. Returns estimated counts and at most 100 diagnostics; processing rechecks current restrictions. Filenames never establish permission. Requires listMigration. Missing required columns refuse the file; unknown status values are conflicts and never subscribe a reader.",
+        "description": "The complete encoded JSON request must not exceed 3000000 bytes. Reads multiple declared export files without changing contacts. Restrictive evidence wins per address. Returns estimated counts and at most 100 diagnostics; processing rechecks current restrictions. Filenames never establish permission. Missing required columns refuse the file; unknown status values are conflicts and never subscribe a reader.",
         "summary": "Preview a list migration",
         "requestBody": {
           "content": {
@@ -19465,18 +19458,11 @@
             }
           },
           "403": {
-            "description": "ForbiddenError | FlagDisabledError",
+            "description": "ForbiddenError",
             "content": {
               "application/json": {
                 "schema": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/ForbiddenError"
-                    },
-                    {
-                      "$ref": "#/components/schemas/FlagDisabledError"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/ForbiddenError"
                 }
               }
             }
@@ -19542,7 +19528,7 @@
             }
           }
         },
-        "description": "The complete encoded JSON request, including new-start metadata, must not exceed 3000000 bytes. Admits a durable import using the preview hash and an idempotency key, or resumes the same persisted input at its committed cursor. Imports never restore an existing unsubscribe, suppression or bounce. Namespace-scoped credentials cannot create organization-wide suppressions; those rows are conflicts and create no contact. New active contacts are billable and normal contact events apply. Requires listMigration for new admissions.",
+        "description": "The complete encoded JSON request, including new-start metadata, must not exceed 3000000 bytes. Admits a durable import using the preview hash and an idempotency key, or resumes the same persisted input at its committed cursor. Imports never restore an existing unsubscribe, suppression or bounce. Namespace-scoped credentials cannot create organization-wide suppressions; those rows are conflicts and create no contact. New active contacts are billable and normal contact events apply.",
         "summary": "Start or resume a list migration",
         "requestBody": {
           "content": {
@@ -20107,7 +20093,7 @@
             }
           }
         },
-        "description": "Returns the visible import job's committed counts, generation, terminal failure and resumability. The job persists across worker restarts and page reloads. Admitted jobs remain readable when listMigration is disabled.",
+        "description": "Returns the visible import job's committed counts, generation, terminal failure and resumability. The job persists across worker restarts and page reloads.",
         "summary": "Get list migration progress",
         "x-samva-scope": "contacts:read"
       }
@@ -27954,18 +27940,11 @@
             }
           },
           "403": {
-            "description": "ForbiddenError | FlagDisabledError",
+            "description": "ForbiddenError",
             "content": {
               "application/json": {
                 "schema": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/ForbiddenError"
-                    },
-                    {
-                      "$ref": "#/components/schemas/FlagDisabledError"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/ForbiddenError"
                 }
               }
             }
@@ -28011,7 +27990,7 @@
             }
           }
         },
-        "description": "Lists the signup forms belonging to the visible topic. Requires topicSignup. Forms contain exact HTTPS allowed origins, bounded confirmation and success copy, an optional HTTPS redirect, and a public key for hosted or embedded signup.",
+        "description": "Lists the signup forms belonging to the visible topic. Forms contain exact HTTPS allowed origins, bounded confirmation and success copy, an optional HTTPS redirect, and a public key for hosted or embedded signup.",
         "summary": "List topic forms",
         "x-samva-scope": "contacts:read"
       },
@@ -28057,18 +28036,11 @@
             }
           },
           "403": {
-            "description": "ForbiddenError | FlagDisabledError",
+            "description": "ForbiddenError",
             "content": {
               "application/json": {
                 "schema": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/ForbiddenError"
-                    },
-                    {
-                      "$ref": "#/components/schemas/FlagDisabledError"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/ForbiddenError"
                 }
               }
             }
@@ -28114,7 +28086,7 @@
             }
           }
         },
-        "description": "Creates a signup form for the visible topic and returns 201. The server generates its opaque public key. allowedOrigins contains exact HTTPS origins; the canonical web origin and current topic link origin are also accepted. Copy is plain text and redirectUrl is HTTPS or null. Requires topicSignup.",
+        "description": "Creates a signup form for the visible topic and returns 201. The server generates its opaque public key. allowedOrigins contains exact HTTPS origins; the canonical web origin and current topic link origin are also accepted. Copy is plain text and redirectUrl is HTTPS or null.",
         "summary": "Create a topic form",
         "requestBody": {
           "content": {
@@ -28182,18 +28154,11 @@
             }
           },
           "403": {
-            "description": "ForbiddenError | FlagDisabledError",
+            "description": "ForbiddenError",
             "content": {
               "application/json": {
                 "schema": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/ForbiddenError"
-                    },
-                    {
-                      "$ref": "#/components/schemas/FlagDisabledError"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/ForbiddenError"
                 }
               }
             }
@@ -28239,7 +28204,7 @@
             }
           }
         },
-        "description": "Returns a signup form belonging to the visible topic, including its public key and current link origin. Forms outside the caller namespace or organization return 404. Requires topicSignup.",
+        "description": "Returns a signup form belonging to the visible topic, including its public key and current link origin. Forms outside the caller namespace or organization return 404.",
         "summary": "Get a topic form",
         "x-samva-scope": "contacts:read"
       },
@@ -28295,18 +28260,11 @@
             }
           },
           "403": {
-            "description": "ForbiddenError | FlagDisabledError",
+            "description": "ForbiddenError",
             "content": {
               "application/json": {
                 "schema": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/ForbiddenError"
-                    },
-                    {
-                      "$ref": "#/components/schemas/FlagDisabledError"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/ForbiddenError"
                 }
               }
             }
@@ -28352,7 +28310,7 @@
             }
           }
         },
-        "description": "Updates only the supplied form fields. allowedOrigins replaces the complete exact-origin allowlist; redirectUrl null clears the success redirect. The public key remains stable. Requires topicSignup.",
+        "description": "Updates only the supplied form fields. allowedOrigins replaces the complete exact-origin allowlist; redirectUrl null clears the success redirect. The public key remains stable.",
         "summary": "Update a topic form",
         "requestBody": {
           "content": {
@@ -28427,18 +28385,11 @@
             }
           },
           "403": {
-            "description": "ForbiddenError | FlagDisabledError",
+            "description": "ForbiddenError",
             "content": {
               "application/json": {
                 "schema": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/ForbiddenError"
-                    },
-                    {
-                      "$ref": "#/components/schemas/FlagDisabledError"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/ForbiddenError"
                 }
               }
             }
@@ -28484,7 +28435,7 @@
             }
           }
         },
-        "description": "Deletes a form belonging to the visible topic. Its public key immediately stops accepting signups. Existing email confirmation links keep their snapshotted copy and remain valid until expiry. Requires topicSignup.",
+        "description": "Deletes a form belonging to the visible topic. Its public key immediately stops accepting signups. Existing email confirmation links keep their snapshotted copy and remain valid until expiry.",
         "summary": "Delete a topic form",
         "x-samva-scope": "contacts:delete"
       }
@@ -28606,7 +28557,7 @@
             }
           }
         },
-        "description": "Lists the Markdown issues in the topic's shared Git workspace with each draft's title and its latest campaign send. An uninitialized topic returns null projectId and revision. Requires issueContent and email.",
+        "description": "Lists the Markdown issues in the topic's shared Git workspace with each draft's title and its latest campaign send. An uninitialized topic returns null projectId and revision. Requires newsletters and email.",
         "summary": "List topic issues",
         "x-samva-scope": "contacts:read messages:read"
       },
@@ -29281,7 +29232,7 @@
             }
           }
         },
-        "description": "Creates an unsaved Markdown file. The first request provisions the topic's project and layout; omit expectedRevision only for that first request or its retry. Further creates require the current revision. No template entry is registered. Requires issueContent and email.",
+        "description": "Creates an unsaved Markdown file. The first request provisions the topic's project and layout; omit expectedRevision only for that first request or its retry. Further creates require the current revision. No template entry is registered. Requires newsletters and email.",
         "summary": "Create a topic issue",
         "requestBody": {
           "content": {
@@ -29966,7 +29917,7 @@
             }
           }
         },
-        "description": "Replaces the complete Markdown file under a revision fence. Save separately to create a Git commit. Requires issueContent and email.",
+        "description": "Replaces the complete Markdown file under a revision fence. Save separately to create a Git commit. Requires newsletters and email.",
         "summary": "Update a topic issue",
         "requestBody": {
           "content": {
@@ -30653,7 +30604,7 @@
             }
           }
         },
-        "description": "Returns the existing project workspace and pulls saved Git changes. Does not create a repository. Requires issueContent and email.",
+        "description": "Returns the existing project workspace and pulls saved Git changes. Does not create a repository. Requires newsletters and email.",
         "summary": "Open the topic issue workspace",
         "x-samva-scope": "contacts:read"
       }
@@ -30811,7 +30762,7 @@
             }
           }
         },
-        "description": "Reads one issues/*.md file at the requested workspace revision. Requires issueContent and email.",
+        "description": "Reads one issues/*.md file at the requested workspace revision. Requires newsletters and email.",
         "summary": "Read a topic issue",
         "x-samva-scope": "contacts:read"
       }
@@ -31488,7 +31439,7 @@
             }
           }
         },
-        "description": "Removes one Markdown file from the draft under a revision fence. The project default issue must remain. Saved commits remain readable. Requires issueContent and email.",
+        "description": "Removes one Markdown file from the draft under a revision fence. The project default issue must remain. Saved commits remain readable. Requires newsletters and email.",
         "summary": "Remove a topic issue",
         "requestBody": {
           "content": {
@@ -32009,7 +31960,7 @@
             }
           }
         },
-        "description": "Validates the project and saves its draft as a Git commit with revision and branch-head fences. Issue sends pin the resulting commit and issue path. Requires issueContent and email.",
+        "description": "Validates the project and saves its draft as a Git commit with revision and branch-head fences. Issue sends pin the resulting commit and issue path. Requires newsletters and email.",
         "summary": "Save topic issues",
         "requestBody": {
           "content": {
@@ -32676,7 +32627,7 @@
             }
           }
         },
-        "description": "Compiles the issue in its layout at the requested revision and returns diagnostics and declared fixtures. Requires issueContent and email.",
+        "description": "Compiles the issue in its layout at the requested revision and returns diagnostics and declared fixtures. Requires newsletters and email.",
         "summary": "Check a topic issue",
         "requestBody": {
           "content": {
@@ -33606,7 +33557,7 @@
             }
           }
         },
-        "description": "Renders a fixture declared by the layout to email or web at the requested revision. The web render is the publication page readers get, with the subscribe wall position marked. Requires issueContent and email.",
+        "description": "Renders a fixture declared by the layout to email or web at the requested revision. The web render is the publication page readers get, with the subscribe wall position marked. Requires newsletters and email.",
         "summary": "Render a topic issue fixture",
         "requestBody": {
           "content": {
@@ -33756,7 +33707,7 @@
             }
           }
         },
-        "description": "Reads the current workspace revision and repository branch head. Requires issueContent and email.",
+        "description": "Reads the current workspace revision and repository branch head. Requires newsletters and email.",
         "summary": "Read the topic issue head",
         "x-samva-scope": "contacts:read"
       }
@@ -33951,7 +33902,7 @@
             }
           }
         },
-        "description": "Lists saved commits in the topic repository, newest first. Requires issueContent and email.",
+        "description": "Lists saved commits in the topic repository, newest first. Requires newsletters and email.",
         "summary": "Read topic issue history",
         "x-samva-scope": "contacts:read"
       }
@@ -34194,7 +34145,7 @@
             }
           }
         },
-        "description": "Claims a hostname for an opt-in topic with its public archive enabled and published. Requires issueWeb. Reuse the UUID idempotencyKey when retrying. The hostname serves no publication until Cloudflare confirms both ownership and SSL are active.",
+        "description": "Claims a hostname for an opt-in topic with its public archive enabled and published. Requires newsletters. Reuse the UUID idempotencyKey when retrying. The hostname serves no publication until Cloudflare confirms both ownership and SSL are active.",
         "summary": "Add a publication domain",
         "requestBody": {
           "content": {
