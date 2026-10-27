@@ -15,7 +15,6 @@ number; later releases are versioned by the document alone.
 Each manifest records:
 
 - `version`: the release's semantic version.
-- `source.commit`: the Samva commit the document was generated from.
 - `openapi.sha256` and `SHA256SUMS`: the checksum of the exact `openapi.json` bytes.
 - `compatibility`: the change against the previous release.
   - `compatible`: operations, webhook events, fields, and enum members are only added, and no

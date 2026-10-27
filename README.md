@@ -2,17 +2,16 @@
 
 The canonical OpenAPI 3.1 description for the [Samva](https://samva.dev) email API.
 
-This repository is a read-only mirror. Samva's release process writes every file in it whenever
-the API contracts change the document, and it does not accept pull requests. Report a problem with
-the description as an issue.
+Samva's release process publishes a release here whenever a change to the API changes the
+document. Issues and pull requests are welcome; [CONTRIBUTING.md](./CONTRIBUTING.md) explains how
+a pull request reaches a release.
 
 ## Artifacts
 
 - `openapi.json` is the API description: every public operation and a `webhooks` section with the
   body of every webhook event Samva sends.
-- `manifest.json` records the version, the Samva source commit, the compatibility class against
-  the previous release, the checksum, and the document's shape. `manifest.schema.json` describes
-  it.
+- `manifest.json` records the version, the compatibility class against the previous release, the
+  checksum, and the document's shape. `manifest.schema.json` describes it.
 - `SHA256SUMS` lets consumers verify the downloaded artifact before generation.
 
 ## Consume

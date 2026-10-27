@@ -4,13 +4,14 @@
   "title": "Samva OpenAPI release manifest",
   "type": "object",
   "additionalProperties": false,
-  "required": ["schemaVersion", "version", "releasedAt", "source", "compatibility", "openapi"],
+  "required": ["schemaVersion", "version", "releasedAt", "compatibility", "openapi"],
   "properties": {
     "$schema": {
       "type": "string"
     },
     "schemaVersion": {
-      "const": 2
+      "description": "3 for new releases; earlier releases carry 2 and a source commit.",
+      "enum": [2, 3]
     },
     "version": {
       "description": "The document's own semantic version; the Git tag is v<version>.",
@@ -22,6 +23,7 @@
       "format": "date-time"
     },
     "source": {
+      "description": "Only schema version 2 manifests carry it.",
       "type": "object",
       "additionalProperties": false,
       "required": ["commit"],
