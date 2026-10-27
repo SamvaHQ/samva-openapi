@@ -7905,14 +7905,10 @@
                   "openTracking": {
                     "anyOf": [
                       {
-                        "anyOf": [
-                          {
-                            "type": "boolean"
-                          },
-                          {
-                            "type": "null"
-                          }
-                        ]
+                        "type": "boolean"
+                      },
+                      {
+                        "type": "null"
                       },
                       {
                         "type": "null"
@@ -7922,14 +7918,10 @@
                   "clickTracking": {
                     "anyOf": [
                       {
-                        "anyOf": [
-                          {
-                            "type": "boolean"
-                          },
-                          {
-                            "type": "null"
-                          }
-                        ]
+                        "type": "boolean"
+                      },
+                      {
+                        "type": "null"
                       },
                       {
                         "type": "null"
@@ -7939,17 +7931,13 @@
                   "replyTo": {
                     "anyOf": [
                       {
-                        "anyOf": [
-                          {
-                            "type": "array",
-                            "items": {
-                              "type": "string"
-                            }
-                          },
-                          {
-                            "type": "null"
-                          }
-                        ]
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
                       },
                       {
                         "type": "null"
@@ -7959,14 +7947,10 @@
                   "topicId": {
                     "anyOf": [
                       {
-                        "anyOf": [
-                          {
-                            "$ref": "#/components/schemas/TopicId"
-                          },
-                          {
-                            "type": "null"
-                          }
-                        ]
+                        "$ref": "#/components/schemas/TopicId"
+                      },
+                      {
+                        "type": "null"
                       },
                       {
                         "type": "null"
@@ -7976,14 +7960,10 @@
                   "footerEnabled": {
                     "anyOf": [
                       {
-                        "anyOf": [
-                          {
-                            "type": "boolean"
-                          },
-                          {
-                            "type": "null"
-                          }
-                        ]
+                        "type": "boolean"
+                      },
+                      {
+                        "type": "null"
                       },
                       {
                         "type": "null"
@@ -7993,15 +7973,11 @@
                   "brandSlug": {
                     "anyOf": [
                       {
-                        "anyOf": [
-                          {
-                            "type": "string",
-                            "pattern": "^[a-z0-9](?:[a-z0-9-]{0,62}[a-z0-9])?$"
-                          },
-                          {
-                            "type": "null"
-                          }
-                        ]
+                        "type": "string",
+                        "pattern": "^[a-z0-9](?:[a-z0-9-]{0,62}[a-z0-9])?$"
+                      },
+                      {
+                        "type": "null"
                       },
                       {
                         "type": "null"
@@ -9055,14 +9031,10 @@
                   "name": {
                     "anyOf": [
                       {
-                        "anyOf": [
-                          {
-                            "type": "string"
-                          },
-                          {
-                            "type": "null"
-                          }
-                        ]
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
                       },
                       {
                         "type": "null"
@@ -9072,17 +9044,13 @@
                   "replyToEmails": {
                     "anyOf": [
                       {
-                        "anyOf": [
-                          {
-                            "type": "array",
-                            "items": {
-                              "type": "string"
-                            }
-                          },
-                          {
-                            "type": "null"
-                          }
-                        ]
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
                       },
                       {
                         "type": "null"
@@ -11734,14 +11702,10 @@
                   "expiresAt": {
                     "anyOf": [
                       {
-                        "anyOf": [
-                          {
-                            "type": "string"
-                          },
-                          {
-                            "type": "null"
-                          }
-                        ]
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
                       },
                       {
                         "type": "null"
@@ -12326,17 +12290,13 @@
                   "metadata": {
                     "anyOf": [
                       {
-                        "anyOf": [
-                          {
-                            "type": "object",
-                            "additionalProperties": {
-                              "$ref": "#/components/schemas/JsonValue"
-                            }
-                          },
-                          {
-                            "type": "null"
-                          }
-                        ]
+                        "type": "object",
+                        "additionalProperties": {
+                          "$ref": "#/components/schemas/JsonValue"
+                        }
+                      },
+                      {
+                        "type": "null"
                       },
                       {
                         "type": "null"
@@ -12676,14 +12636,10 @@
                   "conditions": {
                     "anyOf": [
                       {
-                        "anyOf": [
-                          {
-                            "$ref": "#/components/schemas/ForwardingConditions"
-                          },
-                          {
-                            "type": "null"
-                          }
-                        ]
+                        "$ref": "#/components/schemas/ForwardingConditions"
+                      },
+                      {
+                        "type": "null"
                       },
                       {
                         "type": "null"
@@ -12715,17 +12671,13 @@
                   "metadata": {
                     "anyOf": [
                       {
-                        "anyOf": [
-                          {
-                            "type": "object",
-                            "additionalProperties": {
-                              "$ref": "#/components/schemas/JsonValue"
-                            }
-                          },
-                          {
-                            "type": "null"
-                          }
-                        ]
+                        "type": "object",
+                        "additionalProperties": {
+                          "$ref": "#/components/schemas/JsonValue"
+                        }
+                      },
+                      {
+                        "type": "null"
                       },
                       {
                         "type": "null"
@@ -15248,14 +15200,10 @@
                   "context": {
                     "anyOf": [
                       {
-                        "anyOf": [
-                          {
-                            "$ref": "#/components/schemas/ConversationContext"
-                          },
-                          {
-                            "type": "null"
-                          }
-                        ]
+                        "$ref": "#/components/schemas/ConversationContext"
+                      },
+                      {
+                        "type": "null"
                       },
                       {
                         "type": "null"
@@ -15542,14 +15490,10 @@
                   "description": {
                     "anyOf": [
                       {
-                        "anyOf": [
-                          {
-                            "type": "string"
-                          },
-                          {
-                            "type": "null"
-                          }
-                        ]
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
                       },
                       {
                         "type": "null"
@@ -15559,14 +15503,10 @@
                   "externalId": {
                     "anyOf": [
                       {
-                        "anyOf": [
-                          {
-                            "type": "string"
-                          },
-                          {
-                            "type": "null"
-                          }
-                        ]
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
                       },
                       {
                         "type": "null"
@@ -15576,14 +15516,10 @@
                   "parentConversationId": {
                     "anyOf": [
                       {
-                        "anyOf": [
-                          {
-                            "$ref": "#/components/schemas/ConversationId"
-                          },
-                          {
-                            "type": "null"
-                          }
-                        ]
+                        "$ref": "#/components/schemas/ConversationId"
+                      },
+                      {
+                        "type": "null"
                       },
                       {
                         "type": "null"
@@ -15623,14 +15559,10 @@
                   "statusReason": {
                     "anyOf": [
                       {
-                        "anyOf": [
-                          {
-                            "type": "string"
-                          },
-                          {
-                            "type": "null"
-                          }
-                        ]
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
                       },
                       {
                         "type": "null"
@@ -15683,14 +15615,10 @@
                   "context": {
                     "anyOf": [
                       {
-                        "anyOf": [
-                          {
-                            "$ref": "#/components/schemas/ConversationContext"
-                          },
-                          {
-                            "type": "null"
-                          }
-                        ]
+                        "$ref": "#/components/schemas/ConversationContext"
+                      },
+                      {
+                        "type": "null"
                       },
                       {
                         "type": "null"
@@ -17139,14 +17067,10 @@
                   "displayName": {
                     "anyOf": [
                       {
-                        "anyOf": [
-                          {
-                            "type": "string"
-                          },
-                          {
-                            "type": "null"
-                          }
-                        ]
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
                       },
                       {
                         "type": "null"
@@ -17156,14 +17080,10 @@
                   "avatar": {
                     "anyOf": [
                       {
-                        "anyOf": [
-                          {
-                            "type": "string"
-                          },
-                          {
-                            "type": "null"
-                          }
-                        ]
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
                       },
                       {
                         "type": "null"
@@ -17186,14 +17106,10 @@
                   "profile": {
                     "anyOf": [
                       {
-                        "anyOf": [
-                          {
-                            "$ref": "#/components/schemas/ContactProfile"
-                          },
-                          {
-                            "type": "null"
-                          }
-                        ]
+                        "$ref": "#/components/schemas/ContactProfile"
+                      },
+                      {
+                        "type": "null"
                       },
                       {
                         "type": "null"
@@ -17203,14 +17119,10 @@
                   "preferences": {
                     "anyOf": [
                       {
-                        "anyOf": [
-                          {
-                            "$ref": "#/components/schemas/ContactPreferences"
-                          },
-                          {
-                            "type": "null"
-                          }
-                        ]
+                        "$ref": "#/components/schemas/ContactPreferences"
+                      },
+                      {
+                        "type": "null"
                       },
                       {
                         "type": "null"
@@ -17249,14 +17161,10 @@
                   "statusReason": {
                     "anyOf": [
                       {
-                        "anyOf": [
-                          {
-                            "type": "string"
-                          },
-                          {
-                            "type": "null"
-                          }
-                        ]
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
                       },
                       {
                         "type": "null"
@@ -17266,14 +17174,10 @@
                   "externalId": {
                     "anyOf": [
                       {
-                        "anyOf": [
-                          {
-                            "type": "string"
-                          },
-                          {
-                            "type": "null"
-                          }
-                        ]
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
                       },
                       {
                         "type": "null"
@@ -17283,14 +17187,10 @@
                   "metadata": {
                     "anyOf": [
                       {
-                        "anyOf": [
-                          {
-                            "$ref": "#/components/schemas/JsonObject"
-                          },
-                          {
-                            "type": "null"
-                          }
-                        ]
+                        "$ref": "#/components/schemas/JsonObject"
+                      },
+                      {
+                        "type": "null"
                       },
                       {
                         "type": "null"
@@ -17635,14 +17535,10 @@
                           "displayName": {
                             "anyOf": [
                               {
-                                "anyOf": [
-                                  {
-                                    "type": "string"
-                                  },
-                                  {
-                                    "type": "null"
-                                  }
-                                ]
+                                "type": "string"
+                              },
+                              {
+                                "type": "null"
                               },
                               {
                                 "type": "null"
@@ -17652,14 +17548,10 @@
                           "avatar": {
                             "anyOf": [
                               {
-                                "anyOf": [
-                                  {
-                                    "type": "string"
-                                  },
-                                  {
-                                    "type": "null"
-                                  }
-                                ]
+                                "type": "string"
+                              },
+                              {
+                                "type": "null"
                               },
                               {
                                 "type": "null"
@@ -17682,14 +17574,10 @@
                           "profile": {
                             "anyOf": [
                               {
-                                "anyOf": [
-                                  {
-                                    "$ref": "#/components/schemas/ContactProfile"
-                                  },
-                                  {
-                                    "type": "null"
-                                  }
-                                ]
+                                "$ref": "#/components/schemas/ContactProfile"
+                              },
+                              {
+                                "type": "null"
                               },
                               {
                                 "type": "null"
@@ -17699,14 +17587,10 @@
                           "externalId": {
                             "anyOf": [
                               {
-                                "anyOf": [
-                                  {
-                                    "type": "string"
-                                  },
-                                  {
-                                    "type": "null"
-                                  }
-                                ]
+                                "type": "string"
+                              },
+                              {
+                                "type": "null"
                               },
                               {
                                 "type": "null"
@@ -17964,14 +17848,10 @@
                   "displayName": {
                     "anyOf": [
                       {
-                        "anyOf": [
-                          {
-                            "type": "string"
-                          },
-                          {
-                            "type": "null"
-                          }
-                        ]
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
                       },
                       {
                         "type": "null"
@@ -17981,14 +17861,10 @@
                   "avatar": {
                     "anyOf": [
                       {
-                        "anyOf": [
-                          {
-                            "type": "string"
-                          },
-                          {
-                            "type": "null"
-                          }
-                        ]
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
                       },
                       {
                         "type": "null"
@@ -18008,14 +17884,10 @@
                   "preferences": {
                     "anyOf": [
                       {
-                        "anyOf": [
-                          {
-                            "$ref": "#/components/schemas/ContactPreferences"
-                          },
-                          {
-                            "type": "null"
-                          }
-                        ]
+                        "$ref": "#/components/schemas/ContactPreferences"
+                      },
+                      {
+                        "type": "null"
                       },
                       {
                         "type": "null"
@@ -18041,14 +17913,10 @@
                   "statusReason": {
                     "anyOf": [
                       {
-                        "anyOf": [
-                          {
-                            "type": "string"
-                          },
-                          {
-                            "type": "null"
-                          }
-                        ]
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
                       },
                       {
                         "type": "null"
@@ -18058,14 +17926,10 @@
                   "externalId": {
                     "anyOf": [
                       {
-                        "anyOf": [
-                          {
-                            "type": "string"
-                          },
-                          {
-                            "type": "null"
-                          }
-                        ]
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
                       },
                       {
                         "type": "null"
@@ -24404,27 +24268,23 @@
             "schema": {
               "anyOf": [
                 {
-                  "anyOf": [
-                    {
-                      "type": "string",
-                      "enum": [
-                        "static",
-                        "dynamic",
-                        "smart"
-                      ]
-                    },
-                    {
-                      "type": "array",
-                      "items": {
-                        "type": "string",
-                        "enum": [
-                          "static",
-                          "dynamic",
-                          "smart"
-                        ]
-                      }
-                    }
+                  "type": "string",
+                  "enum": [
+                    "static",
+                    "dynamic",
+                    "smart"
                   ]
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "static",
+                      "dynamic",
+                      "smart"
+                    ]
+                  }
                 },
                 {
                   "type": "null"
@@ -24729,14 +24589,10 @@
                   "description": {
                     "anyOf": [
                       {
-                        "anyOf": [
-                          {
-                            "type": "string"
-                          },
-                          {
-                            "type": "null"
-                          }
-                        ]
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
                       },
                       {
                         "type": "null"
@@ -24761,17 +24617,13 @@
                   "criteria": {
                     "anyOf": [
                       {
-                        "anyOf": [
-                          {
-                            "type": "object",
-                            "additionalProperties": {
-                              "$ref": "#/components/schemas/JsonValue"
-                            }
-                          },
-                          {
-                            "type": "null"
-                          }
-                        ]
+                        "type": "object",
+                        "additionalProperties": {
+                          "$ref": "#/components/schemas/JsonValue"
+                        }
+                      },
+                      {
+                        "type": "null"
                       },
                       {
                         "type": "null"
@@ -24807,14 +24659,10 @@
                   "icon": {
                     "anyOf": [
                       {
-                        "anyOf": [
-                          {
-                            "type": "string"
-                          },
-                          {
-                            "type": "null"
-                          }
-                        ]
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
                       },
                       {
                         "type": "null"
@@ -24824,14 +24672,10 @@
                   "parentGroupId": {
                     "anyOf": [
                       {
-                        "anyOf": [
-                          {
-                            "$ref": "#/components/schemas/ContactGroupId"
-                          },
-                          {
-                            "type": "null"
-                          }
-                        ]
+                        "$ref": "#/components/schemas/ContactGroupId"
+                      },
+                      {
+                        "type": "null"
                       },
                       {
                         "type": "null"
@@ -25315,14 +25159,10 @@
                   "description": {
                     "anyOf": [
                       {
-                        "anyOf": [
-                          {
-                            "type": "string"
-                          },
-                          {
-                            "type": "null"
-                          }
-                        ]
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
                       },
                       {
                         "type": "null"
@@ -25347,17 +25187,13 @@
                   "criteria": {
                     "anyOf": [
                       {
-                        "anyOf": [
-                          {
-                            "type": "object",
-                            "additionalProperties": {
-                              "$ref": "#/components/schemas/JsonValue"
-                            }
-                          },
-                          {
-                            "type": "null"
-                          }
-                        ]
+                        "type": "object",
+                        "additionalProperties": {
+                          "$ref": "#/components/schemas/JsonValue"
+                        }
+                      },
+                      {
+                        "type": "null"
                       },
                       {
                         "type": "null"
@@ -25393,14 +25229,10 @@
                   "icon": {
                     "anyOf": [
                       {
-                        "anyOf": [
-                          {
-                            "type": "string"
-                          },
-                          {
-                            "type": "null"
-                          }
-                        ]
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
                       },
                       {
                         "type": "null"
@@ -25410,14 +25242,10 @@
                   "parentGroupId": {
                     "anyOf": [
                       {
-                        "anyOf": [
-                          {
-                            "$ref": "#/components/schemas/ContactGroupId"
-                          },
-                          {
-                            "type": "null"
-                          }
-                        ]
+                        "$ref": "#/components/schemas/ContactGroupId"
+                      },
+                      {
+                        "type": "null"
                       },
                       {
                         "type": "null"
@@ -26576,14 +26404,10 @@
                   "defaultValue": {
                     "anyOf": [
                       {
-                        "anyOf": [
-                          {
-                            "type": "string"
-                          },
-                          {
-                            "type": "null"
-                          }
-                        ]
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
                       },
                       {
                         "type": "null"
@@ -26829,14 +26653,10 @@
                   "defaultValue": {
                     "anyOf": [
                       {
-                        "anyOf": [
-                          {
-                            "type": "string"
-                          },
-                          {
-                            "type": "null"
-                          }
-                        ]
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
                       },
                       {
                         "type": "null"
@@ -50168,14 +49988,10 @@
                   "defaultRegion": {
                     "anyOf": [
                       {
-                        "anyOf": [
-                          {
-                            "$ref": "#/components/schemas/PhoneRegion"
-                          },
-                          {
-                            "type": "null"
-                          }
-                        ]
+                        "$ref": "#/components/schemas/PhoneRegion"
+                      },
+                      {
+                        "type": "null"
                       },
                       {
                         "type": "null"
@@ -50218,17 +50034,13 @@
                   "replyToDefault": {
                     "anyOf": [
                       {
-                        "anyOf": [
-                          {
-                            "type": "array",
-                            "items": {
-                              "type": "string"
-                            }
-                          },
-                          {
-                            "type": "null"
-                          }
-                        ]
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
                       },
                       {
                         "type": "null"
@@ -50238,14 +50050,10 @@
                   "emailFooterEnabledDefault": {
                     "anyOf": [
                       {
-                        "anyOf": [
-                          {
-                            "type": "boolean"
-                          },
-                          {
-                            "type": "null"
-                          }
-                        ]
+                        "type": "boolean"
+                      },
+                      {
+                        "type": "null"
                       },
                       {
                         "type": "null"
@@ -63663,15 +63471,11 @@
           "version": {
             "anyOf": [
               {
-                "anyOf": [
-                  {
-                    "type": "string",
-                    "pattern": "^\\d{1,6}\\.\\d{1,6}\\.\\d{1,6}(?:-[0-9A-Za-z.-]{1,64})?$"
-                  },
-                  {
-                    "$ref": "#/components/schemas/ExtensionVersionId"
-                  }
-                ]
+                "type": "string",
+                "pattern": "^\\d{1,6}\\.\\d{1,6}\\.\\d{1,6}(?:-[0-9A-Za-z.-]{1,64})?$"
+              },
+              {
+                "$ref": "#/components/schemas/ExtensionVersionId"
               },
               {
                 "type": "null"
@@ -66574,17 +66378,13 @@
           "cc": {
             "anyOf": [
               {
-                "anyOf": [
-                  {
-                    "type": "array",
-                    "items": {
-                      "type": "string"
-                    }
-                  },
-                  {
-                    "type": "null"
-                  }
-                ]
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              {
+                "type": "null"
               },
               {
                 "type": "null"
@@ -66594,17 +66394,13 @@
           "bcc": {
             "anyOf": [
               {
-                "anyOf": [
-                  {
-                    "type": "array",
-                    "items": {
-                      "type": "string"
-                    }
-                  },
-                  {
-                    "type": "null"
-                  }
-                ]
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              {
+                "type": "null"
               },
               {
                 "type": "null"
@@ -66614,17 +66410,13 @@
           "replyTo": {
             "anyOf": [
               {
-                "anyOf": [
-                  {
-                    "type": "array",
-                    "items": {
-                      "type": "string"
-                    }
-                  },
-                  {
-                    "type": "null"
-                  }
-                ]
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              {
+                "type": "null"
               },
               {
                 "type": "null"
@@ -66634,14 +66426,10 @@
           "subject": {
             "anyOf": [
               {
-                "anyOf": [
-                  {
-                    "type": "string"
-                  },
-                  {
-                    "type": "null"
-                  }
-                ]
+                "type": "string"
+              },
+              {
+                "type": "null"
               },
               {
                 "type": "null"
@@ -66651,14 +66439,10 @@
           "text": {
             "anyOf": [
               {
-                "anyOf": [
-                  {
-                    "type": "string"
-                  },
-                  {
-                    "type": "null"
-                  }
-                ]
+                "type": "string"
+              },
+              {
+                "type": "null"
               },
               {
                 "type": "null"
@@ -66668,14 +66452,10 @@
           "html": {
             "anyOf": [
               {
-                "anyOf": [
-                  {
-                    "type": "string"
-                  },
-                  {
-                    "type": "null"
-                  }
-                ]
+                "type": "string"
+              },
+              {
+                "type": "null"
               },
               {
                 "type": "null"
@@ -66685,18 +66465,14 @@
           "attachments": {
             "anyOf": [
               {
-                "anyOf": [
-                  {
-                    "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/EmailAttachment"
-                    },
-                    "maxItems": 10
-                  },
-                  {
-                    "type": "null"
-                  }
-                ]
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/EmailAttachment"
+                },
+                "maxItems": 10
+              },
+              {
+                "type": "null"
               },
               {
                 "type": "null"
@@ -67956,14 +67732,10 @@
           "color": {
             "anyOf": [
               {
-                "anyOf": [
-                  {
-                    "type": "string"
-                  },
-                  {
-                    "type": "null"
-                  }
-                ]
+                "type": "string"
+              },
+              {
+                "type": "null"
               },
               {
                 "type": "null"
@@ -67992,14 +67764,10 @@
           "color": {
             "anyOf": [
               {
-                "anyOf": [
-                  {
-                    "type": "string"
-                  },
-                  {
-                    "type": "null"
-                  }
-                ]
+                "type": "string"
+              },
+              {
+                "type": "null"
               },
               {
                 "type": "null"
@@ -68326,14 +68094,10 @@
           "snoozedUntil": {
             "anyOf": [
               {
-                "anyOf": [
-                  {
-                    "type": "string"
-                  },
-                  {
-                    "type": "null"
-                  }
-                ]
+                "type": "string"
+              },
+              {
+                "type": "null"
               },
               {
                 "type": "null"
@@ -68764,22 +68528,18 @@
           "color": {
             "anyOf": [
               {
-                "anyOf": [
-                  {
-                    "type": "string",
-                    "enum": [
-                      "billing",
-                      "domain",
-                      "agent",
-                      "routing",
-                      "important",
-                      "neutral"
-                    ]
-                  },
-                  {
-                    "type": "null"
-                  }
+                "type": "string",
+                "enum": [
+                  "billing",
+                  "domain",
+                  "agent",
+                  "routing",
+                  "important",
+                  "neutral"
                 ]
+              },
+              {
+                "type": "null"
               },
               {
                 "type": "null"
@@ -68801,22 +68561,18 @@
           "color": {
             "anyOf": [
               {
-                "anyOf": [
-                  {
-                    "type": "string",
-                    "enum": [
-                      "billing",
-                      "domain",
-                      "agent",
-                      "routing",
-                      "important",
-                      "neutral"
-                    ]
-                  },
-                  {
-                    "type": "null"
-                  }
+                "type": "string",
+                "enum": [
+                  "billing",
+                  "domain",
+                  "agent",
+                  "routing",
+                  "important",
+                  "neutral"
                 ]
+              },
+              {
+                "type": "null"
               },
               {
                 "type": "null"
@@ -68971,23 +68727,19 @@
           "reason": {
             "anyOf": [
               {
-                "anyOf": [
+                "type": "string",
+                "maxLength": 512,
+                "x-samva-string-checks": [
                   {
-                    "type": "string",
-                    "maxLength": 512,
-                    "x-samva-string-checks": [
-                      {
-                        "id": "effect/schema/isMaxLength",
-                        "payload": {
-                          "maxLength": 512
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "type": "null"
+                    "id": "effect/schema/isMaxLength",
+                    "payload": {
+                      "maxLength": 512
+                    }
                   }
                 ]
+              },
+              {
+                "type": "null"
               },
               {
                 "type": "null"
@@ -69532,15 +69284,7 @@
         "propertyNames": {
           "type": "string",
           "minLength": 1,
-          "maxLength": 64,
-          "x-samva-string-checks": [
-            {
-              "id": "effect/schema/isMaxLength",
-              "payload": {
-                "maxLength": 64
-              }
-            }
-          ]
+          "maxLength": 64
         },
         "additionalProperties": {
           "type": "string",
@@ -69568,14 +69312,10 @@
           "displayName": {
             "anyOf": [
               {
-                "anyOf": [
-                  {
-                    "type": "string"
-                  },
-                  {
-                    "type": "null"
-                  }
-                ]
+                "type": "string"
+              },
+              {
+                "type": "null"
               },
               {
                 "type": "null"
@@ -69656,15 +69396,7 @@
         "propertyNames": {
           "type": "string",
           "minLength": 1,
-          "maxLength": 64,
-          "x-samva-string-checks": [
-            {
-              "id": "effect/schema/isMaxLength",
-              "payload": {
-                "maxLength": 64
-              }
-            }
-          ]
+          "maxLength": 64
         },
         "additionalProperties": {
           "anyOf": [
@@ -71691,21 +71423,17 @@
           "channels": {
             "anyOf": [
               {
-                "anyOf": [
-                  {
-                    "type": "array",
-                    "items": {
-                      "type": "string",
-                      "enum": [
-                        "email"
-                      ]
-                    },
-                    "minItems": 1
-                  },
-                  {
-                    "type": "null"
-                  }
-                ]
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "email"
+                  ]
+                },
+                "minItems": 1
+              },
+              {
+                "type": "null"
               },
               {
                 "type": "null"
@@ -71715,23 +71443,19 @@
           "mailboxIds": {
             "anyOf": [
               {
-                "anyOf": [
+                "type": "array",
+                "prefixItems": [
                   {
-                    "type": "array",
-                    "prefixItems": [
-                      {
-                        "$ref": "#/components/schemas/MailboxId"
-                      }
-                    ],
-                    "minItems": 1,
-                    "items": {
-                      "$ref": "#/components/schemas/MailboxId"
-                    }
-                  },
-                  {
-                    "type": "null"
+                    "$ref": "#/components/schemas/MailboxId"
                   }
-                ]
+                ],
+                "minItems": 1,
+                "items": {
+                  "$ref": "#/components/schemas/MailboxId"
+                }
+              },
+              {
+                "type": "null"
               },
               {
                 "type": "null"
@@ -71741,14 +71465,10 @@
           "namespaceId": {
             "anyOf": [
               {
-                "anyOf": [
-                  {
-                    "$ref": "#/components/schemas/NamespaceId"
-                  },
-                  {
-                    "type": "null"
-                  }
-                ]
+                "$ref": "#/components/schemas/NamespaceId"
+              },
+              {
+                "type": "null"
               },
               {
                 "type": "null"
@@ -73395,14 +73115,10 @@
               "description": {
                 "anyOf": [
                   {
-                    "anyOf": [
-                      {
-                        "type": "string"
-                      },
-                      {
-                        "type": "null"
-                      }
-                    ]
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
                   },
                   {
                     "type": "null"
@@ -73412,23 +73128,19 @@
               "category": {
                 "anyOf": [
                   {
-                    "anyOf": [
-                      {
-                        "type": "string",
-                        "enum": [
-                          "transactional",
-                          "marketing",
-                          "support",
-                          "notification",
-                          "verification",
-                          "reminder",
-                          "alert"
-                        ]
-                      },
-                      {
-                        "type": "null"
-                      }
+                    "type": "string",
+                    "enum": [
+                      "transactional",
+                      "marketing",
+                      "support",
+                      "notification",
+                      "verification",
+                      "reminder",
+                      "alert"
                     ]
+                  },
+                  {
+                    "type": "null"
                   },
                   {
                     "type": "null"
@@ -73438,14 +73150,10 @@
               "fromDefault": {
                 "anyOf": [
                   {
-                    "anyOf": [
-                      {
-                        "$ref": "#/components/schemas/TemplateFromDefault"
-                      },
-                      {
-                        "type": "null"
-                      }
-                    ]
+                    "$ref": "#/components/schemas/TemplateFromDefault"
+                  },
+                  {
+                    "type": "null"
                   },
                   {
                     "type": "null"
@@ -73455,17 +73163,13 @@
               "replyToDefault": {
                 "anyOf": [
                   {
-                    "anyOf": [
-                      {
-                        "type": "array",
-                        "items": {
-                          "type": "string"
-                        }
-                      },
-                      {
-                        "type": "null"
-                      }
-                    ]
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "type": "null"
                   },
                   {
                     "type": "null"
@@ -73475,14 +73179,10 @@
               "trackingDefault": {
                 "anyOf": [
                   {
-                    "anyOf": [
-                      {
-                        "$ref": "#/components/schemas/TemplateTrackingDefault"
-                      },
-                      {
-                        "type": "null"
-                      }
-                    ]
+                    "$ref": "#/components/schemas/TemplateTrackingDefault"
+                  },
+                  {
+                    "type": "null"
                   },
                   {
                     "type": "null"
@@ -73556,14 +73256,10 @@
           "description": {
             "anyOf": [
               {
-                "anyOf": [
-                  {
-                    "type": "string"
-                  },
-                  {
-                    "type": "null"
-                  }
-                ]
+                "type": "string"
+              },
+              {
+                "type": "null"
               },
               {
                 "type": "null"
@@ -73573,23 +73269,19 @@
           "category": {
             "anyOf": [
               {
-                "anyOf": [
-                  {
-                    "type": "string",
-                    "enum": [
-                      "transactional",
-                      "marketing",
-                      "support",
-                      "notification",
-                      "verification",
-                      "reminder",
-                      "alert"
-                    ]
-                  },
-                  {
-                    "type": "null"
-                  }
+                "type": "string",
+                "enum": [
+                  "transactional",
+                  "marketing",
+                  "support",
+                  "notification",
+                  "verification",
+                  "reminder",
+                  "alert"
                 ]
+              },
+              {
+                "type": "null"
               },
               {
                 "type": "null"
@@ -73789,14 +73481,10 @@
           "description": {
             "anyOf": [
               {
-                "anyOf": [
-                  {
-                    "type": "string"
-                  },
-                  {
-                    "type": "null"
-                  }
-                ]
+                "type": "string"
+              },
+              {
+                "type": "null"
               },
               {
                 "type": "null"
@@ -73806,23 +73494,19 @@
           "category": {
             "anyOf": [
               {
-                "anyOf": [
-                  {
-                    "type": "string",
-                    "enum": [
-                      "transactional",
-                      "marketing",
-                      "support",
-                      "notification",
-                      "verification",
-                      "reminder",
-                      "alert"
-                    ]
-                  },
-                  {
-                    "type": "null"
-                  }
+                "type": "string",
+                "enum": [
+                  "transactional",
+                  "marketing",
+                  "support",
+                  "notification",
+                  "verification",
+                  "reminder",
+                  "alert"
                 ]
+              },
+              {
+                "type": "null"
               },
               {
                 "type": "null"
@@ -74959,24 +74643,20 @@
           "redirectUrl": {
             "anyOf": [
               {
-                "anyOf": [
+                "type": "string",
+                "pattern": "^https:\\/\\/",
+                "maxLength": 2048,
+                "x-samva-string-checks": [
                   {
-                    "type": "string",
-                    "pattern": "^https:\\/\\/",
-                    "maxLength": 2048,
-                    "x-samva-string-checks": [
-                      {
-                        "id": "effect/schema/isMaxLength",
-                        "payload": {
-                          "maxLength": 2048
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "type": "null"
+                    "id": "effect/schema/isMaxLength",
+                    "payload": {
+                      "maxLength": 2048
+                    }
                   }
                 ]
+              },
+              {
+                "type": "null"
               },
               {
                 "type": "null"
@@ -75458,14 +75138,10 @@
           "description": {
             "anyOf": [
               {
-                "anyOf": [
-                  {
-                    "type": "string"
-                  },
-                  {
-                    "type": "null"
-                  }
-                ]
+                "type": "string"
+              },
+              {
+                "type": "null"
               },
               {
                 "type": "null"
@@ -75499,15 +75175,11 @@
           "publicationSlug": {
             "anyOf": [
               {
-                "anyOf": [
-                  {
-                    "type": "string",
-                    "pattern": "^[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?$"
-                  },
-                  {
-                    "type": "null"
-                  }
-                ]
+                "type": "string",
+                "pattern": "^[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?$"
+              },
+              {
+                "type": "null"
               },
               {
                 "type": "null"
@@ -75517,14 +75189,10 @@
           "defaultSenderId": {
             "anyOf": [
               {
-                "anyOf": [
-                  {
-                    "$ref": "#/components/schemas/EmailSenderId"
-                  },
-                  {
-                    "type": "null"
-                  }
-                ]
+                "$ref": "#/components/schemas/EmailSenderId"
+              },
+              {
+                "type": "null"
               },
               {
                 "type": "null"
@@ -75534,14 +75202,10 @@
           "replyMailboxId": {
             "anyOf": [
               {
-                "anyOf": [
-                  {
-                    "$ref": "#/components/schemas/MailboxId"
-                  },
-                  {
-                    "type": "null"
-                  }
-                ]
+                "$ref": "#/components/schemas/MailboxId"
+              },
+              {
+                "type": "null"
               },
               {
                 "type": "null"
@@ -75551,14 +75215,10 @@
           "templateId": {
             "anyOf": [
               {
-                "anyOf": [
-                  {
-                    "$ref": "#/components/schemas/TemplateId"
-                  },
-                  {
-                    "type": "null"
-                  }
-                ]
+                "$ref": "#/components/schemas/TemplateId"
+              },
+              {
+                "type": "null"
               },
               {
                 "type": "null"
@@ -75578,14 +75238,10 @@
           "description": {
             "anyOf": [
               {
-                "anyOf": [
-                  {
-                    "type": "string"
-                  },
-                  {
-                    "type": "null"
-                  }
-                ]
+                "type": "string"
+              },
+              {
+                "type": "null"
               },
               {
                 "type": "null"
@@ -75595,14 +75251,10 @@
           "namespaceId": {
             "anyOf": [
               {
-                "anyOf": [
-                  {
-                    "$ref": "#/components/schemas/NamespaceId"
-                  },
-                  {
-                    "type": "null"
-                  }
-                ]
+                "$ref": "#/components/schemas/NamespaceId"
+              },
+              {
+                "type": "null"
               },
               {
                 "type": "null"
@@ -75636,15 +75288,11 @@
           "publicationSlug": {
             "anyOf": [
               {
-                "anyOf": [
-                  {
-                    "type": "string",
-                    "pattern": "^[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?$"
-                  },
-                  {
-                    "type": "null"
-                  }
-                ]
+                "type": "string",
+                "pattern": "^[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?$"
+              },
+              {
+                "type": "null"
               },
               {
                 "type": "null"
@@ -75654,14 +75302,10 @@
           "defaultSenderId": {
             "anyOf": [
               {
-                "anyOf": [
-                  {
-                    "$ref": "#/components/schemas/EmailSenderId"
-                  },
-                  {
-                    "type": "null"
-                  }
-                ]
+                "$ref": "#/components/schemas/EmailSenderId"
+              },
+              {
+                "type": "null"
               },
               {
                 "type": "null"
@@ -75671,14 +75315,10 @@
           "replyMailboxId": {
             "anyOf": [
               {
-                "anyOf": [
-                  {
-                    "$ref": "#/components/schemas/MailboxId"
-                  },
-                  {
-                    "type": "null"
-                  }
-                ]
+                "$ref": "#/components/schemas/MailboxId"
+              },
+              {
+                "type": "null"
               },
               {
                 "type": "null"
@@ -75688,14 +75328,10 @@
           "templateId": {
             "anyOf": [
               {
-                "anyOf": [
-                  {
-                    "$ref": "#/components/schemas/TemplateId"
-                  },
-                  {
-                    "type": "null"
-                  }
-                ]
+                "$ref": "#/components/schemas/TemplateId"
+              },
+              {
+                "type": "null"
               },
               {
                 "type": "null"
@@ -76655,6 +76291,73 @@
         ],
         "additionalProperties": false
       },
+      "Agent": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "$ref": "#/components/schemas/AgentId"
+          },
+          "name": {
+            "type": "string"
+          },
+          "namespaceId": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/NamespaceId"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "revision": {
+            "type": "string"
+          },
+          "draft": {
+            "$ref": "#/components/schemas/AgentDefinition"
+          },
+          "publishedVersion": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "publishedAt": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "namespaceId",
+          "revision",
+          "draft",
+          "publishedVersion",
+          "publishedAt",
+          "createdAt",
+          "updatedAt"
+        ],
+        "additionalProperties": false
+      },
       "PublishAgentPayload": {
         "type": "object",
         "properties": {
@@ -76845,73 +76548,6 @@
             }
           }
         ]
-      },
-      "Agent": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "$ref": "#/components/schemas/AgentId"
-          },
-          "name": {
-            "type": "string"
-          },
-          "namespaceId": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/NamespaceId"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "revision": {
-            "type": "string"
-          },
-          "draft": {
-            "$ref": "#/components/schemas/AgentDefinition"
-          },
-          "publishedVersion": {
-            "anyOf": [
-              {
-                "type": "integer",
-                "minimum": -9007199254740991,
-                "maximum": 9007199254740991
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "publishedAt": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "createdAt": {
-            "type": "string"
-          },
-          "updatedAt": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "id",
-          "name",
-          "namespaceId",
-          "revision",
-          "draft",
-          "publishedVersion",
-          "publishedAt",
-          "createdAt",
-          "updatedAt"
-        ],
-        "additionalProperties": false
       },
       "CreateAgentPayload": {
         "type": "object",
@@ -78335,6 +77971,66 @@
         ],
         "additionalProperties": false
       },
+      "Journey": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "$ref": "#/components/schemas/JourneyId"
+          },
+          "name": {
+            "type": "string"
+          },
+          "status": {
+            "$ref": "#/components/schemas/JourneyStatus"
+          },
+          "revision": {
+            "type": "string"
+          },
+          "draft": {
+            "$ref": "#/components/schemas/JourneyDefinition"
+          },
+          "publishedVersion": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "publishedAt": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "status",
+          "revision",
+          "draft",
+          "publishedVersion",
+          "publishedAt",
+          "createdAt",
+          "updatedAt"
+        ],
+        "additionalProperties": false
+      },
       "JourneyStatus": {
         "type": "string",
         "enum": [
@@ -78418,66 +78114,6 @@
             }
           }
         ]
-      },
-      "Journey": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "$ref": "#/components/schemas/JourneyId"
-          },
-          "name": {
-            "type": "string"
-          },
-          "status": {
-            "$ref": "#/components/schemas/JourneyStatus"
-          },
-          "revision": {
-            "type": "string"
-          },
-          "draft": {
-            "$ref": "#/components/schemas/JourneyDefinition"
-          },
-          "publishedVersion": {
-            "anyOf": [
-              {
-                "type": "integer",
-                "minimum": -9007199254740991,
-                "maximum": 9007199254740991
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "publishedAt": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "createdAt": {
-            "type": "string"
-          },
-          "updatedAt": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "id",
-          "name",
-          "status",
-          "revision",
-          "draft",
-          "publishedVersion",
-          "publishedAt",
-          "createdAt",
-          "updatedAt"
-        ],
-        "additionalProperties": false
       },
       "CreateJourneyPayload": {
         "type": "object",
@@ -79932,14 +79568,10 @@
           "firstName": {
             "anyOf": [
               {
-                "anyOf": [
-                  {
-                    "type": "string"
-                  },
-                  {
-                    "type": "null"
-                  }
-                ]
+                "type": "string"
+              },
+              {
+                "type": "null"
               },
               {
                 "type": "null"
@@ -79949,14 +79581,10 @@
           "lastName": {
             "anyOf": [
               {
-                "anyOf": [
-                  {
-                    "type": "string"
-                  },
-                  {
-                    "type": "null"
-                  }
-                ]
+                "type": "string"
+              },
+              {
+                "type": "null"
               },
               {
                 "type": "null"
@@ -79966,14 +79594,10 @@
           "company": {
             "anyOf": [
               {
-                "anyOf": [
-                  {
-                    "type": "string"
-                  },
-                  {
-                    "type": "null"
-                  }
-                ]
+                "type": "string"
+              },
+              {
+                "type": "null"
               },
               {
                 "type": "null"
@@ -79983,14 +79607,10 @@
           "jobTitle": {
             "anyOf": [
               {
-                "anyOf": [
-                  {
-                    "type": "string"
-                  },
-                  {
-                    "type": "null"
-                  }
-                ]
+                "type": "string"
+              },
+              {
+                "type": "null"
               },
               {
                 "type": "null"
@@ -80000,14 +79620,10 @@
           "location": {
             "anyOf": [
               {
-                "anyOf": [
-                  {
-                    "$ref": "#/components/schemas/ContactLocation"
-                  },
-                  {
-                    "type": "null"
-                  }
-                ]
+                "$ref": "#/components/schemas/ContactLocation"
+              },
+              {
+                "type": "null"
               },
               {
                 "type": "null"
@@ -85415,14 +85031,10 @@
       "CampaignConversationRef": {
         "anyOf": [
           {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/ConversationId"
-              },
-              {
-                "type": "null"
-              }
-            ]
+            "$ref": "#/components/schemas/ConversationId"
+          },
+          {
+            "type": "null"
           },
           {
             "type": "null"
@@ -85432,14 +85044,10 @@
       "CampaignReplyMailbox": {
         "anyOf": [
           {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/MailboxId"
-              },
-              {
-                "type": "null"
-              }
-            ]
+            "$ref": "#/components/schemas/MailboxId"
+          },
+          {
+            "type": "null"
           },
           {
             "type": "null"
@@ -85565,14 +85173,10 @@
           "topicId": {
             "anyOf": [
               {
-                "anyOf": [
-                  {
-                    "$ref": "#/components/schemas/TopicId"
-                  },
-                  {
-                    "type": "null"
-                  }
-                ]
+                "$ref": "#/components/schemas/TopicId"
+              },
+              {
+                "type": "null"
               },
               {
                 "type": "null"
@@ -85651,17 +85255,13 @@
       "ReplyToAddresses": {
         "anyOf": [
           {
-            "anyOf": [
-              {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              {
-                "type": "null"
-              }
-            ]
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          {
+            "type": "null"
           },
           {
             "type": "null"
@@ -86142,14 +85742,10 @@
           "topicId": {
             "anyOf": [
               {
-                "anyOf": [
-                  {
-                    "$ref": "#/components/schemas/TopicId"
-                  },
-                  {
-                    "type": "null"
-                  }
-                ]
+                "$ref": "#/components/schemas/TopicId"
+              },
+              {
+                "type": "null"
               },
               {
                 "type": "null"
@@ -86489,14 +86085,10 @@
           "conversationId": {
             "anyOf": [
               {
-                "anyOf": [
-                  {
-                    "$ref": "#/components/schemas/ConversationId"
-                  },
-                  {
-                    "type": "null"
-                  }
-                ]
+                "$ref": "#/components/schemas/ConversationId"
+              },
+              {
+                "type": "null"
               },
               {
                 "type": "null"
@@ -86554,14 +86146,10 @@
           "conversationId": {
             "anyOf": [
               {
-                "anyOf": [
-                  {
-                    "$ref": "#/components/schemas/ConversationId"
-                  },
-                  {
-                    "type": "null"
-                  }
-                ]
+                "$ref": "#/components/schemas/ConversationId"
+              },
+              {
+                "type": "null"
               },
               {
                 "type": "null"
@@ -86688,14 +86276,10 @@
           "topicId": {
             "anyOf": [
               {
-                "anyOf": [
-                  {
-                    "$ref": "#/components/schemas/TopicId"
-                  },
-                  {
-                    "type": "null"
-                  }
-                ]
+                "$ref": "#/components/schemas/TopicId"
+              },
+              {
+                "type": "null"
               },
               {
                 "type": "null"
@@ -86755,17 +86339,13 @@
       "EmailBccRecipients": {
         "anyOf": [
           {
-            "anyOf": [
-              {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/EmailRecipient"
-                }
-              },
-              {
-                "type": "null"
-              }
-            ]
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EmailRecipient"
+            }
+          },
+          {
+            "type": "null"
           },
           {
             "type": "null"
@@ -86805,14 +86385,10 @@
               "displayName": {
                 "anyOf": [
                   {
-                    "anyOf": [
-                      {
-                        "type": "string"
-                      },
-                      {
-                        "type": "null"
-                      }
-                    ]
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
                   },
                   {
                     "type": "null"
@@ -86830,17 +86406,13 @@
       "EmailCcRecipients": {
         "anyOf": [
           {
-            "anyOf": [
-              {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/EmailRecipient"
-                }
-              },
-              {
-                "type": "null"
-              }
-            ]
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EmailRecipient"
+            }
+          },
+          {
+            "type": "null"
           },
           {
             "type": "null"
@@ -86891,14 +86463,10 @@
           "conversationId": {
             "anyOf": [
               {
-                "anyOf": [
-                  {
-                    "$ref": "#/components/schemas/ConversationId"
-                  },
-                  {
-                    "type": "null"
-                  }
-                ]
+                "$ref": "#/components/schemas/ConversationId"
+              },
+              {
+                "type": "null"
               },
               {
                 "type": "null"
@@ -87025,14 +86593,10 @@
           "topicId": {
             "anyOf": [
               {
-                "anyOf": [
-                  {
-                    "$ref": "#/components/schemas/TopicId"
-                  },
-                  {
-                    "type": "null"
-                  }
-                ]
+                "$ref": "#/components/schemas/TopicId"
+              },
+              {
+                "type": "null"
               },
               {
                 "type": "null"
@@ -92527,14 +92091,10 @@
                       "displayName": {
                         "anyOf": [
                           {
-                            "anyOf": [
-                              {
-                                "type": "string"
-                              },
-                              {
-                                "type": "null"
-                              }
-                            ]
+                            "type": "string"
+                          },
+                          {
+                            "type": "null"
                           },
                           {
                             "type": "null"
@@ -92577,14 +92137,10 @@
                       "externalId": {
                         "anyOf": [
                           {
-                            "anyOf": [
-                              {
-                                "type": "string"
-                              },
-                              {
-                                "type": "null"
-                              }
-                            ]
+                            "type": "string"
+                          },
+                          {
+                            "type": "null"
                           },
                           {
                             "type": "null"
@@ -92669,14 +92225,10 @@
                       "displayName": {
                         "anyOf": [
                           {
-                            "anyOf": [
-                              {
-                                "type": "string"
-                              },
-                              {
-                                "type": "null"
-                              }
-                            ]
+                            "type": "string"
+                          },
+                          {
+                            "type": "null"
                           },
                           {
                             "type": "null"
@@ -92719,14 +92271,10 @@
                       "externalId": {
                         "anyOf": [
                           {
-                            "anyOf": [
-                              {
-                                "type": "string"
-                              },
-                              {
-                                "type": "null"
-                              }
-                            ]
+                            "type": "string"
+                          },
+                          {
+                            "type": "null"
                           },
                           {
                             "type": "null"
@@ -92811,14 +92359,10 @@
                       "displayName": {
                         "anyOf": [
                           {
-                            "anyOf": [
-                              {
-                                "type": "string"
-                              },
-                              {
-                                "type": "null"
-                              }
-                            ]
+                            "type": "string"
+                          },
+                          {
+                            "type": "null"
                           },
                           {
                             "type": "null"
@@ -92861,14 +92405,10 @@
                       "externalId": {
                         "anyOf": [
                           {
-                            "anyOf": [
-                              {
-                                "type": "string"
-                              },
-                              {
-                                "type": "null"
-                              }
-                            ]
+                            "type": "string"
+                          },
+                          {
+                            "type": "null"
                           },
                           {
                             "type": "null"
@@ -93592,14 +93132,10 @@
                       "title": {
                         "anyOf": [
                           {
-                            "anyOf": [
-                              {
-                                "type": "string"
-                              },
-                              {
-                                "type": "null"
-                              }
-                            ]
+                            "type": "string"
+                          },
+                          {
+                            "type": "null"
                           },
                           {
                             "type": "null"
@@ -93638,15 +93174,11 @@
                       "primaryContactId": {
                         "anyOf": [
                           {
-                            "anyOf": [
-                              {
-                                "type": "string",
-                                "pattern": "^contact_[0-9a-hjkmnp-tv-z]{16,24}$"
-                              },
-                              {
-                                "type": "null"
-                              }
-                            ]
+                            "type": "string",
+                            "pattern": "^contact_[0-9a-hjkmnp-tv-z]{16,24}$"
+                          },
+                          {
+                            "type": "null"
                           },
                           {
                             "type": "null"
@@ -93723,14 +93255,10 @@
                       "title": {
                         "anyOf": [
                           {
-                            "anyOf": [
-                              {
-                                "type": "string"
-                              },
-                              {
-                                "type": "null"
-                              }
-                            ]
+                            "type": "string"
+                          },
+                          {
+                            "type": "null"
                           },
                           {
                             "type": "null"
@@ -93769,15 +93297,11 @@
                       "primaryContactId": {
                         "anyOf": [
                           {
-                            "anyOf": [
-                              {
-                                "type": "string",
-                                "pattern": "^contact_[0-9a-hjkmnp-tv-z]{16,24}$"
-                              },
-                              {
-                                "type": "null"
-                              }
-                            ]
+                            "type": "string",
+                            "pattern": "^contact_[0-9a-hjkmnp-tv-z]{16,24}$"
+                          },
+                          {
+                            "type": "null"
                           },
                           {
                             "type": "null"
@@ -93854,14 +93378,10 @@
                       "title": {
                         "anyOf": [
                           {
-                            "anyOf": [
-                              {
-                                "type": "string"
-                              },
-                              {
-                                "type": "null"
-                              }
-                            ]
+                            "type": "string"
+                          },
+                          {
+                            "type": "null"
                           },
                           {
                             "type": "null"
@@ -93900,15 +93420,11 @@
                       "primaryContactId": {
                         "anyOf": [
                           {
-                            "anyOf": [
-                              {
-                                "type": "string",
-                                "pattern": "^contact_[0-9a-hjkmnp-tv-z]{16,24}$"
-                              },
-                              {
-                                "type": "null"
-                              }
-                            ]
+                            "type": "string",
+                            "pattern": "^contact_[0-9a-hjkmnp-tv-z]{16,24}$"
+                          },
+                          {
+                            "type": "null"
                           },
                           {
                             "type": "null"

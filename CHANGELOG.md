@@ -1,5 +1,68 @@
 # Changelog
 
+## v0.43.0
+
+- 365 operations, 269 paths, 527 schemas, 39 webhook events.
+- Breaking against v0.42.0.
+- Changed operations:
+  - `GET /v1/contact-groups`
+  - `PATCH /v1/contact-groups/{id}`
+  - `PATCH /v1/contacts/{id}`
+  - `PATCH /v1/conversations/{id}`
+  - `PATCH /v1/custom-fields/{id}`
+  - `PATCH /v1/email/blocks/{id}`
+  - `PATCH /v1/email/domains/{id}/config`
+  - `PATCH /v1/email/forwarding/{id}`
+  - `PATCH /v1/organizations/current`
+  - `POST /v1/contact-groups`
+  - `POST /v1/contacts`
+  - `POST /v1/contacts/find-or-create`
+  - `POST /v1/conversations`
+  - `POST /v1/custom-fields`
+  - `POST /v1/email/forwarding`
+  - `POST /v1/email/senders`
+- Changed schemas:
+  - `AddTemplateEntryPayload`
+  - `CampaignConversationRef`
+  - `CampaignEmailContent`
+  - `CampaignEmailInput`
+  - `CampaignReplyMailbox`
+  - `ContactProfileUpdate`
+  - `CreateMailboxLabelPayload`
+  - `CreateMailboxNotePayload`
+  - `CreateTemplatePayload`
+  - `DispatchSendMessagePayload`
+  - `EmailBccRecipients`
+  - `EmailCcRecipients`
+  - `EmailContent`
+  - `EmailDispatchContent`
+  - `EmailRecipient`
+  - `EmailSendMessagePayload`
+  - `MailboxMetadata`
+  - `MailboxMetadataPatch`
+  - `ReplyToAddresses`
+  - `SendMessagePayload`
+  - `TopicCreatePayload`
+  - `TopicFormUpdatePayload`
+  - `TopicUpdatePayload`
+  - `UpdateMailboxDraftPayload`
+  - `UpdateMailboxEndpointPayload`
+  - `UpdateMailboxLabelPayload`
+  - `UpdateMailboxNotePayload`
+  - `UpdateMailboxPolicyPayload`
+  - `UpdateMailboxThreadPayload`
+  - `UpdateTemplatePayload`
+  - `UpdateWebhookPayload`
+  - `UpgradeExtensionPayload`
+- Changed webhook events:
+  - `contact.created`
+  - `contact.deleted`
+  - `contact.updated`
+  - `conversation.archived`
+  - `conversation.created`
+  - `conversation.updated`
+
+
 ## v0.42.0
 
 - 365 operations, 269 paths, 527 schemas, 39 webhook events.
