@@ -1,5 +1,34 @@
 # Changelog
 
+## v0.42.0
+
+- 365 operations, 269 paths, 527 schemas, 39 webhook events.
+- Breaking against v0.41.0.
+- Added operations:
+  - `DELETE /v1/topics/{id}/publication/domains/{hostname}`
+  - `GET /v1/topics/{id}/issues`
+  - `GET /v1/topics/{id}/issues/document`
+  - `GET /v1/topics/{id}/issues/head`
+  - `GET /v1/topics/{id}/issues/history`
+  - `GET /v1/topics/{id}/issues/workspace`
+  - `GET /v1/topics/{id}/publication/domains/{hostname}`
+  - `PATCH /v1/topics/{id}/issues`
+  - `POST /v1/topics/{id}/issues`
+  - `POST /v1/topics/{id}/issues/check`
+  - `POST /v1/topics/{id}/issues/remove`
+  - `POST /v1/topics/{id}/issues/render`
+  - `POST /v1/topics/{id}/issues/save`
+  - `POST /v1/topics/{id}/publication/domains`
+- Changed operations:
+  - `GET /v1/templates/{id}/publications/{publicationId}`
+  - `POST /v1/campaigns/preview`
+  - `POST /v1/templates/{id}/publications`
+  - `POST /v1/templates/{id}/workspace/check`
+  - `POST /v1/templates/{id}/workspace/fixtures`
+- Changed schemas:
+  - `Topic`
+
+
 ## v0.41.0
 
 - 351 operations, 258 paths, 517 schemas, 39 webhook events.
