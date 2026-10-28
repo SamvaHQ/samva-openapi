@@ -76165,9 +76165,10 @@
           "supervised"
         ]
       },
-      "AgentIntegrationReference": {
+      "IntegrationId": {
         "type": "string",
-        "pattern": "^[a-z]{2,8}_[0-9a-z]{16}$"
+        "pattern": "^intg_[0-9a-hjkmnp-tv-z]{16,24}$",
+        "x-samva-brand": "IntegrationId"
       },
       "AgentId": {
         "type": "string",
@@ -76373,10 +76374,10 @@
             },
             "maxItems": 20
           },
-          "integrationIds": {
+          "integrations": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/AgentIntegrationReference"
+              "$ref": "#/components/schemas/AgentIntegrationGrant"
             },
             "maxItems": 20
           },
@@ -76406,7 +76407,7 @@
           "instructions",
           "knowledge",
           "endpointIds",
-          "integrationIds",
+          "integrations",
           "mode",
           "model",
           "workingHours",
@@ -76454,6 +76455,88 @@
           "closes"
         ],
         "additionalProperties": false
+      },
+      "AgentIntegrationGrant": {
+        "type": "object",
+        "properties": {
+          "integrationId": {
+            "$ref": "#/components/schemas/IntegrationId"
+          },
+          "tools": {
+            "$ref": "#/components/schemas/AgentToolScope"
+          },
+          "requireApproval": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_.]{0,63}$"
+            }
+          }
+        },
+        "required": [
+          "integrationId",
+          "tools",
+          "requireApproval"
+        ],
+        "additionalProperties": false
+      },
+      "AgentToolScope": {
+        "anyOf": [
+          {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "type": "string",
+                "enum": [
+                  "all"
+                ]
+              }
+            },
+            "required": [
+              "kind"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "type": "string",
+                "enum": [
+                  "readOnly"
+                ]
+              }
+            },
+            "required": [
+              "kind"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "type": "string",
+                "enum": [
+                  "selected"
+                ]
+              },
+              "names": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "pattern": "^[a-z][a-z0-9_.]{0,63}$"
+                },
+                "minItems": 1
+              }
+            },
+            "required": [
+              "kind",
+              "names"
+            ],
+            "additionalProperties": false
+          }
+        ]
       },
       "DeleteAgentResponse": {
         "type": "object",
@@ -76531,7 +76614,7 @@
               "instructions": "",
               "knowledge": "",
               "endpointIds": [],
-              "integrationIds": [],
+              "integrations": [],
               "mode": "supervised",
               "model": "standard",
               "workingHours": null,

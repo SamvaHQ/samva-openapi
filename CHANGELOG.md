@@ -1,5 +1,15 @@
 # Changelog
 
+## v0.45.0
+
+- 365 operations, 269 paths, 529 schemas, 39 webhook events.
+- Breaking against v0.44.0.
+- Changed schemas:
+  - `AgentDefinition`
+  - `AgentIntegrationReference`
+  - `CreateAgentPayload`
+
+
 ## v0.44.0
 
 - 365 operations, 269 paths, 527 schemas, 39 webhook events.
