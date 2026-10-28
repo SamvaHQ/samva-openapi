@@ -27066,7 +27066,7 @@
             }
           }
         },
-        "description": "Creates a topic in the caller's or requested namespace. The subscription default is opt_out when omitted. Publishing defaults must be compatible with that namespace. An organization holds at most 200 topics.",
+        "description": "Creates a topic in the caller's or requested namespace. The subscription default is opt_out when omitted. Sending defaults must be compatible with that namespace. An organization holds at most 200 topics.",
         "summary": "Create a topic",
         "requestBody": {
           "content": {
@@ -27350,7 +27350,7 @@
             }
           }
         },
-        "description": "Returns a visible topic, its publishing defaults, and explicit subscription counts by channel and status. Individual subscriptions are read through listSubscriptions.",
+        "description": "Returns a visible topic, its sending defaults, and explicit subscription counts by channel and status. Individual subscriptions are read through listSubscriptions.",
         "summary": "Get a topic",
         "x-samva-scope": "contacts:read"
       },
@@ -27456,7 +27456,7 @@
             }
           }
         },
-        "description": "Updates named fields. Changing the default does not change any explicit subscription status. Null clears a publishing default.",
+        "description": "Updates named fields. Changing the default does not change any explicit subscription status. Null clears a sending default.",
         "summary": "Update a topic",
         "requestBody": {
           "content": {
@@ -28533,18 +28533,293 @@
         "x-samva-scope": "contacts:delete"
       }
     },
-    "/v1/topics/{id}/issues": {
+    "/v1/newsletters": {
       "get": {
         "tags": [
-          "Topic issues"
+          "Newsletters"
         ],
-        "operationId": "topicIssues.list",
+        "operationId": "newsletters.list",
+        "parameters": [
+          {
+            "name": "namespaceId",
+            "in": "query",
+            "schema": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/NamespaceId"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "required": false
+          }
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Newsletter"
+                      }
+                    }
+                  },
+                  "required": [
+                    "items"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenError | FlagDisabledError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/ForbiddenError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/FlagDisabledError"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ResourceNotFoundError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "ConflictError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConflictError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "List visible newsletters and their consent topics and publishing settings. The topic namespace bounds access.",
+        "summary": "List newsletters",
+        "x-samva-scope": "contacts:read"
+      },
+      "post": {
+        "tags": [
+          "Newsletters"
+        ],
+        "operationId": "newsletters.create",
+        "parameters": [
+          {
+            "name": "idempotency-key",
+            "in": "header",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 255,
+                  "x-samva-string-checks": [
+                    {
+                      "id": "effect/schema/isMaxLength",
+                      "payload": {
+                        "maxLength": 255
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "required": false
+          }
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Newsletter",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Newsletter"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenError | FlagDisabledError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/ForbiddenError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/FlagDisabledError"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ResourceNotFoundError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "ConflictError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConflictError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Creates an opt-in topic, or adopts topicId. Name is required when creating a topic. A topic belongs to at most one newsletter. Sending defaults and subscriptions belong to the topic.",
+        "summary": "Create a newsletter",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewsletterCreatePayload"
+              }
+            }
+          },
+          "required": true
+        },
+        "x-idempotent": true,
+        "x-samva-scope": "contacts:create"
+      }
+    },
+    "/v1/newsletters/{id}": {
+      "get": {
+        "tags": [
+          "Newsletters"
+        ],
+        "operationId": "newsletters.get",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "schema": {
-              "$ref": "#/components/schemas/TopicId"
+              "$ref": "#/components/schemas/NewsletterId"
             },
             "required": true
           }
@@ -28556,11 +28831,423 @@
         ],
         "responses": {
           "200": {
-            "description": "TopicIssueList",
+            "description": "Newsletter",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/TopicIssueList"
+                  "$ref": "#/components/schemas/Newsletter"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenError | FlagDisabledError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/ForbiddenError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/FlagDisabledError"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ResourceNotFoundError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "ConflictError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConflictError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Read one newsletter, including its consent topic ID, issue project, archive status, and hosted slug.",
+        "summary": "Get a newsletter",
+        "x-samva-scope": "contacts:read"
+      },
+      "patch": {
+        "tags": [
+          "Newsletters"
+        ],
+        "operationId": "newsletters.update",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "$ref": "#/components/schemas/NewsletterId"
+            },
+            "required": true
+          },
+          {
+            "name": "idempotency-key",
+            "in": "header",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 255,
+                  "x-samva-string-checks": [
+                    {
+                      "id": "effect/schema/isMaxLength",
+                      "payload": {
+                        "maxLength": 255
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "required": false
+          }
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Newsletter",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Newsletter"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenError | FlagDisabledError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/ForbiddenError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/FlagDisabledError"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ResourceNotFoundError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "ConflictError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConflictError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Update named publishing settings. An enabled archive requires an opt-in topic and a hosted slug. Null clears the slug when the archive is disabled.",
+        "summary": "Update a newsletter",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewsletterUpdatePayload"
+              }
+            }
+          },
+          "required": true
+        },
+        "x-idempotent": true,
+        "x-samva-scope": "contacts:update"
+      },
+      "delete": {
+        "tags": [
+          "Newsletters"
+        ],
+        "operationId": "newsletters.remove",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "$ref": "#/components/schemas/NewsletterId"
+            },
+            "required": true
+          },
+          {
+            "name": "idempotency-key",
+            "in": "header",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 255,
+                  "x-samva-string-checks": [
+                    {
+                      "id": "effect/schema/isMaxLength",
+                      "payload": {
+                        "maxLength": 255
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "required": false
+          }
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "success"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenError | FlagDisabledError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/ForbiddenError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/FlagDisabledError"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ResourceNotFoundError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "ConflictError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConflictError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Withdraws the public archive and removes the issue repository. The consent topic and its subscriptions remain.",
+        "summary": "Delete a newsletter",
+        "x-idempotent": true,
+        "x-samva-scope": "contacts:delete"
+      }
+    },
+    "/v1/newsletters/{id}/issues": {
+      "get": {
+        "tags": [
+          "Newsletter issues"
+        ],
+        "operationId": "newsletterIssues.list",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "$ref": "#/components/schemas/NewsletterId"
+            },
+            "required": true
+          }
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "NewsletterIssueList",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NewsletterIssueList"
                 }
               }
             }
@@ -28650,23 +29337,48 @@
             }
           }
         },
-        "description": "Lists the Markdown issues in the topic's shared Git workspace with each draft's title and its latest campaign send. An uninitialized topic returns null projectId and revision. Requires newsletters and email.",
-        "summary": "List topic issues",
+        "description": "Lists the Markdown issues in the newsletter's shared Git workspace with each draft's title and its latest campaign send. An uninitialized topic returns null projectId and revision. Requires newsletters and email.",
+        "summary": "List newsletter issues",
         "x-samva-scope": "contacts:read messages:read"
       },
       "post": {
         "tags": [
-          "Topic issues"
+          "Newsletter issues"
         ],
-        "operationId": "topicIssues.create",
+        "operationId": "newsletterIssues.create",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "schema": {
-              "$ref": "#/components/schemas/TopicId"
+              "$ref": "#/components/schemas/NewsletterId"
             },
             "required": true
+          },
+          {
+            "name": "idempotency-key",
+            "in": "header",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 255,
+                  "x-samva-string-checks": [
+                    {
+                      "id": "effect/schema/isMaxLength",
+                      "payload": {
+                        "maxLength": 255
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "required": false
           }
         ],
         "security": [
@@ -29325,33 +30037,59 @@
             }
           }
         },
-        "description": "Creates an unsaved Markdown file. The first request provisions the topic's project and layout; omit expectedRevision only for that first request or its retry. Further creates require the current revision. No template entry is registered. Requires newsletters and email.",
-        "summary": "Create a topic issue",
+        "description": "Creates an unsaved Markdown file. The first request provisions the newsletter's project and layout; omit expectedRevision only for that first request or its retry. Further creates require the current revision. No template entry is registered. Requires newsletters and email.",
+        "summary": "Create a newsletter issue",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/TopicIssueCreatePayload"
+                "$ref": "#/components/schemas/NewsletterIssueCreatePayload"
               }
             }
           },
           "required": true
         },
+        "x-idempotent": true,
         "x-samva-scope": "contacts:create"
       },
       "patch": {
         "tags": [
-          "Topic issues"
+          "Newsletter issues"
         ],
-        "operationId": "topicIssues.update",
+        "operationId": "newsletterIssues.update",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "schema": {
-              "$ref": "#/components/schemas/TopicId"
+              "$ref": "#/components/schemas/NewsletterId"
             },
             "required": true
+          },
+          {
+            "name": "idempotency-key",
+            "in": "header",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 255,
+                  "x-samva-string-checks": [
+                    {
+                      "id": "effect/schema/isMaxLength",
+                      "payload": {
+                        "maxLength": 255
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "required": false
           }
         ],
         "security": [
@@ -30011,32 +30749,33 @@
           }
         },
         "description": "Replaces the complete Markdown file under a revision fence. Save separately to create a Git commit. Requires newsletters and email.",
-        "summary": "Update a topic issue",
+        "summary": "Update a newsletter issue",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/TopicIssueUpdatePayload"
+                "$ref": "#/components/schemas/NewsletterIssueUpdatePayload"
               }
             }
           },
           "required": true
         },
+        "x-idempotent": true,
         "x-samva-scope": "contacts:update"
       }
     },
-    "/v1/topics/{id}/issues/workspace": {
+    "/v1/newsletters/{id}/issues/workspace": {
       "get": {
         "tags": [
-          "Topic issues"
+          "Newsletter issues"
         ],
-        "operationId": "topicIssues.open",
+        "operationId": "newsletterIssues.open",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "schema": {
-              "$ref": "#/components/schemas/TopicId"
+              "$ref": "#/components/schemas/NewsletterId"
             },
             "required": true
           }
@@ -30698,22 +31437,22 @@
           }
         },
         "description": "Returns the existing project workspace and pulls saved Git changes. Does not create a repository. Requires newsletters and email.",
-        "summary": "Open the topic issue workspace",
+        "summary": "Open the newsletter issue workspace",
         "x-samva-scope": "contacts:read"
       }
     },
-    "/v1/topics/{id}/issues/document": {
+    "/v1/newsletters/{id}/issues/document": {
       "get": {
         "tags": [
-          "Topic issues"
+          "Newsletter issues"
         ],
-        "operationId": "topicIssues.get",
+        "operationId": "newsletterIssues.get",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "schema": {
-              "$ref": "#/components/schemas/TopicId"
+              "$ref": "#/components/schemas/NewsletterId"
             },
             "required": true
           },
@@ -30761,11 +31500,11 @@
         ],
         "responses": {
           "200": {
-            "description": "TopicIssueDocument",
+            "description": "NewsletterIssueDocument",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/TopicIssueDocument"
+                  "$ref": "#/components/schemas/NewsletterIssueDocument"
                 }
               }
             }
@@ -30856,24 +31595,49 @@
           }
         },
         "description": "Reads one issues/*.md file at the requested workspace revision. Requires newsletters and email.",
-        "summary": "Read a topic issue",
+        "summary": "Read a newsletter issue",
         "x-samva-scope": "contacts:read"
       }
     },
-    "/v1/topics/{id}/issues/remove": {
+    "/v1/newsletters/{id}/issues/remove": {
       "post": {
         "tags": [
-          "Topic issues"
+          "Newsletter issues"
         ],
-        "operationId": "topicIssues.remove",
+        "operationId": "newsletterIssues.remove",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "schema": {
-              "$ref": "#/components/schemas/TopicId"
+              "$ref": "#/components/schemas/NewsletterId"
             },
             "required": true
+          },
+          {
+            "name": "idempotency-key",
+            "in": "header",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 255,
+                  "x-samva-string-checks": [
+                    {
+                      "id": "effect/schema/isMaxLength",
+                      "payload": {
+                        "maxLength": 255
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "required": false
           }
         ],
         "security": [
@@ -31533,34 +32297,60 @@
           }
         },
         "description": "Removes one Markdown file from the draft under a revision fence. The project default issue must remain. Saved commits remain readable. Requires newsletters and email.",
-        "summary": "Remove a topic issue",
+        "summary": "Remove a newsletter issue",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/TopicIssueRemovePayload"
+                "$ref": "#/components/schemas/NewsletterIssueRemovePayload"
               }
             }
           },
           "required": true
         },
+        "x-idempotent": true,
         "x-samva-scope": "contacts:delete"
       }
     },
-    "/v1/topics/{id}/issues/save": {
+    "/v1/newsletters/{id}/issues/save": {
       "post": {
         "tags": [
-          "Topic issues"
+          "Newsletter issues"
         ],
-        "operationId": "topicIssues.save",
+        "operationId": "newsletterIssues.save",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "schema": {
-              "$ref": "#/components/schemas/TopicId"
+              "$ref": "#/components/schemas/NewsletterId"
             },
             "required": true
+          },
+          {
+            "name": "idempotency-key",
+            "in": "header",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 255,
+                  "x-samva-string-checks": [
+                    {
+                      "id": "effect/schema/isMaxLength",
+                      "payload": {
+                        "maxLength": 255
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "required": false
           }
         ],
         "security": [
@@ -32054,34 +32844,60 @@
           }
         },
         "description": "Validates the project and saves its draft as a Git commit with revision and branch-head fences. Issue sends pin the resulting commit and issue path. Requires newsletters and email.",
-        "summary": "Save topic issues",
+        "summary": "Save newsletter issues",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/TopicIssueSavePayload"
+                "$ref": "#/components/schemas/NewsletterIssueSavePayload"
               }
             }
           },
           "required": true
         },
+        "x-idempotent": true,
         "x-samva-scope": "contacts:update"
       }
     },
-    "/v1/topics/{id}/issues/check": {
+    "/v1/newsletters/{id}/issues/check": {
       "post": {
         "tags": [
-          "Topic issues"
+          "Newsletter issues"
         ],
-        "operationId": "topicIssues.check",
+        "operationId": "newsletterIssues.check",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "schema": {
-              "$ref": "#/components/schemas/TopicId"
+              "$ref": "#/components/schemas/NewsletterId"
             },
             "required": true
+          },
+          {
+            "name": "idempotency-key",
+            "in": "header",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 255,
+                  "x-samva-string-checks": [
+                    {
+                      "id": "effect/schema/isMaxLength",
+                      "payload": {
+                        "maxLength": 255
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "required": false
           }
         ],
         "security": [
@@ -32724,34 +33540,60 @@
           }
         },
         "description": "Compiles the issue in its layout at the requested revision and returns diagnostics and declared fixtures. Requires newsletters and email.",
-        "summary": "Check a topic issue",
+        "summary": "Check a newsletter issue",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/TopicIssueCheckPayload"
+                "$ref": "#/components/schemas/NewsletterIssueCheckPayload"
               }
             }
           },
           "required": true
         },
+        "x-idempotent": true,
         "x-samva-scope": "contacts:read"
       }
     },
-    "/v1/topics/{id}/issues/render": {
+    "/v1/newsletters/{id}/issues/render": {
       "post": {
         "tags": [
-          "Topic issues"
+          "Newsletter issues"
         ],
-        "operationId": "topicIssues.render",
+        "operationId": "newsletterIssues.render",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "schema": {
-              "$ref": "#/components/schemas/TopicId"
+              "$ref": "#/components/schemas/NewsletterId"
             },
             "required": true
+          },
+          {
+            "name": "idempotency-key",
+            "in": "header",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 255,
+                  "x-samva-string-checks": [
+                    {
+                      "id": "effect/schema/isMaxLength",
+                      "payload": {
+                        "maxLength": 255
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "required": false
           }
         ],
         "security": [
@@ -33657,32 +34499,33 @@
           }
         },
         "description": "Renders a fixture declared by the layout to email or web at the requested revision. The web render is the publication page readers get, with the subscribe wall position marked. Requires newsletters and email.",
-        "summary": "Render a topic issue fixture",
+        "summary": "Render a newsletter issue fixture",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/TopicIssueRenderPayload"
+                "$ref": "#/components/schemas/NewsletterIssueRenderPayload"
               }
             }
           },
           "required": true
         },
+        "x-idempotent": true,
         "x-samva-scope": "contacts:read"
       }
     },
-    "/v1/topics/{id}/issues/head": {
+    "/v1/newsletters/{id}/issues/head": {
       "get": {
         "tags": [
-          "Topic issues"
+          "Newsletter issues"
         ],
-        "operationId": "topicIssues.head",
+        "operationId": "newsletterIssues.head",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "schema": {
-              "$ref": "#/components/schemas/TopicId"
+              "$ref": "#/components/schemas/NewsletterId"
             },
             "required": true
           }
@@ -33807,22 +34650,22 @@
           }
         },
         "description": "Reads the current workspace revision and repository branch head. Requires newsletters and email.",
-        "summary": "Read the topic issue head",
+        "summary": "Read the newsletter issue head",
         "x-samva-scope": "contacts:read"
       }
     },
-    "/v1/topics/{id}/issues/history": {
+    "/v1/newsletters/{id}/issues/history": {
       "get": {
         "tags": [
-          "Topic issues"
+          "Newsletter issues"
         ],
-        "operationId": "topicIssues.history",
+        "operationId": "newsletterIssues.history",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "schema": {
-              "$ref": "#/components/schemas/TopicId"
+              "$ref": "#/components/schemas/NewsletterId"
             },
             "required": true
           },
@@ -34002,24 +34845,195 @@
           }
         },
         "description": "Lists saved commits in the topic repository, newest first. Requires newsletters and email.",
-        "summary": "Read topic issue history",
+        "summary": "Read newsletter issue history",
         "x-samva-scope": "contacts:read"
       }
     },
-    "/v1/topics/{id}/publication/domains": {
-      "post": {
+    "/v1/newsletters/{id}/domains": {
+      "get": {
         "tags": [
-          "Publication domains"
+          "Newsletter domains"
         ],
-        "operationId": "topicPublicationDomains.add",
+        "operationId": "newsletterDomains.list",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "schema": {
-              "$ref": "#/components/schemas/TopicId"
+              "$ref": "#/components/schemas/NewsletterId"
             },
             "required": true
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "maximum": 100,
+                  "exclusiveMinimum": 0,
+                  "description": "Items per page, at most 100."
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "required": false
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "schema": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/PublicationDomainCursor"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "required": false
+          }
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "PublicationDomainPage",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PublicationDomainPage"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenError | FlagDisabledError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/ForbiddenError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/FlagDisabledError"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ResourceNotFoundError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "ConflictError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConflictError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Returns this newsletter's domains in hostname order with their latest recorded verification status. Removed domains are omitted. Pass nextCursor as cursor for the next page; it is null on the last page. Get a domain to recheck its current DNS and certificate status. Requires newsletters.",
+        "summary": "List publication domains",
+        "x-samva-scope": "contacts:read"
+      },
+      "post": {
+        "tags": [
+          "Newsletter domains"
+        ],
+        "operationId": "newsletterDomains.add",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "$ref": "#/components/schemas/NewsletterId"
+            },
+            "required": true
+          },
+          {
+            "name": "idempotency-key",
+            "in": "header",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 255,
+                  "x-samva-string-checks": [
+                    {
+                      "id": "effect/schema/isMaxLength",
+                      "payload": {
+                        "maxLength": 255
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "required": false
           }
         ],
         "security": [
@@ -34244,7 +35258,7 @@
             }
           }
         },
-        "description": "Claims a hostname for an opt-in topic with its public archive enabled and published. Requires newsletters. Reuse the UUID idempotencyKey when retrying. The hostname serves no publication until Cloudflare confirms both ownership and SSL are active.",
+        "description": "Claims a hostname for an opt-in topic with its public archive enabled and published. Requires newsletters. Pass the same Idempotency-Key header when retrying. The hostname serves no publication until Cloudflare confirms both ownership and SSL are active.",
         "summary": "Add a publication domain",
         "requestBody": {
           "content": {
@@ -34264,16 +35278,10 @@
                         }
                       }
                     ]
-                  },
-                  "idempotencyKey": {
-                    "type": "string",
-                    "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|[fF]{8}-[fF]{4}-[fF]{4}-[fF]{4}-[fF]{12})$",
-                    "format": "uuid"
                   }
                 },
                 "required": [
-                  "hostname",
-                  "idempotencyKey"
+                  "hostname"
                 ],
                 "additionalProperties": false
               }
@@ -34281,21 +35289,22 @@
           },
           "required": true
         },
+        "x-idempotent": true,
         "x-samva-scope": "contacts:create"
       }
     },
-    "/v1/topics/{id}/publication/domains/{hostname}": {
+    "/v1/newsletters/{id}/domains/{hostname}": {
       "get": {
         "tags": [
-          "Publication domains"
+          "Newsletter domains"
         ],
-        "operationId": "topicPublicationDomains.get",
+        "operationId": "newsletterDomains.get",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "schema": {
-              "$ref": "#/components/schemas/TopicId"
+              "$ref": "#/components/schemas/NewsletterId"
             },
             "required": true
           },
@@ -34540,21 +35549,21 @@
             }
           }
         },
-        "description": "Rechecks ownership and certificate status, returning DNS verification records. Domains outside this topic's organization or namespace return 404.",
+        "description": "Rechecks ownership and certificate status, returning DNS verification records. Domains outside this newsletter's organization or namespace return 404.",
         "summary": "Get a publication domain",
         "x-samva-scope": "contacts:read"
       },
       "delete": {
         "tags": [
-          "Publication domains"
+          "Newsletter domains"
         ],
-        "operationId": "topicPublicationDomains.remove",
+        "operationId": "newsletterDomains.remove",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "schema": {
-              "$ref": "#/components/schemas/TopicId"
+              "$ref": "#/components/schemas/NewsletterId"
             },
             "required": true
           },
@@ -34577,14 +35586,29 @@
             "required": true
           },
           {
-            "name": "idempotencyKey",
-            "in": "query",
+            "name": "idempotency-key",
+            "in": "header",
             "schema": {
-              "type": "string",
-              "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|[fF]{8}-[fF]{4}-[fF]{4}-[fF]{4}-[fF]{12})$",
-              "format": "uuid"
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 255,
+                  "x-samva-string-checks": [
+                    {
+                      "id": "effect/schema/isMaxLength",
+                      "payload": {
+                        "maxLength": 255
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "null"
+                }
+              ]
             },
-            "required": true
+            "required": false
           }
         ],
         "security": [
@@ -34809,8 +35833,9 @@
             }
           }
         },
-        "description": "Revokes publication lookup before removing the Cloudflare hostname. Reuse the UUID idempotencyKey query value on retries. Pending provider teardown is reported as removing. Removal remains available after the topic archive is disabled.",
+        "description": "Revokes publication lookup before removing the Cloudflare hostname. Pass the same Idempotency-Key header on retries. Pending provider teardown is reported as removing. Removal remains available after the topic archive is disabled.",
         "summary": "Remove a publication domain",
+        "x-idempotent": true,
         "x-samva-scope": "contacts:delete"
       }
     },
@@ -73969,7 +74994,169 @@
         ],
         "additionalProperties": false
       },
-      "TopicIssueRenderPayload": {
+      "NewsletterId": {
+        "type": "string",
+        "pattern": "^nl_[0-9a-hjkmnp-tv-z]{16,24}$",
+        "x-samva-brand": "NewsletterId"
+      },
+      "PublicationDomainPage": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "organizationId": {
+                  "$ref": "#/components/schemas/OrganizationId"
+                },
+                "topicId": {
+                  "$ref": "#/components/schemas/TopicId"
+                },
+                "hostname": {
+                  "type": "string",
+                  "maxLength": 253,
+                  "pattern": "^(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\\.)+[a-z](?:[a-z0-9-]{0,61}[a-z0-9])?$",
+                  "x-samva-string-checks": [
+                    {
+                      "id": "effect/schema/isMaxLength",
+                      "payload": {
+                        "maxLength": 253
+                      }
+                    }
+                  ]
+                },
+                "canonicalHostname": {
+                  "type": "string"
+                },
+                "phase": {
+                  "type": "string",
+                  "enum": [
+                    "pending",
+                    "active",
+                    "removing",
+                    "removed",
+                    "conflict"
+                  ]
+                },
+                "active": {
+                  "type": "boolean"
+                },
+                "hostnameStatus": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "sslStatus": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "cname": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "CNAME",
+                        "TXT"
+                      ]
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "value": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "name",
+                    "value"
+                  ],
+                  "additionalProperties": false
+                },
+                "verificationRecords": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "type": "string",
+                        "enum": [
+                          "CNAME",
+                          "TXT"
+                        ]
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "value": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "type",
+                      "name",
+                      "value"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "verificationErrors": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "required": [
+                "organizationId",
+                "topicId",
+                "hostname",
+                "canonicalHostname",
+                "phase",
+                "active",
+                "hostnameStatus",
+                "sslStatus",
+                "cname",
+                "verificationRecords",
+                "verificationErrors"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "nextCursor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "items",
+          "nextCursor"
+        ],
+        "additionalProperties": false
+      },
+      "PublicationDomainCursor": {
+        "type": "string"
+      },
+      "NewsletterIssueRenderPayload": {
         "type": "object",
         "properties": {
           "path": {
@@ -74027,7 +75214,7 @@
         ],
         "additionalProperties": false
       },
-      "TopicIssueCheckPayload": {
+      "NewsletterIssueCheckPayload": {
         "type": "object",
         "properties": {
           "path": {
@@ -74063,7 +75250,7 @@
         ],
         "additionalProperties": false
       },
-      "TopicIssueSavePayload": {
+      "NewsletterIssueSavePayload": {
         "type": "object",
         "properties": {
           "expectedRevision": {
@@ -74095,30 +75282,16 @@
                 }
               }
             ]
-          },
-          "idempotencyKey": {
-            "type": "string",
-            "minLength": 1,
-            "maxLength": 128,
-            "x-samva-string-checks": [
-              {
-                "id": "effect/schema/isMaxLength",
-                "payload": {
-                  "maxLength": 128
-                }
-              }
-            ]
           }
         },
         "required": [
           "expectedRevision",
           "expectedHead",
-          "message",
-          "idempotencyKey"
+          "message"
         ],
         "additionalProperties": false
       },
-      "TopicIssueRemovePayload": {
+      "NewsletterIssueRemovePayload": {
         "type": "object",
         "properties": {
           "path": {
@@ -74130,19 +75303,6 @@
                 "id": "effect/schema/isMaxLength",
                 "payload": {
                   "maxLength": 1024
-                }
-              }
-            ]
-          },
-          "idempotencyKey": {
-            "type": "string",
-            "minLength": 1,
-            "maxLength": 128,
-            "x-samva-string-checks": [
-              {
-                "id": "effect/schema/isMaxLength",
-                "payload": {
-                  "maxLength": 128
                 }
               }
             ]
@@ -74163,12 +75323,11 @@
         },
         "required": [
           "path",
-          "idempotencyKey",
           "expectedRevision"
         ],
         "additionalProperties": false
       },
-      "TopicIssueUpdatePayload": {
+      "NewsletterIssueUpdatePayload": {
         "type": "object",
         "properties": {
           "path": {
@@ -74186,19 +75345,6 @@
           },
           "content": {
             "type": "string"
-          },
-          "idempotencyKey": {
-            "type": "string",
-            "minLength": 1,
-            "maxLength": 128,
-            "x-samva-string-checks": [
-              {
-                "id": "effect/schema/isMaxLength",
-                "payload": {
-                  "maxLength": 128
-                }
-              }
-            ]
           },
           "expectedRevision": {
             "type": "string",
@@ -74217,12 +75363,11 @@
         "required": [
           "path",
           "content",
-          "idempotencyKey",
           "expectedRevision"
         ],
         "additionalProperties": false
       },
-      "TopicIssueCreatePayload": {
+      "NewsletterIssueCreatePayload": {
         "type": "object",
         "properties": {
           "path": {
@@ -74240,19 +75385,6 @@
           },
           "content": {
             "type": "string"
-          },
-          "idempotencyKey": {
-            "type": "string",
-            "minLength": 1,
-            "maxLength": 128,
-            "x-samva-string-checks": [
-              {
-                "id": "effect/schema/isMaxLength",
-                "payload": {
-                  "maxLength": 128
-                }
-              }
-            ]
           },
           "expectedRevision": {
             "anyOf": [
@@ -74277,12 +75409,11 @@
         },
         "required": [
           "path",
-          "content",
-          "idempotencyKey"
+          "content"
         ],
         "additionalProperties": false
       },
-      "TopicIssueDocument": {
+      "NewsletterIssueDocument": {
         "type": "object",
         "properties": {
           "projectId": {
@@ -74326,7 +75457,7 @@
         ],
         "additionalProperties": false
       },
-      "TopicIssueList": {
+      "NewsletterIssueList": {
         "type": "object",
         "properties": {
           "projectId": {
@@ -74362,7 +75493,7 @@
           "items": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/TopicIssueListItem"
+              "$ref": "#/components/schemas/NewsletterIssueListItem"
             }
           }
         },
@@ -74373,7 +75504,7 @@
         ],
         "additionalProperties": false
       },
-      "TopicIssueListItem": {
+      "NewsletterIssueListItem": {
         "type": "object",
         "properties": {
           "path": {
@@ -74402,7 +75533,7 @@
           "latestSend": {
             "anyOf": [
               {
-                "$ref": "#/components/schemas/TopicIssueSend"
+                "$ref": "#/components/schemas/NewsletterIssueSend"
               },
               {
                 "type": "null"
@@ -74417,7 +75548,7 @@
         ],
         "additionalProperties": false
       },
-      "TopicIssueSend": {
+      "NewsletterIssueSend": {
         "type": "object",
         "properties": {
           "campaignId": {
@@ -74502,6 +75633,190 @@
           "pendingCount",
           "estimatedCompletionAt"
         ],
+        "additionalProperties": false
+      },
+      "Newsletter": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "$ref": "#/components/schemas/NewsletterId"
+          },
+          "topicId": {
+            "$ref": "#/components/schemas/TopicId"
+          },
+          "namespaceId": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/NamespaceId"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "issueProjectId": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/TemplateProjectId"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "archiveEnabled": {
+            "type": "boolean"
+          },
+          "publicationSlug": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "topicId",
+          "namespaceId",
+          "name",
+          "description",
+          "issueProjectId",
+          "archiveEnabled",
+          "publicationSlug",
+          "createdAt",
+          "updatedAt"
+        ],
+        "additionalProperties": false
+      },
+      "NewsletterUpdatePayload": {
+        "type": "object",
+        "properties": {
+          "archiveEnabled": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "publicationSlug": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?$"
+              },
+              {
+                "type": "null"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "additionalProperties": false
+      },
+      "NewsletterCreatePayload": {
+        "type": "object",
+        "properties": {
+          "topicId": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/TopicId"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "name": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "description": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "namespaceId": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/NamespaceId"
+              },
+              {
+                "type": "null"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "archiveEnabled": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "publicationSlug": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?$"
+              },
+              {
+                "type": "null"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
         "additionalProperties": false
       },
       "TopicForm": {
@@ -75147,20 +76462,6 @@
               }
             ]
           },
-          "archiveEnabled": {
-            "type": "boolean"
-          },
-          "publicationSlug": {
-            "anyOf": [
-              {
-                "type": "string",
-                "pattern": "^[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?$"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
           "subscriptions": {
             "$ref": "#/components/schemas/TopicSubscriptionCounts"
           },
@@ -75181,8 +76482,6 @@
           "defaultSenderId",
           "replyMailboxId",
           "templateId",
-          "archiveEnabled",
-          "publicationSlug",
           "subscriptions",
           "createdAt",
           "updatedAt"
@@ -75258,30 +76557,6 @@
                   "opt_out",
                   "opt_in"
                 ]
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "archiveEnabled": {
-            "anyOf": [
-              {
-                "type": "boolean"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "publicationSlug": {
-            "anyOf": [
-              {
-                "type": "string",
-                "pattern": "^[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?$"
-              },
-              {
-                "type": "null"
               },
               {
                 "type": "null"
@@ -75371,30 +76646,6 @@
                   "opt_out",
                   "opt_in"
                 ]
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "archiveEnabled": {
-            "anyOf": [
-              {
-                "type": "boolean"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "publicationSlug": {
-            "anyOf": [
-              {
-                "type": "string",
-                "pattern": "^[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?$"
-              },
-              {
-                "type": "null"
               },
               {
                 "type": "null"
@@ -88094,12 +89345,16 @@
       "description": "Hosted and embedded double opt-in signup forms for topics"
     },
     {
-      "name": "Topic issues",
-      "description": "Topic-owned newsletter Markdown files and their Git workspace"
+      "name": "Newsletters",
+      "description": "Newsletters, their consent topics, and publishing settings"
     },
     {
-      "name": "Publication domains",
-      "description": "Cloudflare for SaaS custom domains for public topic archives"
+      "name": "Newsletter issues",
+      "description": "Newsletter-owned newsletter Markdown files and their Git workspace"
+    },
+    {
+      "name": "Newsletter domains",
+      "description": "Custom domains for newsletter archives"
     },
     {
       "name": "Analytics",

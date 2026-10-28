@@ -1,5 +1,61 @@
 # Changelog
 
+## v0.47.0
+
+- 371 operations, 271 paths, 535 schemas, 39 webhook events.
+- Breaking against v0.46.0.
+- Removed operations:
+  - `DELETE /v1/topics/{id}/publication/domains/{hostname}`
+  - `GET /v1/topics/{id}/issues`
+  - `GET /v1/topics/{id}/issues/document`
+  - `GET /v1/topics/{id}/issues/head`
+  - `GET /v1/topics/{id}/issues/history`
+  - `GET /v1/topics/{id}/issues/workspace`
+  - `GET /v1/topics/{id}/publication/domains/{hostname}`
+  - `PATCH /v1/topics/{id}/issues`
+  - `POST /v1/topics/{id}/issues`
+  - `POST /v1/topics/{id}/issues/check`
+  - `POST /v1/topics/{id}/issues/remove`
+  - `POST /v1/topics/{id}/issues/render`
+  - `POST /v1/topics/{id}/issues/save`
+  - `POST /v1/topics/{id}/publication/domains`
+- Added operations:
+  - `DELETE /v1/newsletters/{id}`
+  - `DELETE /v1/newsletters/{id}/domains/{hostname}`
+  - `GET /v1/newsletters`
+  - `GET /v1/newsletters/{id}`
+  - `GET /v1/newsletters/{id}/domains`
+  - `GET /v1/newsletters/{id}/domains/{hostname}`
+  - `GET /v1/newsletters/{id}/issues`
+  - `GET /v1/newsletters/{id}/issues/document`
+  - `GET /v1/newsletters/{id}/issues/head`
+  - `GET /v1/newsletters/{id}/issues/history`
+  - `GET /v1/newsletters/{id}/issues/workspace`
+  - `PATCH /v1/newsletters/{id}`
+  - `PATCH /v1/newsletters/{id}/issues`
+  - `POST /v1/newsletters`
+  - `POST /v1/newsletters/{id}/domains`
+  - `POST /v1/newsletters/{id}/issues`
+  - `POST /v1/newsletters/{id}/issues/check`
+  - `POST /v1/newsletters/{id}/issues/remove`
+  - `POST /v1/newsletters/{id}/issues/render`
+  - `POST /v1/newsletters/{id}/issues/save`
+- Changed schemas:
+  - `Topic`
+  - `TopicCreatePayload`
+  - `TopicIssueCheckPayload`
+  - `TopicIssueCreatePayload`
+  - `TopicIssueDocument`
+  - `TopicIssueList`
+  - `TopicIssueListItem`
+  - `TopicIssueRemovePayload`
+  - `TopicIssueRenderPayload`
+  - `TopicIssueSavePayload`
+  - `TopicIssueSend`
+  - `TopicIssueUpdatePayload`
+  - `TopicUpdatePayload`
+
+
 ## v0.46.0
 
 - 365 operations, 269 paths, 529 schemas, 39 webhook events.
