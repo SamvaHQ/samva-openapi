@@ -1,5 +1,26 @@
 # Changelog
 
+## v0.46.0
+
+- 365 operations, 269 paths, 529 schemas, 39 webhook events.
+- Breaking against v0.45.1.
+- Changed operations:
+  - `PATCH /v1/templates/{id}/workspace`
+  - `POST /v1/campaigns/{id}/runs`
+  - `POST /v1/contacts/imports`
+  - `POST /v1/messages/scheduled`
+  - `POST /v1/templates/{id}/workspace/conflicts`
+  - `POST /v1/templates/{id}/workspace/resources`
+  - `POST /v1/templates/{id}/workspace/resources/{resourceId}/remove`
+  - `POST /v1/templates/{id}/workspace/restore`
+  - `POST /v1/templates/{id}/workspace/save`
+  - `PUT /v1/templates/{id}/workspace/assets`
+- Changed schemas:
+  - `CreateEventPayload`
+  - `CreateTemplateFromWebsitePayload`
+  - `CreateTemplatePayload`
+
+
 ## v0.45.1
 
 - 365 operations, 269 paths, 529 schemas, 39 webhook events.

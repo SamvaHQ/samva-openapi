@@ -2523,7 +2523,33 @@
           "Scheduled Messages"
         ],
         "operationId": "scheduledMessages.create",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "idempotency-key",
+            "in": "header",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 255,
+                  "x-samva-string-checks": [
+                    {
+                      "id": "effect/schema/isMaxLength",
+                      "payload": {
+                        "maxLength": 255
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "required": false
+          }
+        ],
         "security": [
           {
             "apiKey": []
@@ -2643,16 +2669,6 @@
                       }
                     ]
                   },
-                  "idempotencyKey": {
-                    "anyOf": [
-                      {
-                        "type": "string"
-                      },
-                      {
-                        "type": "null"
-                      }
-                    ]
-                  },
                   "referenceId": {
                     "anyOf": [
                       {
@@ -2674,6 +2690,7 @@
           },
           "required": true
         },
+        "x-idempotent": true,
         "x-samva-scope": "messages:create or email:send"
       },
       "get": {
@@ -4169,6 +4186,31 @@
               "$ref": "#/components/schemas/CampaignId"
             },
             "required": true
+          },
+          {
+            "name": "idempotency-key",
+            "in": "header",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 255,
+                  "x-samva-string-checks": [
+                    {
+                      "id": "effect/schema/isMaxLength",
+                      "payload": {
+                        "maxLength": 255
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "required": false
           }
         ],
         "security": [
@@ -4301,7 +4343,7 @@
             }
           }
         },
-        "description": "Schedules an email campaign run at the absolute ISO-8601 instant in scheduledFor, or immediately when omitted. The optional idempotencyKey is scoped to the organization and replays return the original run. An email campaign must carry the brand footer: it is refused with CampaignFooterRequiredError when its footer is off and its template renders no BrandFooter, and with BrandAddressRequiredError when a brand that signs it off has no postal address.",
+        "description": "Schedules an email campaign run at the absolute ISO-8601 instant in scheduledFor, or immediately when omitted. The optional Idempotency-Key header is scoped to the organization and replays return the original run. An email campaign must carry the brand footer: it is refused with CampaignFooterRequiredError when its footer is off and its template renders no BrandFooter, and with BrandAddressRequiredError when a brand that signs it off has no postal address.",
         "summary": "Schedule a campaign run",
         "requestBody": {
           "content": {
@@ -4319,26 +4361,6 @@
                         "type": "null"
                       }
                     ]
-                  },
-                  "idempotencyKey": {
-                    "anyOf": [
-                      {
-                        "type": "string",
-                        "pattern": "^[\\s\\S]{1,255}$",
-                        "x-samva-string-checks": [
-                          {
-                            "id": "effect/schema/isPattern",
-                            "payload": {
-                              "source": "^[\\s\\S]{1,255}$",
-                              "flags": ""
-                            }
-                          }
-                        ]
-                      },
-                      {
-                        "type": "null"
-                      }
-                    ]
                   }
                 },
                 "additionalProperties": false
@@ -4347,6 +4369,7 @@
           },
           "required": true
         },
+        "x-idempotent": true,
         "x-samva-scope": "messages:create"
       },
       "get": {
@@ -19232,7 +19255,33 @@
           "Contacts"
         ],
         "operationId": "contacts.startImport",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "idempotency-key",
+            "in": "header",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 255,
+                  "x-samva-string-checks": [
+                    {
+                      "id": "effect/schema/isMaxLength",
+                      "payload": {
+                        "maxLength": 255
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "required": false
+          }
+        ],
         "security": [
           {
             "apiKey": []
@@ -19528,7 +19577,7 @@
             }
           }
         },
-        "description": "The complete encoded JSON request, including new-start metadata, must not exceed 3000000 bytes. Admits a durable import using the preview hash and an idempotency key, or resumes the same persisted input at its committed cursor. Imports never restore an existing unsubscribe, suppression or bounce. Namespace-scoped credentials cannot create organization-wide suppressions; those rows are conflicts and create no contact. New active contacts are billable and normal contact events apply.",
+        "description": "The complete encoded JSON request, including new-start metadata, must not exceed 3000000 bytes. Admits a durable import using the preview hash and an Idempotency-Key header, or resumes the same persisted input at its committed cursor. The header is required for mode:new and optional for mode:resume. Only mode:new supports idempotent replay. Resume uses expectedGeneration and must not be automatically retried; read getImportJob after an ambiguous response. Imports never restore an existing unsubscribe, suppression or bounce. Namespace-scoped credentials cannot create organization-wide suppressions; those rows are conflicts and create no contact. New active contacts are billable and normal contact events apply.",
         "summary": "Start or resume a list migration",
         "requestBody": {
           "content": {
@@ -19754,27 +19803,12 @@
                       },
                       "planHash": {
                         "type": "string"
-                      },
-                      "idempotencyKey": {
-                        "type": "string",
-                        "minLength": 1,
-                        "maxLength": 255,
-                        "x-samva-string-checks": [
-                          {
-                            "id": "effect/schema/isBetweenLength",
-                            "payload": {
-                              "minimum": 1,
-                              "maximum": 255
-                            }
-                          }
-                        ]
                       }
                     },
                     "required": [
                       "mode",
                       "input",
-                      "planHash",
-                      "idempotencyKey"
+                      "planHash"
                     ],
                     "additionalProperties": false
                   },
@@ -19809,6 +19843,11 @@
           },
           "required": true
         },
+        "x-idempotent-when": {
+          "field": "mode",
+          "equals": "new"
+        },
+        "x-idempotent": true,
         "x-samva-scope": "contacts:create contacts:update"
       }
     },
@@ -20985,7 +21024,33 @@
           "Events"
         ],
         "operationId": "events.create",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "idempotency-key",
+            "in": "header",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 255,
+                  "x-samva-string-checks": [
+                    {
+                      "id": "effect/schema/isMaxLength",
+                      "payload": {
+                        "maxLength": 255
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "required": false
+          }
+        ],
         "security": [
           {
             "apiKey": []
@@ -21105,6 +21170,7 @@
           },
           "required": true
         },
+        "x-idempotent": true,
         "x-samva-scope": "contacts:create"
       }
     },
@@ -21114,7 +21180,33 @@
           "Events"
         ],
         "operationId": "events.batch",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "idempotency-key",
+            "in": "header",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 255,
+                  "x-samva-string-checks": [
+                    {
+                      "id": "effect/schema/isMaxLength",
+                      "payload": {
+                        "maxLength": 255
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "required": false
+          }
+        ],
         "security": [
           {
             "apiKey": []
@@ -21192,7 +21284,7 @@
             }
           }
         },
-        "description": "Validates the full request shape, contact references, and event names before processing. A schema failure rejects the entire batch without writes. Between 1 and 100 valid entries are then processed in input order, with independent indexed results for properties limits, contact resolution, and idempotency.",
+        "description": "Validates the full request shape, contact references, and event names before processing. A schema failure rejects the entire batch without writes. Between 1 and 100 valid entries are then processed in input order, with independent indexed results for properties limits, contact resolution, and domain validation. An optional Idempotency-Key header scopes the batch; retries reuse each entry's original receipt by its position in the batch.",
         "summary": "Record contact events in a batch",
         "requestBody": {
           "content": {
@@ -21204,6 +21296,7 @@
           },
           "required": true
         },
+        "x-idempotent": true,
         "x-samva-scope": "contacts:create"
       }
     },
@@ -36006,7 +36099,26 @@
           "Templates"
         ],
         "operationId": "templates.create",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "idempotency-key",
+            "in": "header",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 255,
+              "x-samva-string-checks": [
+                {
+                  "id": "effect/schema/isMaxLength",
+                  "payload": {
+                    "maxLength": 255
+                  }
+                }
+              ]
+            },
+            "required": true
+          }
+        ],
         "security": [
           {
             "apiKey": []
@@ -36113,6 +36225,7 @@
           },
           "required": true
         },
+        "x-idempotent": true,
         "x-samva-scope": "templates:create"
       }
     },
@@ -37280,7 +37393,26 @@
           "Templates"
         ],
         "operationId": "templates.createFromWebsite",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "idempotency-key",
+            "in": "header",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 255,
+              "x-samva-string-checks": [
+                {
+                  "id": "effect/schema/isMaxLength",
+                  "payload": {
+                    "maxLength": 255
+                  }
+                }
+              ]
+            },
+            "required": true
+          }
+        ],
         "security": [
           {
             "apiKey": []
@@ -37387,6 +37519,7 @@
           },
           "required": true
         },
+        "x-idempotent": true,
         "x-samva-scope": "templates:create"
       }
     },
@@ -38190,6 +38323,24 @@
               "$ref": "#/components/schemas/TemplateId"
             },
             "required": true
+          },
+          {
+            "name": "idempotency-key",
+            "in": "header",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 255,
+              "x-samva-string-checks": [
+                {
+                  "id": "effect/schema/isMaxLength",
+                  "payload": {
+                    "maxLength": 255
+                  }
+                }
+              ]
+            },
+            "required": true
           }
         ],
         "security": [
@@ -38898,25 +39049,11 @@
                     },
                     "minItems": 1,
                     "maxItems": 512
-                  },
-                  "idempotencyKey": {
-                    "type": "string",
-                    "minLength": 1,
-                    "maxLength": 255,
-                    "x-samva-string-checks": [
-                      {
-                        "id": "effect/schema/isMaxLength",
-                        "payload": {
-                          "maxLength": 255
-                        }
-                      }
-                    ]
                   }
                 },
                 "required": [
                   "expectedRevision",
-                  "patches",
-                  "idempotencyKey"
+                  "patches"
                 ],
                 "additionalProperties": false
               }
@@ -38924,6 +39061,7 @@
           },
           "required": true
         },
+        "x-idempotent": true,
         "x-samva-scope": "templates:update"
       }
     },
@@ -39203,6 +39341,24 @@
             "in": "path",
             "schema": {
               "$ref": "#/components/schemas/TemplateId"
+            },
+            "required": true
+          },
+          {
+            "name": "idempotency-key",
+            "in": "header",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 255,
+              "x-samva-string-checks": [
+                {
+                  "id": "effect/schema/isMaxLength",
+                  "payload": {
+                    "maxLength": 255
+                  }
+                }
+              ]
             },
             "required": true
           }
@@ -39885,27 +40041,13 @@
                   },
                   "replace": {
                     "type": "boolean"
-                  },
-                  "idempotencyKey": {
-                    "type": "string",
-                    "minLength": 1,
-                    "maxLength": 255,
-                    "x-samva-string-checks": [
-                      {
-                        "id": "effect/schema/isMaxLength",
-                        "payload": {
-                          "maxLength": 255
-                        }
-                      }
-                    ]
                   }
                 },
                 "required": [
                   "expectedRevision",
                   "path",
                   "contentBase64",
-                  "replace",
-                  "idempotencyKey"
+                  "replace"
                 ],
                 "additionalProperties": false
               }
@@ -39913,6 +40055,7 @@
           },
           "required": true
         },
+        "x-idempotent": true,
         "x-samva-scope": "templates:update"
       }
     },
@@ -39928,6 +40071,24 @@
             "in": "path",
             "schema": {
               "$ref": "#/components/schemas/TemplateId"
+            },
+            "required": true
+          },
+          {
+            "name": "idempotency-key",
+            "in": "header",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 255,
+              "x-samva-string-checks": [
+                {
+                  "id": "effect/schema/isMaxLength",
+                  "payload": {
+                    "maxLength": 255
+                  }
+                }
+              ]
             },
             "required": true
           }
@@ -40639,26 +40800,12 @@
                         "additionalProperties": false
                       }
                     ]
-                  },
-                  "idempotencyKey": {
-                    "type": "string",
-                    "minLength": 1,
-                    "maxLength": 255,
-                    "x-samva-string-checks": [
-                      {
-                        "id": "effect/schema/isMaxLength",
-                        "payload": {
-                          "maxLength": 255
-                        }
-                      }
-                    ]
                   }
                 },
                 "required": [
                   "expectedRevision",
                   "path",
-                  "resolution",
-                  "idempotencyKey"
+                  "resolution"
                 ],
                 "additionalProperties": false
               }
@@ -40666,6 +40813,7 @@
           },
           "required": true
         },
+        "x-idempotent": true,
         "x-samva-scope": "templates:create"
       }
     },
@@ -40681,6 +40829,24 @@
             "in": "path",
             "schema": {
               "$ref": "#/components/schemas/TemplateId"
+            },
+            "required": true
+          },
+          {
+            "name": "idempotency-key",
+            "in": "header",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 255,
+              "x-samva-string-checks": [
+                {
+                  "id": "effect/schema/isMaxLength",
+                  "payload": {
+                    "maxLength": 255
+                  }
+                }
+              ]
             },
             "required": true
           }
@@ -41195,26 +41361,12 @@
                         }
                       }
                     ]
-                  },
-                  "idempotencyKey": {
-                    "type": "string",
-                    "minLength": 1,
-                    "maxLength": 255,
-                    "x-samva-string-checks": [
-                      {
-                        "id": "effect/schema/isMaxLength",
-                        "payload": {
-                          "maxLength": 255
-                        }
-                      }
-                    ]
                   }
                 },
                 "required": [
                   "expectedRevision",
                   "expectedHead",
-                  "message",
-                  "idempotencyKey"
+                  "message"
                 ],
                 "additionalProperties": false
               }
@@ -41222,6 +41374,7 @@
           },
           "required": true
         },
+        "x-idempotent": true,
         "x-samva-scope": "templates:create"
       }
     },
@@ -41237,6 +41390,24 @@
             "in": "path",
             "schema": {
               "$ref": "#/components/schemas/TemplateId"
+            },
+            "required": true
+          },
+          {
+            "name": "idempotency-key",
+            "in": "header",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 255,
+              "x-samva-string-checks": [
+                {
+                  "id": "effect/schema/isMaxLength",
+                  "payload": {
+                    "maxLength": 255
+                  }
+                }
+              ]
             },
             "required": true
           }
@@ -41940,25 +42111,11 @@
                   "commit": {
                     "type": "string",
                     "pattern": "^[a-f0-9]{40}$"
-                  },
-                  "idempotencyKey": {
-                    "type": "string",
-                    "minLength": 1,
-                    "maxLength": 255,
-                    "x-samva-string-checks": [
-                      {
-                        "id": "effect/schema/isMaxLength",
-                        "payload": {
-                          "maxLength": 255
-                        }
-                      }
-                    ]
                   }
                 },
                 "required": [
                   "expectedRevision",
-                  "commit",
-                  "idempotencyKey"
+                  "commit"
                 ],
                 "additionalProperties": false
               }
@@ -41966,6 +42123,7 @@
           },
           "required": true
         },
+        "x-idempotent": true,
         "x-samva-scope": "templates:create"
       }
     },
@@ -46226,6 +46384,24 @@
               "$ref": "#/components/schemas/TemplateId"
             },
             "required": true
+          },
+          {
+            "name": "idempotency-key",
+            "in": "header",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 255,
+              "x-samva-string-checks": [
+                {
+                  "id": "effect/schema/isMaxLength",
+                  "payload": {
+                    "maxLength": 255
+                  }
+                }
+              ]
+            },
+            "required": true
           }
         ],
         "security": [
@@ -46945,25 +47121,11 @@
                       "files"
                     ],
                     "additionalProperties": false
-                  },
-                  "idempotencyKey": {
-                    "type": "string",
-                    "minLength": 1,
-                    "maxLength": 255,
-                    "x-samva-string-checks": [
-                      {
-                        "id": "effect/schema/isMaxLength",
-                        "payload": {
-                          "maxLength": 255
-                        }
-                      }
-                    ]
                   }
                 },
                 "required": [
                   "expectedRevision",
-                  "resource",
-                  "idempotencyKey"
+                  "resource"
                 ],
                 "additionalProperties": false
               }
@@ -46971,6 +47133,7 @@
           },
           "required": true
         },
+        "x-idempotent": true,
         "x-samva-scope": "templates:create"
       }
     },
@@ -46995,6 +47158,24 @@
             "schema": {
               "type": "string",
               "pattern": "^[A-Za-z0-9._-]{1,128}$"
+            },
+            "required": true
+          },
+          {
+            "name": "idempotency-key",
+            "in": "header",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 255,
+              "x-samva-string-checks": [
+                {
+                  "id": "effect/schema/isMaxLength",
+                  "payload": {
+                    "maxLength": 255
+                  }
+                }
+              ]
             },
             "required": true
           }
@@ -47642,24 +47823,10 @@
                 "properties": {
                   "expectedRevision": {
                     "type": "string"
-                  },
-                  "idempotencyKey": {
-                    "type": "string",
-                    "minLength": 1,
-                    "maxLength": 255,
-                    "x-samva-string-checks": [
-                      {
-                        "id": "effect/schema/isMaxLength",
-                        "payload": {
-                          "maxLength": 255
-                        }
-                      }
-                    ]
                   }
                 },
                 "required": [
-                  "expectedRevision",
-                  "idempotencyKey"
+                  "expectedRevision"
                 ],
                 "additionalProperties": false
               }
@@ -47667,6 +47834,7 @@
           },
           "required": true
         },
+        "x-idempotent": true,
         "x-samva-scope": "templates:delete"
       }
     },
@@ -73341,25 +73509,10 @@
               }
             ],
             "description": "The namespace the new template project belongs to. Omit for organization level. A namespace-scoped key always creates in its own namespace."
-          },
-          "idempotencyKey": {
-            "type": "string",
-            "minLength": 1,
-            "maxLength": 255,
-            "description": "Repeating a request with the same key, address, name, and namespace returns the project the first one created, even if the site has since stopped answering. The same key with another address, name, or namespace is refused with a 409.",
-            "x-samva-string-checks": [
-              {
-                "id": "effect/schema/isMaxLength",
-                "payload": {
-                  "maxLength": 255
-                }
-              }
-            ]
           }
         },
         "required": [
-          "url",
-          "idempotencyKey"
+          "url"
         ],
         "additionalProperties": false
       },
@@ -73507,24 +73660,10 @@
               }
             ],
             "description": "Share the new organization-level project with every namespace: namespace-scoped keys read and send its entries but cannot change them. Defaults to false. Not with `namespaceId`, and not from a namespace-scoped key."
-          },
-          "idempotencyKey": {
-            "type": "string",
-            "minLength": 1,
-            "maxLength": 255,
-            "x-samva-string-checks": [
-              {
-                "id": "effect/schema/isMaxLength",
-                "payload": {
-                  "maxLength": 255
-                }
-              }
-            ]
           }
         },
         "required": [
-          "name",
-          "idempotencyKey"
+          "name"
         ],
         "additionalProperties": false
       },
@@ -78455,26 +78594,6 @@
             "anyOf": [
               {
                 "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "idempotencyKey": {
-            "anyOf": [
-              {
-                "type": "string",
-                "minLength": 1,
-                "maxLength": 255,
-                "x-samva-string-checks": [
-                  {
-                    "id": "effect/schema/isMaxLength",
-                    "payload": {
-                      "maxLength": 255
-                    }
-                  }
-                ]
               },
               {
                 "type": "null"
