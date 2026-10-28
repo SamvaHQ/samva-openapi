@@ -14903,6 +14903,21 @@
             "required": false
           },
           {
+            "name": "mailboxId",
+            "in": "query",
+            "schema": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/MailboxId"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "required": false
+          },
+          {
             "name": "after",
             "in": "query",
             "schema": {
@@ -15000,7 +15015,7 @@
             }
           }
         },
-        "description": "Returns conversation summaries, most recently active first, filterable by status, channel, contact, and creation time (`after`, `before`). Pass `nextCursor` back as `cursor` for the next page; it is null on the last page. A conversation that gains activity while you page moves ahead of the cursor, so a walk lists each conversation at most once. Read a conversation's contacts, metadata, and resolution with `GET /v1/conversations/{id}`.",
+        "description": "Returns conversation summaries, most recently active first, filterable by status, channel, contact, mailbox, and creation time (`after`, `before`). Pass `nextCursor` back as `cursor` for the next page; it is null on the last page. A conversation that gains activity while you page moves ahead of the cursor, so a walk lists each conversation at most once. Read a conversation's contacts, metadata, and resolution with `GET /v1/conversations/{id}`.",
         "summary": "List conversations",
         "x-samva-scope": "conversations:read"
       },
