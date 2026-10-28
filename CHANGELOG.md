@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.45.1
+
+- 365 operations, 269 paths, 529 schemas, 39 webhook events.
+- Compatible against v0.45.0.
+
+
 ## v0.45.0
 
 - 365 operations, 269 paths, 529 schemas, 39 webhook events.

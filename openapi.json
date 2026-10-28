@@ -32139,6 +32139,9 @@
                             "title": {
                               "type": "string"
                             },
+                            "date": {
+                              "type": "string"
+                            },
                             "slug": {
                               "type": "string"
                             },
@@ -32804,6 +32807,9 @@
                           "type": "object",
                           "properties": {
                             "title": {
+                              "type": "string"
+                            },
+                            "date": {
                               "type": "string"
                             },
                             "slug": {
@@ -42340,6 +42346,9 @@
                             "title": {
                               "type": "string"
                             },
+                            "date": {
+                              "type": "string"
+                            },
                             "slug": {
                               "type": "string"
                             },
@@ -43007,6 +43016,9 @@
                           "type": "object",
                           "properties": {
                             "title": {
+                              "type": "string"
+                            },
+                            "date": {
                               "type": "string"
                             },
                             "slug": {

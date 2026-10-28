@@ -20,7 +20,7 @@ Pin a release and verify its checksum before generating a client. Name the tag i
 rather than resolving the newest one:
 
 ```sh
-version=v0.45.0
+version=v0.45.1
 curl -fsSLO "https://github.com/SamvaHQ/samva-openapi/releases/download/$version/openapi.json"
 curl -fsSLO "https://github.com/SamvaHQ/samva-openapi/releases/download/$version/SHA256SUMS"
 shasum -a 256 -c SHA256SUMS
