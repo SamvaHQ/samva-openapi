@@ -51340,6 +51340,357 @@
         "x-samva-scope": "organization:read"
       }
     },
+    "/v1/organizations/members/{userId}/personal-mailbox": {
+      "post": {
+        "tags": [
+          "Organizations"
+        ],
+        "operationId": "organizations.assignPersonalMailbox",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "schema": {
+              "$ref": "#/components/schemas/UserId"
+            },
+            "required": true
+          }
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "mailboxId": {
+                      "$ref": "#/components/schemas/MailboxId"
+                    }
+                  },
+                  "required": [
+                    "mailboxId"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "PaymentRequiredError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentRequiredError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ResourceNotFoundError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "ConflictError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConflictError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "BillingProviderError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BillingProviderError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Assigns a personal address to an existing member. Only organization owners and admins may assign it; the member receives the sole user grant. Returns the mailbox ID without granting the assigner access.",
+        "summary": "Assign a personal mailbox",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "mailboxAddress": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "mailboxAddress"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          "required": true
+        },
+        "x-samva-scope": "organization:update"
+      }
+    },
+    "/v1/organizations/personal-mailboxes/assignments": {
+      "get": {
+        "tags": [
+          "Organizations"
+        ],
+        "operationId": "organizations.listPersonalMailboxAssignments",
+        "parameters": [],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "userId": {
+                            "$ref": "#/components/schemas/UserId"
+                          }
+                        },
+                        "required": [
+                          "userId"
+                        ],
+                        "additionalProperties": false
+                      }
+                    }
+                  },
+                  "required": [
+                    "items"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Returns the user IDs with a personal mailbox in this organization, including paused mailboxes. Only organization owners and admins may list assignments. This grants no mailbox access.",
+        "summary": "List members with personal mailboxes",
+        "x-samva-scope": "organization:update"
+      }
+    },
+    "/v1/organizations/personal-mailboxes/address-options": {
+      "get": {
+        "tags": [
+          "Organizations"
+        ],
+        "operationId": "organizations.getPersonalMailboxAddressOptions",
+        "parameters": [],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "domains": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "defaultDomain": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "domains",
+                    "defaultDomain"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Returns this organization's verified active receiving domains and a default domain. When none are available, returns the organization's hosted mail domain. Only organization owners and admins may read these options.",
+        "summary": "Get personal address domains",
+        "x-samva-scope": "organization:update"
+      }
+    },
     "/v1/organizations/trust-tier": {
       "get": {
         "tags": [
@@ -53948,7 +54299,7 @@
             }
           }
         },
-        "description": "Deletes a mailbox with its endpoints, threads, drafts, and history. The messages it received stay with the organization. The mailbox leaves every API key scope and webhook endpoint filter that named it; a key or endpoint left with no mailbox is disabled.",
+        "description": "Deletes a mailbox with its endpoints, threads, drafts, and history. The messages it received retain their privacy. The mailbox leaves every API key scope and webhook endpoint filter that named it; a key or endpoint left with no mailbox is disabled. A signed-in organization owner may delete a former member's personal mailbox without reading it.",
         "summary": "Delete a mailbox",
         "x-samva-scope": "mailboxes:manage"
       }
@@ -56179,6 +56530,421 @@
         "x-samva-scope": "mailboxes:manage"
       }
     },
+    "/v1/mailboxes/needs-you": {
+      "get": {
+        "tags": [
+          "Mailboxes"
+        ],
+        "operationId": "mailboxes.getNeedsYou",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "maximum": 100,
+                  "exclusiveMinimum": 0,
+                  "description": "Items per page, at most 100."
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "required": false
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "schema": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/Cursor"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "required": false
+          }
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "MailboxNeedsYou",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MailboxNeedsYou"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Returns held sends this caller can approve and quarantined messages this caller may release across their visible mailboxes. Counts cover all actionable items, independent of the current cursor page. Metadata only; isolated messages, self approvals, and decisions the credential cannot perform are excluded.",
+        "summary": "List mailbox decisions awaiting you",
+        "x-samva-scope": "mailboxes:read"
+      }
+    },
+    "/v1/mailboxes/threads": {
+      "get": {
+        "tags": [
+          "Mailboxes"
+        ],
+        "operationId": "mailboxes.listOrganizationThreads",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "maximum": 100,
+                  "exclusiveMinimum": 0,
+                  "description": "Items per page, at most 100."
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "required": false
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "schema": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/Cursor"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "required": false
+          },
+          {
+            "name": "after",
+            "in": "query",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "required": false
+          },
+          {
+            "name": "before",
+            "in": "query",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "required": false
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "required": false
+          },
+          {
+            "name": "state",
+            "in": "query",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "enum": [
+                    "active",
+                    "done"
+                  ]
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "required": false
+          },
+          {
+            "name": "folder",
+            "in": "query",
+            "schema": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/MailboxThreadFolder"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "required": false
+          },
+          {
+            "name": "label",
+            "in": "query",
+            "schema": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/MailboxLabelId"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "required": false
+          },
+          {
+            "name": "unread",
+            "in": "query",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "required": false
+          },
+          {
+            "name": "starred",
+            "in": "query",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "required": false
+          },
+          {
+            "name": "snoozed",
+            "in": "query",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "required": false
+          },
+          {
+            "name": "mailboxId",
+            "in": "query",
+            "schema": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/MailboxId"
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MailboxId"
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "required": false
+          },
+          {
+            "name": "kind",
+            "in": "query",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "enum": [
+                    "personal",
+                    "shared"
+                  ]
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "required": false
+          }
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OrganizationMailboxThreadPage",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrganizationMailboxThreadPage"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ResourceNotFoundError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Lists only threads in mailboxes the caller can read, newest activity first. Repeat mailboxId to narrow the scope; kind selects personal or shared mailboxes. state=active excludes the caller's Done and shared closed threads; state=done selects the caller's Done plus closed shared threads, without duplicates. Other filters and cursor pagination match the per-mailbox list.",
+        "summary": "List threads across your mailboxes",
+        "x-samva-scope": "mailboxes:read"
+      }
+    },
     "/v1/mailboxes/{id}/threads": {
       "get": {
         "tags": [
@@ -56264,6 +57030,25 @@
               "anyOf": [
                 {
                   "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "required": false
+          },
+          {
+            "name": "state",
+            "in": "query",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "enum": [
+                    "active",
+                    "done"
+                  ]
                 },
                 {
                   "type": "null"
@@ -56635,7 +57420,7 @@
             }
           }
         },
-        "description": "Updates the fields you name and keeps the rest. `folder` and `priority` are shared with everyone on the mailbox; `read`, `starred`, and `snoozedUntil` are the caller's own. Labels are not updated here: use `POST` and `DELETE` on `/v1/mailboxes/{id}/threads/{threadId}/labels`. Returns where the thread stands, not its messages: read those with `GET .../threads/{threadId}`.",
+        "description": "Updates the fields you name and keeps the rest. `folder`, `priority`, and `closed` are shared with everyone on the mailbox; `done`, `read`, `starred`, and `snoozedUntil` are the caller's own. The Done list includes the caller's Done and shared closed conversations; changing `done` does not reopen Close. Personal mailboxes refuse `closed`; archive them with `folder: archived`. Neither Done nor Close publishes webhook or event-stream events. A new live message clears Done for all readers and reopens Close. Labels are not updated here: use `POST` and `DELETE` on `/v1/mailboxes/{id}/threads/{threadId}/labels`. Returns where the thread stands, not its messages: read those with `GET .../threads/{threadId}`.",
         "summary": "Update a mailbox thread",
         "requestBody": {
           "content": {
@@ -69160,6 +69945,67 @@
                 "type": "null"
               }
             ]
+          },
+          "doneAt": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "closedAt": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "closedBy": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "type": "string",
+                    "enum": [
+                      "user",
+                      "apiKey",
+                      "extension",
+                      "externalAgent",
+                      "samvaAgent",
+                      "system"
+                    ]
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "displayName": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  }
+                },
+                "required": [
+                  "kind",
+                  "id"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
         "required": [
@@ -69169,7 +70015,10 @@
           "labels",
           "read",
           "starred",
-          "snoozedUntil"
+          "snoozedUntil",
+          "doneAt",
+          "closedAt",
+          "closedBy"
         ],
         "additionalProperties": false
       },
@@ -69236,6 +70085,26 @@
             "anyOf": [
               {
                 "$ref": "#/components/schemas/MailboxThreadPriority"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "done": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "closed": {
+            "anyOf": [
+              {
+                "type": "boolean"
               },
               {
                 "type": "null"
@@ -69366,6 +70235,67 @@
               }
             ]
           },
+          "doneAt": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "closedAt": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "closedBy": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "type": "string",
+                    "enum": [
+                      "user",
+                      "apiKey",
+                      "extension",
+                      "externalAgent",
+                      "samvaAgent",
+                      "system"
+                    ]
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "displayName": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  }
+                },
+                "required": [
+                  "kind",
+                  "id"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "lastActivityAt": {
             "type": "string"
           },
@@ -69398,6 +70328,9 @@
           "read",
           "starred",
           "snoozedUntil",
+          "doneAt",
+          "closedAt",
+          "closedBy",
           "lastActivityAt",
           "conversationId",
           "participants",
@@ -69612,6 +70545,67 @@
               }
             ]
           },
+          "doneAt": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "closedAt": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "closedBy": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "type": "string",
+                    "enum": [
+                      "user",
+                      "apiKey",
+                      "extension",
+                      "externalAgent",
+                      "samvaAgent",
+                      "system"
+                    ]
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "displayName": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  }
+                },
+                "required": [
+                  "kind",
+                  "id"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "lastActivityAt": {
             "type": "string"
           }
@@ -69632,9 +70626,452 @@
           "read",
           "starred",
           "snoozedUntil",
+          "doneAt",
+          "closedAt",
+          "closedBy",
           "lastActivityAt"
         ],
         "additionalProperties": false
+      },
+      "OrganizationMailboxThreadPage": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OrganizationMailboxThreadSummary"
+            }
+          },
+          "nextCursor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "items",
+          "nextCursor"
+        ],
+        "additionalProperties": false
+      },
+      "OrganizationMailboxThreadSummary": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "$ref": "#/components/schemas/MailboxThreadId"
+          },
+          "channel": {
+            "$ref": "#/components/schemas/MailboxChannel"
+          },
+          "endpointId": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/MailboxEndpointId"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "subject": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "preview": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "from": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/MailboxThreadSender"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "messageCount": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991
+          },
+          "hasAttachments": {
+            "type": "boolean"
+          },
+          "hasDraft": {
+            "type": "boolean"
+          },
+          "folder": {
+            "$ref": "#/components/schemas/MailboxThreadFolder"
+          },
+          "priority": {
+            "$ref": "#/components/schemas/MailboxThreadPriority"
+          },
+          "labels": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MailboxLabelId"
+            }
+          },
+          "read": {
+            "type": "boolean"
+          },
+          "starred": {
+            "type": "boolean"
+          },
+          "snoozedUntil": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "doneAt": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "closedAt": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "closedBy": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "type": "string",
+                    "enum": [
+                      "user",
+                      "apiKey",
+                      "extension",
+                      "externalAgent",
+                      "samvaAgent",
+                      "system"
+                    ]
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "displayName": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  }
+                },
+                "required": [
+                  "kind",
+                  "id"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "lastActivityAt": {
+            "type": "string"
+          },
+          "mailbox": {
+            "$ref": "#/components/schemas/MailboxThreadMailbox"
+          }
+        },
+        "required": [
+          "id",
+          "channel",
+          "endpointId",
+          "subject",
+          "preview",
+          "from",
+          "messageCount",
+          "hasAttachments",
+          "hasDraft",
+          "folder",
+          "priority",
+          "labels",
+          "read",
+          "starred",
+          "snoozedUntil",
+          "doneAt",
+          "closedAt",
+          "closedBy",
+          "lastActivityAt",
+          "mailbox"
+        ],
+        "additionalProperties": false
+      },
+      "MailboxThreadMailbox": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "$ref": "#/components/schemas/MailboxId"
+          },
+          "address": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "personal",
+              "shared"
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "address",
+          "kind"
+        ],
+        "additionalProperties": false
+      },
+      "MailboxNeedsYou": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MailboxNeedsYouItem"
+            }
+          },
+          "nextCursor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "counts": {
+            "type": "object",
+            "properties": {
+              "heldSends": {
+                "type": "integer",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              "quarantinedMessages": {
+                "type": "integer",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              "total": {
+                "type": "integer",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              }
+            },
+            "required": [
+              "heldSends",
+              "quarantinedMessages",
+              "total"
+            ],
+            "additionalProperties": false,
+            "description": "All items this caller may decide, independent of the current page."
+          }
+        },
+        "required": [
+          "items",
+          "nextCursor",
+          "counts"
+        ],
+        "additionalProperties": false
+      },
+      "MailboxNeedsYouItem": {
+        "anyOf": [
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "heldSend"
+                ]
+              },
+              "id": {
+                "$ref": "#/components/schemas/MailboxActionId"
+              },
+              "mailbox": {
+                "$ref": "#/components/schemas/MailboxThreadMailbox"
+              },
+              "threadId": {
+                "anyOf": [
+                  {
+                    "$ref": "#/components/schemas/MailboxThreadId"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "draftId": {
+                "anyOf": [
+                  {
+                    "$ref": "#/components/schemas/MailboxDraftId"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "proposedBy": {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "type": "string",
+                    "enum": [
+                      "user",
+                      "apiKey",
+                      "extension",
+                      "externalAgent",
+                      "samvaAgent",
+                      "system"
+                    ]
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "displayName": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  }
+                },
+                "required": [
+                  "kind",
+                  "id"
+                ],
+                "additionalProperties": false
+              },
+              "source": {
+                "type": "string",
+                "enum": [
+                  "humanUi",
+                  "externalApi",
+                  "aiSdkTool",
+                  "extension",
+                  "externalAgent",
+                  "samvaManagedAgent",
+                  "system"
+                ]
+              },
+              "createdAt": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "type",
+              "id",
+              "mailbox",
+              "threadId",
+              "draftId",
+              "proposedBy",
+              "source",
+              "createdAt"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "quarantinedMessage"
+                ]
+              },
+              "id": {
+                "$ref": "#/components/schemas/MessageId"
+              },
+              "mailbox": {
+                "$ref": "#/components/schemas/MailboxThreadMailbox"
+              },
+              "reason": {
+                "type": "string",
+                "enum": [
+                  "spam",
+                  "dmarc",
+                  "virus",
+                  "virus_unscanned",
+                  "phishing",
+                  "fraud",
+                  "prompt_injection"
+                ]
+              },
+              "source": {
+                "type": "string",
+                "enum": [
+                  "receipt",
+                  "classifier"
+                ]
+              },
+              "heldAt": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "type",
+              "id",
+              "mailbox",
+              "reason",
+              "source",
+              "heldAt"
+            ],
+            "additionalProperties": false
+          }
+        ]
       },
       "MailboxLabel": {
         "type": "object",
@@ -70323,6 +71760,19 @@
           "id": {
             "$ref": "#/components/schemas/MailboxId"
           },
+          "kind": {
+            "$ref": "#/components/schemas/MailboxKind"
+          },
+          "owner": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/UserId"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "namespaceId": {
             "anyOf": [
               {
@@ -70380,6 +71830,8 @@
         },
         "required": [
           "id",
+          "kind",
+          "owner",
           "namespaceId",
           "slug",
           "name",
@@ -70476,6 +71928,14 @@
           "active",
           "paused"
         ]
+      },
+      "MailboxKind": {
+        "type": "string",
+        "enum": [
+          "personal",
+          "shared"
+        ],
+        "description": "Whether a mailbox belongs to one person or is shared with a team."
       },
       "UpdateMailboxEndpointPayload": {
         "type": "object",
@@ -70667,6 +72127,19 @@
           "id": {
             "$ref": "#/components/schemas/MailboxId"
           },
+          "kind": {
+            "$ref": "#/components/schemas/MailboxKind"
+          },
+          "owner": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/UserId"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "namespaceId": {
             "anyOf": [
               {
@@ -70702,6 +72175,8 @@
         },
         "required": [
           "id",
+          "kind",
+          "owner",
           "namespaceId",
           "slug",
           "name",
@@ -70749,6 +72224,7 @@
           "role": {
             "type": "string",
             "enum": [
+              "mail_user",
               "member",
               "admin",
               "owner"

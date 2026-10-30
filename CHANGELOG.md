@@ -1,5 +1,23 @@
 # Changelog
 
+## v0.48.0
+
+- 376 operations, 276 paths, 541 schemas, 39 webhook events.
+- Breaking against v0.47.1.
+- Added operations:
+  - `GET /v1/mailboxes/needs-you`
+  - `GET /v1/mailboxes/threads`
+  - `GET /v1/organizations/personal-mailboxes/address-options`
+  - `GET /v1/organizations/personal-mailboxes/assignments`
+  - `POST /v1/organizations/members/{userId}/personal-mailbox`
+- Changed schemas:
+  - `Mailbox`
+  - `MailboxSummary`
+  - `MailboxThread`
+  - `MailboxThreadState`
+  - `MailboxThreadSummary`
+
+
 ## v0.47.1
 
 - 371 operations, 271 paths, 535 schemas, 39 webhook events.
