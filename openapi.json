@@ -3573,6 +3573,16 @@
               }
             }
           },
+          "402": {
+            "description": "PaymentRequiredError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentRequiredError"
+                }
+              }
+            }
+          },
           "403": {
             "description": "FlagDisabledError | ForbiddenError",
             "content": {
@@ -3606,6 +3616,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "BillingProviderError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BillingProviderError"
                 }
               }
             }
@@ -4257,6 +4277,16 @@
               }
             }
           },
+          "402": {
+            "description": "PaymentRequiredError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentRequiredError"
+                }
+              }
+            }
+          },
           "403": {
             "description": "FlagDisabledError | ForbiddenError",
             "content": {
@@ -4331,11 +4361,18 @@
             }
           },
           "502": {
-            "description": "ExternalServiceError",
+            "description": "ExternalServiceError | BillingProviderError",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ExternalServiceError"
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/ExternalServiceError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/BillingProviderError"
+                    }
+                  ]
                 }
               }
             }
@@ -4932,6 +4969,16 @@
               }
             }
           },
+          "402": {
+            "description": "PaymentRequiredError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentRequiredError"
+                }
+              }
+            }
+          },
           "403": {
             "description": "ForbiddenError",
             "content": {
@@ -4983,11 +5030,18 @@
             }
           },
           "502": {
-            "description": "ExternalServiceError",
+            "description": "ExternalServiceError | BillingProviderError",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ExternalServiceError"
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/ExternalServiceError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/BillingProviderError"
+                    }
+                  ]
                 }
               }
             }
@@ -5003,7 +5057,7 @@
             }
           }
         },
-        "description": "Resumes a paused campaign run and returns the updated run.",
+        "description": "Resumes a paused campaign run and returns the updated run. Campaigns need a paid plan: on Free this is refused with PaymentRequiredError.",
         "summary": "Resume a campaign run",
         "x-samva-scope": "messages:create"
       }
