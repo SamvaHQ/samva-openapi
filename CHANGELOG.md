@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.48.1
+
+- 377 operations, 277 paths, 543 schemas, 39 webhook events.
+- Compatible against v0.48.0.
+- Added operations:
+  - `GET /v1/mailboxes/drafts`
+
+
 ## v0.48.0
 
 - 376 operations, 276 paths, 541 schemas, 39 webhook events.

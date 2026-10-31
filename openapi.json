@@ -56643,6 +56643,184 @@
         "x-samva-scope": "mailboxes:read"
       }
     },
+    "/v1/mailboxes/drafts": {
+      "get": {
+        "tags": [
+          "Mailboxes"
+        ],
+        "operationId": "mailboxes.listOrganizationDrafts",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "maximum": 100,
+                  "exclusiveMinimum": 0,
+                  "description": "Items per page, at most 100."
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "required": false
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "schema": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/Cursor"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "required": false
+          },
+          {
+            "name": "mailboxId",
+            "in": "query",
+            "schema": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/MailboxId"
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MailboxId"
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "required": false
+          },
+          {
+            "name": "kind",
+            "in": "query",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "enum": [
+                    "personal",
+                    "shared"
+                  ]
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "required": false
+          },
+          {
+            "name": "threadId",
+            "in": "query",
+            "schema": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/MailboxThreadId"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "required": false
+          }
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OrganizationMailboxDraftPage",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrganizationMailboxDraftPage"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ResourceNotFoundError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Lists only the caller's own unsent drafts in mailboxes where they may write drafts, newest first. Repeat mailboxId to narrow the scope; kind selects personal or shared mailboxes and threadId narrows to one thread. Each row carries its mailbox identity. Teammates' and agents' drafts are excluded. Pass nextCursor as cursor for the next page.",
+        "summary": "List your drafts across mailboxes",
+        "x-samva-scope": "mailboxes:update"
+      }
+    },
     "/v1/mailboxes/threads": {
       "get": {
         "tags": [
@@ -70867,6 +71045,115 @@
           "id",
           "address",
           "kind"
+        ],
+        "additionalProperties": false
+      },
+      "OrganizationMailboxDraftPage": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OrganizationMailboxDraftSummary"
+            }
+          },
+          "nextCursor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "items",
+          "nextCursor"
+        ],
+        "additionalProperties": false
+      },
+      "OrganizationMailboxDraftSummary": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "$ref": "#/components/schemas/MailboxDraftId"
+          },
+          "channel": {
+            "$ref": "#/components/schemas/MailboxChannel"
+          },
+          "threadId": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/MailboxThreadId"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "inReplyToMessageId": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/MessageId"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "state": {
+            "$ref": "#/components/schemas/MailboxDraftState"
+          },
+          "lockedByActionId": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/MailboxActionId"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "to": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "subject": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "type": "string"
+          },
+          "mailbox": {
+            "$ref": "#/components/schemas/MailboxThreadMailbox"
+          }
+        },
+        "required": [
+          "id",
+          "channel",
+          "threadId",
+          "inReplyToMessageId",
+          "state",
+          "lockedByActionId",
+          "to",
+          "subject",
+          "createdAt",
+          "updatedAt",
+          "mailbox"
         ],
         "additionalProperties": false
       },
