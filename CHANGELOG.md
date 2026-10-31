@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.51.0
+
+- 377 operations, 277 paths, 547 schemas, 39 webhook events.
+- Breaking against v0.50.0.
+- Changed operations:
+  - `POST /v1/campaigns/{id}/runs`
+
+
 ## v0.50.0
 
 - 377 operations, 277 paths, 546 schemas, 39 webhook events.
