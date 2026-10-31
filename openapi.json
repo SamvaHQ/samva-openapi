@@ -7584,7 +7584,7 @@
             }
           }
         },
-        "description": "Enables inbound receiving for a verified domain and returns the recipient addresses it accepts. Set `catchAll` to route every address on the domain; that needs a destination: a webhook endpoint, supplied as `endpointId` or already configured on the domain, or at least one active forwarding rule that covers the domain. Mail that matches neither is rejected, never accepted and dropped.",
+        "description": "Enables inbound receiving for a verified domain and returns the recipient addresses it accepts. Set `catchAll` to accept every address on the domain. No destination is required to enable receiving. With no webhook endpoint, mail reaches matching forwarding rules and active mailboxes; unknown addresses reach `unknownRecipientMailboxId` when configured, otherwise they are dropped without a bounce.",
         "summary": "Enable inbound email for a domain",
         "requestBody": {
           "content": {
@@ -7734,7 +7734,7 @@
             }
           }
         },
-        "description": "Reports each prerequisite for receiving a domain's mail at Samva, in order: sending verified, a destination (a webhook endpoint or an active forwarding rule), receiving enabled, and the inbound MX record. The MX answer is a live DNS lookup that names the current target when mail is routed elsewhere.",
+        "description": "Reports sending verification, configured destinations (webhook endpoint, forwarding rules, and mailboxes), receiving enablement, and the inbound MX record. Receiving can be enabled before a destination is configured. The MX answer is a live DNS lookup that names the current target when mail is routed elsewhere.",
         "summary": "Get receiving setup status",
         "x-samva-scope": "domains:read"
       }
@@ -10221,7 +10221,7 @@
             }
           }
         },
-        "description": "Enables catch-all inbound receiving for a verified domain. `endpointId` is one of the organization's webhook endpoints; every address on the domain delivers `message.received` to it. Omit it to deliver through forwarding rules alone, which needs at least one active forwarding rule covering the domain. Mail that matches neither a rule nor an endpoint is rejected as an unknown recipient. Responds with 201.",
+        "description": "Enables catch-all inbound receiving for a verified domain without requiring a destination. `endpointId` is one of the organization's webhook endpoints; every address on the domain delivers `message.received` to it. Without an endpoint, forwarding rules and active mailboxes receive matching addresses. Unknown addresses reach `unknownRecipientMailboxId` when configured, otherwise they are dropped without a bounce. Responds with 201.",
         "summary": "Enable catch-all receiving",
         "requestBody": {
           "content": {
@@ -10465,7 +10465,7 @@
             }
           }
         },
-        "description": "Updates a domain's catch-all receiving configuration: the webhook endpoint that receives its inbound mail.",
+        "description": "Updates a domain's catch-all webhook endpoint or unknown-address mailbox. The mailbox must be active, in the same organization, and have an email address on the domain. Omitted fields stay unchanged; `unknownRecipientMailboxId: null` drops unknown addresses without a bounce. A webhook endpoint takes precedence over the unknown-address setting.",
         "summary": "Update catch-all configuration",
         "requestBody": {
           "content": {
@@ -10485,6 +10485,20 @@
                         "type": "null"
                       }
                     ]
+                  },
+                  "unknownRecipientMailboxId": {
+                    "anyOf": [
+                      {
+                        "$ref": "#/components/schemas/MailboxId"
+                      },
+                      {
+                        "type": "null"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "An active mailbox in this organization with an email address on this domain. Receives unknown addresses only when catch-all has no webhook endpoint. Null drops unknown addresses without a bounce; omission leaves the setting unchanged."
                   }
                 },
                 "required": [
@@ -10526,6 +10540,17 @@
                 "schema": {
                   "type": "object",
                   "properties": {
+                    "unknownRecipientMailboxId": {
+                      "anyOf": [
+                        {
+                          "$ref": "#/components/schemas/MailboxId"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "description": "The active mailbox on this domain that receives unknown addresses when catch-all has no webhook endpoint, or null to drop them without a bounce."
+                    },
                     "enabled": {
                       "type": "boolean"
                     },
@@ -10556,6 +10581,7 @@
                     }
                   },
                   "required": [
+                    "unknownRecipientMailboxId",
                     "enabled",
                     "endpointId",
                     "emailCount",
@@ -10627,7 +10653,7 @@
             }
           }
         },
-        "description": "Returns the catch-all receiving configuration for a domain, including the webhook endpoint that receives its inbound mail and its email counts.",
+        "description": "Returns the catch-all receiving configuration for a domain, including its webhook endpoint, unknown-address mailbox (null means drop), and email counts.",
         "summary": "Get catch-all configuration",
         "x-samva-scope": "domains:read"
       }
@@ -86873,6 +86899,17 @@
       "EmailDomainDetailed": {
         "type": "object",
         "properties": {
+          "unknownRecipientMailboxId": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/MailboxId"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "The active mailbox on this domain that receives unknown addresses when catch-all has no webhook endpoint, or null to drop them without a bounce."
+          },
           "id": {
             "$ref": "#/components/schemas/EmailDomainId"
           },
@@ -87012,6 +87049,7 @@
           }
         },
         "required": [
+          "unknownRecipientMailboxId",
           "id",
           "domain",
           "phase",
@@ -87892,6 +87930,17 @@
             "items": {
               "type": "object",
               "properties": {
+                "unknownRecipientMailboxId": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/MailboxId"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "description": "The active mailbox on this domain that receives unknown addresses when catch-all has no webhook endpoint, or null to drop them without a bounce."
+                },
                 "id": {
                   "$ref": "#/components/schemas/EmailDomainId"
                 },
@@ -87957,6 +88006,7 @@
                 }
               },
               "required": [
+                "unknownRecipientMailboxId",
                 "id",
                 "domain",
                 "phase",
