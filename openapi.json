@@ -51387,6 +51387,21 @@
                         }
                       }
                     ]
+                  },
+                  "door": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "enum": [
+                          "email_api",
+                          "business_email",
+                          "agent_mailboxes"
+                        ]
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
                   }
                 },
                 "required": [
@@ -74156,6 +74171,14 @@
           "billingAccountId": {
             "type": "string"
           },
+          "door": {
+            "type": "string",
+            "enum": [
+              "email_api",
+              "business_email",
+              "agent_mailboxes"
+            ]
+          },
           "name": {
             "type": "string"
           },
@@ -74269,6 +74292,7 @@
         "required": [
           "id",
           "billingAccountId",
+          "door",
           "name",
           "slug",
           "avatarUrl",

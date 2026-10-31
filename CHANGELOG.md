@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.52.0
+
+- 377 operations, 277 paths, 547 schemas, 39 webhook events.
+- Breaking against v0.51.0.
+- Changed schemas:
+  - `Organization`
+
+
 ## v0.51.0
 
 - 377 operations, 277 paths, 547 schemas, 39 webhook events.
