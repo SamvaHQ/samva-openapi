@@ -3630,7 +3630,16 @@
                 "type": "object",
                 "properties": {
                   "name": {
-                    "type": "string"
+                    "type": "string",
+                    "maxLength": 120,
+                    "x-samva-string-checks": [
+                      {
+                        "id": "effect/schema/isMaxLength",
+                        "payload": {
+                          "maxLength": 120
+                        }
+                      }
+                    ]
                   },
                   "channel": {
                     "type": "string",
@@ -4017,7 +4026,16 @@
                   "name": {
                     "anyOf": [
                       {
-                        "type": "string"
+                        "type": "string",
+                        "maxLength": 120,
+                        "x-samva-string-checks": [
+                          {
+                            "id": "effect/schema/isMaxLength",
+                            "payload": {
+                              "maxLength": 120
+                            }
+                          }
+                        ]
                       },
                       {
                         "type": "null"
@@ -9054,7 +9072,16 @@
                   "name": {
                     "anyOf": [
                       {
-                        "type": "string"
+                        "type": "string",
+                        "maxLength": 120,
+                        "x-samva-string-checks": [
+                          {
+                            "id": "effect/schema/isMaxLength",
+                            "payload": {
+                              "maxLength": 120
+                            }
+                          }
+                        ]
                       },
                       {
                         "type": "null"
@@ -17100,12 +17127,30 @@
                     ]
                   },
                   "name": {
-                    "type": "string"
+                    "type": "string",
+                    "maxLength": 120,
+                    "x-samva-string-checks": [
+                      {
+                        "id": "effect/schema/isMaxLength",
+                        "payload": {
+                          "maxLength": 120
+                        }
+                      }
+                    ]
                   },
                   "displayName": {
                     "anyOf": [
                       {
-                        "type": "string"
+                        "type": "string",
+                        "maxLength": 120,
+                        "x-samva-string-checks": [
+                          {
+                            "id": "effect/schema/isMaxLength",
+                            "payload": {
+                              "maxLength": 120
+                            }
+                          }
+                        ]
                       },
                       {
                         "type": "null"
@@ -17563,7 +17608,16 @@
                           "name": {
                             "anyOf": [
                               {
-                                "type": "string"
+                                "type": "string",
+                                "maxLength": 120,
+                                "x-samva-string-checks": [
+                                  {
+                                    "id": "effect/schema/isMaxLength",
+                                    "payload": {
+                                      "maxLength": 120
+                                    }
+                                  }
+                                ]
                               },
                               {
                                 "type": "null"
@@ -17573,7 +17627,16 @@
                           "displayName": {
                             "anyOf": [
                               {
-                                "type": "string"
+                                "type": "string",
+                                "maxLength": 120,
+                                "x-samva-string-checks": [
+                                  {
+                                    "id": "effect/schema/isMaxLength",
+                                    "payload": {
+                                      "maxLength": 120
+                                    }
+                                  }
+                                ]
                               },
                               {
                                 "type": "null"
@@ -17876,7 +17939,16 @@
                   "name": {
                     "anyOf": [
                       {
-                        "type": "string"
+                        "type": "string",
+                        "maxLength": 120,
+                        "x-samva-string-checks": [
+                          {
+                            "id": "effect/schema/isMaxLength",
+                            "payload": {
+                              "maxLength": 120
+                            }
+                          }
+                        ]
                       },
                       {
                         "type": "null"
@@ -17886,7 +17958,16 @@
                   "displayName": {
                     "anyOf": [
                       {
-                        "type": "string"
+                        "type": "string",
+                        "maxLength": 120,
+                        "x-samva-string-checks": [
+                          {
+                            "id": "effect/schema/isMaxLength",
+                            "payload": {
+                              "maxLength": 120
+                            }
+                          }
+                        ]
                       },
                       {
                         "type": "null"
@@ -24678,7 +24759,16 @@
                 "type": "object",
                 "properties": {
                   "name": {
-                    "type": "string"
+                    "type": "string",
+                    "maxLength": 120,
+                    "x-samva-string-checks": [
+                      {
+                        "id": "effect/schema/isMaxLength",
+                        "payload": {
+                          "maxLength": 120
+                        }
+                      }
+                    ]
                   },
                   "description": {
                     "anyOf": [
@@ -25243,7 +25333,16 @@
                   "name": {
                     "anyOf": [
                       {
-                        "type": "string"
+                        "type": "string",
+                        "maxLength": 120,
+                        "x-samva-string-checks": [
+                          {
+                            "id": "effect/schema/isMaxLength",
+                            "payload": {
+                              "maxLength": 120
+                            }
+                          }
+                        ]
                       },
                       {
                         "type": "null"
@@ -50924,7 +51023,16 @@
                 "type": "object",
                 "properties": {
                   "name": {
-                    "type": "string"
+                    "type": "string",
+                    "maxLength": 120,
+                    "x-samva-string-checks": [
+                      {
+                        "id": "effect/schema/isMaxLength",
+                        "payload": {
+                          "maxLength": 120
+                        }
+                      }
+                    ]
                   }
                 },
                 "required": [
@@ -51121,7 +51229,16 @@
                   "name": {
                     "anyOf": [
                       {
-                        "type": "string"
+                        "type": "string",
+                        "maxLength": 120,
+                        "x-samva-string-checks": [
+                          {
+                            "id": "effect/schema/isMaxLength",
+                            "payload": {
+                              "maxLength": 120
+                            }
+                          }
+                        ]
                       },
                       {
                         "type": "null"
@@ -71413,7 +71530,16 @@
           "displayName": {
             "anyOf": [
               {
-                "type": "string"
+                "type": "string",
+                "maxLength": 40,
+                "x-samva-string-checks": [
+                  {
+                    "id": "effect/schema/isMaxLength",
+                    "payload": {
+                      "maxLength": 40
+                    }
+                  }
+                ]
               },
               {
                 "type": "null"
@@ -71451,7 +71577,16 @@
             "type": "string"
           },
           "displayName": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 40,
+            "x-samva-string-checks": [
+              {
+                "id": "effect/schema/isMaxLength",
+                "payload": {
+                  "maxLength": 40
+                }
+              }
+            ]
           },
           "color": {
             "anyOf": [
@@ -72230,7 +72365,16 @@
           "displayName": {
             "anyOf": [
               {
-                "type": "string"
+                "type": "string",
+                "maxLength": 120,
+                "x-samva-string-checks": [
+                  {
+                    "id": "effect/schema/isMaxLength",
+                    "payload": {
+                      "maxLength": 120
+                    }
+                  }
+                ]
               },
               {
                 "type": "null"
@@ -72268,7 +72412,16 @@
           "displayName": {
             "anyOf": [
               {
-                "type": "string"
+                "type": "string",
+                "maxLength": 120,
+                "x-samva-string-checks": [
+                  {
+                    "id": "effect/schema/isMaxLength",
+                    "payload": {
+                      "maxLength": 120
+                    }
+                  }
+                ]
               },
               {
                 "type": "null"
@@ -72289,7 +72442,16 @@
             "anyOf": [
               {
                 "type": "string",
-                "minLength": 1
+                "maxLength": 120,
+                "minLength": 1,
+                "x-samva-string-checks": [
+                  {
+                    "id": "effect/schema/isMaxLength",
+                    "payload": {
+                      "maxLength": 120
+                    }
+                  }
+                ]
               },
               {
                 "type": "null"
@@ -72353,7 +72515,16 @@
             "$ref": "#/components/schemas/CreateMailboxEndpointPayload"
           },
           "name": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 120,
+            "x-samva-string-checks": [
+              {
+                "id": "effect/schema/isMaxLength",
+                "payload": {
+                  "maxLength": 120
+                }
+              }
+            ]
           },
           "slug": {
             "anyOf": [
@@ -77537,7 +77708,16 @@
             "anyOf": [
               {
                 "type": "string",
-                "minLength": 1
+                "maxLength": 120,
+                "minLength": 1,
+                "x-samva-string-checks": [
+                  {
+                    "id": "effect/schema/isMaxLength",
+                    "payload": {
+                      "maxLength": 120
+                    }
+                  }
+                ]
               },
               {
                 "type": "null"
@@ -78307,7 +78487,16 @@
             "anyOf": [
               {
                 "type": "string",
-                "minLength": 1
+                "maxLength": 120,
+                "minLength": 1,
+                "x-samva-string-checks": [
+                  {
+                    "id": "effect/schema/isMaxLength",
+                    "payload": {
+                      "maxLength": 120
+                    }
+                  }
+                ]
               },
               {
                 "type": "null"
@@ -78388,7 +78577,16 @@
         "properties": {
           "name": {
             "type": "string",
-            "minLength": 1
+            "maxLength": 120,
+            "minLength": 1,
+            "x-samva-string-checks": [
+              {
+                "id": "effect/schema/isMaxLength",
+                "payload": {
+                  "maxLength": 120
+                }
+              }
+            ]
           },
           "description": {
             "anyOf": [
@@ -79212,7 +79410,16 @@
               "name": {
                 "anyOf": [
                   {
-                    "type": "string"
+                    "type": "string",
+                    "maxLength": 120,
+                    "x-samva-string-checks": [
+                      {
+                        "id": "effect/schema/isMaxLength",
+                        "payload": {
+                          "maxLength": 120
+                        }
+                      }
+                    ]
                   },
                   {
                     "type": "null"
@@ -88830,7 +89037,7 @@
             "description": "Render a saved Markdown issue from the audience topic's repository. Its saved title and preheader supply the email content; templateData supplies recipient fallbacks."
           },
           "from": {
-            "$ref": "#/components/schemas/CampaignFrom"
+            "$ref": "#/components/schemas/CampaignFromInput"
           },
           "replyMailboxId": {
             "$ref": "#/components/schemas/CampaignReplyMailbox"
@@ -88847,6 +89054,45 @@
           "email"
         ],
         "additionalProperties": false
+      },
+      "CampaignFromInput": {
+        "anyOf": [
+          {
+            "type": "object",
+            "properties": {
+              "email": {
+                "type": "string",
+                "minLength": 1
+              },
+              "name": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "maxLength": 120,
+                    "x-samva-string-checks": [
+                      {
+                        "id": "effect/schema/isMaxLength",
+                        "payload": {
+                          "maxLength": 120
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "email"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "null"
+          }
+        ]
       },
       "CampaignEmailInput": {
         "type": "object",
@@ -89186,7 +89432,7 @@
             "type": "string"
           },
           "send": {
-            "$ref": "#/components/schemas/SendMessagePayload"
+            "$ref": "#/components/schemas/StoredSendMessagePayload"
           },
           "messageId": {
             "anyOf": [
@@ -89273,7 +89519,7 @@
         ],
         "additionalProperties": false
       },
-      "SendMessagePayload": {
+      "StoredSendMessagePayload": {
         "type": "object",
         "properties": {
           "conversationId": {
@@ -89299,16 +89545,73 @@
             ]
           },
           "to": {
-            "$ref": "#/components/schemas/EmailRecipients"
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SavedEmailRecipient"
+            },
+            "minItems": 1
           },
           "cc": {
-            "$ref": "#/components/schemas/EmailCcRecipients"
+            "anyOf": [
+              {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/SavedEmailRecipient"
+                }
+              },
+              {
+                "type": "null"
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
           "bcc": {
-            "$ref": "#/components/schemas/EmailBccRecipients"
+            "anyOf": [
+              {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/SavedEmailRecipient"
+                }
+              },
+              {
+                "type": "null"
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
           "from": {
-            "$ref": "#/components/schemas/EmailSender"
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "name": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  }
+                },
+                "required": [
+                  "email"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
           "email": {
             "$ref": "#/components/schemas/EmailContent"
@@ -89333,54 +89636,6 @@
             "type": "null"
           }
         ]
-      },
-      "EmailSendMessagePayload": {
-        "type": "object",
-        "properties": {
-          "conversationId": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/ConversationId"
-              },
-              {
-                "type": "null"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "metadata": {
-            "$ref": "#/components/schemas/MessageMetadata"
-          },
-          "channel": {
-            "type": "string",
-            "enum": [
-              "email"
-            ]
-          },
-          "to": {
-            "$ref": "#/components/schemas/EmailRecipients"
-          },
-          "cc": {
-            "$ref": "#/components/schemas/EmailCcRecipients"
-          },
-          "bcc": {
-            "$ref": "#/components/schemas/EmailBccRecipients"
-          },
-          "from": {
-            "$ref": "#/components/schemas/EmailSender"
-          },
-          "email": {
-            "$ref": "#/components/schemas/EmailContent"
-          }
-        },
-        "required": [
-          "channel",
-          "to",
-          "email"
-        ],
-        "additionalProperties": false
       },
       "EmailContent": {
         "type": "object",
@@ -89500,53 +89755,7 @@
         },
         "additionalProperties": false
       },
-      "EmailSender": {
-        "anyOf": [
-          {
-            "type": "object",
-            "properties": {
-              "email": {
-                "type": "string",
-                "minLength": 1
-              },
-              "name": {
-                "anyOf": [
-                  {
-                    "type": "string"
-                  },
-                  {
-                    "type": "null"
-                  }
-                ]
-              }
-            },
-            "required": [
-              "email"
-            ],
-            "additionalProperties": false
-          },
-          {
-            "type": "null"
-          }
-        ]
-      },
-      "EmailBccRecipients": {
-        "anyOf": [
-          {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/EmailRecipient"
-            }
-          },
-          {
-            "type": "null"
-          },
-          {
-            "type": "null"
-          }
-        ]
-      },
-      "EmailRecipient": {
+      "SavedEmailRecipient": {
         "anyOf": [
           {
             "type": "object",
@@ -89596,29 +89805,6 @@
             "additionalProperties": false
           }
         ]
-      },
-      "EmailCcRecipients": {
-        "anyOf": [
-          {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/EmailRecipient"
-            }
-          },
-          {
-            "type": "null"
-          },
-          {
-            "type": "null"
-          }
-        ]
-      },
-      "EmailRecipients": {
-        "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/EmailRecipient"
-        },
-        "minItems": 1
       },
       "ScheduledMessageId": {
         "type": "string",
@@ -89817,6 +90003,153 @@
         },
         "additionalProperties": false
       },
+      "EmailSender": {
+        "anyOf": [
+          {
+            "type": "object",
+            "properties": {
+              "email": {
+                "type": "string",
+                "minLength": 1
+              },
+              "name": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "maxLength": 120,
+                    "x-samva-string-checks": [
+                      {
+                        "id": "effect/schema/isMaxLength",
+                        "payload": {
+                          "maxLength": 120
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "email"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "EmailBccRecipients": {
+        "anyOf": [
+          {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EmailRecipient"
+            }
+          },
+          {
+            "type": "null"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "EmailRecipient": {
+        "anyOf": [
+          {
+            "type": "object",
+            "properties": {
+              "contactId": {
+                "$ref": "#/components/schemas/ContactId"
+              }
+            },
+            "required": [
+              "contactId"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "email": {
+                "type": "string"
+              },
+              "name": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "maxLength": 120,
+                    "x-samva-string-checks": [
+                      {
+                        "id": "effect/schema/isMaxLength",
+                        "payload": {
+                          "maxLength": 120
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "displayName": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "maxLength": 120,
+                    "x-samva-string-checks": [
+                      {
+                        "id": "effect/schema/isMaxLength",
+                        "payload": {
+                          "maxLength": 120
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "null"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "email"
+            ],
+            "additionalProperties": false
+          }
+        ]
+      },
+      "EmailCcRecipients": {
+        "anyOf": [
+          {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EmailRecipient"
+            }
+          },
+          {
+            "type": "null"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "EmailRecipients": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/EmailRecipient"
+        },
+        "minItems": 1
+      },
       "OperationPage": {
         "type": "object",
         "properties": {
@@ -89986,6 +90319,54 @@
         ],
         "additionalProperties": false
       },
+      "EmailSendMessagePayload": {
+        "type": "object",
+        "properties": {
+          "conversationId": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ConversationId"
+              },
+              {
+                "type": "null"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/MessageMetadata"
+          },
+          "channel": {
+            "type": "string",
+            "enum": [
+              "email"
+            ]
+          },
+          "to": {
+            "$ref": "#/components/schemas/EmailRecipients"
+          },
+          "cc": {
+            "$ref": "#/components/schemas/EmailCcRecipients"
+          },
+          "bcc": {
+            "$ref": "#/components/schemas/EmailBccRecipients"
+          },
+          "from": {
+            "$ref": "#/components/schemas/EmailSender"
+          },
+          "email": {
+            "$ref": "#/components/schemas/EmailContent"
+          }
+        },
+        "required": [
+          "channel",
+          "to",
+          "email"
+        ],
+        "additionalProperties": false
+      },
       "MessageReceipt": {
         "type": "object",
         "properties": {
@@ -90057,6 +90438,54 @@
           "reviewExpectedAt",
           "skippedRecipients",
           "createdAt"
+        ],
+        "additionalProperties": false
+      },
+      "SendMessagePayload": {
+        "type": "object",
+        "properties": {
+          "conversationId": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ConversationId"
+              },
+              {
+                "type": "null"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/MessageMetadata"
+          },
+          "channel": {
+            "type": "string",
+            "enum": [
+              "email"
+            ]
+          },
+          "to": {
+            "$ref": "#/components/schemas/EmailRecipients"
+          },
+          "cc": {
+            "$ref": "#/components/schemas/EmailCcRecipients"
+          },
+          "bcc": {
+            "$ref": "#/components/schemas/EmailBccRecipients"
+          },
+          "from": {
+            "$ref": "#/components/schemas/EmailSender"
+          },
+          "email": {
+            "$ref": "#/components/schemas/EmailContent"
+          }
+        },
+        "required": [
+          "channel",
+          "to",
+          "email"
         ],
         "additionalProperties": false
       },

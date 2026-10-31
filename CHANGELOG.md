@@ -1,5 +1,37 @@
 # Changelog
 
+## v0.49.0
+
+- 377 operations, 277 paths, 546 schemas, 39 webhook events.
+- Breaking against v0.48.1.
+- Changed operations:
+  - `PATCH /v1/campaigns/{id}`
+  - `PATCH /v1/contact-groups/{id}`
+  - `PATCH /v1/contacts/{id}`
+  - `PATCH /v1/organizations/current`
+  - `POST /v1/campaigns`
+  - `POST /v1/contact-groups`
+  - `POST /v1/contacts`
+  - `POST /v1/contacts/find-or-create`
+  - `POST /v1/email/senders`
+  - `POST /v1/organizations`
+- Changed schemas:
+  - `CampaignContentInput`
+  - `CreateMailboxEndpointPayload`
+  - `CreateMailboxLabelPayload`
+  - `CreateMailboxPayload`
+  - `EmailRecipient`
+  - `EmailSender`
+  - `NewsletterCreatePayload`
+  - `ScheduledMessage`
+  - `SubscribePayload`
+  - `TopicCreatePayload`
+  - `TopicUpdatePayload`
+  - `UpdateMailboxEndpointPayload`
+  - `UpdateMailboxLabelPayload`
+  - `UpdateMailboxPayload`
+
+
 ## v0.48.1
 
 - 377 operations, 277 paths, 543 schemas, 39 webhook events.
