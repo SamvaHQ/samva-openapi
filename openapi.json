@@ -74198,12 +74198,20 @@
             "type": "string"
           },
           "door": {
-            "type": "string",
-            "enum": [
-              "email_api",
-              "business_email",
-              "agent_mailboxes"
-            ]
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "email_api",
+                  "business_email",
+                  "agent_mailboxes"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "The organization's chosen door. Null until a door is selected during onboarding."
           },
           "name": {
             "type": "string"
