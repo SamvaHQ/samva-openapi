@@ -1,5 +1,14 @@
 # Changelog
 
+## v0.55.0
+
+- 377 operations, 277 paths, 547 schemas, 39 webhook events.
+- Breaking against v0.54.0.
+- Changed operations:
+  - `GET /v1/templates/{id}/repository`
+  - `POST /v1/templates/{id}/repository/credentials`
+
+
 ## v0.54.0
 
 - 377 operations, 277 paths, 547 schemas, 39 webhook events.
