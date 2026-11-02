@@ -50817,7 +50817,7 @@
             }
           }
         },
-        "description": "Returns a webhook endpoint's deliveries, newest first, each naming the event type and time it was made for, with its nested attempt diagnostics. Pass `nextCursor` back as `cursor` for the next page; it is null on the last page.",
+        "description": "Returns a webhook endpoint's deliveries, newest first, each naming the event type and time it was made for, with its nested attempt diagnostics. A replay of a terminal delivery records a skipped replay receipt without another HTTP request or a change to its automatic retry lifecycle. Pass `nextCursor` back as `cursor` for the next page; it is null on the last page.",
         "summary": "List webhook delivery logs",
         "x-samva-scope": "webhooks:read"
       }
@@ -74523,7 +74523,18 @@
                         "type": "string",
                         "enum": [
                           "automatic",
-                          "manual"
+                          "manual",
+                          "replay"
+                        ]
+                      },
+                      "queueMessageId": {
+                        "anyOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "null"
+                          }
                         ]
                       },
                       "attemptNumber": {
@@ -74538,7 +74549,8 @@
                           "http-error",
                           "network-error",
                           "timeout",
-                          "cancelled"
+                          "cancelled",
+                          "skipped"
                         ]
                       },
                       "attemptedAt": {
@@ -74608,6 +74620,7 @@
                       "id",
                       "deliveryId",
                       "kind",
+                      "queueMessageId",
                       "attemptNumber",
                       "classification",
                       "attemptedAt",

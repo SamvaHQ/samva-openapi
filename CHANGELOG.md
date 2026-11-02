@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.57.0
+
+- 377 operations, 277 paths, 547 schemas, 39 webhook events.
+- Breaking against v0.56.0.
+- Changed schemas:
+  - `WebhookDeliveryPage`
+
+
 ## v0.56.0
 
 - 377 operations, 277 paths, 547 schemas, 39 webhook events.
