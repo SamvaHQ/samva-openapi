@@ -1,5 +1,105 @@
 # Changelog
 
+## v0.58.0
+
+- 377 operations, 277 paths, 544 schemas, 39 webhook events.
+- Breaking against v0.57.1.
+- Changed operations:
+  - `DELETE /v1/newsletters/{id}`
+  - `DELETE /v1/newsletters/{id}/domains/{hostname}`
+  - `GET /v1/agents`
+  - `GET /v1/agents/{id}/versions`
+  - `GET /v1/analytics/channel-stats`
+  - `GET /v1/analytics/delivery-metrics`
+  - `GET /v1/analytics/hourly-distribution`
+  - `GET /v1/analytics/stats`
+  - `GET /v1/analytics/top-contacts`
+  - `GET /v1/api-keys`
+  - `GET /v1/api-keys/{id}/activity`
+  - `GET /v1/api-keys/{id}/stats`
+  - `GET /v1/campaigns`
+  - `GET /v1/campaigns/{id}/runs`
+  - `GET /v1/campaigns/{id}/runs/{runId}/recipients`
+  - `GET /v1/contact-groups`
+  - `GET /v1/contact-groups/{id}/members`
+  - `GET /v1/contacts`
+  - `GET /v1/contacts/{id}/activity`
+  - `GET /v1/contacts/{id}/events`
+  - `GET /v1/contacts/{id}/groups`
+  - `GET /v1/conversations`
+  - `GET /v1/conversations/{id}/messages`
+  - `GET /v1/email/blocks`
+  - `GET /v1/email/blocks/logs`
+  - `GET /v1/email/catch-all/stats`
+  - `GET /v1/email/domains`
+  - `GET /v1/email/forwarding`
+  - `GET /v1/email/forwarding/logs`
+  - `GET /v1/email/senders`
+  - `GET /v1/email/stats`
+  - `GET /v1/email/suppressions`
+  - `GET /v1/extension-installations`
+  - `GET /v1/extensions`
+  - `GET /v1/extensions/{id}/versions`
+  - `GET /v1/journeys`
+  - `GET /v1/journeys/{id}/runs`
+  - `GET /v1/mailboxes`
+  - `GET /v1/mailboxes/drafts`
+  - `GET /v1/mailboxes/needs-you`
+  - `GET /v1/mailboxes/threads`
+  - `GET /v1/mailboxes/{id}/actions`
+  - `GET /v1/mailboxes/{id}/agent-activity`
+  - `GET /v1/mailboxes/{id}/drafts`
+  - `GET /v1/mailboxes/{id}/events`
+  - `GET /v1/mailboxes/{id}/grants`
+  - `GET /v1/mailboxes/{id}/quarantine`
+  - `GET /v1/mailboxes/{id}/threads`
+  - `GET /v1/mailboxes/{id}/threads/{threadId}/content`
+  - `GET /v1/mailboxes/{id}/threads/{threadId}/messages`
+  - `GET /v1/mailboxes/{id}/threads/{threadId}/notes`
+  - `GET /v1/messages`
+  - `GET /v1/messages/scheduled`
+  - `GET /v1/messages/{id}/events`
+  - `GET /v1/namespaces`
+  - `GET /v1/namespaces/{id}/usage`
+  - `GET /v1/newsletters`
+  - `GET /v1/newsletters/{id}/domains`
+  - `GET /v1/operations`
+  - `GET /v1/organizations/usage`
+  - `GET /v1/templates`
+  - `GET /v1/templates/families`
+  - `GET /v1/templates/{id}/input-contracts`
+  - `GET /v1/topics`
+  - `GET /v1/topics/check`
+  - `GET /v1/topics/{id}/subscriptions`
+  - `GET /v1/webhooks`
+  - `GET /v1/webhooks/{id}/logs`
+  - `GET /v1/webhooks/{id}/stats`
+  - `PATCH /v1/newsletters/{id}`
+  - `PATCH /v1/newsletters/{id}/issues`
+  - `POST /v1/campaigns/{id}/runs`
+  - `POST /v1/contacts/imports`
+  - `POST /v1/events`
+  - `POST /v1/events/batch`
+  - `POST /v1/mailboxes/{id}/drafts/{draftId}/send`
+  - `POST /v1/mailboxes/{id}/messages`
+  - `POST /v1/mailboxes/{id}/messages/{messageId}/forward`
+  - `POST /v1/mailboxes/{id}/messages/{messageId}/reply`
+  - `POST /v1/mailboxes/{id}/messages/{messageId}/reply-all`
+  - `POST /v1/messages`
+  - `POST /v1/messages/scheduled`
+  - `POST /v1/newsletters`
+  - `POST /v1/newsletters/{id}/domains`
+  - `POST /v1/newsletters/{id}/issues`
+  - `POST /v1/newsletters/{id}/issues/check`
+  - `POST /v1/newsletters/{id}/issues/remove`
+  - `POST /v1/newsletters/{id}/issues/render`
+  - `POST /v1/newsletters/{id}/issues/save`
+- Changed schemas:
+  - `Cursor`
+  - `PublicationDomainCursor`
+  - `VersionCursor`
+
+
 ## v0.57.1
 
 - 377 operations, 277 paths, 547 schemas, 39 webhook events.

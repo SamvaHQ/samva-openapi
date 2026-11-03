@@ -35,14 +35,7 @@
             "name": "cursor",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "$ref": "#/components/schemas/Cursor"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           },
@@ -50,16 +43,9 @@
             "name": "channel",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "enum": [
-                    "email"
-                  ]
-                },
-                {
-                  "type": "null"
-                }
+              "type": "string",
+              "enum": [
+                "email"
               ]
             },
             "required": false
@@ -68,17 +54,10 @@
             "name": "direction",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "enum": [
-                    "outbound",
-                    "inbound"
-                  ]
-                },
-                {
-                  "type": "null"
-                }
+              "type": "string",
+              "enum": [
+                "outbound",
+                "inbound"
               ]
             },
             "required": false
@@ -87,25 +66,18 @@
             "name": "status",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "enum": [
-                    "pending",
-                    "scheduled",
-                    "queued",
-                    "processing",
-                    "sent",
-                    "delivered",
-                    "read",
-                    "failed",
-                    "bounced",
-                    "complained"
-                  ]
-                },
-                {
-                  "type": "null"
-                }
+              "type": "string",
+              "enum": [
+                "pending",
+                "scheduled",
+                "queued",
+                "processing",
+                "sent",
+                "delivered",
+                "read",
+                "failed",
+                "bounced",
+                "complained"
               ]
             },
             "required": false
@@ -114,14 +86,7 @@
             "name": "conversationId",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "$ref": "#/components/schemas/ConversationId"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "$ref": "#/components/schemas/ConversationId"
             },
             "required": false
           },
@@ -129,14 +94,7 @@
             "name": "contactId",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "$ref": "#/components/schemas/ContactId"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "$ref": "#/components/schemas/ContactId"
             },
             "required": false
           },
@@ -144,14 +102,7 @@
             "name": "from",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           },
@@ -162,9 +113,6 @@
               "anyOf": [
                 {
                   "$ref": "#/components/schemas/NamespaceId"
-                },
-                {
-                  "type": "null"
                 }
               ],
               "description": "Only this namespace's messages. A key scoped to a namespace always lists its own."
@@ -175,14 +123,7 @@
             "name": "after",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           },
@@ -190,14 +131,7 @@
             "name": "before",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           }
@@ -283,23 +217,16 @@
             "name": "idempotency-key",
             "in": "header",
             "schema": {
-              "anyOf": [
+              "type": "string",
+              "pattern": "^[\\s\\S]{1,255}$",
+              "description": "Optional org-scoped key that makes a send idempotent. Repeating a request with the same key and identical payload replays the original 201 response; reusing the key with different content returns 409.",
+              "x-samva-string-checks": [
                 {
-                  "type": "string",
-                  "pattern": "^[\\s\\S]{1,255}$",
-                  "description": "Optional org-scoped key that makes a send idempotent. Repeating a request with the same key and identical payload replays the original 201 response; reusing the key with different content returns 409.",
-                  "x-samva-string-checks": [
-                    {
-                      "id": "effect/schema/isPattern",
-                      "payload": {
-                        "source": "^[\\s\\S]{1,255}$",
-                        "flags": ""
-                      }
-                    }
-                  ]
-                },
-                {
-                  "type": "null"
+                  "id": "effect/schema/isPattern",
+                  "payload": {
+                    "source": "^[\\s\\S]{1,255}$",
+                    "flags": ""
+                  }
                 }
               ]
             },
@@ -2064,14 +1991,7 @@
             "name": "cursor",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "$ref": "#/components/schemas/Cursor"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           }
@@ -2187,14 +2107,7 @@
             "name": "cursor",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "$ref": "#/components/schemas/Cursor"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           },
@@ -2202,17 +2115,10 @@
             "name": "kind",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "enum": [
-                    "email-domain-provisioning",
-                    "organization-deletion"
-                  ]
-                },
-                {
-                  "type": "null"
-                }
+              "type": "string",
+              "enum": [
+                "email-domain-provisioning",
+                "organization-deletion"
               ]
             },
             "required": false
@@ -2221,19 +2127,12 @@
             "name": "status",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "enum": [
-                    "pending",
-                    "running",
-                    "succeeded",
-                    "failed"
-                  ]
-                },
-                {
-                  "type": "null"
-                }
+              "type": "string",
+              "enum": [
+                "pending",
+                "running",
+                "succeeded",
+                "failed"
               ]
             },
             "required": false
@@ -2528,22 +2427,15 @@
             "name": "idempotency-key",
             "in": "header",
             "schema": {
-              "anyOf": [
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 255,
+              "x-samva-string-checks": [
                 {
-                  "type": "string",
-                  "minLength": 1,
-                  "maxLength": 255,
-                  "x-samva-string-checks": [
-                    {
-                      "id": "effect/schema/isMaxLength",
-                      "payload": {
-                        "maxLength": 255
-                      }
-                    }
-                  ]
-                },
-                {
-                  "type": "null"
+                  "id": "effect/schema/isMaxLength",
+                  "payload": {
+                    "maxLength": 255
+                  }
                 }
               ]
             },
@@ -2721,14 +2613,7 @@
             "name": "cursor",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "$ref": "#/components/schemas/Cursor"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           },
@@ -2736,21 +2621,14 @@
             "name": "status",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "enum": [
-                    "pending",
-                    "dispatching",
-                    "paused",
-                    "dispatched",
-                    "cancelled",
-                    "failed"
-                  ]
-                },
-                {
-                  "type": "null"
-                }
+              "type": "string",
+              "enum": [
+                "pending",
+                "dispatching",
+                "paused",
+                "dispatched",
+                "cancelled",
+                "failed"
               ]
             },
             "required": false
@@ -3721,17 +3599,10 @@
             "name": "status",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "enum": [
-                    "draft",
-                    "archived"
-                  ]
-                },
-                {
-                  "type": "null"
-                }
+              "type": "string",
+              "enum": [
+                "draft",
+                "archived"
               ]
             },
             "required": false
@@ -3758,14 +3629,7 @@
             "name": "cursor",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "$ref": "#/components/schemas/Cursor"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           }
@@ -4242,22 +4106,15 @@
             "name": "idempotency-key",
             "in": "header",
             "schema": {
-              "anyOf": [
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 255,
+              "x-samva-string-checks": [
                 {
-                  "type": "string",
-                  "minLength": 1,
-                  "maxLength": 255,
-                  "x-samva-string-checks": [
-                    {
-                      "id": "effect/schema/isMaxLength",
-                      "payload": {
-                        "maxLength": 255
-                      }
-                    }
-                  ]
-                },
-                {
-                  "type": "null"
+                  "id": "effect/schema/isMaxLength",
+                  "payload": {
+                    "maxLength": 255
+                  }
                 }
               ]
             },
@@ -4465,22 +4322,15 @@
             "name": "status",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "enum": [
-                    "scheduled",
-                    "resolving",
-                    "dispatching",
-                    "paused",
-                    "completed",
-                    "cancelled",
-                    "failed"
-                  ]
-                },
-                {
-                  "type": "null"
-                }
+              "type": "string",
+              "enum": [
+                "scheduled",
+                "resolving",
+                "dispatching",
+                "paused",
+                "completed",
+                "cancelled",
+                "failed"
               ]
             },
             "required": false
@@ -4507,14 +4357,7 @@
             "name": "cursor",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "$ref": "#/components/schemas/Cursor"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           }
@@ -5235,20 +5078,13 @@
             "name": "status",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "enum": [
-                    "pending",
-                    "dispatching",
-                    "dispatched",
-                    "failed",
-                    "skipped"
-                  ]
-                },
-                {
-                  "type": "null"
-                }
+              "type": "string",
+              "enum": [
+                "pending",
+                "dispatching",
+                "dispatched",
+                "failed",
+                "skipped"
               ]
             },
             "required": false
@@ -5275,14 +5111,7 @@
             "name": "cursor",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "$ref": "#/components/schemas/Cursor"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           }
@@ -6244,14 +6073,7 @@
             "name": "cursor",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "$ref": "#/components/schemas/Cursor"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           },
@@ -6275,14 +6097,7 @@
             "name": "namespaceId",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "$ref": "#/components/schemas/NamespaceId"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "$ref": "#/components/schemas/NamespaceId"
             },
             "required": false
           }
@@ -9232,14 +9047,7 @@
             "name": "cursor",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "$ref": "#/components/schemas/Cursor"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           },
@@ -9247,18 +9055,11 @@
             "name": "verificationStatus",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "enum": [
-                    "pending",
-                    "verified",
-                    "failed"
-                  ]
-                },
-                {
-                  "type": "null"
-                }
+              "type": "string",
+              "enum": [
+                "pending",
+                "verified",
+                "failed"
               ]
             },
             "required": false
@@ -9297,14 +9098,7 @@
             "name": "namespaceId",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "$ref": "#/components/schemas/NamespaceId"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "$ref": "#/components/schemas/NamespaceId"
             },
             "required": false
           }
@@ -9966,14 +9760,7 @@
             "name": "after",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           },
@@ -9981,14 +9768,7 @@
             "name": "before",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           }
@@ -10677,14 +10457,7 @@
             "name": "after",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           },
@@ -10692,14 +10465,7 @@
             "name": "before",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           }
@@ -10874,19 +10640,12 @@
             "name": "type",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "enum": [
-                    "bounce",
-                    "complaint",
-                    "unsubscribe",
-                    "manual"
-                  ]
-                },
-                {
-                  "type": "null"
-                }
+              "type": "string",
+              "enum": [
+                "bounce",
+                "complaint",
+                "unsubscribe",
+                "manual"
               ]
             },
             "required": false
@@ -10895,17 +10654,10 @@
             "name": "status",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "enum": [
-                    "active",
-                    "expired"
-                  ]
-                },
-                {
-                  "type": "null"
-                }
+              "type": "string",
+              "enum": [
+                "active",
+                "expired"
               ]
             },
             "required": false
@@ -10914,21 +10666,14 @@
             "name": "search",
             "in": "query",
             "schema": {
-              "anyOf": [
+              "type": "string",
+              "maxLength": 256,
+              "x-samva-string-checks": [
                 {
-                  "type": "string",
-                  "maxLength": 256,
-                  "x-samva-string-checks": [
-                    {
-                      "id": "effect/schema/isMaxLength",
-                      "payload": {
-                        "maxLength": 256
-                      }
-                    }
-                  ]
-                },
-                {
-                  "type": "null"
+                  "id": "effect/schema/isMaxLength",
+                  "payload": {
+                    "maxLength": 256
+                  }
                 }
               ]
             },
@@ -10956,14 +10701,7 @@
             "name": "cursor",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "$ref": "#/components/schemas/Cursor"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           }
@@ -11431,17 +11169,10 @@
             "name": "blockType",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "enum": [
-                    "email",
-                    "domain"
-                  ]
-                },
-                {
-                  "type": "null"
-                }
+              "type": "string",
+              "enum": [
+                "email",
+                "domain"
               ]
             },
             "required": false
@@ -11483,14 +11214,7 @@
             "name": "cursor",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "$ref": "#/components/schemas/Cursor"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           }
@@ -11883,14 +11607,7 @@
             "name": "blockedEmailId",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "$ref": "#/components/schemas/BlockedEmailId"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "$ref": "#/components/schemas/BlockedEmailId"
             },
             "required": false
           },
@@ -11898,14 +11615,7 @@
             "name": "fromAddress",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           },
@@ -11913,14 +11623,7 @@
             "name": "after",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           },
@@ -11928,14 +11631,7 @@
             "name": "before",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           },
@@ -11961,14 +11657,7 @@
             "name": "cursor",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "$ref": "#/components/schemas/Cursor"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           }
@@ -12476,14 +12165,7 @@
             "name": "domainId",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "$ref": "#/components/schemas/EmailDomainId"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "$ref": "#/components/schemas/EmailDomainId"
             },
             "required": false
           },
@@ -12951,14 +12633,7 @@
             "name": "forwardingRuleId",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "$ref": "#/components/schemas/EmailForwardingRuleId"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "$ref": "#/components/schemas/EmailForwardingRuleId"
             },
             "required": false
           },
@@ -12966,18 +12641,11 @@
             "name": "status",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "enum": [
-                    "pending",
-                    "forwarded",
-                    "failed"
-                  ]
-                },
-                {
-                  "type": "null"
-                }
+              "type": "string",
+              "enum": [
+                "pending",
+                "forwarded",
+                "failed"
               ]
             },
             "required": false
@@ -12986,14 +12654,7 @@
             "name": "after",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           },
@@ -13001,14 +12662,7 @@
             "name": "before",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           },
@@ -13034,14 +12688,7 @@
             "name": "cursor",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "$ref": "#/components/schemas/Cursor"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           }
@@ -14963,14 +14610,7 @@
             "name": "cursor",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "$ref": "#/components/schemas/Cursor"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           },
@@ -14978,20 +14618,13 @@
             "name": "status",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "enum": [
-                    "active",
-                    "waiting",
-                    "resolved",
-                    "escalated",
-                    "archived"
-                  ]
-                },
-                {
-                  "type": "null"
-                }
+              "type": "string",
+              "enum": [
+                "active",
+                "waiting",
+                "resolved",
+                "escalated",
+                "archived"
               ]
             },
             "required": false
@@ -15000,16 +14633,9 @@
             "name": "channel",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "enum": [
-                    "email"
-                  ]
-                },
-                {
-                  "type": "null"
-                }
+              "type": "string",
+              "enum": [
+                "email"
               ]
             },
             "required": false
@@ -15018,14 +14644,7 @@
             "name": "contactId",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "$ref": "#/components/schemas/ContactId"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "$ref": "#/components/schemas/ContactId"
             },
             "required": false
           },
@@ -15033,14 +14652,7 @@
             "name": "mailboxId",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "$ref": "#/components/schemas/MailboxId"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "$ref": "#/components/schemas/MailboxId"
             },
             "required": false
           },
@@ -15048,14 +14660,7 @@
             "name": "after",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           },
@@ -15063,14 +14668,7 @@
             "name": "before",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           }
@@ -15877,14 +15475,7 @@
             "name": "cursor",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "$ref": "#/components/schemas/Cursor"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           },
@@ -15892,14 +15483,7 @@
             "name": "after",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           },
@@ -15907,14 +15491,7 @@
             "name": "before",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           }
@@ -16886,14 +16463,7 @@
             "name": "cursor",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "$ref": "#/components/schemas/Cursor"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           },
@@ -16901,14 +16471,7 @@
             "name": "namespaceId",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "$ref": "#/components/schemas/NamespaceId"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "$ref": "#/components/schemas/NamespaceId"
             },
             "required": false
           },
@@ -16916,14 +16479,7 @@
             "name": "search",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           },
@@ -16931,19 +16487,12 @@
             "name": "status",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "enum": [
-                    "active",
-                    "paused",
-                    "blocked",
-                    "archived"
-                  ]
-                },
-                {
-                  "type": "null"
-                }
+              "type": "string",
+              "enum": [
+                "active",
+                "paused",
+                "blocked",
+                "archived"
               ]
             },
             "required": false
@@ -16952,14 +16501,7 @@
             "name": "fields",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           },
@@ -16967,14 +16509,7 @@
             "name": "customField",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           },
@@ -16982,14 +16517,7 @@
             "name": "customFieldValue",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           },
@@ -16997,14 +16525,7 @@
             "name": "after",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           },
@@ -17012,14 +16533,7 @@
             "name": "before",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           }
@@ -19456,22 +18970,15 @@
             "name": "idempotency-key",
             "in": "header",
             "schema": {
-              "anyOf": [
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 255,
+              "x-samva-string-checks": [
                 {
-                  "type": "string",
-                  "minLength": 1,
-                  "maxLength": 255,
-                  "x-samva-string-checks": [
-                    {
-                      "id": "effect/schema/isMaxLength",
-                      "payload": {
-                        "maxLength": 255
-                      }
-                    }
-                  ]
-                },
-                {
-                  "type": "null"
+                  "id": "effect/schema/isMaxLength",
+                  "payload": {
+                    "maxLength": 255
+                  }
                 }
               ]
             },
@@ -20971,14 +20478,7 @@
             "name": "cursor",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "$ref": "#/components/schemas/Cursor"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           },
@@ -20986,16 +20486,9 @@
             "name": "channel",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "enum": [
-                    "email"
-                  ]
-                },
-                {
-                  "type": "null"
-                }
+              "type": "string",
+              "enum": [
+                "email"
               ]
             },
             "required": false
@@ -21120,14 +20613,7 @@
             "name": "cursor",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "$ref": "#/components/schemas/Cursor"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           }
@@ -21225,22 +20711,15 @@
             "name": "idempotency-key",
             "in": "header",
             "schema": {
-              "anyOf": [
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 255,
+              "x-samva-string-checks": [
                 {
-                  "type": "string",
-                  "minLength": 1,
-                  "maxLength": 255,
-                  "x-samva-string-checks": [
-                    {
-                      "id": "effect/schema/isMaxLength",
-                      "payload": {
-                        "maxLength": 255
-                      }
-                    }
-                  ]
-                },
-                {
-                  "type": "null"
+                  "id": "effect/schema/isMaxLength",
+                  "payload": {
+                    "maxLength": 255
+                  }
                 }
               ]
             },
@@ -21381,22 +20860,15 @@
             "name": "idempotency-key",
             "in": "header",
             "schema": {
-              "anyOf": [
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 255,
+              "x-samva-string-checks": [
                 {
-                  "type": "string",
-                  "minLength": 1,
-                  "maxLength": 255,
-                  "x-samva-string-checks": [
-                    {
-                      "id": "effect/schema/isMaxLength",
-                      "payload": {
-                        "maxLength": 255
-                      }
-                    }
-                  ]
-                },
-                {
-                  "type": "null"
+                  "id": "effect/schema/isMaxLength",
+                  "payload": {
+                    "maxLength": 255
+                  }
                 }
               ]
             },
@@ -21533,14 +21005,7 @@
             "name": "cursor",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "$ref": "#/components/schemas/Cursor"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           }
@@ -21638,14 +21103,7 @@
             "name": "status",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "$ref": "#/components/schemas/JourneyStatus"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "$ref": "#/components/schemas/JourneyStatus"
             },
             "required": false
           },
@@ -21671,14 +21129,7 @@
             "name": "cursor",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "$ref": "#/components/schemas/Cursor"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           }
@@ -23080,14 +22531,7 @@
             "name": "status",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "$ref": "#/components/schemas/JourneyRunStatus"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "$ref": "#/components/schemas/JourneyRunStatus"
             },
             "required": false
           },
@@ -23095,14 +22539,7 @@
             "name": "contactId",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "$ref": "#/components/schemas/ContactId"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "$ref": "#/components/schemas/ContactId"
             },
             "required": false
           },
@@ -23128,14 +22565,7 @@
             "name": "cursor",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "$ref": "#/components/schemas/Cursor"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           }
@@ -23357,14 +22787,7 @@
             "name": "cursor",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "$ref": "#/components/schemas/Cursor"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           }
@@ -24111,14 +23534,7 @@
             "name": "cursor",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "$ref": "#/components/schemas/VersionCursor"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           }
@@ -24526,14 +23942,7 @@
             "name": "cursor",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "$ref": "#/components/schemas/Cursor"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           },
@@ -24560,9 +23969,6 @@
                       "smart"
                     ]
                   }
-                },
-                {
-                  "type": "null"
                 }
               ]
             },
@@ -26000,14 +25406,7 @@
             "name": "cursor",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "$ref": "#/components/schemas/Cursor"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           }
@@ -27104,14 +26503,7 @@
             "name": "namespaceId",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "$ref": "#/components/schemas/NamespaceId"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "$ref": "#/components/schemas/NamespaceId"
             },
             "required": false
           }
@@ -27306,14 +26698,7 @@
             "name": "contactId",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "$ref": "#/components/schemas/ContactId"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "$ref": "#/components/schemas/ContactId"
             },
             "required": false
           },
@@ -27321,14 +26706,7 @@
             "name": "email",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           },
@@ -27336,14 +26714,7 @@
             "name": "phone",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           },
@@ -27351,14 +26722,7 @@
             "name": "namespaceId",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "$ref": "#/components/schemas/NamespaceId"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "$ref": "#/components/schemas/NamespaceId"
             },
             "required": false
           },
@@ -27377,14 +26741,7 @@
             "name": "topicIds",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           }
@@ -27935,14 +27292,7 @@
             "name": "cursor",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "$ref": "#/components/schemas/Cursor"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           },
@@ -27950,16 +27300,9 @@
             "name": "channel",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "enum": [
-                    "email"
-                  ]
-                },
-                {
-                  "type": "null"
-                }
+              "type": "string",
+              "enum": [
+                "email"
               ]
             },
             "required": false
@@ -27968,17 +27311,10 @@
             "name": "status",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "enum": [
-                    "subscribed",
-                    "unsubscribed"
-                  ]
-                },
-                {
-                  "type": "null"
-                }
+              "type": "string",
+              "enum": [
+                "subscribed",
+                "unsubscribed"
               ]
             },
             "required": false
@@ -28758,14 +28094,7 @@
             "name": "namespaceId",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "$ref": "#/components/schemas/NamespaceId"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "$ref": "#/components/schemas/NamespaceId"
             },
             "required": false
           }
@@ -28890,22 +28219,15 @@
             "name": "idempotency-key",
             "in": "header",
             "schema": {
-              "anyOf": [
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 255,
+              "x-samva-string-checks": [
                 {
-                  "type": "string",
-                  "minLength": 1,
-                  "maxLength": 255,
-                  "x-samva-string-checks": [
-                    {
-                      "id": "effect/schema/isMaxLength",
-                      "payload": {
-                        "maxLength": 255
-                      }
-                    }
-                  ]
-                },
-                {
-                  "type": "null"
+                  "id": "effect/schema/isMaxLength",
+                  "payload": {
+                    "maxLength": 255
+                  }
                 }
               ]
             },
@@ -29154,22 +28476,15 @@
             "name": "idempotency-key",
             "in": "header",
             "schema": {
-              "anyOf": [
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 255,
+              "x-samva-string-checks": [
                 {
-                  "type": "string",
-                  "minLength": 1,
-                  "maxLength": 255,
-                  "x-samva-string-checks": [
-                    {
-                      "id": "effect/schema/isMaxLength",
-                      "payload": {
-                        "maxLength": 255
-                      }
-                    }
-                  ]
-                },
-                {
-                  "type": "null"
+                  "id": "effect/schema/isMaxLength",
+                  "payload": {
+                    "maxLength": 255
+                  }
                 }
               ]
             },
@@ -29303,22 +28618,15 @@
             "name": "idempotency-key",
             "in": "header",
             "schema": {
-              "anyOf": [
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 255,
+              "x-samva-string-checks": [
                 {
-                  "type": "string",
-                  "minLength": 1,
-                  "maxLength": 255,
-                  "x-samva-string-checks": [
-                    {
-                      "id": "effect/schema/isMaxLength",
-                      "payload": {
-                        "maxLength": 255
-                      }
-                    }
-                  ]
-                },
-                {
-                  "type": "null"
+                  "id": "effect/schema/isMaxLength",
+                  "payload": {
+                    "maxLength": 255
+                  }
                 }
               ]
             },
@@ -29583,22 +28891,15 @@
             "name": "idempotency-key",
             "in": "header",
             "schema": {
-              "anyOf": [
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 255,
+              "x-samva-string-checks": [
                 {
-                  "type": "string",
-                  "minLength": 1,
-                  "maxLength": 255,
-                  "x-samva-string-checks": [
-                    {
-                      "id": "effect/schema/isMaxLength",
-                      "payload": {
-                        "maxLength": 255
-                      }
-                    }
-                  ]
-                },
-                {
-                  "type": "null"
+                  "id": "effect/schema/isMaxLength",
+                  "payload": {
+                    "maxLength": 255
+                  }
                 }
               ]
             },
@@ -30304,22 +29605,15 @@
             "name": "idempotency-key",
             "in": "header",
             "schema": {
-              "anyOf": [
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 255,
+              "x-samva-string-checks": [
                 {
-                  "type": "string",
-                  "minLength": 1,
-                  "maxLength": 255,
-                  "x-samva-string-checks": [
-                    {
-                      "id": "effect/schema/isMaxLength",
-                      "payload": {
-                        "maxLength": 255
-                      }
-                    }
-                  ]
-                },
-                {
-                  "type": "null"
+                  "id": "effect/schema/isMaxLength",
+                  "payload": {
+                    "maxLength": 255
+                  }
                 }
               ]
             },
@@ -31882,22 +31176,15 @@
             "name": "idempotency-key",
             "in": "header",
             "schema": {
-              "anyOf": [
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 255,
+              "x-samva-string-checks": [
                 {
-                  "type": "string",
-                  "minLength": 1,
-                  "maxLength": 255,
-                  "x-samva-string-checks": [
-                    {
-                      "id": "effect/schema/isMaxLength",
-                      "payload": {
-                        "maxLength": 255
-                      }
-                    }
-                  ]
-                },
-                {
-                  "type": "null"
+                  "id": "effect/schema/isMaxLength",
+                  "payload": {
+                    "maxLength": 255
+                  }
                 }
               ]
             },
@@ -32605,22 +31892,15 @@
             "name": "idempotency-key",
             "in": "header",
             "schema": {
-              "anyOf": [
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 255,
+              "x-samva-string-checks": [
                 {
-                  "type": "string",
-                  "minLength": 1,
-                  "maxLength": 255,
-                  "x-samva-string-checks": [
-                    {
-                      "id": "effect/schema/isMaxLength",
-                      "payload": {
-                        "maxLength": 255
-                      }
-                    }
-                  ]
-                },
-                {
-                  "type": "null"
+                  "id": "effect/schema/isMaxLength",
+                  "payload": {
+                    "maxLength": 255
+                  }
                 }
               ]
             },
@@ -33162,22 +32442,15 @@
             "name": "idempotency-key",
             "in": "header",
             "schema": {
-              "anyOf": [
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 255,
+              "x-samva-string-checks": [
                 {
-                  "type": "string",
-                  "minLength": 1,
-                  "maxLength": 255,
-                  "x-samva-string-checks": [
-                    {
-                      "id": "effect/schema/isMaxLength",
-                      "payload": {
-                        "maxLength": 255
-                      }
-                    }
-                  ]
-                },
-                {
-                  "type": "null"
+                  "id": "effect/schema/isMaxLength",
+                  "payload": {
+                    "maxLength": 255
+                  }
                 }
               ]
             },
@@ -33868,22 +33141,15 @@
             "name": "idempotency-key",
             "in": "header",
             "schema": {
-              "anyOf": [
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 255,
+              "x-samva-string-checks": [
                 {
-                  "type": "string",
-                  "minLength": 1,
-                  "maxLength": 255,
-                  "x-samva-string-checks": [
-                    {
-                      "id": "effect/schema/isMaxLength",
-                      "payload": {
-                        "maxLength": 255
-                      }
-                    }
-                  ]
-                },
-                {
-                  "type": "null"
+                  "id": "effect/schema/isMaxLength",
+                  "payload": {
+                    "maxLength": 255
+                  }
                 }
               ]
             },
@@ -35210,14 +34476,7 @@
             "name": "cursor",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "$ref": "#/components/schemas/PublicationDomainCursor"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           }
@@ -35338,22 +34597,15 @@
             "name": "idempotency-key",
             "in": "header",
             "schema": {
-              "anyOf": [
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 255,
+              "x-samva-string-checks": [
                 {
-                  "type": "string",
-                  "minLength": 1,
-                  "maxLength": 255,
-                  "x-samva-string-checks": [
-                    {
-                      "id": "effect/schema/isMaxLength",
-                      "payload": {
-                        "maxLength": 255
-                      }
-                    }
-                  ]
-                },
-                {
-                  "type": "null"
+                  "id": "effect/schema/isMaxLength",
+                  "payload": {
+                    "maxLength": 255
+                  }
                 }
               ]
             },
@@ -35913,22 +35165,15 @@
             "name": "idempotency-key",
             "in": "header",
             "schema": {
-              "anyOf": [
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 255,
+              "x-samva-string-checks": [
                 {
-                  "type": "string",
-                  "minLength": 1,
-                  "maxLength": 255,
-                  "x-samva-string-checks": [
-                    {
-                      "id": "effect/schema/isMaxLength",
-                      "payload": {
-                        "maxLength": 255
-                      }
-                    }
-                  ]
-                },
-                {
-                  "type": "null"
+                  "id": "effect/schema/isMaxLength",
+                  "payload": {
+                    "maxLength": 255
+                  }
                 }
               ]
             },
@@ -36174,15 +35419,8 @@
             "name": "after",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "x-samva-schema": "AbsoluteInstant"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string",
+              "pattern": "^(\\d{4})-(\\d{2})-(\\d{2})T(\\d{2}):(\\d{2})(?::(\\d{2})(?:\\.(\\d{1,9}))?)?(Z|([+-])(\\d{2}):(\\d{2}))$"
             },
             "required": false
           },
@@ -36190,15 +35428,8 @@
             "name": "before",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "x-samva-schema": "AbsoluteInstant"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string",
+              "pattern": "^(\\d{4})-(\\d{2})-(\\d{2})T(\\d{2}):(\\d{2})(?::(\\d{2})(?:\\.(\\d{1,9}))?)?(Z|([+-])(\\d{2}):(\\d{2}))$"
             },
             "required": false
           },
@@ -36206,18 +35437,11 @@
             "name": "groupBy",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "enum": [
-                    "day",
-                    "week",
-                    "month"
-                  ]
-                },
-                {
-                  "type": "null"
-                }
+              "type": "string",
+              "enum": [
+                "day",
+                "week",
+                "month"
               ]
             },
             "required": false
@@ -36226,16 +35450,9 @@
             "name": "channel",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "enum": [
-                    "email"
-                  ]
-                },
-                {
-                  "type": "null"
-                }
+              "type": "string",
+              "enum": [
+                "email"
               ]
             },
             "required": false
@@ -36361,15 +35578,8 @@
             "name": "after",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "x-samva-schema": "AbsoluteInstant"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string",
+              "pattern": "^(\\d{4})-(\\d{2})-(\\d{2})T(\\d{2}):(\\d{2})(?::(\\d{2})(?:\\.(\\d{1,9}))?)?(Z|([+-])(\\d{2}):(\\d{2}))$"
             },
             "required": false
           },
@@ -36377,15 +35587,8 @@
             "name": "before",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "x-samva-schema": "AbsoluteInstant"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string",
+              "pattern": "^(\\d{4})-(\\d{2})-(\\d{2})T(\\d{2}):(\\d{2})(?::(\\d{2})(?:\\.(\\d{1,9}))?)?(Z|([+-])(\\d{2}):(\\d{2}))$"
             },
             "required": false
           }
@@ -36543,15 +35746,8 @@
             "name": "after",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "x-samva-schema": "AbsoluteInstant"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string",
+              "pattern": "^(\\d{4})-(\\d{2})-(\\d{2})T(\\d{2}):(\\d{2})(?::(\\d{2})(?:\\.(\\d{1,9}))?)?(Z|([+-])(\\d{2}):(\\d{2}))$"
             },
             "required": false
           },
@@ -36559,15 +35755,8 @@
             "name": "before",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "x-samva-schema": "AbsoluteInstant"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string",
+              "pattern": "^(\\d{4})-(\\d{2})-(\\d{2})T(\\d{2}):(\\d{2})(?::(\\d{2})(?:\\.(\\d{1,9}))?)?(Z|([+-])(\\d{2}):(\\d{2}))$"
             },
             "required": false
           },
@@ -36592,18 +35781,11 @@
             "name": "sortBy",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "enum": [
-                    "sent",
-                    "received",
-                    "total"
-                  ]
-                },
-                {
-                  "type": "null"
-                }
+              "type": "string",
+              "enum": [
+                "sent",
+                "received",
+                "total"
               ]
             },
             "required": false
@@ -36753,15 +35935,8 @@
             "name": "after",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "x-samva-schema": "AbsoluteInstant"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string",
+              "pattern": "^(\\d{4})-(\\d{2})-(\\d{2})T(\\d{2}):(\\d{2})(?::(\\d{2})(?:\\.(\\d{1,9}))?)?(Z|([+-])(\\d{2}):(\\d{2}))$"
             },
             "required": false
           },
@@ -36769,15 +35944,8 @@
             "name": "before",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "x-samva-schema": "AbsoluteInstant"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string",
+              "pattern": "^(\\d{4})-(\\d{2})-(\\d{2})T(\\d{2}):(\\d{2})(?::(\\d{2})(?:\\.(\\d{1,9}))?)?(Z|([+-])(\\d{2}):(\\d{2}))$"
             },
             "required": false
           }
@@ -36893,15 +36061,8 @@
             "name": "after",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "x-samva-schema": "AbsoluteInstant"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string",
+              "pattern": "^(\\d{4})-(\\d{2})-(\\d{2})T(\\d{2}):(\\d{2})(?::(\\d{2})(?:\\.(\\d{1,9}))?)?(Z|([+-])(\\d{2}):(\\d{2}))$"
             },
             "required": false
           },
@@ -36909,15 +36070,8 @@
             "name": "before",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "x-samva-schema": "AbsoluteInstant"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string",
+              "pattern": "^(\\d{4})-(\\d{2})-(\\d{2})T(\\d{2}):(\\d{2})(?::(\\d{2})(?:\\.(\\d{1,9}))?)?(Z|([+-])(\\d{2}):(\\d{2}))$"
             },
             "required": false
           },
@@ -36925,16 +36079,9 @@
             "name": "channel",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "enum": [
-                    "email"
-                  ]
-                },
-                {
-                  "type": "null"
-                }
+              "type": "string",
+              "enum": [
+                "email"
               ]
             },
             "required": false
@@ -37233,14 +36380,7 @@
             "name": "cursor",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "$ref": "#/components/schemas/Cursor"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           },
@@ -37248,22 +36388,15 @@
             "name": "category",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "enum": [
-                    "transactional",
-                    "marketing",
-                    "support",
-                    "notification",
-                    "verification",
-                    "reminder",
-                    "alert"
-                  ]
-                },
-                {
-                  "type": "null"
-                }
+              "type": "string",
+              "enum": [
+                "transactional",
+                "marketing",
+                "support",
+                "notification",
+                "verification",
+                "reminder",
+                "alert"
               ]
             },
             "required": false
@@ -37272,16 +36405,9 @@
             "name": "channel",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "enum": [
-                    "email"
-                  ]
-                },
-                {
-                  "type": "null"
-                }
+              "type": "string",
+              "enum": [
+                "email"
               ]
             },
             "required": false
@@ -37290,21 +36416,14 @@
             "name": "status",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "enum": [
-                    "draft",
-                    "pending",
-                    "approved",
-                    "published",
-                    "rejected",
-                    "archived"
-                  ]
-                },
-                {
-                  "type": "null"
-                }
+              "type": "string",
+              "enum": [
+                "draft",
+                "pending",
+                "approved",
+                "published",
+                "rejected",
+                "archived"
               ]
             },
             "required": false
@@ -37313,14 +36432,7 @@
             "name": "search",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           },
@@ -37328,14 +36440,7 @@
             "name": "projectId",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "$ref": "#/components/schemas/TemplateProjectId"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "$ref": "#/components/schemas/TemplateProjectId"
             },
             "required": false
           },
@@ -37346,9 +36451,6 @@
               "anyOf": [
                 {
                   "$ref": "#/components/schemas/NamespaceId"
-                },
-                {
-                  "type": "null"
                 }
               ],
               "description": "Only the templates this namespace uses: its own and those shared with every namespace (add `shared=false` for its own only). A namespace-scoped key lists its own namespace's and shared templates."
@@ -37617,14 +36719,7 @@
             "name": "cursor",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "$ref": "#/components/schemas/Cursor"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           }
@@ -47307,14 +46402,7 @@
             "name": "cursor",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "$ref": "#/components/schemas/VersionCursor"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           }
@@ -50125,14 +49213,7 @@
             "name": "cursor",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "$ref": "#/components/schemas/Cursor"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           },
@@ -50140,14 +49221,7 @@
             "name": "search",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           },
@@ -50155,17 +49229,10 @@
             "name": "status",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "enum": [
-                    "active",
-                    "disabled"
-                  ]
-                },
-                {
-                  "type": "null"
-                }
+              "type": "string",
+              "enum": [
+                "active",
+                "disabled"
               ]
             },
             "required": false
@@ -50728,14 +49795,7 @@
             "name": "cursor",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "$ref": "#/components/schemas/Cursor"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           }
@@ -50841,14 +49901,7 @@
             "name": "after",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           },
@@ -50856,14 +49909,7 @@
             "name": "before",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           }
@@ -52564,14 +51610,7 @@
             "name": "after",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           },
@@ -52579,14 +51618,7 @@
             "name": "before",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           }
@@ -53172,14 +52204,7 @@
             "name": "cursor",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "$ref": "#/components/schemas/Cursor"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           },
@@ -53187,17 +52212,10 @@
             "name": "status",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "enum": [
-                    "active",
-                    "revoked"
-                  ]
-                },
-                {
-                  "type": "null"
-                }
+              "type": "string",
+              "enum": [
+                "active",
+                "revoked"
               ]
             },
             "required": false
@@ -53206,14 +52224,7 @@
             "name": "search",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           }
@@ -53763,14 +52774,7 @@
             "name": "after",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           },
@@ -53778,14 +52782,7 @@
             "name": "before",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           }
@@ -53954,14 +52951,7 @@
             "name": "cursor",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "$ref": "#/components/schemas/Cursor"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           }
@@ -54243,14 +53233,7 @@
             "name": "cursor",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "$ref": "#/components/schemas/Cursor"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           },
@@ -54258,14 +53241,7 @@
             "name": "after",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           },
@@ -54273,14 +53249,7 @@
             "name": "before",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           }
@@ -55361,14 +54330,7 @@
             "name": "after",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           },
@@ -55376,14 +54338,7 @@
             "name": "before",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           }
@@ -55507,14 +54462,7 @@
             "name": "cursor",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "$ref": "#/components/schemas/Cursor"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           }
@@ -57056,14 +56004,7 @@
             "name": "cursor",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "$ref": "#/components/schemas/Cursor"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           }
@@ -57169,14 +56110,7 @@
             "name": "cursor",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "$ref": "#/components/schemas/Cursor"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           },
@@ -57193,9 +56127,6 @@
                   "items": {
                     "$ref": "#/components/schemas/MailboxId"
                   }
-                },
-                {
-                  "type": "null"
                 }
               ]
             },
@@ -57205,17 +56136,10 @@
             "name": "kind",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "enum": [
-                    "personal",
-                    "shared"
-                  ]
-                },
-                {
-                  "type": "null"
-                }
+              "type": "string",
+              "enum": [
+                "personal",
+                "shared"
               ]
             },
             "required": false
@@ -57224,14 +56148,7 @@
             "name": "threadId",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "$ref": "#/components/schemas/MailboxThreadId"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "$ref": "#/components/schemas/MailboxThreadId"
             },
             "required": false
           }
@@ -57347,14 +56264,7 @@
             "name": "cursor",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "$ref": "#/components/schemas/Cursor"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           },
@@ -57362,14 +56272,7 @@
             "name": "after",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           },
@@ -57377,14 +56280,7 @@
             "name": "before",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           },
@@ -57392,14 +56288,7 @@
             "name": "q",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           },
@@ -57407,17 +56296,10 @@
             "name": "state",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "enum": [
-                    "active",
-                    "done"
-                  ]
-                },
-                {
-                  "type": "null"
-                }
+              "type": "string",
+              "enum": [
+                "active",
+                "done"
               ]
             },
             "required": false
@@ -57426,14 +56308,7 @@
             "name": "folder",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "$ref": "#/components/schemas/MailboxThreadFolder"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "$ref": "#/components/schemas/MailboxThreadFolder"
             },
             "required": false
           },
@@ -57441,14 +56316,7 @@
             "name": "label",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "$ref": "#/components/schemas/MailboxLabelId"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "$ref": "#/components/schemas/MailboxLabelId"
             },
             "required": false
           },
@@ -57510,9 +56378,6 @@
                   "items": {
                     "$ref": "#/components/schemas/MailboxId"
                   }
-                },
-                {
-                  "type": "null"
                 }
               ]
             },
@@ -57522,17 +56387,10 @@
             "name": "kind",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "enum": [
-                    "personal",
-                    "shared"
-                  ]
-                },
-                {
-                  "type": "null"
-                }
+              "type": "string",
+              "enum": [
+                "personal",
+                "shared"
               ]
             },
             "required": false
@@ -57541,14 +56399,7 @@
             "name": "conversation",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "$ref": "#/components/schemas/ConversationId"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "$ref": "#/components/schemas/ConversationId"
             },
             "required": false
           }
@@ -57672,14 +56523,7 @@
             "name": "cursor",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "$ref": "#/components/schemas/Cursor"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           },
@@ -57687,14 +56531,7 @@
             "name": "after",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           },
@@ -57702,14 +56539,7 @@
             "name": "before",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           },
@@ -57717,14 +56547,7 @@
             "name": "q",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           },
@@ -57732,17 +56555,10 @@
             "name": "state",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "enum": [
-                    "active",
-                    "done"
-                  ]
-                },
-                {
-                  "type": "null"
-                }
+              "type": "string",
+              "enum": [
+                "active",
+                "done"
               ]
             },
             "required": false
@@ -57751,14 +56567,7 @@
             "name": "folder",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "$ref": "#/components/schemas/MailboxThreadFolder"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "$ref": "#/components/schemas/MailboxThreadFolder"
             },
             "required": false
           },
@@ -57766,14 +56575,7 @@
             "name": "label",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "$ref": "#/components/schemas/MailboxLabelId"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "$ref": "#/components/schemas/MailboxLabelId"
             },
             "required": false
           },
@@ -58400,14 +57202,7 @@
             "name": "cursor",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "$ref": "#/components/schemas/Cursor"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           }
@@ -58539,14 +57334,7 @@
             "name": "cursor",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "$ref": "#/components/schemas/Cursor"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           }
@@ -58678,14 +57466,7 @@
             "name": "cursor",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "$ref": "#/components/schemas/Cursor"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           }
@@ -59141,23 +57922,16 @@
             "name": "idempotency-key",
             "in": "header",
             "schema": {
-              "anyOf": [
+              "type": "string",
+              "pattern": "^[\\s\\S]{1,255}$",
+              "description": "Optional key that makes a mailbox send idempotent for the calling key or member. Repeating the request with the same key and body returns the original action in its current state. Keep the key after a lost response. Reusing it with different content returns 409. Active actions retain their key; terminal receipts remain replayable for 24 hours.",
+              "x-samva-string-checks": [
                 {
-                  "type": "string",
-                  "pattern": "^[\\s\\S]{1,255}$",
-                  "description": "Optional key that makes a mailbox send idempotent for the calling key or member. Repeating the request with the same key and body returns the original action in its current state. Keep the key after a lost response. Reusing it with different content returns 409. Active actions retain their key; terminal receipts remain replayable for 24 hours.",
-                  "x-samva-string-checks": [
-                    {
-                      "id": "effect/schema/isPattern",
-                      "payload": {
-                        "source": "^[\\s\\S]{1,255}$",
-                        "flags": ""
-                      }
-                    }
-                  ]
-                },
-                {
-                  "type": "null"
+                  "id": "effect/schema/isPattern",
+                  "payload": {
+                    "source": "^[\\s\\S]{1,255}$",
+                    "flags": ""
+                  }
                 }
               ]
             },
@@ -59814,23 +58588,16 @@
             "name": "idempotency-key",
             "in": "header",
             "schema": {
-              "anyOf": [
+              "type": "string",
+              "pattern": "^[\\s\\S]{1,255}$",
+              "description": "Optional key that makes a mailbox send idempotent for the calling key or member. Repeating the request with the same key and body returns the original action in its current state. Keep the key after a lost response. Reusing it with different content returns 409. Active actions retain their key; terminal receipts remain replayable for 24 hours.",
+              "x-samva-string-checks": [
                 {
-                  "type": "string",
-                  "pattern": "^[\\s\\S]{1,255}$",
-                  "description": "Optional key that makes a mailbox send idempotent for the calling key or member. Repeating the request with the same key and body returns the original action in its current state. Keep the key after a lost response. Reusing it with different content returns 409. Active actions retain their key; terminal receipts remain replayable for 24 hours.",
-                  "x-samva-string-checks": [
-                    {
-                      "id": "effect/schema/isPattern",
-                      "payload": {
-                        "source": "^[\\s\\S]{1,255}$",
-                        "flags": ""
-                      }
-                    }
-                  ]
-                },
-                {
-                  "type": "null"
+                  "id": "effect/schema/isPattern",
+                  "payload": {
+                    "source": "^[\\s\\S]{1,255}$",
+                    "flags": ""
+                  }
                 }
               ]
             },
@@ -60037,23 +58804,16 @@
             "name": "idempotency-key",
             "in": "header",
             "schema": {
-              "anyOf": [
+              "type": "string",
+              "pattern": "^[\\s\\S]{1,255}$",
+              "description": "Optional key that makes a mailbox send idempotent for the calling key or member. Repeating the request with the same key and body returns the original action in its current state. Keep the key after a lost response. Reusing it with different content returns 409. Active actions retain their key; terminal receipts remain replayable for 24 hours.",
+              "x-samva-string-checks": [
                 {
-                  "type": "string",
-                  "pattern": "^[\\s\\S]{1,255}$",
-                  "description": "Optional key that makes a mailbox send idempotent for the calling key or member. Repeating the request with the same key and body returns the original action in its current state. Keep the key after a lost response. Reusing it with different content returns 409. Active actions retain their key; terminal receipts remain replayable for 24 hours.",
-                  "x-samva-string-checks": [
-                    {
-                      "id": "effect/schema/isPattern",
-                      "payload": {
-                        "source": "^[\\s\\S]{1,255}$",
-                        "flags": ""
-                      }
-                    }
-                  ]
-                },
-                {
-                  "type": "null"
+                  "id": "effect/schema/isPattern",
+                  "payload": {
+                    "source": "^[\\s\\S]{1,255}$",
+                    "flags": ""
+                  }
                 }
               ]
             },
@@ -60260,23 +59020,16 @@
             "name": "idempotency-key",
             "in": "header",
             "schema": {
-              "anyOf": [
+              "type": "string",
+              "pattern": "^[\\s\\S]{1,255}$",
+              "description": "Optional key that makes a mailbox send idempotent for the calling key or member. Repeating the request with the same key and body returns the original action in its current state. Keep the key after a lost response. Reusing it with different content returns 409. Active actions retain their key; terminal receipts remain replayable for 24 hours.",
+              "x-samva-string-checks": [
                 {
-                  "type": "string",
-                  "pattern": "^[\\s\\S]{1,255}$",
-                  "description": "Optional key that makes a mailbox send idempotent for the calling key or member. Repeating the request with the same key and body returns the original action in its current state. Keep the key after a lost response. Reusing it with different content returns 409. Active actions retain their key; terminal receipts remain replayable for 24 hours.",
-                  "x-samva-string-checks": [
-                    {
-                      "id": "effect/schema/isPattern",
-                      "payload": {
-                        "source": "^[\\s\\S]{1,255}$",
-                        "flags": ""
-                      }
-                    }
-                  ]
-                },
-                {
-                  "type": "null"
+                  "id": "effect/schema/isPattern",
+                  "payload": {
+                    "source": "^[\\s\\S]{1,255}$",
+                    "flags": ""
+                  }
                 }
               ]
             },
@@ -60493,14 +59246,7 @@
             "name": "cursor",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "$ref": "#/components/schemas/Cursor"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           },
@@ -60508,14 +59254,7 @@
             "name": "after",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           },
@@ -60523,14 +59262,7 @@
             "name": "before",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           }
@@ -60896,14 +59628,7 @@
             "name": "cursor",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "$ref": "#/components/schemas/Cursor"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           },
@@ -60911,14 +59636,7 @@
             "name": "threadId",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "$ref": "#/components/schemas/MailboxThreadId"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "$ref": "#/components/schemas/MailboxThreadId"
             },
             "required": false
           }
@@ -61472,23 +60190,16 @@
             "name": "idempotency-key",
             "in": "header",
             "schema": {
-              "anyOf": [
+              "type": "string",
+              "pattern": "^[\\s\\S]{1,255}$",
+              "description": "Optional key that makes a mailbox send idempotent for the calling key or member. Repeating the request with the same key and body returns the original action in its current state. Keep the key after a lost response. Reusing it with different content returns 409. Active actions retain their key; terminal receipts remain replayable for 24 hours.",
+              "x-samva-string-checks": [
                 {
-                  "type": "string",
-                  "pattern": "^[\\s\\S]{1,255}$",
-                  "description": "Optional key that makes a mailbox send idempotent for the calling key or member. Repeating the request with the same key and body returns the original action in its current state. Keep the key after a lost response. Reusing it with different content returns 409. Active actions retain their key; terminal receipts remain replayable for 24 hours.",
-                  "x-samva-string-checks": [
-                    {
-                      "id": "effect/schema/isPattern",
-                      "payload": {
-                        "source": "^[\\s\\S]{1,255}$",
-                        "flags": ""
-                      }
-                    }
-                  ]
-                },
-                {
-                  "type": "null"
+                  "id": "effect/schema/isPattern",
+                  "payload": {
+                    "source": "^[\\s\\S]{1,255}$",
+                    "flags": ""
+                  }
                 }
               ]
             },
@@ -61695,14 +60406,7 @@
             "name": "cursor",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "$ref": "#/components/schemas/Cursor"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           },
@@ -61710,14 +60414,7 @@
             "name": "threadId",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "$ref": "#/components/schemas/MailboxThreadId"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "$ref": "#/components/schemas/MailboxThreadId"
             },
             "required": false
           },
@@ -61725,29 +60422,22 @@
             "name": "state",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "enum": [
-                    "proposed",
-                    "allowed",
-                    "approvalRequired",
-                    "policyDenied",
-                    "approved",
-                    "approvalDenied",
-                    "executing",
-                    "executed",
-                    "failed",
-                    "queued",
-                    "accepted",
-                    "completed",
-                    "notSent",
-                    "uncertain"
-                  ]
-                },
-                {
-                  "type": "null"
-                }
+              "type": "string",
+              "enum": [
+                "proposed",
+                "allowed",
+                "approvalRequired",
+                "policyDenied",
+                "approved",
+                "approvalDenied",
+                "executing",
+                "executed",
+                "failed",
+                "queued",
+                "accepted",
+                "completed",
+                "notSent",
+                "uncertain"
               ]
             },
             "required": false
@@ -61756,14 +60446,7 @@
             "name": "after",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           },
@@ -61771,14 +60454,7 @@
             "name": "before",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           }
@@ -62699,14 +61375,7 @@
             "name": "cursor",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "$ref": "#/components/schemas/Cursor"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           },
@@ -62714,14 +61383,7 @@
             "name": "after",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           },
@@ -62729,14 +61391,7 @@
             "name": "before",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           }
@@ -62852,14 +61507,7 @@
             "name": "cursor",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "$ref": "#/components/schemas/Cursor"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           },
@@ -62867,14 +61515,7 @@
             "name": "after",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           },
@@ -62882,14 +61523,7 @@
             "name": "before",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           }
@@ -63644,14 +62278,7 @@
             "name": "after",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           },
@@ -63659,14 +62286,7 @@
             "name": "before",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           }
@@ -63782,14 +62402,7 @@
             "name": "cursor",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "$ref": "#/components/schemas/Cursor"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           },
@@ -63797,14 +62410,7 @@
             "name": "after",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           },
@@ -63812,14 +62418,7 @@
             "name": "before",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           }
@@ -64170,14 +62769,7 @@
             "name": "cursor",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "$ref": "#/components/schemas/Cursor"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           }
@@ -64421,14 +63013,7 @@
             "name": "cursor",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "$ref": "#/components/schemas/Cursor"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           },
@@ -64436,14 +63021,7 @@
             "name": "after",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           },
@@ -64451,14 +63029,7 @@
             "name": "before",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           }
@@ -66380,9 +64951,6 @@
           "createdAt"
         ],
         "additionalProperties": false
-      },
-      "Cursor": {
-        "type": "string"
       },
       "ExtensionVersion": {
         "type": "object",
@@ -76128,9 +74696,6 @@
         ],
         "additionalProperties": false
       },
-      "VersionCursor": {
-        "type": "string"
-      },
       "TemplatePublicationRender": {
         "type": "object",
         "properties": {
@@ -77536,9 +76101,6 @@
           "nextCursor"
         ],
         "additionalProperties": false
-      },
-      "PublicationDomainCursor": {
-        "type": "string"
       },
       "NewsletterIssueRenderPayload": {
         "type": "object",
