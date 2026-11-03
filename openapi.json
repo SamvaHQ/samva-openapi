@@ -98934,9 +98934,9 @@
                           "channel": {
                             "type": "string",
                             "enum": [
-                              "email",
+                              "sms",
                               "whatsapp",
-                              "sms"
+                              "email"
                             ],
                             "description": "Deliveries recorded before this field existed omit it; they are email."
                           },
@@ -99261,9 +99261,9 @@
                           "channel": {
                             "type": "string",
                             "enum": [
-                              "email",
+                              "sms",
                               "whatsapp",
-                              "sms"
+                              "email"
                             ],
                             "description": "Deliveries recorded before this field existed omit it; they are email."
                           },
@@ -100229,9 +100229,9 @@
                           "channel": {
                             "type": "string",
                             "enum": [
-                              "email",
+                              "sms",
                               "whatsapp",
-                              "sms"
+                              "email"
                             ],
                             "description": "Deliveries recorded before this field existed omit it; they are email."
                           },
@@ -100662,9 +100662,9 @@
                       "channel": {
                         "type": "string",
                         "enum": [
-                          "email",
+                          "sms",
                           "whatsapp",
-                          "sms"
+                          "email"
                         ],
                         "description": "The channel an endpoint, thread, or message belongs to."
                       },
@@ -100767,9 +100767,9 @@
                       "channel": {
                         "type": "string",
                         "enum": [
-                          "email",
+                          "sms",
                           "whatsapp",
-                          "sms"
+                          "email"
                         ],
                         "description": "The channel an endpoint, thread, or message belongs to."
                       },
@@ -100872,9 +100872,9 @@
                       "channel": {
                         "type": "string",
                         "enum": [
-                          "email",
+                          "sms",
                           "whatsapp",
-                          "sms"
+                          "email"
                         ],
                         "description": "The channel an endpoint, thread, or message belongs to."
                       },
