@@ -10973,7 +10973,7 @@
             }
           }
         },
-        "description": "Updates a domain's catch-all webhook endpoint or unknown-address mailbox. The mailbox must be active, in the same organization, and have an email address on the domain. Omitted fields stay unchanged; `unknownRecipientMailboxId: null` drops unknown addresses without a bounce. A webhook endpoint takes precedence over the unknown-address setting.",
+        "description": "Updates a domain's catch-all webhook endpoint or unknown-address mailbox without disabling catch-all. The mailbox must be active, in the same organization, and have an email address on the domain. Omitted fields stay unchanged. `endpointId: null` removes the webhook endpoint, so unknown addresses reach the configured unknown-address mailbox or are dropped without a bounce when none is set. A webhook endpoint takes precedence over the unknown-address setting.",
         "summary": "Update catch-all configuration",
         "requestBody": {
           "content": {
@@ -10991,8 +10991,12 @@
                       },
                       {
                         "type": "null"
+                      },
+                      {
+                        "type": "null"
                       }
-                    ]
+                    ],
+                    "description": "The catch-all webhook endpoint. Null removes it without disabling catch-all: unknown addresses reach the unknown-recipient mailbox when configured, otherwise they are dropped without a bounce. Omission leaves the endpoint unchanged."
                   },
                   "unknownRecipientMailboxId": {
                     "anyOf": [
