@@ -45,6 +45,8 @@
             "schema": {
               "type": "string",
               "enum": [
+                "sms",
+                "whatsapp",
                 "email"
               ]
             },
@@ -963,6 +965,8 @@
                           "channel": {
                             "type": "string",
                             "enum": [
+                              "sms",
+                              "whatsapp",
                               "email"
                             ]
                           },
@@ -1194,6 +1198,8 @@
                     "channel": {
                       "type": "string",
                       "enum": [
+                        "sms",
+                        "whatsapp",
                         "email"
                       ]
                     },
@@ -3555,6 +3561,8 @@
                   "channel": {
                     "type": "string",
                     "enum": [
+                      "sms",
+                      "whatsapp",
                       "email"
                     ]
                   },
@@ -14635,6 +14643,8 @@
             "schema": {
               "type": "string",
               "enum": [
+                "sms",
+                "whatsapp",
                 "email"
               ]
             },
@@ -14870,6 +14880,8 @@
                     "items": {
                       "type": "string",
                       "enum": [
+                        "sms",
+                        "whatsapp",
                         "email"
                       ]
                     }
@@ -14877,6 +14889,8 @@
                   "primaryChannel": {
                     "type": "string",
                     "enum": [
+                      "sms",
+                      "whatsapp",
                       "email"
                     ]
                   },
@@ -15294,6 +15308,8 @@
                       {
                         "type": "string",
                         "enum": [
+                          "sms",
+                          "whatsapp",
                           "email"
                         ]
                       },
@@ -18057,6 +18073,8 @@
             "schema": {
               "type": "string",
               "enum": [
+                "sms",
+                "whatsapp",
                 "email"
               ]
             },
@@ -20488,6 +20506,8 @@
             "schema": {
               "type": "string",
               "enum": [
+                "sms",
+                "whatsapp",
                 "email"
               ]
             },
@@ -26732,6 +26752,8 @@
             "schema": {
               "type": "string",
               "enum": [
+                "sms",
+                "whatsapp",
                 "email"
               ]
             },
@@ -27302,6 +27324,8 @@
             "schema": {
               "type": "string",
               "enum": [
+                "sms",
+                "whatsapp",
                 "email"
               ]
             },
@@ -33850,6 +33874,184 @@
                         }
                       ]
                     },
+                    "whatsapp": {
+                      "anyOf": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "language": {
+                              "type": "string"
+                            },
+                            "category": {
+                              "type": "string"
+                            },
+                            "header": {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string",
+                                  "enum": [
+                                    "text",
+                                    "image",
+                                    "video",
+                                    "document"
+                                  ]
+                                },
+                                "text": {
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "type",
+                                "text"
+                              ],
+                              "additionalProperties": false
+                            },
+                            "body": {
+                              "type": "string"
+                            },
+                            "footer": {
+                              "type": "string"
+                            },
+                            "buttons": {
+                              "type": "array",
+                              "items": {
+                                "anyOf": [
+                                  {
+                                    "type": "object",
+                                    "properties": {
+                                      "type": {
+                                        "type": "string",
+                                        "enum": [
+                                          "quick-reply"
+                                        ]
+                                      },
+                                      "text": {
+                                        "type": "string"
+                                      }
+                                    },
+                                    "required": [
+                                      "type",
+                                      "text"
+                                    ],
+                                    "additionalProperties": false
+                                  },
+                                  {
+                                    "type": "object",
+                                    "properties": {
+                                      "type": {
+                                        "type": "string",
+                                        "enum": [
+                                          "url"
+                                        ]
+                                      },
+                                      "text": {
+                                        "type": "string"
+                                      },
+                                      "url": {
+                                        "type": "string"
+                                      }
+                                    },
+                                    "required": [
+                                      "type",
+                                      "text",
+                                      "url"
+                                    ],
+                                    "additionalProperties": false
+                                  },
+                                  {
+                                    "type": "object",
+                                    "properties": {
+                                      "type": {
+                                        "type": "string",
+                                        "enum": [
+                                          "phone"
+                                        ]
+                                      },
+                                      "text": {
+                                        "type": "string"
+                                      },
+                                      "phone": {
+                                        "type": "string"
+                                      }
+                                    },
+                                    "required": [
+                                      "type",
+                                      "text",
+                                      "phone"
+                                    ],
+                                    "additionalProperties": false
+                                  },
+                                  {
+                                    "type": "object",
+                                    "properties": {
+                                      "type": {
+                                        "type": "string",
+                                        "enum": [
+                                          "copy-code"
+                                        ]
+                                      },
+                                      "code": {
+                                        "type": "string"
+                                      }
+                                    },
+                                    "required": [
+                                      "type",
+                                      "code"
+                                    ],
+                                    "additionalProperties": false
+                                  },
+                                  {
+                                    "type": "object",
+                                    "properties": {
+                                      "type": {
+                                        "type": "string",
+                                        "enum": [
+                                          "flow"
+                                        ]
+                                      },
+                                      "text": {
+                                        "type": "string"
+                                      },
+                                      "flow": {
+                                        "type": "string"
+                                      },
+                                      "action": {
+                                        "type": "string",
+                                        "enum": [
+                                          "navigate",
+                                          "data_exchange"
+                                        ]
+                                      },
+                                      "screen": {
+                                        "type": "string"
+                                      }
+                                    },
+                                    "required": [
+                                      "type",
+                                      "text",
+                                      "flow",
+                                      "action"
+                                    ],
+                                    "additionalProperties": false
+                                  }
+                                ]
+                              }
+                            }
+                          },
+                          "required": [
+                            "language",
+                            "category",
+                            "body",
+                            "buttons"
+                          ],
+                          "additionalProperties": false
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
                     "page": {
                       "anyOf": [
                         {
@@ -33966,7 +34168,8 @@
                     "diagnostics",
                     "incompatibilities",
                     "fixture",
-                    "rendered"
+                    "rendered",
+                    "whatsapp"
                   ],
                   "additionalProperties": false
                 }
@@ -35420,7 +35623,7 @@
             "in": "query",
             "schema": {
               "type": "string",
-              "pattern": "^(\\d{4})-(\\d{2})-(\\d{2})T(\\d{2}):(\\d{2})(?::(\\d{2})(?:\\.(\\d{1,9}))?)?(Z|([+-])(\\d{2}):(\\d{2}))$"
+              "x-samva-schema": "AbsoluteInstant"
             },
             "required": false
           },
@@ -35429,7 +35632,7 @@
             "in": "query",
             "schema": {
               "type": "string",
-              "pattern": "^(\\d{4})-(\\d{2})-(\\d{2})T(\\d{2}):(\\d{2})(?::(\\d{2})(?:\\.(\\d{1,9}))?)?(Z|([+-])(\\d{2}):(\\d{2}))$"
+              "x-samva-schema": "AbsoluteInstant"
             },
             "required": false
           },
@@ -35452,6 +35655,8 @@
             "schema": {
               "type": "string",
               "enum": [
+                "sms",
+                "whatsapp",
                 "email"
               ]
             },
@@ -35483,11 +35688,23 @@
                             "type": "integer",
                             "minimum": 0,
                             "maximum": 9007199254740991
+                          },
+                          "whatsapp": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 9007199254740991
+                          },
+                          "sms": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 9007199254740991
                           }
                         },
                         "required": [
                           "date",
-                          "email"
+                          "email",
+                          "whatsapp",
+                          "sms"
                         ],
                         "additionalProperties": false
                       }
@@ -35579,7 +35796,7 @@
             "in": "query",
             "schema": {
               "type": "string",
-              "pattern": "^(\\d{4})-(\\d{2})-(\\d{2})T(\\d{2}):(\\d{2})(?::(\\d{2})(?:\\.(\\d{1,9}))?)?(Z|([+-])(\\d{2}):(\\d{2}))$"
+              "x-samva-schema": "AbsoluteInstant"
             },
             "required": false
           },
@@ -35588,7 +35805,7 @@
             "in": "query",
             "schema": {
               "type": "string",
-              "pattern": "^(\\d{4})-(\\d{2})-(\\d{2})T(\\d{2}):(\\d{2})(?::(\\d{2})(?:\\.(\\d{1,9}))?)?(Z|([+-])(\\d{2}):(\\d{2}))$"
+              "x-samva-schema": "AbsoluteInstant"
             },
             "required": false
           }
@@ -35659,10 +35876,71 @@
                         "bounceRate"
                       ],
                       "additionalProperties": false
+                    },
+                    "whatsapp": {
+                      "type": "object",
+                      "properties": {
+                        "sent": {
+                          "type": "integer",
+                          "minimum": 0,
+                          "maximum": 9007199254740991
+                        },
+                        "deliveryRate": {
+                          "type": "number"
+                        },
+                        "readRate": {
+                          "type": "number"
+                        },
+                        "failureRate": {
+                          "type": "number"
+                        },
+                        "avgResponseTime": {
+                          "type": "number",
+                          "minimum": 0
+                        }
+                      },
+                      "required": [
+                        "sent",
+                        "deliveryRate",
+                        "readRate",
+                        "failureRate",
+                        "avgResponseTime"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "sms": {
+                      "type": "object",
+                      "properties": {
+                        "sent": {
+                          "type": "integer",
+                          "minimum": 0,
+                          "maximum": 9007199254740991
+                        },
+                        "deliveryRate": {
+                          "type": "number"
+                        },
+                        "failureRate": {
+                          "type": "number"
+                        },
+                        "totalSegments": {
+                          "type": "integer",
+                          "minimum": 0,
+                          "maximum": 9007199254740991
+                        }
+                      },
+                      "required": [
+                        "sent",
+                        "deliveryRate",
+                        "failureRate",
+                        "totalSegments"
+                      ],
+                      "additionalProperties": false
                     }
                   },
                   "required": [
-                    "email"
+                    "email",
+                    "whatsapp",
+                    "sms"
                   ],
                   "additionalProperties": false
                 }
@@ -35747,7 +36025,7 @@
             "in": "query",
             "schema": {
               "type": "string",
-              "pattern": "^(\\d{4})-(\\d{2})-(\\d{2})T(\\d{2}):(\\d{2})(?::(\\d{2})(?:\\.(\\d{1,9}))?)?(Z|([+-])(\\d{2}):(\\d{2}))$"
+              "x-samva-schema": "AbsoluteInstant"
             },
             "required": false
           },
@@ -35756,7 +36034,7 @@
             "in": "query",
             "schema": {
               "type": "string",
-              "pattern": "^(\\d{4})-(\\d{2})-(\\d{2})T(\\d{2}):(\\d{2})(?::(\\d{2})(?:\\.(\\d{1,9}))?)?(Z|([+-])(\\d{2}):(\\d{2}))$"
+              "x-samva-schema": "AbsoluteInstant"
             },
             "required": false
           },
@@ -35936,7 +36214,7 @@
             "in": "query",
             "schema": {
               "type": "string",
-              "pattern": "^(\\d{4})-(\\d{2})-(\\d{2})T(\\d{2}):(\\d{2})(?::(\\d{2})(?:\\.(\\d{1,9}))?)?(Z|([+-])(\\d{2}):(\\d{2}))$"
+              "x-samva-schema": "AbsoluteInstant"
             },
             "required": false
           },
@@ -35945,7 +36223,7 @@
             "in": "query",
             "schema": {
               "type": "string",
-              "pattern": "^(\\d{4})-(\\d{2})-(\\d{2})T(\\d{2}):(\\d{2})(?::(\\d{2})(?:\\.(\\d{1,9}))?)?(Z|([+-])(\\d{2}):(\\d{2}))$"
+              "x-samva-schema": "AbsoluteInstant"
             },
             "required": false
           }
@@ -36062,7 +36340,7 @@
             "in": "query",
             "schema": {
               "type": "string",
-              "pattern": "^(\\d{4})-(\\d{2})-(\\d{2})T(\\d{2}):(\\d{2})(?::(\\d{2})(?:\\.(\\d{1,9}))?)?(Z|([+-])(\\d{2}):(\\d{2}))$"
+              "x-samva-schema": "AbsoluteInstant"
             },
             "required": false
           },
@@ -36071,7 +36349,7 @@
             "in": "query",
             "schema": {
               "type": "string",
-              "pattern": "^(\\d{4})-(\\d{2})-(\\d{2})T(\\d{2}):(\\d{2})(?::(\\d{2})(?:\\.(\\d{1,9}))?)?(Z|([+-])(\\d{2}):(\\d{2}))$"
+              "x-samva-schema": "AbsoluteInstant"
             },
             "required": false
           },
@@ -36081,6 +36359,8 @@
             "schema": {
               "type": "string",
               "enum": [
+                "sms",
+                "whatsapp",
                 "email"
               ]
             },
@@ -36328,6 +36608,8 @@
                         "items": {
                           "type": "string",
                           "enum": [
+                            "sms",
+                            "whatsapp",
                             "email"
                           ]
                         }
@@ -36407,6 +36689,8 @@
             "schema": {
               "type": "string",
               "enum": [
+                "sms",
+                "whatsapp",
                 "email"
               ]
             },
@@ -44276,6 +44560,184 @@
                         }
                       ]
                     },
+                    "whatsapp": {
+                      "anyOf": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "language": {
+                              "type": "string"
+                            },
+                            "category": {
+                              "type": "string"
+                            },
+                            "header": {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string",
+                                  "enum": [
+                                    "text",
+                                    "image",
+                                    "video",
+                                    "document"
+                                  ]
+                                },
+                                "text": {
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "type",
+                                "text"
+                              ],
+                              "additionalProperties": false
+                            },
+                            "body": {
+                              "type": "string"
+                            },
+                            "footer": {
+                              "type": "string"
+                            },
+                            "buttons": {
+                              "type": "array",
+                              "items": {
+                                "anyOf": [
+                                  {
+                                    "type": "object",
+                                    "properties": {
+                                      "type": {
+                                        "type": "string",
+                                        "enum": [
+                                          "quick-reply"
+                                        ]
+                                      },
+                                      "text": {
+                                        "type": "string"
+                                      }
+                                    },
+                                    "required": [
+                                      "type",
+                                      "text"
+                                    ],
+                                    "additionalProperties": false
+                                  },
+                                  {
+                                    "type": "object",
+                                    "properties": {
+                                      "type": {
+                                        "type": "string",
+                                        "enum": [
+                                          "url"
+                                        ]
+                                      },
+                                      "text": {
+                                        "type": "string"
+                                      },
+                                      "url": {
+                                        "type": "string"
+                                      }
+                                    },
+                                    "required": [
+                                      "type",
+                                      "text",
+                                      "url"
+                                    ],
+                                    "additionalProperties": false
+                                  },
+                                  {
+                                    "type": "object",
+                                    "properties": {
+                                      "type": {
+                                        "type": "string",
+                                        "enum": [
+                                          "phone"
+                                        ]
+                                      },
+                                      "text": {
+                                        "type": "string"
+                                      },
+                                      "phone": {
+                                        "type": "string"
+                                      }
+                                    },
+                                    "required": [
+                                      "type",
+                                      "text",
+                                      "phone"
+                                    ],
+                                    "additionalProperties": false
+                                  },
+                                  {
+                                    "type": "object",
+                                    "properties": {
+                                      "type": {
+                                        "type": "string",
+                                        "enum": [
+                                          "copy-code"
+                                        ]
+                                      },
+                                      "code": {
+                                        "type": "string"
+                                      }
+                                    },
+                                    "required": [
+                                      "type",
+                                      "code"
+                                    ],
+                                    "additionalProperties": false
+                                  },
+                                  {
+                                    "type": "object",
+                                    "properties": {
+                                      "type": {
+                                        "type": "string",
+                                        "enum": [
+                                          "flow"
+                                        ]
+                                      },
+                                      "text": {
+                                        "type": "string"
+                                      },
+                                      "flow": {
+                                        "type": "string"
+                                      },
+                                      "action": {
+                                        "type": "string",
+                                        "enum": [
+                                          "navigate",
+                                          "data_exchange"
+                                        ]
+                                      },
+                                      "screen": {
+                                        "type": "string"
+                                      }
+                                    },
+                                    "required": [
+                                      "type",
+                                      "text",
+                                      "flow",
+                                      "action"
+                                    ],
+                                    "additionalProperties": false
+                                  }
+                                ]
+                              }
+                            }
+                          },
+                          "required": [
+                            "language",
+                            "category",
+                            "body",
+                            "buttons"
+                          ],
+                          "additionalProperties": false
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
                     "page": {
                       "anyOf": [
                         {
@@ -44392,7 +44854,8 @@
                     "diagnostics",
                     "incompatibilities",
                     "fixture",
-                    "rendered"
+                    "rendered",
+                    "whatsapp"
                   ],
                   "additionalProperties": false
                 }
@@ -51645,7 +52108,13 @@
                         "periodEnd": {
                           "type": "string"
                         },
+                        "smsCount": {
+                          "type": "number"
+                        },
                         "emailCount": {
+                          "type": "number"
+                        },
+                        "whatsappCount": {
                           "type": "number"
                         },
                         "totalMessages": {
@@ -51655,7 +52124,9 @@
                       "required": [
                         "periodStart",
                         "periodEnd",
+                        "smsCount",
                         "emailCount",
+                        "whatsappCount",
                         "totalMessages"
                       ],
                       "additionalProperties": false
@@ -58039,7 +58510,14 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ValidationError"
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/WhatsAppServiceWindowClosedError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ValidationError"
+                    }
+                  ]
                 }
               }
             }
@@ -58705,7 +59183,14 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ValidationError"
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/WhatsAppServiceWindowClosedError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ValidationError"
+                    }
+                  ]
                 }
               }
             }
@@ -58921,7 +59406,14 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ValidationError"
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/WhatsAppServiceWindowClosedError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ValidationError"
+                    }
+                  ]
                 }
               }
             }
@@ -59137,7 +59629,14 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ValidationError"
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/WhatsAppServiceWindowClosedError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ValidationError"
+                    }
+                  ]
                 }
               }
             }
@@ -60307,7 +60806,14 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ValidationError"
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/WhatsAppServiceWindowClosedError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ValidationError"
+                    }
+                  ]
                 }
               }
             }
@@ -60772,7 +61278,14 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ValidationError"
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/WhatsAppServiceWindowClosedError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ValidationError"
+                    }
+                  ]
                 }
               }
             }
@@ -60958,7 +61471,14 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ValidationError"
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/WhatsAppServiceWindowClosedError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ValidationError"
+                    }
+                  ]
                 }
               }
             }
@@ -61144,7 +61664,14 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ValidationError"
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/WhatsAppServiceWindowClosedError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ValidationError"
+                    }
+                  ]
                 }
               }
             }
@@ -65380,6 +65907,12 @@
           "emailCount": {
             "type": "number"
           },
+          "smsCount": {
+            "type": "number"
+          },
+          "whatsappCount": {
+            "type": "number"
+          },
           "totalMessages": {
             "type": "number"
           }
@@ -65389,6 +65922,8 @@
           "periodStart",
           "periodEnd",
           "emailCount",
+          "smsCount",
+          "whatsappCount",
           "totalMessages"
         ],
         "additionalProperties": false
@@ -65425,6 +65960,8 @@
         "enum": [
           "domain",
           "sender",
+          "whatsappNumber",
+          "smsNumber",
           "contact",
           "template"
         ]
@@ -66756,6 +67293,217 @@
         "additionalProperties": false
       },
       "MailboxSendSnapshot": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/MailboxEmailSendSnapshot"
+          },
+          {
+            "$ref": "#/components/schemas/MailboxChatSendIntent"
+          }
+        ]
+      },
+      "MailboxChatSendIntent": {
+        "type": "object",
+        "properties": {
+          "channel": {
+            "type": "string",
+            "enum": [
+              "whatsapp",
+              "sms"
+            ]
+          },
+          "draftRevision": {
+            "type": "integer",
+            "maximum": 9007199254740991,
+            "exclusiveMinimum": 0
+          },
+          "endpointId": {
+            "$ref": "#/components/schemas/MailboxEndpointId"
+          },
+          "sender": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/MailboxWhatsAppEndpointBinding"
+              },
+              {
+                "$ref": "#/components/schemas/MailboxSmsEndpointBinding"
+              }
+            ]
+          },
+          "from": {
+            "type": "string"
+          },
+          "to": {
+            "type": "string"
+          },
+          "text": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "template": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/MailboxChatTemplate"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "threadId": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/MailboxThreadId"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "conversationId": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ConversationId"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "inReplyToMessageId": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/MessageId"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "channel",
+          "draftRevision",
+          "endpointId",
+          "sender",
+          "from",
+          "to",
+          "text",
+          "template",
+          "threadId",
+          "conversationId",
+          "inReplyToMessageId"
+        ],
+        "additionalProperties": false
+      },
+      "ConversationId": {
+        "type": "string",
+        "pattern": "^conv_[0-9a-hjkmnp-tv-z]{16,24}$",
+        "x-samva-brand": "ConversationId"
+      },
+      "MailboxChatTemplate": {
+        "type": "object",
+        "properties": {
+          "templateId": {
+            "$ref": "#/components/schemas/TemplateId"
+          },
+          "templateChannelVariantId": {
+            "$ref": "#/components/schemas/TemplateChannelVariantId"
+          },
+          "templateData": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/JsonObject"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "templateId",
+          "templateChannelVariantId",
+          "templateData"
+        ],
+        "additionalProperties": false
+      },
+      "JsonObject": {
+        "type": "object",
+        "additionalProperties": {
+          "$ref": "#/components/schemas/JsonValue"
+        }
+      },
+      "TemplateChannelVariantId": {
+        "type": "string",
+        "pattern": "^tvar_[0-9a-hjkmnp-tv-z]{16,24}$",
+        "x-samva-brand": "TemplateChannelVariantId"
+      },
+      "TemplateId": {
+        "type": "string",
+        "pattern": "^tmpl_[0-9a-hjkmnp-tv-z]{16,24}$",
+        "x-samva-brand": "TemplateId"
+      },
+      "MailboxSmsEndpointBinding": {
+        "type": "object",
+        "properties": {
+          "channel": {
+            "type": "string",
+            "enum": [
+              "sms"
+            ]
+          },
+          "phoneNumberId": {
+            "$ref": "#/components/schemas/SmsPhoneNumberId"
+          }
+        },
+        "required": [
+          "channel",
+          "phoneNumberId"
+        ],
+        "additionalProperties": false
+      },
+      "SmsPhoneNumberId": {
+        "type": "string",
+        "pattern": "^phone_[0-9a-hjkmnp-tv-z]{16,24}$",
+        "x-samva-brand": "SmsPhoneNumberId"
+      },
+      "MailboxWhatsAppEndpointBinding": {
+        "type": "object",
+        "properties": {
+          "channel": {
+            "type": "string",
+            "enum": [
+              "whatsapp"
+            ]
+          },
+          "businessAccountId": {
+            "$ref": "#/components/schemas/WhatsAppBusinessAccountId"
+          }
+        },
+        "required": [
+          "channel",
+          "businessAccountId"
+        ],
+        "additionalProperties": false
+      },
+      "WhatsAppBusinessAccountId": {
+        "type": "string",
+        "pattern": "^waba_[0-9a-hjkmnp-tv-z]{16,24}$",
+        "x-samva-brand": "WhatsAppBusinessAccountId"
+      },
+      "MailboxEndpointId": {
+        "type": "string",
+        "pattern": "^mbxep_[0-9a-hjkmnp-tv-z]{16,24}$",
+        "x-samva-brand": "MailboxEndpointId"
+      },
+      "MailboxEmailSendSnapshot": {
         "type": "object",
         "properties": {
           "channel": {
@@ -66891,27 +67639,6 @@
           "inReplyToMessageId"
         ],
         "additionalProperties": false
-      },
-      "ConversationId": {
-        "type": "string",
-        "pattern": "^conv_[0-9a-hjkmnp-tv-z]{16,24}$",
-        "x-samva-brand": "ConversationId"
-      },
-      "JsonObject": {
-        "type": "object",
-        "additionalProperties": {
-          "$ref": "#/components/schemas/JsonValue"
-        }
-      },
-      "TemplateId": {
-        "type": "string",
-        "pattern": "^tmpl_[0-9a-hjkmnp-tv-z]{16,24}$",
-        "x-samva-brand": "TemplateId"
-      },
-      "MailboxEndpointId": {
-        "type": "string",
-        "pattern": "^mbxep_[0-9a-hjkmnp-tv-z]{16,24}$",
-        "x-samva-brand": "MailboxEndpointId"
       },
       "EmailAttachment": {
         "type": "object",
@@ -67094,6 +67821,36 @@
           "transient"
         ],
         "x-retryable": true
+      },
+      "WhatsAppServiceWindowClosedError": {
+        "type": "object",
+        "properties": {
+          "_tag": {
+            "type": "string",
+            "enum": [
+              "WhatsAppServiceWindowClosedError"
+            ]
+          },
+          "message": {
+            "type": "string"
+          },
+          "closedAt": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "_tag",
+          "message",
+          "closedAt"
+        ],
+        "additionalProperties": false
       },
       "OnboardingReviewRequiredError": {
         "type": "object",
@@ -67422,6 +68179,118 @@
         "additionalProperties": false
       },
       "MailboxDraft": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/MailboxEmailDraft"
+          },
+          {
+            "$ref": "#/components/schemas/MailboxChatDraft"
+          }
+        ]
+      },
+      "MailboxChatDraft": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "$ref": "#/components/schemas/MailboxDraftId"
+          },
+          "channel": {
+            "type": "string",
+            "enum": [
+              "whatsapp",
+              "sms"
+            ]
+          },
+          "threadId": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/MailboxThreadId"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "inReplyToMessageId": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/MessageId"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "state": {
+            "$ref": "#/components/schemas/MailboxDraftState"
+          },
+          "lockedByActionId": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/MailboxActionId"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "to": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "subject": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "type": "string"
+          },
+          "text": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "channel",
+          "threadId",
+          "inReplyToMessageId",
+          "state",
+          "lockedByActionId",
+          "to",
+          "subject",
+          "createdAt",
+          "updatedAt",
+          "text"
+        ],
+        "additionalProperties": false
+      },
+      "MailboxDraftState": {
+        "type": "string",
+        "enum": [
+          "saved",
+          "locked",
+          "sent"
+        ]
+      },
+      "MailboxEmailDraft": {
         "type": "object",
         "properties": {
           "id": {
@@ -67565,14 +68434,6 @@
         ],
         "additionalProperties": false
       },
-      "MailboxDraftState": {
-        "type": "string",
-        "enum": [
-          "saved",
-          "locked",
-          "sent"
-        ]
-      },
       "UpdateMailboxDraftPayload": {
         "type": "object",
         "properties": {
@@ -67697,6 +68558,62 @@
         "additionalProperties": false
       },
       "CreateMailboxDraftPayload": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/CreateMailboxEmailDraftPayload"
+          },
+          {
+            "$ref": "#/components/schemas/CreateMailboxChatDraftPayload"
+          }
+        ]
+      },
+      "CreateMailboxChatDraftPayload": {
+        "type": "object",
+        "properties": {
+          "channel": {
+            "type": "string",
+            "enum": [
+              "whatsapp",
+              "sms"
+            ]
+          },
+          "to": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "text": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "inReplyToMessageId": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/MessageId"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "channel"
+        ],
+        "additionalProperties": false
+      },
+      "CreateMailboxEmailDraftPayload": {
         "type": "object",
         "properties": {
           "channel": {
@@ -67939,6 +68856,8 @@
       "MailboxChannel": {
         "type": "string",
         "enum": [
+          "sms",
+          "whatsapp",
           "email"
         ],
         "description": "The channel an endpoint, thread, or message belongs to."
@@ -68168,6 +69087,63 @@
         "additionalProperties": false
       },
       "ReplyMailboxMessagePayload": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/ReplyMailboxEmailPayload"
+          },
+          {
+            "$ref": "#/components/schemas/ReplyMailboxChatPayload"
+          }
+        ]
+      },
+      "ReplyMailboxChatPayload": {
+        "type": "object",
+        "properties": {
+          "channel": {
+            "type": "string",
+            "enum": [
+              "whatsapp",
+              "sms"
+            ]
+          },
+          "text": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "templateId": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/TemplateId"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "templateData": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/JsonObject"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "channel"
+        ],
+        "additionalProperties": false
+      },
+      "ReplyMailboxEmailPayload": {
         "type": "object",
         "properties": {
           "channel": {
@@ -68310,6 +69286,316 @@
         "additionalProperties": false
       },
       "MailboxMessage": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/MailboxEmailMessage"
+          },
+          {
+            "$ref": "#/components/schemas/MailboxChatMessage"
+          }
+        ]
+      },
+      "MailboxChatMessage": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "$ref": "#/components/schemas/MessageId"
+          },
+          "campaign": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "campaignId": {
+                    "$ref": "#/components/schemas/CampaignId"
+                  },
+                  "runId": {
+                    "$ref": "#/components/schemas/CampaignRunId"
+                  }
+                },
+                "required": [
+                  "campaignId",
+                  "runId"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "threadId": {
+            "$ref": "#/components/schemas/MailboxThreadId"
+          },
+          "conversationId": {
+            "$ref": "#/components/schemas/ConversationId"
+          },
+          "direction": {
+            "type": "string",
+            "enum": [
+              "inbound",
+              "outbound"
+            ]
+          },
+          "from": {
+            "$ref": "#/components/schemas/MailboxMessageSender"
+          },
+          "sentBy": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "type": "string",
+                    "enum": [
+                      "user",
+                      "apiKey",
+                      "extension",
+                      "externalAgent",
+                      "samvaAgent",
+                      "system"
+                    ]
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "displayName": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  }
+                },
+                "required": [
+                  "kind",
+                  "id"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "occurredAt": {
+            "type": "string"
+          },
+          "channel": {
+            "type": "string",
+            "enum": [
+              "whatsapp",
+              "sms"
+            ]
+          },
+          "to": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "text": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "media": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MailboxChatMedia"
+            }
+          },
+          "template": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/MailboxChatMessageTemplate"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "summary": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "contextMessageId": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/MessageId"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "threadId",
+          "conversationId",
+          "direction",
+          "from",
+          "occurredAt",
+          "channel",
+          "to",
+          "text",
+          "media",
+          "template",
+          "summary",
+          "contextMessageId"
+        ],
+        "additionalProperties": false
+      },
+      "MailboxChatMessageTemplate": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "language": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "language"
+        ],
+        "additionalProperties": false
+      },
+      "MailboxChatMedia": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "contentType": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "filename": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "caption": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "type",
+          "contentType",
+          "filename",
+          "caption"
+        ],
+        "additionalProperties": false
+      },
+      "MailboxMessageSender": {
+        "type": "object",
+        "properties": {
+          "actor": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "type": "string",
+                    "enum": [
+                      "user",
+                      "apiKey",
+                      "extension",
+                      "externalAgent",
+                      "samvaAgent",
+                      "system"
+                    ]
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "displayName": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  }
+                },
+                "required": [
+                  "kind",
+                  "id"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "displayName": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "address": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "address"
+        ],
+        "additionalProperties": false
+      },
+      "CampaignRunId": {
+        "type": "string",
+        "pattern": "^crun_[0-9a-hjkmnp-tv-z]{16,24}$",
+        "x-samva-brand": "CampaignRunId"
+      },
+      "CampaignId": {
+        "type": "string",
+        "pattern": "^camp_[0-9a-hjkmnp-tv-z]{16,24}$",
+        "x-samva-brand": "CampaignId"
+      },
+      "MailboxEmailMessage": {
         "type": "object",
         "properties": {
           "id": {
@@ -68553,79 +69839,6 @@
         ],
         "additionalProperties": false
       },
-      "MailboxMessageSender": {
-        "type": "object",
-        "properties": {
-          "actor": {
-            "anyOf": [
-              {
-                "type": "object",
-                "properties": {
-                  "kind": {
-                    "type": "string",
-                    "enum": [
-                      "user",
-                      "apiKey",
-                      "extension",
-                      "externalAgent",
-                      "samvaAgent",
-                      "system"
-                    ]
-                  },
-                  "id": {
-                    "type": "string"
-                  },
-                  "displayName": {
-                    "anyOf": [
-                      {
-                        "type": "string"
-                      },
-                      {
-                        "type": "null"
-                      }
-                    ]
-                  }
-                },
-                "required": [
-                  "kind",
-                  "id"
-                ],
-                "additionalProperties": false
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "displayName": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "address": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "address"
-        ],
-        "additionalProperties": false
-      },
-      "CampaignRunId": {
-        "type": "string",
-        "pattern": "^crun_[0-9a-hjkmnp-tv-z]{16,24}$",
-        "x-samva-brand": "CampaignRunId"
-      },
-      "CampaignId": {
-        "type": "string",
-        "pattern": "^camp_[0-9a-hjkmnp-tv-z]{16,24}$",
-        "x-samva-brand": "CampaignId"
-      },
       "MailboxMessageAuthentication": {
         "type": "object",
         "properties": {
@@ -68740,6 +69953,67 @@
         "additionalProperties": false
       },
       "SendMailboxMessagePayload": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/SendMailboxEmailPayload"
+          },
+          {
+            "$ref": "#/components/schemas/SendMailboxChatPayload"
+          }
+        ]
+      },
+      "SendMailboxChatPayload": {
+        "type": "object",
+        "properties": {
+          "channel": {
+            "type": "string",
+            "enum": [
+              "whatsapp",
+              "sms"
+            ]
+          },
+          "to": {
+            "type": "string"
+          },
+          "text": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "templateId": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/TemplateId"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "templateData": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/JsonObject"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "channel",
+          "to"
+        ],
+        "additionalProperties": false
+      },
+      "SendMailboxEmailPayload": {
         "type": "object",
         "properties": {
           "channel": {
@@ -69566,6 +70840,16 @@
               "$ref": "#/components/schemas/MailboxThreadParticipant"
             }
           },
+          "whatsappServiceWindow": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/MailboxWhatsAppServiceWindow"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "createdAt": {
             "type": "string"
           }
@@ -69592,7 +70876,31 @@
           "lastActivityAt",
           "conversationId",
           "participants",
+          "whatsappServiceWindow",
           "createdAt"
+        ],
+        "additionalProperties": false
+      },
+      "MailboxWhatsAppServiceWindow": {
+        "type": "object",
+        "properties": {
+          "open": {
+            "type": "boolean"
+          },
+          "expiresAt": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "open",
+          "expiresAt"
         ],
         "additionalProperties": false
       },
@@ -71231,6 +72539,103 @@
         "additionalProperties": false
       },
       "MailboxEndpoint": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/MailboxEmailEndpoint"
+          },
+          {
+            "$ref": "#/components/schemas/MailboxWhatsAppEndpoint"
+          },
+          {
+            "$ref": "#/components/schemas/MailboxSmsEndpoint"
+          }
+        ]
+      },
+      "MailboxSmsEndpoint": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "$ref": "#/components/schemas/MailboxEndpointId"
+          },
+          "address": {
+            "type": "string"
+          },
+          "displayName": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "default": {
+            "type": "boolean"
+          },
+          "channel": {
+            "type": "string",
+            "enum": [
+              "sms"
+            ]
+          },
+          "phoneNumberId": {
+            "$ref": "#/components/schemas/SmsPhoneNumberId"
+          }
+        },
+        "required": [
+          "id",
+          "address",
+          "displayName",
+          "default",
+          "channel",
+          "phoneNumberId"
+        ],
+        "additionalProperties": false
+      },
+      "MailboxWhatsAppEndpoint": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "$ref": "#/components/schemas/MailboxEndpointId"
+          },
+          "address": {
+            "type": "string"
+          },
+          "displayName": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "default": {
+            "type": "boolean"
+          },
+          "channel": {
+            "type": "string",
+            "enum": [
+              "whatsapp"
+            ]
+          },
+          "businessAccountId": {
+            "$ref": "#/components/schemas/WhatsAppBusinessAccountId"
+          }
+        },
+        "required": [
+          "id",
+          "address",
+          "displayName",
+          "default",
+          "channel",
+          "businessAccountId"
+        ],
+        "additionalProperties": false
+      },
+      "MailboxEmailEndpoint": {
         "type": "object",
         "properties": {
           "id": {
@@ -71872,6 +73277,34 @@
               }
             ]
           },
+          "sms": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "read",
+                  "write"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "whatsapp": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "read",
+                  "write"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "domains": {
             "anyOf": [
               {
@@ -71887,6 +73320,20 @@
             ]
           },
           "phoneNumbers": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "read",
+                  "write"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "whatsappAccounts": {
             "anyOf": [
               {
                 "type": "string",
@@ -72834,6 +74281,18 @@
           "messagesUsedThisMonth": {
             "type": "number"
           },
+          "smsUsed": {
+            "type": "number"
+          },
+          "smsUsedThisMonth": {
+            "type": "number"
+          },
+          "whatsappUsed": {
+            "type": "number"
+          },
+          "whatsappUsedThisMonth": {
+            "type": "number"
+          },
           "emailUsed": {
             "type": "number"
           },
@@ -72877,6 +74336,10 @@
           "emailFooterEnabledDefault",
           "messagesUsed",
           "messagesUsedThisMonth",
+          "smsUsed",
+          "smsUsedThisMonth",
+          "whatsappUsed",
+          "whatsappUsedThisMonth",
           "emailUsed",
           "emailUsedThisMonth",
           "contactsUsed",
@@ -73327,6 +74790,8 @@
                 "items": {
                   "type": "string",
                   "enum": [
+                    "sms",
+                    "whatsapp",
                     "email"
                   ]
                 }
@@ -73508,6 +74973,8 @@
                 "items": {
                   "type": "string",
                   "enum": [
+                    "sms",
+                    "whatsapp",
                     "email"
                   ]
                 },
@@ -73678,6 +75145,8 @@
                 "items": {
                   "type": "string",
                   "enum": [
+                    "sms",
+                    "whatsapp",
                     "email"
                   ]
                 }
@@ -73880,6 +75349,8 @@
                 "items": {
                   "type": "string",
                   "enum": [
+                    "sms",
+                    "whatsapp",
                     "email"
                   ]
                 },
@@ -74823,6 +76294,8 @@
           "channel": {
             "type": "string",
             "enum": [
+              "sms",
+              "whatsapp",
               "email"
             ]
           },
@@ -75028,6 +76501,104 @@
               }
             ]
           },
+          "sms": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "body": {
+                    "type": "string"
+                  },
+                  "encoding": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "estimatedSegments": {
+                    "anyOf": [
+                      {
+                        "type": "integer",
+                        "minimum": -9007199254740991,
+                        "maximum": 9007199254740991
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "category": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "enum": [
+                          "transactional",
+                          "promotional",
+                          "service_implicit"
+                        ]
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  }
+                },
+                "required": [
+                  "body",
+                  "encoding",
+                  "estimatedSegments",
+                  "category"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "whatsapp": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "language": {
+                    "type": "string"
+                  },
+                  "category": {
+                    "type": "string",
+                    "enum": [
+                      "marketing",
+                      "utility",
+                      "authentication"
+                    ]
+                  },
+                  "components": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/WhatsAppTemplateComponent"
+                    }
+                  }
+                },
+                "required": [
+                  "name",
+                  "language",
+                  "category",
+                  "components"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "publicationId": {
             "anyOf": [
               {
@@ -75086,11 +76657,264 @@
           "replyToDefault",
           "trackingDefault",
           "email",
+          "sms",
+          "whatsapp",
           "publicationId",
           "inputContractId",
           "inputSchema"
         ],
         "additionalProperties": false
+      },
+      "WhatsAppTemplateComponent": {
+        "anyOf": [
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "HEADER"
+                ]
+              },
+              "format": {
+                "type": "string",
+                "enum": [
+                  "TEXT"
+                ]
+              },
+              "text": {
+                "type": "string"
+              },
+              "example": {
+                "type": "object",
+                "properties": {
+                  "header_text": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "required": [
+                  "header_text"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "type",
+              "format",
+              "text"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "BODY"
+                ]
+              },
+              "text": {
+                "type": "string"
+              },
+              "example": {
+                "type": "object",
+                "properties": {
+                  "body_text": {
+                    "type": "array",
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "required": [
+                  "body_text"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "type",
+              "text"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "FOOTER"
+                ]
+              },
+              "text": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "type",
+              "text"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "BUTTONS"
+                ]
+              },
+              "buttons": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/WhatsAppTemplateButton"
+                }
+              }
+            },
+            "required": [
+              "type",
+              "buttons"
+            ],
+            "additionalProperties": false
+          }
+        ]
+      },
+      "WhatsAppTemplateButton": {
+        "anyOf": [
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "QUICK_REPLY"
+                ]
+              },
+              "text": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "type",
+              "text"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "URL"
+                ]
+              },
+              "text": {
+                "type": "string"
+              },
+              "url": {
+                "type": "string"
+              },
+              "example": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": [
+              "type",
+              "text",
+              "url"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "PHONE_NUMBER"
+                ]
+              },
+              "text": {
+                "type": "string"
+              },
+              "phone_number": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "type",
+              "text",
+              "phone_number"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "COPY_CODE"
+                ]
+              },
+              "example": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "type",
+              "example"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "FLOW"
+                ]
+              },
+              "text": {
+                "type": "string"
+              },
+              "flow": {
+                "type": "string"
+              },
+              "flow_action": {
+                "type": "string",
+                "enum": [
+                  "navigate",
+                  "data_exchange"
+                ]
+              },
+              "navigate_screen": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "type",
+              "text",
+              "flow",
+              "flow_action"
+            ],
+            "additionalProperties": false
+          }
+        ]
       },
       "TemplateTrackingDefault": {
         "type": "object",
@@ -75687,6 +77511,8 @@
           "channel": {
             "type": "string",
             "enum": [
+              "sms",
+              "whatsapp",
               "email"
             ]
           },
@@ -75803,6 +77629,8 @@
           "channel": {
             "type": "string",
             "enum": [
+              "sms",
+              "whatsapp",
               "email"
             ]
           },
@@ -77169,6 +78997,8 @@
           "channel": {
             "type": "string",
             "enum": [
+              "sms",
+              "whatsapp",
               "email"
             ]
           },
@@ -77296,6 +79126,8 @@
           "channel": {
             "type": "string",
             "enum": [
+              "sms",
+              "whatsapp",
               "email"
             ]
           },
@@ -77446,6 +79278,46 @@
       "TopicSubscriptionCounts": {
         "type": "object",
         "properties": {
+          "sms": {
+            "type": "object",
+            "properties": {
+              "subscribed": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 9007199254740991
+              },
+              "unsubscribed": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 9007199254740991
+              }
+            },
+            "required": [
+              "subscribed",
+              "unsubscribed"
+            ],
+            "additionalProperties": false
+          },
+          "whatsapp": {
+            "type": "object",
+            "properties": {
+              "subscribed": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 9007199254740991
+              },
+              "unsubscribed": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 9007199254740991
+              }
+            },
+            "required": [
+              "subscribed",
+              "unsubscribed"
+            ],
+            "additionalProperties": false
+          },
           "email": {
             "type": "object",
             "properties": {
@@ -77468,6 +79340,8 @@
           }
         },
         "required": [
+          "sms",
+          "whatsapp",
           "email"
         ],
         "additionalProperties": false
@@ -77686,6 +79560,8 @@
           "channel": {
             "type": "string",
             "enum": [
+              "sms",
+              "whatsapp",
               "email"
             ]
           },
@@ -78016,6 +79892,8 @@
           "channel": {
             "type": "string",
             "enum": [
+              "sms",
+              "whatsapp",
               "email"
             ]
           },
@@ -79669,6 +81547,9 @@
             "$ref": "#/components/schemas/JourneySendEmailNode"
           },
           {
+            "$ref": "#/components/schemas/WhatsAppJourneySendNode"
+          },
+          {
             "$ref": "#/components/schemas/JourneyWaitNode"
           },
           {
@@ -80243,6 +82124,42 @@
           "durationSeconds"
         ],
         "additionalProperties": false
+      },
+      "WhatsAppJourneySendNode": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "send_whatsapp"
+            ]
+          },
+          "config": {
+            "$ref": "#/components/schemas/WhatsAppTemplateDispatch"
+          },
+          "next": {
+            "type": "array",
+            "prefixItems": [
+              {
+                "$ref": "#/components/schemas/JourneyNextEdge"
+              }
+            ],
+            "maxItems": 1,
+            "minItems": 1
+          }
+        },
+        "required": [
+          "type",
+          "config",
+          "next"
+        ],
+        "additionalProperties": false
+      },
+      "WhatsAppTemplateDispatchData": {
+        "type": "object",
+        "additionalProperties": {
+          "$ref": "#/components/schemas/JsonValue"
+        }
       },
       "JourneySendEmailNode": {
         "type": "object",
@@ -81661,6 +83578,8 @@
                 "items": {
                   "type": "string",
                   "enum": [
+                    "sms",
+                    "whatsapp",
                     "email"
                   ]
                 }
@@ -81696,6 +83615,26 @@
                 "type": "object",
                 "properties": {
                   "email": {
+                    "anyOf": [
+                      {
+                        "type": "boolean"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "sms": {
+                    "anyOf": [
+                      {
+                        "type": "boolean"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "whatsapp": {
                     "anyOf": [
                       {
                         "type": "boolean"
@@ -82184,6 +84123,8 @@
             "items": {
               "type": "string",
               "enum": [
+                "sms",
+                "whatsapp",
                 "email"
               ]
             }
@@ -82313,6 +84254,8 @@
           "primaryChannel": {
             "type": "string",
             "enum": [
+              "sms",
+              "whatsapp",
               "email"
             ]
           },
@@ -82321,6 +84264,8 @@
             "items": {
               "type": "string",
               "enum": [
+                "sms",
+                "whatsapp",
                 "email"
               ]
             }
@@ -82723,6 +84668,8 @@
               {
                 "type": "string",
                 "enum": [
+                  "sms",
+                  "whatsapp",
                   "email"
                 ]
               }
@@ -82731,6 +84678,8 @@
             "items": {
               "type": "string",
               "enum": [
+                "sms",
+                "whatsapp",
                 "email"
               ]
             }
@@ -82841,6 +84790,8 @@
           "channel": {
             "type": "string",
             "enum": [
+              "sms",
+              "whatsapp",
               "email"
             ]
           },
@@ -82997,6 +84948,8 @@
           "primaryChannel": {
             "type": "string",
             "enum": [
+              "sms",
+              "whatsapp",
               "email"
             ]
           },
@@ -83005,6 +84958,8 @@
             "items": {
               "type": "string",
               "enum": [
+                "sms",
+                "whatsapp",
                 "email"
               ]
             }
@@ -83194,6 +85149,7 @@
             "enum": [
               "attachment",
               "avatar",
+              "whatsapp_media",
               "review_evidence"
             ]
           },
@@ -83349,6 +85305,7 @@
             "enum": [
               "attachment",
               "avatar",
+              "whatsapp_media",
               "review_evidence"
             ]
           },
@@ -83477,6 +85434,7 @@
             "enum": [
               "attachment",
               "avatar",
+              "whatsapp_media",
               "review_evidence"
             ]
           },
@@ -86978,6 +88936,7 @@
                         "blocked",
                         "suppressed",
                         "opted_out",
+                        "consent_required",
                         "unreachable",
                         "no_identity",
                         "inactive",
@@ -87269,6 +89228,7 @@
               "blocked",
               "suppressed",
               "opted_out",
+              "consent_required",
               "unreachable",
               "no_identity",
               "inactive",
@@ -87372,6 +89332,232 @@
         "additionalProperties": false
       },
       "CampaignContent": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/EmailCampaignContent"
+          },
+          {
+            "$ref": "#/components/schemas/SmsCampaignContent"
+          },
+          {
+            "$ref": "#/components/schemas/WhatsAppCampaignContent"
+          }
+        ]
+      },
+      "WhatsAppCampaignContent": {
+        "type": "object",
+        "properties": {
+          "channel": {
+            "type": "string",
+            "enum": [
+              "whatsapp"
+            ]
+          },
+          "whatsapp": {
+            "$ref": "#/components/schemas/WhatsAppTemplateDispatch"
+          },
+          "conversationId": {
+            "$ref": "#/components/schemas/CampaignConversationRef"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/CampaignContentMetadata"
+          }
+        },
+        "required": [
+          "channel",
+          "whatsapp"
+        ],
+        "additionalProperties": false
+      },
+      "CampaignContentMetadata": {
+        "anyOf": [
+          {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/JsonValue"
+            }
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "CampaignConversationRef": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/ConversationId"
+          },
+          {
+            "type": "null"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "WhatsAppTemplateDispatch": {
+        "type": "object",
+        "properties": {
+          "template": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/TemplateId"
+              },
+              {
+                "type": "string",
+                "pattern": "^(?=.{1,100}$)[a-z0-9]+(?:-[a-z0-9]+)*$"
+              }
+            ]
+          },
+          "templateData": {
+            "$ref": "#/components/schemas/WhatsAppTemplateDispatchData"
+          },
+          "bindings": {
+            "$ref": "#/components/schemas/WhatsAppTemplateBindings"
+          },
+          "businessAccountId": {
+            "$ref": "#/components/schemas/WhatsAppBusinessAccountId"
+          }
+        },
+        "required": [
+          "template"
+        ],
+        "additionalProperties": false
+      },
+      "WhatsAppTemplateBindings": {
+        "type": "object",
+        "propertyNames": {
+          "type": "string",
+          "minLength": 1
+        },
+        "additionalProperties": {
+          "$ref": "#/components/schemas/WhatsAppTemplateBinding"
+        },
+        "description": "Template parameters filled per recipient: parameter name to the contact field it reads."
+      },
+      "WhatsAppTemplateBinding": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/WhatsAppTemplateContactBinding"
+          },
+          {
+            "$ref": "#/components/schemas/WhatsAppTemplateCustomFieldBinding"
+          }
+        ]
+      },
+      "WhatsAppTemplateCustomFieldBinding": {
+        "type": "object",
+        "properties": {
+          "customField": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "customField"
+        ],
+        "additionalProperties": false
+      },
+      "WhatsAppTemplateContactBinding": {
+        "type": "object",
+        "properties": {
+          "contact": {
+            "type": "string",
+            "enum": [
+              "id",
+              "name",
+              "displayName",
+              "externalId",
+              "phone",
+              "email",
+              "firstName",
+              "lastName",
+              "company",
+              "jobTitle"
+            ]
+          }
+        },
+        "required": [
+          "contact"
+        ],
+        "additionalProperties": false
+      },
+      "SmsCampaignContent": {
+        "type": "object",
+        "properties": {
+          "channel": {
+            "type": "string",
+            "enum": [
+              "sms"
+            ]
+          },
+          "sms": {
+            "$ref": "#/components/schemas/SmsContent"
+          },
+          "conversationId": {
+            "$ref": "#/components/schemas/CampaignConversationRef"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/CampaignContentMetadata"
+          }
+        },
+        "required": [
+          "channel",
+          "sms"
+        ],
+        "additionalProperties": false
+      },
+      "SmsContent": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "templateId": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/TemplateId"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "templateSlug": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^(?=.{1,100}$)[a-z0-9]+(?:-[a-z0-9]+)*$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "templateData": {
+            "$ref": "#/components/schemas/SmsTemplateData"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SmsTemplateData": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/JsonObject"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "EmailCampaignContent": {
         "type": "object",
         "properties": {
           "channel": {
@@ -87436,32 +89622,6 @@
           "email"
         ],
         "additionalProperties": false
-      },
-      "CampaignContentMetadata": {
-        "anyOf": [
-          {
-            "type": "object",
-            "additionalProperties": {
-              "$ref": "#/components/schemas/JsonValue"
-            }
-          },
-          {
-            "type": "null"
-          }
-        ]
-      },
-      "CampaignConversationRef": {
-        "anyOf": [
-          {
-            "$ref": "#/components/schemas/ConversationId"
-          },
-          {
-            "type": "null"
-          },
-          {
-            "type": "null"
-          }
-        ]
       },
       "CampaignReplyMailbox": {
         "anyOf": [
@@ -87812,6 +89972,7 @@
               "blocked",
               "suppressed",
               "opted_out",
+              "consent_required",
               "unreachable",
               "no_identity",
               "inactive",
@@ -87917,6 +90078,8 @@
           "channel": {
             "type": "string",
             "enum": [
+              "sms",
+              "whatsapp",
               "email"
             ]
           },
@@ -88011,6 +90174,109 @@
         "additionalProperties": false
       },
       "CampaignContentInput": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/EmailCampaignContentInput"
+          },
+          {
+            "$ref": "#/components/schemas/SmsCampaignContentInput"
+          },
+          {
+            "$ref": "#/components/schemas/WhatsAppCampaignContentInput"
+          }
+        ]
+      },
+      "WhatsAppCampaignContentInput": {
+        "type": "object",
+        "properties": {
+          "channel": {
+            "type": "string",
+            "enum": [
+              "whatsapp"
+            ]
+          },
+          "whatsapp": {
+            "$ref": "#/components/schemas/WhatsAppTemplateDispatch"
+          },
+          "conversationId": {
+            "$ref": "#/components/schemas/CampaignConversationRef"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/CampaignContentMetadata"
+          }
+        },
+        "required": [
+          "channel",
+          "whatsapp"
+        ],
+        "additionalProperties": false
+      },
+      "SmsCampaignContentInput": {
+        "type": "object",
+        "properties": {
+          "channel": {
+            "type": "string",
+            "enum": [
+              "sms"
+            ]
+          },
+          "sms": {
+            "$ref": "#/components/schemas/SmsDispatchContent"
+          },
+          "conversationId": {
+            "$ref": "#/components/schemas/CampaignConversationRef"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/CampaignContentMetadata"
+          }
+        },
+        "required": [
+          "channel",
+          "sms"
+        ],
+        "additionalProperties": false
+      },
+      "SmsDispatchContent": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "templateId": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/TemplateId"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "templateSlug": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^(?=.{1,100}$)[a-z0-9]+(?:-[a-z0-9]+)*$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "templateData": {
+            "$ref": "#/components/schemas/SmsTemplateData"
+          }
+        },
+        "additionalProperties": false
+      },
+      "EmailCampaignContentInput": {
         "type": "object",
         "properties": {
           "channel": {
@@ -88281,6 +90547,8 @@
           "channel": {
             "type": "string",
             "enum": [
+              "sms",
+              "whatsapp",
               "email"
             ]
           },
@@ -88541,6 +90809,1540 @@
         "additionalProperties": false
       },
       "StoredSendMessagePayload": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/StoredEmailSendMessage"
+          },
+          {
+            "$ref": "#/components/schemas/StoredSmsSendMessage"
+          },
+          {
+            "$ref": "#/components/schemas/StoredWhatsAppSendMessage"
+          }
+        ]
+      },
+      "StoredWhatsAppSendMessage": {
+        "type": "object",
+        "properties": {
+          "conversationId": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ConversationId"
+              },
+              {
+                "type": "null"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/MessageMetadata"
+          },
+          "channel": {
+            "type": "string",
+            "enum": [
+              "whatsapp"
+            ]
+          },
+          "to": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SavedPhoneRecipient"
+            },
+            "minItems": 1,
+            "maxItems": 1
+          },
+          "whatsapp": {
+            "$ref": "#/components/schemas/WhatsAppContent"
+          }
+        },
+        "required": [
+          "channel",
+          "to",
+          "whatsapp"
+        ],
+        "additionalProperties": false
+      },
+      "WhatsAppContent": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/WhatsAppTextContent"
+          },
+          {
+            "$ref": "#/components/schemas/WhatsAppTemplateIdContent"
+          },
+          {
+            "$ref": "#/components/schemas/WhatsAppTemplateSlugContent"
+          },
+          {
+            "$ref": "#/components/schemas/WhatsAppMediaContent"
+          },
+          {
+            "$ref": "#/components/schemas/WhatsAppInteractiveContent"
+          },
+          {
+            "$ref": "#/components/schemas/WhatsAppReactionContent"
+          },
+          {
+            "$ref": "#/components/schemas/WhatsAppLocationContent"
+          },
+          {
+            "$ref": "#/components/schemas/WhatsAppContactsContent"
+          }
+        ],
+        "description": "Exactly one content source: text, an approved template (by id or slug, with its templateData), media, an interactive message (reply buttons, a list, a call-to-action link, or a flow), a reaction, a location, or contacts. Everything except a template needs the recipient's 24-hour customer service window to be open."
+      },
+      "WhatsAppContactsContent": {
+        "type": "object",
+        "properties": {
+          "contacts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WhatsAppContactCard"
+            },
+            "minItems": 1,
+            "maxItems": 257
+          }
+        },
+        "required": [
+          "contacts"
+        ],
+        "additionalProperties": false
+      },
+      "WhatsAppContactCard": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "object",
+            "properties": {
+              "formattedName": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 1000,
+                "x-samva-string-checks": [
+                  {
+                    "id": "effect/schema/isMaxLength",
+                    "payload": {
+                      "maxLength": 1000
+                    }
+                  },
+                  {
+                    "id": "effect/schema/isPattern",
+                    "payload": {
+                      "source": "\\S",
+                      "flags": ""
+                    }
+                  }
+                ]
+              },
+              "firstName": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 1000,
+                "x-samva-string-checks": [
+                  {
+                    "id": "effect/schema/isMaxLength",
+                    "payload": {
+                      "maxLength": 1000
+                    }
+                  },
+                  {
+                    "id": "effect/schema/isPattern",
+                    "payload": {
+                      "source": "\\S",
+                      "flags": ""
+                    }
+                  }
+                ]
+              },
+              "lastName": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 1000,
+                "x-samva-string-checks": [
+                  {
+                    "id": "effect/schema/isMaxLength",
+                    "payload": {
+                      "maxLength": 1000
+                    }
+                  },
+                  {
+                    "id": "effect/schema/isPattern",
+                    "payload": {
+                      "source": "\\S",
+                      "flags": ""
+                    }
+                  }
+                ]
+              },
+              "middleName": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 1000,
+                "x-samva-string-checks": [
+                  {
+                    "id": "effect/schema/isMaxLength",
+                    "payload": {
+                      "maxLength": 1000
+                    }
+                  },
+                  {
+                    "id": "effect/schema/isPattern",
+                    "payload": {
+                      "source": "\\S",
+                      "flags": ""
+                    }
+                  }
+                ]
+              },
+              "prefix": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 1000,
+                "x-samva-string-checks": [
+                  {
+                    "id": "effect/schema/isMaxLength",
+                    "payload": {
+                      "maxLength": 1000
+                    }
+                  },
+                  {
+                    "id": "effect/schema/isPattern",
+                    "payload": {
+                      "source": "\\S",
+                      "flags": ""
+                    }
+                  }
+                ]
+              },
+              "suffix": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 1000,
+                "x-samva-string-checks": [
+                  {
+                    "id": "effect/schema/isMaxLength",
+                    "payload": {
+                      "maxLength": 1000
+                    }
+                  },
+                  {
+                    "id": "effect/schema/isPattern",
+                    "payload": {
+                      "source": "\\S",
+                      "flags": ""
+                    }
+                  }
+                ]
+              }
+            },
+            "required": [
+              "formattedName"
+            ],
+            "additionalProperties": false
+          },
+          "phones": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "phone": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 1000,
+                  "x-samva-string-checks": [
+                    {
+                      "id": "effect/schema/isMaxLength",
+                      "payload": {
+                        "maxLength": 1000
+                      }
+                    },
+                    {
+                      "id": "effect/schema/isPattern",
+                      "payload": {
+                        "source": "\\S",
+                        "flags": ""
+                      }
+                    }
+                  ]
+                },
+                "type": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 1000,
+                  "x-samva-string-checks": [
+                    {
+                      "id": "effect/schema/isMaxLength",
+                      "payload": {
+                        "maxLength": 1000
+                      }
+                    },
+                    {
+                      "id": "effect/schema/isPattern",
+                      "payload": {
+                        "source": "\\S",
+                        "flags": ""
+                      }
+                    }
+                  ]
+                },
+                "waId": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 1000,
+                  "x-samva-string-checks": [
+                    {
+                      "id": "effect/schema/isMaxLength",
+                      "payload": {
+                        "maxLength": 1000
+                      }
+                    },
+                    {
+                      "id": "effect/schema/isPattern",
+                      "payload": {
+                        "source": "\\S",
+                        "flags": ""
+                      }
+                    }
+                  ]
+                }
+              },
+              "required": [
+                "phone"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "emails": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 1000,
+                  "x-samva-string-checks": [
+                    {
+                      "id": "effect/schema/isMaxLength",
+                      "payload": {
+                        "maxLength": 1000
+                      }
+                    },
+                    {
+                      "id": "effect/schema/isPattern",
+                      "payload": {
+                        "source": "\\S",
+                        "flags": ""
+                      }
+                    }
+                  ]
+                },
+                "type": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 1000,
+                  "x-samva-string-checks": [
+                    {
+                      "id": "effect/schema/isMaxLength",
+                      "payload": {
+                        "maxLength": 1000
+                      }
+                    },
+                    {
+                      "id": "effect/schema/isPattern",
+                      "payload": {
+                        "source": "\\S",
+                        "flags": ""
+                      }
+                    }
+                  ]
+                }
+              },
+              "required": [
+                "email"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "urls": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "url": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 1000,
+                  "x-samva-string-checks": [
+                    {
+                      "id": "effect/schema/isMaxLength",
+                      "payload": {
+                        "maxLength": 1000
+                      }
+                    },
+                    {
+                      "id": "effect/schema/isPattern",
+                      "payload": {
+                        "source": "\\S",
+                        "flags": ""
+                      }
+                    }
+                  ]
+                },
+                "type": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 1000,
+                  "x-samva-string-checks": [
+                    {
+                      "id": "effect/schema/isMaxLength",
+                      "payload": {
+                        "maxLength": 1000
+                      }
+                    },
+                    {
+                      "id": "effect/schema/isPattern",
+                      "payload": {
+                        "source": "\\S",
+                        "flags": ""
+                      }
+                    }
+                  ]
+                }
+              },
+              "required": [
+                "url"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "org": {
+            "type": "object",
+            "properties": {
+              "company": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 1000,
+                "x-samva-string-checks": [
+                  {
+                    "id": "effect/schema/isMaxLength",
+                    "payload": {
+                      "maxLength": 1000
+                    }
+                  },
+                  {
+                    "id": "effect/schema/isPattern",
+                    "payload": {
+                      "source": "\\S",
+                      "flags": ""
+                    }
+                  }
+                ]
+              },
+              "department": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 1000,
+                "x-samva-string-checks": [
+                  {
+                    "id": "effect/schema/isMaxLength",
+                    "payload": {
+                      "maxLength": 1000
+                    }
+                  },
+                  {
+                    "id": "effect/schema/isPattern",
+                    "payload": {
+                      "source": "\\S",
+                      "flags": ""
+                    }
+                  }
+                ]
+              },
+              "title": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 1000,
+                "x-samva-string-checks": [
+                  {
+                    "id": "effect/schema/isMaxLength",
+                    "payload": {
+                      "maxLength": 1000
+                    }
+                  },
+                  {
+                    "id": "effect/schema/isPattern",
+                    "payload": {
+                      "source": "\\S",
+                      "flags": ""
+                    }
+                  }
+                ]
+              }
+            },
+            "additionalProperties": false
+          },
+          "addresses": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "street": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 1000,
+                  "x-samva-string-checks": [
+                    {
+                      "id": "effect/schema/isMaxLength",
+                      "payload": {
+                        "maxLength": 1000
+                      }
+                    },
+                    {
+                      "id": "effect/schema/isPattern",
+                      "payload": {
+                        "source": "\\S",
+                        "flags": ""
+                      }
+                    }
+                  ]
+                },
+                "city": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 1000,
+                  "x-samva-string-checks": [
+                    {
+                      "id": "effect/schema/isMaxLength",
+                      "payload": {
+                        "maxLength": 1000
+                      }
+                    },
+                    {
+                      "id": "effect/schema/isPattern",
+                      "payload": {
+                        "source": "\\S",
+                        "flags": ""
+                      }
+                    }
+                  ]
+                },
+                "state": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 1000,
+                  "x-samva-string-checks": [
+                    {
+                      "id": "effect/schema/isMaxLength",
+                      "payload": {
+                        "maxLength": 1000
+                      }
+                    },
+                    {
+                      "id": "effect/schema/isPattern",
+                      "payload": {
+                        "source": "\\S",
+                        "flags": ""
+                      }
+                    }
+                  ]
+                },
+                "zip": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 1000,
+                  "x-samva-string-checks": [
+                    {
+                      "id": "effect/schema/isMaxLength",
+                      "payload": {
+                        "maxLength": 1000
+                      }
+                    },
+                    {
+                      "id": "effect/schema/isPattern",
+                      "payload": {
+                        "source": "\\S",
+                        "flags": ""
+                      }
+                    }
+                  ]
+                },
+                "country": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 1000,
+                  "x-samva-string-checks": [
+                    {
+                      "id": "effect/schema/isMaxLength",
+                      "payload": {
+                        "maxLength": 1000
+                      }
+                    },
+                    {
+                      "id": "effect/schema/isPattern",
+                      "payload": {
+                        "source": "\\S",
+                        "flags": ""
+                      }
+                    }
+                  ]
+                },
+                "countryCode": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 1000,
+                  "x-samva-string-checks": [
+                    {
+                      "id": "effect/schema/isMaxLength",
+                      "payload": {
+                        "maxLength": 1000
+                      }
+                    },
+                    {
+                      "id": "effect/schema/isPattern",
+                      "payload": {
+                        "source": "\\S",
+                        "flags": ""
+                      }
+                    }
+                  ]
+                },
+                "type": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 1000,
+                  "x-samva-string-checks": [
+                    {
+                      "id": "effect/schema/isMaxLength",
+                      "payload": {
+                        "maxLength": 1000
+                      }
+                    },
+                    {
+                      "id": "effect/schema/isPattern",
+                      "payload": {
+                        "source": "\\S",
+                        "flags": ""
+                      }
+                    }
+                  ]
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "birthday": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "additionalProperties": false
+      },
+      "WhatsAppLocationContent": {
+        "type": "object",
+        "properties": {
+          "location": {
+            "$ref": "#/components/schemas/WhatsAppLocation"
+          }
+        },
+        "required": [
+          "location"
+        ],
+        "additionalProperties": false
+      },
+      "WhatsAppLocation": {
+        "type": "object",
+        "properties": {
+          "latitude": {
+            "type": "number",
+            "minimum": -90,
+            "maximum": 90
+          },
+          "longitude": {
+            "type": "number",
+            "minimum": -180,
+            "maximum": 180
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1000,
+            "x-samva-string-checks": [
+              {
+                "id": "effect/schema/isMaxLength",
+                "payload": {
+                  "maxLength": 1000
+                }
+              },
+              {
+                "id": "effect/schema/isPattern",
+                "payload": {
+                  "source": "\\S",
+                  "flags": ""
+                }
+              }
+            ]
+          },
+          "address": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1000,
+            "x-samva-string-checks": [
+              {
+                "id": "effect/schema/isMaxLength",
+                "payload": {
+                  "maxLength": 1000
+                }
+              },
+              {
+                "id": "effect/schema/isPattern",
+                "payload": {
+                  "source": "\\S",
+                  "flags": ""
+                }
+              }
+            ]
+          }
+        },
+        "required": [
+          "latitude",
+          "longitude"
+        ],
+        "additionalProperties": false
+      },
+      "WhatsAppReactionContent": {
+        "type": "object",
+        "properties": {
+          "reaction": {
+            "$ref": "#/components/schemas/WhatsAppReaction"
+          }
+        },
+        "required": [
+          "reaction"
+        ],
+        "additionalProperties": false
+      },
+      "WhatsAppReaction": {
+        "type": "object",
+        "properties": {
+          "messageId": {
+            "$ref": "#/components/schemas/MessageId"
+          },
+          "emoji": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "messageId",
+          "emoji"
+        ],
+        "additionalProperties": false
+      },
+      "WhatsAppInteractiveContent": {
+        "type": "object",
+        "properties": {
+          "interactive": {
+            "$ref": "#/components/schemas/WhatsAppInteractive"
+          }
+        },
+        "required": [
+          "interactive"
+        ],
+        "additionalProperties": false
+      },
+      "WhatsAppInteractive": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/WhatsAppButtonsMessage"
+          },
+          {
+            "$ref": "#/components/schemas/WhatsAppListMessage"
+          },
+          {
+            "$ref": "#/components/schemas/WhatsAppCtaUrlMessage"
+          },
+          {
+            "$ref": "#/components/schemas/WhatsAppFlowMessage"
+          }
+        ]
+      },
+      "WhatsAppFlowMessage": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "flow"
+            ]
+          },
+          "header": {
+            "$ref": "#/components/schemas/WhatsAppTextHeader"
+          },
+          "body": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1024,
+            "x-samva-string-checks": [
+              {
+                "id": "effect/schema/isMaxLength",
+                "payload": {
+                  "maxLength": 1024
+                }
+              },
+              {
+                "id": "effect/schema/isPattern",
+                "payload": {
+                  "source": "\\S",
+                  "flags": ""
+                }
+              }
+            ]
+          },
+          "footer": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 60,
+            "x-samva-string-checks": [
+              {
+                "id": "effect/schema/isMaxLength",
+                "payload": {
+                  "maxLength": 60
+                }
+              },
+              {
+                "id": "effect/schema/isPattern",
+                "payload": {
+                  "source": "\\S",
+                  "flags": ""
+                }
+              }
+            ]
+          },
+          "flowId": {
+            "$ref": "#/components/schemas/WhatsAppFlowId"
+          },
+          "cta": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 30,
+            "x-samva-string-checks": [
+              {
+                "id": "effect/schema/isMaxLength",
+                "payload": {
+                  "maxLength": 30
+                }
+              },
+              {
+                "id": "effect/schema/isPattern",
+                "payload": {
+                  "source": "\\S",
+                  "flags": ""
+                }
+              }
+            ]
+          },
+          "token": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1024,
+            "x-samva-string-checks": [
+              {
+                "id": "effect/schema/isMaxLength",
+                "payload": {
+                  "maxLength": 1024
+                }
+              },
+              {
+                "id": "effect/schema/isPattern",
+                "payload": {
+                  "source": "\\S",
+                  "flags": ""
+                }
+              }
+            ]
+          },
+          "action": {
+            "type": "string",
+            "enum": [
+              "navigate",
+              "data_exchange"
+            ]
+          },
+          "screen": {
+            "type": "string",
+            "pattern": "^[A-Za-z_]{1,100}$"
+          },
+          "data": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/JsonValue"
+            }
+          }
+        },
+        "required": [
+          "type",
+          "body",
+          "flowId",
+          "cta"
+        ],
+        "additionalProperties": false
+      },
+      "WhatsAppFlowId": {
+        "type": "string",
+        "pattern": "^waflow_[0-9a-hjkmnp-tv-z]{16,24}$",
+        "x-samva-brand": "WhatsAppFlowId"
+      },
+      "WhatsAppMediaContent": {
+        "type": "object",
+        "properties": {
+          "media": {
+            "$ref": "#/components/schemas/WhatsAppOutboundMedia"
+          }
+        },
+        "required": [
+          "media"
+        ],
+        "additionalProperties": false
+      },
+      "WhatsAppOutboundMedia": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/WhatsAppImage"
+          },
+          {
+            "$ref": "#/components/schemas/WhatsAppVideo"
+          },
+          {
+            "$ref": "#/components/schemas/WhatsAppAudio"
+          },
+          {
+            "$ref": "#/components/schemas/WhatsAppDocument"
+          },
+          {
+            "$ref": "#/components/schemas/WhatsAppSticker"
+          }
+        ]
+      },
+      "WhatsAppSticker": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/WhatsAppStickerLink"
+          },
+          {
+            "$ref": "#/components/schemas/WhatsAppStickerUpload"
+          }
+        ]
+      },
+      "WhatsAppStickerUpload": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "sticker"
+            ]
+          },
+          "mediaId": {
+            "$ref": "#/components/schemas/MediaId"
+          }
+        },
+        "required": [
+          "type",
+          "mediaId"
+        ],
+        "additionalProperties": false
+      },
+      "WhatsAppStickerLink": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "sticker"
+            ]
+          },
+          "url": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "type",
+          "url"
+        ],
+        "additionalProperties": false
+      },
+      "WhatsAppDocument": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/WhatsAppDocumentLink"
+          },
+          {
+            "$ref": "#/components/schemas/WhatsAppDocumentUpload"
+          }
+        ]
+      },
+      "WhatsAppDocumentUpload": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "document"
+            ]
+          },
+          "caption": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1024,
+            "x-samva-string-checks": [
+              {
+                "id": "effect/schema/isMaxLength",
+                "payload": {
+                  "maxLength": 1024
+                }
+              },
+              {
+                "id": "effect/schema/isPattern",
+                "payload": {
+                  "source": "\\S",
+                  "flags": ""
+                }
+              }
+            ]
+          },
+          "filename": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 255,
+            "x-samva-string-checks": [
+              {
+                "id": "effect/schema/isMaxLength",
+                "payload": {
+                  "maxLength": 255
+                }
+              },
+              {
+                "id": "effect/schema/isPattern",
+                "payload": {
+                  "source": "\\S",
+                  "flags": ""
+                }
+              }
+            ]
+          },
+          "mediaId": {
+            "$ref": "#/components/schemas/MediaId"
+          }
+        },
+        "required": [
+          "type",
+          "mediaId"
+        ],
+        "additionalProperties": false
+      },
+      "WhatsAppDocumentLink": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "document"
+            ]
+          },
+          "caption": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1024,
+            "x-samva-string-checks": [
+              {
+                "id": "effect/schema/isMaxLength",
+                "payload": {
+                  "maxLength": 1024
+                }
+              },
+              {
+                "id": "effect/schema/isPattern",
+                "payload": {
+                  "source": "\\S",
+                  "flags": ""
+                }
+              }
+            ]
+          },
+          "filename": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 255,
+            "x-samva-string-checks": [
+              {
+                "id": "effect/schema/isMaxLength",
+                "payload": {
+                  "maxLength": 255
+                }
+              },
+              {
+                "id": "effect/schema/isPattern",
+                "payload": {
+                  "source": "\\S",
+                  "flags": ""
+                }
+              }
+            ]
+          },
+          "url": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "type",
+          "url"
+        ],
+        "additionalProperties": false
+      },
+      "WhatsAppAudio": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/WhatsAppAudioLink"
+          },
+          {
+            "$ref": "#/components/schemas/WhatsAppAudioUpload"
+          }
+        ]
+      },
+      "WhatsAppAudioUpload": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "audio"
+            ]
+          },
+          "mediaId": {
+            "$ref": "#/components/schemas/MediaId"
+          }
+        },
+        "required": [
+          "type",
+          "mediaId"
+        ],
+        "additionalProperties": false
+      },
+      "WhatsAppAudioLink": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "audio"
+            ]
+          },
+          "url": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "type",
+          "url"
+        ],
+        "additionalProperties": false
+      },
+      "WhatsAppVideo": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/WhatsAppVideoLink"
+          },
+          {
+            "$ref": "#/components/schemas/WhatsAppVideoUpload"
+          }
+        ]
+      },
+      "WhatsAppVideoUpload": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "video"
+            ]
+          },
+          "caption": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1024,
+            "x-samva-string-checks": [
+              {
+                "id": "effect/schema/isMaxLength",
+                "payload": {
+                  "maxLength": 1024
+                }
+              },
+              {
+                "id": "effect/schema/isPattern",
+                "payload": {
+                  "source": "\\S",
+                  "flags": ""
+                }
+              }
+            ]
+          },
+          "mediaId": {
+            "$ref": "#/components/schemas/MediaId"
+          }
+        },
+        "required": [
+          "type",
+          "mediaId"
+        ],
+        "additionalProperties": false
+      },
+      "WhatsAppVideoLink": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "video"
+            ]
+          },
+          "caption": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1024,
+            "x-samva-string-checks": [
+              {
+                "id": "effect/schema/isMaxLength",
+                "payload": {
+                  "maxLength": 1024
+                }
+              },
+              {
+                "id": "effect/schema/isPattern",
+                "payload": {
+                  "source": "\\S",
+                  "flags": ""
+                }
+              }
+            ]
+          },
+          "url": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "type",
+          "url"
+        ],
+        "additionalProperties": false
+      },
+      "WhatsAppImage": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/WhatsAppImageLink"
+          },
+          {
+            "$ref": "#/components/schemas/WhatsAppImageUpload"
+          }
+        ]
+      },
+      "WhatsAppImageUpload": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "image"
+            ]
+          },
+          "caption": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1024,
+            "x-samva-string-checks": [
+              {
+                "id": "effect/schema/isMaxLength",
+                "payload": {
+                  "maxLength": 1024
+                }
+              },
+              {
+                "id": "effect/schema/isPattern",
+                "payload": {
+                  "source": "\\S",
+                  "flags": ""
+                }
+              }
+            ]
+          },
+          "mediaId": {
+            "$ref": "#/components/schemas/MediaId"
+          }
+        },
+        "required": [
+          "type",
+          "mediaId"
+        ],
+        "additionalProperties": false
+      },
+      "WhatsAppImageLink": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "image"
+            ]
+          },
+          "caption": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1024,
+            "x-samva-string-checks": [
+              {
+                "id": "effect/schema/isMaxLength",
+                "payload": {
+                  "maxLength": 1024
+                }
+              },
+              {
+                "id": "effect/schema/isPattern",
+                "payload": {
+                  "source": "\\S",
+                  "flags": ""
+                }
+              }
+            ]
+          },
+          "url": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "type",
+          "url"
+        ],
+        "additionalProperties": false
+      },
+      "WhatsAppTemplateSlugContent": {
+        "type": "object",
+        "properties": {
+          "templateSlug": {
+            "type": "string",
+            "pattern": "^(?=.{1,100}$)[a-z0-9]+(?:-[a-z0-9]+)*$"
+          },
+          "templateData": {
+            "$ref": "#/components/schemas/WhatsAppTemplateData"
+          },
+          "flowToken": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1024,
+            "x-samva-string-checks": [
+              {
+                "id": "effect/schema/isMaxLength",
+                "payload": {
+                  "maxLength": 1024
+                }
+              },
+              {
+                "id": "effect/schema/isPattern",
+                "payload": {
+                  "source": "\\S",
+                  "flags": ""
+                }
+              }
+            ]
+          }
+        },
+        "required": [
+          "templateSlug"
+        ],
+        "additionalProperties": false
+      },
+      "WhatsAppTemplateData": {
+        "type": "object",
+        "additionalProperties": {
+          "$ref": "#/components/schemas/JsonValue"
+        }
+      },
+      "WhatsAppTemplateIdContent": {
+        "type": "object",
+        "properties": {
+          "templateId": {
+            "$ref": "#/components/schemas/TemplateId"
+          },
+          "templateData": {
+            "$ref": "#/components/schemas/WhatsAppTemplateData"
+          },
+          "flowToken": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1024,
+            "x-samva-string-checks": [
+              {
+                "id": "effect/schema/isMaxLength",
+                "payload": {
+                  "maxLength": 1024
+                }
+              },
+              {
+                "id": "effect/schema/isPattern",
+                "payload": {
+                  "source": "\\S",
+                  "flags": ""
+                }
+              }
+            ]
+          }
+        },
+        "required": [
+          "templateId"
+        ],
+        "additionalProperties": false
+      },
+      "WhatsAppTextContent": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4096,
+            "x-samva-string-checks": [
+              {
+                "id": "effect/schema/isMaxLength",
+                "payload": {
+                  "maxLength": 4096
+                }
+              },
+              {
+                "id": "effect/schema/isPattern",
+                "payload": {
+                  "source": "\\S",
+                  "flags": ""
+                }
+              }
+            ]
+          }
+        },
+        "required": [
+          "text"
+        ],
+        "additionalProperties": false
+      },
+      "SavedPhoneRecipient": {
+        "anyOf": [
+          {
+            "type": "object",
+            "properties": {
+              "contactId": {
+                "$ref": "#/components/schemas/ContactId"
+              }
+            },
+            "required": [
+              "contactId"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "phone": {
+                "type": "string"
+              },
+              "name": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "displayName": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "phone"
+            ],
+            "additionalProperties": false
+          }
+        ]
+      },
+      "MessageMetadata": {
+        "anyOf": [
+          {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/JsonValue"
+            }
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "StoredSmsSendMessage": {
+        "type": "object",
+        "properties": {
+          "conversationId": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ConversationId"
+              },
+              {
+                "type": "null"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/MessageMetadata"
+          },
+          "channel": {
+            "type": "string",
+            "enum": [
+              "sms"
+            ]
+          },
+          "to": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SavedPhoneRecipient"
+            },
+            "minItems": 1,
+            "maxItems": 1
+          },
+          "sms": {
+            "$ref": "#/components/schemas/SmsContent"
+          }
+        },
+        "required": [
+          "channel",
+          "to",
+          "sms"
+        ],
+        "additionalProperties": false
+      },
+      "StoredEmailSendMessage": {
         "type": "object",
         "properties": {
           "conversationId": {
@@ -88644,19 +92446,6 @@
           "email"
         ],
         "additionalProperties": false
-      },
-      "MessageMetadata": {
-        "anyOf": [
-          {
-            "type": "object",
-            "additionalProperties": {
-              "$ref": "#/components/schemas/JsonValue"
-            }
-          },
-          {
-            "type": "null"
-          }
-        ]
       },
       "EmailContent": {
         "type": "object",
@@ -88859,6 +92648,253 @@
         "additionalProperties": false
       },
       "DispatchSendMessagePayload": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/EmailDispatchSendMessagePayload"
+          },
+          {
+            "$ref": "#/components/schemas/SmsDispatchSendMessagePayload"
+          },
+          {
+            "$ref": "#/components/schemas/WhatsAppDispatchSendMessagePayload"
+          }
+        ]
+      },
+      "WhatsAppDispatchSendMessagePayload": {
+        "type": "object",
+        "properties": {
+          "conversationId": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ConversationId"
+              },
+              {
+                "type": "null"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/MessageMetadata"
+          },
+          "channel": {
+            "type": "string",
+            "enum": [
+              "whatsapp"
+            ]
+          },
+          "to": {
+            "$ref": "#/components/schemas/WhatsAppRecipients"
+          },
+          "whatsapp": {
+            "$ref": "#/components/schemas/WhatsAppContent"
+          }
+        },
+        "required": [
+          "channel",
+          "to",
+          "whatsapp"
+        ],
+        "additionalProperties": false,
+        "description": "The payload is accepted by the contract today and the endpoint answers 403 until the channel launches for your organization."
+      },
+      "WhatsAppRecipients": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/WhatsAppRecipient"
+        },
+        "minItems": 1,
+        "maxItems": 1
+      },
+      "WhatsAppRecipient": {
+        "anyOf": [
+          {
+            "type": "object",
+            "properties": {
+              "contactId": {
+                "$ref": "#/components/schemas/ContactId"
+              }
+            },
+            "required": [
+              "contactId"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "phone": {
+                "type": "string"
+              },
+              "name": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "maxLength": 120,
+                    "x-samva-string-checks": [
+                      {
+                        "id": "effect/schema/isMaxLength",
+                        "payload": {
+                          "maxLength": 120
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "displayName": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "maxLength": 120,
+                    "x-samva-string-checks": [
+                      {
+                        "id": "effect/schema/isMaxLength",
+                        "payload": {
+                          "maxLength": 120
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "null"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "phone"
+            ],
+            "additionalProperties": false
+          }
+        ]
+      },
+      "SmsDispatchSendMessagePayload": {
+        "type": "object",
+        "properties": {
+          "conversationId": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ConversationId"
+              },
+              {
+                "type": "null"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/MessageMetadata"
+          },
+          "channel": {
+            "type": "string",
+            "enum": [
+              "sms"
+            ]
+          },
+          "to": {
+            "$ref": "#/components/schemas/SmsRecipients"
+          },
+          "sms": {
+            "$ref": "#/components/schemas/SmsDispatchContent"
+          }
+        },
+        "required": [
+          "channel",
+          "to",
+          "sms"
+        ],
+        "additionalProperties": false,
+        "description": "The payload is accepted by the contract today and the endpoint answers 403 until the channel launches for your organization."
+      },
+      "SmsRecipients": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/SmsRecipient"
+        },
+        "minItems": 1,
+        "maxItems": 1
+      },
+      "SmsRecipient": {
+        "anyOf": [
+          {
+            "type": "object",
+            "properties": {
+              "contactId": {
+                "$ref": "#/components/schemas/ContactId"
+              }
+            },
+            "required": [
+              "contactId"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "phone": {
+                "type": "string"
+              },
+              "name": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "maxLength": 120,
+                    "x-samva-string-checks": [
+                      {
+                        "id": "effect/schema/isMaxLength",
+                        "payload": {
+                          "maxLength": 120
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "displayName": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "maxLength": 120,
+                    "x-samva-string-checks": [
+                      {
+                        "id": "effect/schema/isMaxLength",
+                        "payload": {
+                          "maxLength": 120
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "null"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "phone"
+            ],
+            "additionalProperties": false
+          }
+        ]
+      },
+      "EmailDispatchSendMessagePayload": {
         "type": "object",
         "properties": {
           "conversationId": {
@@ -89463,6 +93499,19 @@
         "additionalProperties": false
       },
       "SendMessagePayload": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/EmailSendMessagePayload"
+          },
+          {
+            "$ref": "#/components/schemas/SmsSendMessagePayload"
+          },
+          {
+            "$ref": "#/components/schemas/WhatsAppSendMessagePayload"
+          }
+        ]
+      },
+      "WhatsAppSendMessagePayload": {
         "type": "object",
         "properties": {
           "conversationId": {
@@ -89484,31 +93533,63 @@
           "channel": {
             "type": "string",
             "enum": [
-              "email"
+              "whatsapp"
             ]
           },
           "to": {
-            "$ref": "#/components/schemas/EmailRecipients"
+            "$ref": "#/components/schemas/WhatsAppRecipients"
           },
-          "cc": {
-            "$ref": "#/components/schemas/EmailCcRecipients"
-          },
-          "bcc": {
-            "$ref": "#/components/schemas/EmailBccRecipients"
-          },
-          "from": {
-            "$ref": "#/components/schemas/EmailSender"
-          },
-          "email": {
-            "$ref": "#/components/schemas/EmailContent"
+          "whatsapp": {
+            "$ref": "#/components/schemas/WhatsAppContent"
           }
         },
         "required": [
           "channel",
           "to",
-          "email"
+          "whatsapp"
         ],
-        "additionalProperties": false
+        "additionalProperties": false,
+        "description": "The payload is accepted by the contract today and the endpoint answers 403 until the channel launches for your organization."
+      },
+      "SmsSendMessagePayload": {
+        "type": "object",
+        "properties": {
+          "conversationId": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ConversationId"
+              },
+              {
+                "type": "null"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/MessageMetadata"
+          },
+          "channel": {
+            "type": "string",
+            "enum": [
+              "sms"
+            ]
+          },
+          "to": {
+            "$ref": "#/components/schemas/SmsRecipients"
+          },
+          "sms": {
+            "$ref": "#/components/schemas/SmsContent"
+          }
+        },
+        "required": [
+          "channel",
+          "to",
+          "sms"
+        ],
+        "additionalProperties": false,
+        "description": "The payload is accepted by the contract today and the endpoint answers 403 until the channel launches for your organization."
       },
       "EmailAddress": {
         "type": "object",
@@ -89629,6 +93710,26 @@
             "anyOf": [
               {
                 "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "sms": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/SmsMessageContent"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "whatsapp": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/WhatsAppMessageContent"
               },
               {
                 "type": "null"
@@ -89764,6 +93865,16 @@
               }
             ]
           },
+          "structured": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/WhatsAppStructuredContent"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "metadata": {
             "anyOf": [
               {
@@ -89778,6 +93889,1512 @@
             ]
           }
         },
+        "additionalProperties": false
+      },
+      "WhatsAppStructuredContent": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "data": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/JsonValue"
+            }
+          }
+        },
+        "required": [
+          "type",
+          "data"
+        ],
+        "additionalProperties": false
+      },
+      "WhatsAppMessageContent": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "template": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "language": {
+                    "type": "string"
+                  },
+                  "components": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "enum": [
+                            "header",
+                            "body",
+                            "footer",
+                            "button"
+                          ]
+                        },
+                        "sub_type": {
+                          "anyOf": [
+                            {
+                              "type": "string",
+                              "enum": [
+                                "url",
+                                "quick_reply",
+                                "copy_code",
+                                "flow"
+                              ]
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "index": {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "parameters": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "type": {
+                                "type": "string",
+                                "enum": [
+                                  "text",
+                                  "currency",
+                                  "date_time",
+                                  "image",
+                                  "document",
+                                  "video",
+                                  "coupon_code",
+                                  "action"
+                                ]
+                              },
+                              "text": {
+                                "anyOf": [
+                                  {
+                                    "type": "string"
+                                  },
+                                  {
+                                    "type": "null"
+                                  }
+                                ]
+                              },
+                              "currency": {
+                                "anyOf": [
+                                  {
+                                    "type": "object",
+                                    "properties": {
+                                      "fallback_value": {
+                                        "type": "string"
+                                      },
+                                      "code": {
+                                        "type": "string"
+                                      },
+                                      "amount_1000": {
+                                        "type": "number"
+                                      }
+                                    },
+                                    "required": [
+                                      "fallback_value",
+                                      "code",
+                                      "amount_1000"
+                                    ],
+                                    "additionalProperties": false
+                                  },
+                                  {
+                                    "type": "null"
+                                  }
+                                ]
+                              },
+                              "date_time": {
+                                "anyOf": [
+                                  {
+                                    "type": "object",
+                                    "properties": {
+                                      "fallback_value": {
+                                        "type": "string"
+                                      }
+                                    },
+                                    "required": [
+                                      "fallback_value"
+                                    ],
+                                    "additionalProperties": false
+                                  },
+                                  {
+                                    "type": "null"
+                                  }
+                                ]
+                              },
+                              "image": {
+                                "anyOf": [
+                                  {
+                                    "type": "object",
+                                    "properties": {
+                                      "link": {
+                                        "type": "string"
+                                      }
+                                    },
+                                    "required": [
+                                      "link"
+                                    ],
+                                    "additionalProperties": false
+                                  },
+                                  {
+                                    "type": "null"
+                                  }
+                                ]
+                              },
+                              "document": {
+                                "anyOf": [
+                                  {
+                                    "type": "object",
+                                    "properties": {
+                                      "link": {
+                                        "type": "string"
+                                      },
+                                      "filename": {
+                                        "anyOf": [
+                                          {
+                                            "type": "string"
+                                          },
+                                          {
+                                            "type": "null"
+                                          }
+                                        ]
+                                      }
+                                    },
+                                    "required": [
+                                      "link"
+                                    ],
+                                    "additionalProperties": false
+                                  },
+                                  {
+                                    "type": "null"
+                                  }
+                                ]
+                              },
+                              "video": {
+                                "anyOf": [
+                                  {
+                                    "type": "object",
+                                    "properties": {
+                                      "link": {
+                                        "type": "string"
+                                      }
+                                    },
+                                    "required": [
+                                      "link"
+                                    ],
+                                    "additionalProperties": false
+                                  },
+                                  {
+                                    "type": "null"
+                                  }
+                                ]
+                              },
+                              "coupon_code": {
+                                "anyOf": [
+                                  {
+                                    "type": "string"
+                                  },
+                                  {
+                                    "type": "null"
+                                  }
+                                ]
+                              },
+                              "action": {
+                                "anyOf": [
+                                  {
+                                    "type": "object",
+                                    "properties": {
+                                      "flow_token": {
+                                        "type": "string"
+                                      }
+                                    },
+                                    "required": [
+                                      "flow_token"
+                                    ],
+                                    "additionalProperties": false
+                                  },
+                                  {
+                                    "type": "null"
+                                  }
+                                ]
+                              }
+                            },
+                            "required": [
+                              "type"
+                            ],
+                            "additionalProperties": false
+                          }
+                        }
+                      },
+                      "required": [
+                        "type",
+                        "parameters"
+                      ],
+                      "additionalProperties": false
+                    }
+                  }
+                },
+                "required": [
+                  "name",
+                  "language",
+                  "components"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "interactive": {
+            "$ref": "#/components/schemas/WhatsAppStoredInteractive"
+          },
+          "media": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/WhatsAppStoredMedia"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "reaction": {
+            "$ref": "#/components/schemas/WhatsAppStoredReaction"
+          },
+          "location": {
+            "$ref": "#/components/schemas/WhatsAppStoredLocation"
+          },
+          "contacts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WhatsAppStoredContactCard"
+            }
+          },
+          "reply": {
+            "$ref": "#/components/schemas/WhatsAppReceivedReply"
+          },
+          "flowResponse": {
+            "$ref": "#/components/schemas/WhatsAppReceivedFlowResponse"
+          },
+          "context": {
+            "$ref": "#/components/schemas/WhatsAppMessageReference"
+          }
+        },
+        "additionalProperties": false
+      },
+      "WhatsAppMessageReference": {
+        "type": "object",
+        "properties": {
+          "messageId": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/MessageId"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "providerMessageId": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "messageId",
+          "providerMessageId"
+        ],
+        "additionalProperties": false
+      },
+      "WhatsAppReceivedFlowResponse": {
+        "type": "object",
+        "properties": {
+          "flowToken": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "response": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/JsonValue"
+            }
+          },
+          "body": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "flowToken",
+          "response"
+        ],
+        "additionalProperties": false
+      },
+      "WhatsAppReceivedReply": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "button",
+              "list",
+              "template_button"
+            ]
+          },
+          "id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "type",
+          "id",
+          "title"
+        ],
+        "additionalProperties": false
+      },
+      "WhatsAppStoredContactCard": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "object",
+            "properties": {
+              "formattedName": {
+                "type": "string"
+              },
+              "firstName": {
+                "type": "string"
+              },
+              "lastName": {
+                "type": "string"
+              },
+              "middleName": {
+                "type": "string"
+              },
+              "prefix": {
+                "type": "string"
+              },
+              "suffix": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          },
+          "phones": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "phone": {
+                  "type": "string"
+                },
+                "type": {
+                  "type": "string"
+                },
+                "waId": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "emails": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "type": "string"
+                },
+                "type": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "urls": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "url": {
+                  "type": "string"
+                },
+                "type": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "org": {
+            "type": "object",
+            "properties": {
+              "company": {
+                "type": "string"
+              },
+              "department": {
+                "type": "string"
+              },
+              "title": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          },
+          "addresses": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "street": {
+                  "type": "string"
+                },
+                "city": {
+                  "type": "string"
+                },
+                "state": {
+                  "type": "string"
+                },
+                "zip": {
+                  "type": "string"
+                },
+                "country": {
+                  "type": "string"
+                },
+                "countryCode": {
+                  "type": "string"
+                },
+                "type": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "birthday": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "WhatsAppStoredLocation": {
+        "type": "object",
+        "properties": {
+          "latitude": {
+            "type": "number"
+          },
+          "longitude": {
+            "type": "number"
+          },
+          "name": {
+            "type": "string"
+          },
+          "address": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "latitude",
+          "longitude"
+        ],
+        "additionalProperties": false
+      },
+      "WhatsAppStoredReaction": {
+        "type": "object",
+        "properties": {
+          "messageId": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/MessageId"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "providerMessageId": {
+            "type": "string"
+          },
+          "emoji": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "messageId",
+          "providerMessageId",
+          "emoji"
+        ],
+        "additionalProperties": false
+      },
+      "WhatsAppStoredMedia": {
+        "anyOf": [
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "image",
+                  "video",
+                  "audio",
+                  "document",
+                  "sticker"
+                ]
+              },
+              "url": {
+                "type": "string"
+              },
+              "caption": {
+                "type": "string"
+              },
+              "filename": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "type",
+              "url"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "image",
+                  "video",
+                  "audio",
+                  "document",
+                  "sticker"
+                ]
+              },
+              "mediaId": {
+                "$ref": "#/components/schemas/MediaId"
+              },
+              "caption": {
+                "type": "string"
+              },
+              "filename": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "type",
+              "mediaId"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "image",
+                  "video",
+                  "audio",
+                  "document",
+                  "sticker"
+                ]
+              },
+              "providerMediaId": {
+                "type": "string"
+              },
+              "mimeType": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "caption": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "filename": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "type",
+              "providerMediaId"
+            ],
+            "additionalProperties": false
+          }
+        ]
+      },
+      "WhatsAppStoredInteractive": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/WhatsAppButtonsMessage"
+          },
+          {
+            "$ref": "#/components/schemas/WhatsAppListMessage"
+          },
+          {
+            "$ref": "#/components/schemas/WhatsAppCtaUrlMessage"
+          },
+          {
+            "$ref": "#/components/schemas/WhatsAppStoredFlowMessage"
+          }
+        ]
+      },
+      "WhatsAppStoredFlowMessage": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "flow"
+            ]
+          },
+          "header": {
+            "$ref": "#/components/schemas/WhatsAppTextHeader"
+          },
+          "body": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1024,
+            "x-samva-string-checks": [
+              {
+                "id": "effect/schema/isMaxLength",
+                "payload": {
+                  "maxLength": 1024
+                }
+              },
+              {
+                "id": "effect/schema/isPattern",
+                "payload": {
+                  "source": "\\S",
+                  "flags": ""
+                }
+              }
+            ]
+          },
+          "footer": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 60,
+            "x-samva-string-checks": [
+              {
+                "id": "effect/schema/isMaxLength",
+                "payload": {
+                  "maxLength": 60
+                }
+              },
+              {
+                "id": "effect/schema/isPattern",
+                "payload": {
+                  "source": "\\S",
+                  "flags": ""
+                }
+              }
+            ]
+          },
+          "flowId": {
+            "$ref": "#/components/schemas/WhatsAppFlowId"
+          },
+          "cta": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 30,
+            "x-samva-string-checks": [
+              {
+                "id": "effect/schema/isMaxLength",
+                "payload": {
+                  "maxLength": 30
+                }
+              },
+              {
+                "id": "effect/schema/isPattern",
+                "payload": {
+                  "source": "\\S",
+                  "flags": ""
+                }
+              }
+            ]
+          },
+          "token": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1024,
+            "x-samva-string-checks": [
+              {
+                "id": "effect/schema/isMaxLength",
+                "payload": {
+                  "maxLength": 1024
+                }
+              },
+              {
+                "id": "effect/schema/isPattern",
+                "payload": {
+                  "source": "\\S",
+                  "flags": ""
+                }
+              }
+            ]
+          },
+          "action": {
+            "type": "string",
+            "enum": [
+              "navigate",
+              "data_exchange"
+            ]
+          },
+          "screen": {
+            "type": "string",
+            "pattern": "^[A-Za-z_]{1,100}$"
+          },
+          "data": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/JsonValue"
+            }
+          },
+          "flowVersionId": {
+            "$ref": "#/components/schemas/WhatsAppFlowVersionId"
+          },
+          "providerFlowId": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "type",
+          "body",
+          "flowId",
+          "cta",
+          "flowVersionId",
+          "providerFlowId"
+        ],
+        "additionalProperties": false
+      },
+      "WhatsAppFlowVersionId": {
+        "type": "string",
+        "pattern": "^wafver_[0-9a-hjkmnp-tv-z]{16,24}$",
+        "x-samva-brand": "WhatsAppFlowVersionId"
+      },
+      "WhatsAppCtaUrlMessage": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "cta_url"
+            ]
+          },
+          "header": {
+            "$ref": "#/components/schemas/WhatsAppInteractiveHeader"
+          },
+          "body": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1024,
+            "x-samva-string-checks": [
+              {
+                "id": "effect/schema/isMaxLength",
+                "payload": {
+                  "maxLength": 1024
+                }
+              },
+              {
+                "id": "effect/schema/isPattern",
+                "payload": {
+                  "source": "\\S",
+                  "flags": ""
+                }
+              }
+            ]
+          },
+          "footer": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 60,
+            "x-samva-string-checks": [
+              {
+                "id": "effect/schema/isMaxLength",
+                "payload": {
+                  "maxLength": 60
+                }
+              },
+              {
+                "id": "effect/schema/isPattern",
+                "payload": {
+                  "source": "\\S",
+                  "flags": ""
+                }
+              }
+            ]
+          },
+          "displayText": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 20,
+            "x-samva-string-checks": [
+              {
+                "id": "effect/schema/isMaxLength",
+                "payload": {
+                  "maxLength": 20
+                }
+              },
+              {
+                "id": "effect/schema/isPattern",
+                "payload": {
+                  "source": "\\S",
+                  "flags": ""
+                }
+              }
+            ]
+          },
+          "url": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "type",
+          "body",
+          "displayText",
+          "url"
+        ],
+        "additionalProperties": false
+      },
+      "WhatsAppInteractiveHeader": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/WhatsAppTextHeader"
+          },
+          {
+            "$ref": "#/components/schemas/WhatsAppImageHeader"
+          },
+          {
+            "$ref": "#/components/schemas/WhatsAppVideoHeader"
+          },
+          {
+            "$ref": "#/components/schemas/WhatsAppDocumentHeader"
+          }
+        ]
+      },
+      "WhatsAppDocumentHeader": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/WhatsAppDocumentHeaderLink"
+          },
+          {
+            "$ref": "#/components/schemas/WhatsAppDocumentHeaderUpload"
+          }
+        ]
+      },
+      "WhatsAppDocumentHeaderUpload": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "document"
+            ]
+          },
+          "filename": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 255,
+            "x-samva-string-checks": [
+              {
+                "id": "effect/schema/isMaxLength",
+                "payload": {
+                  "maxLength": 255
+                }
+              },
+              {
+                "id": "effect/schema/isPattern",
+                "payload": {
+                  "source": "\\S",
+                  "flags": ""
+                }
+              }
+            ]
+          },
+          "mediaId": {
+            "$ref": "#/components/schemas/MediaId"
+          }
+        },
+        "required": [
+          "type",
+          "mediaId"
+        ],
+        "additionalProperties": false
+      },
+      "WhatsAppDocumentHeaderLink": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "document"
+            ]
+          },
+          "filename": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 255,
+            "x-samva-string-checks": [
+              {
+                "id": "effect/schema/isMaxLength",
+                "payload": {
+                  "maxLength": 255
+                }
+              },
+              {
+                "id": "effect/schema/isPattern",
+                "payload": {
+                  "source": "\\S",
+                  "flags": ""
+                }
+              }
+            ]
+          },
+          "url": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "type",
+          "url"
+        ],
+        "additionalProperties": false
+      },
+      "WhatsAppVideoHeader": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/WhatsAppVideoHeaderLink"
+          },
+          {
+            "$ref": "#/components/schemas/WhatsAppVideoHeaderUpload"
+          }
+        ]
+      },
+      "WhatsAppVideoHeaderUpload": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "video"
+            ]
+          },
+          "mediaId": {
+            "$ref": "#/components/schemas/MediaId"
+          }
+        },
+        "required": [
+          "type",
+          "mediaId"
+        ],
+        "additionalProperties": false
+      },
+      "WhatsAppVideoHeaderLink": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "video"
+            ]
+          },
+          "url": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "type",
+          "url"
+        ],
+        "additionalProperties": false
+      },
+      "WhatsAppImageHeader": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/WhatsAppImageHeaderLink"
+          },
+          {
+            "$ref": "#/components/schemas/WhatsAppImageHeaderUpload"
+          }
+        ]
+      },
+      "WhatsAppImageHeaderUpload": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "image"
+            ]
+          },
+          "mediaId": {
+            "$ref": "#/components/schemas/MediaId"
+          }
+        },
+        "required": [
+          "type",
+          "mediaId"
+        ],
+        "additionalProperties": false
+      },
+      "WhatsAppImageHeaderLink": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "image"
+            ]
+          },
+          "url": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "type",
+          "url"
+        ],
+        "additionalProperties": false
+      },
+      "WhatsAppTextHeader": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "text"
+            ]
+          },
+          "text": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 60,
+            "x-samva-string-checks": [
+              {
+                "id": "effect/schema/isMaxLength",
+                "payload": {
+                  "maxLength": 60
+                }
+              },
+              {
+                "id": "effect/schema/isPattern",
+                "payload": {
+                  "source": "\\S",
+                  "flags": ""
+                }
+              }
+            ]
+          }
+        },
+        "required": [
+          "type",
+          "text"
+        ],
+        "additionalProperties": false
+      },
+      "WhatsAppListMessage": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "list"
+            ]
+          },
+          "header": {
+            "$ref": "#/components/schemas/WhatsAppTextHeader"
+          },
+          "body": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4096,
+            "x-samva-string-checks": [
+              {
+                "id": "effect/schema/isMaxLength",
+                "payload": {
+                  "maxLength": 4096
+                }
+              },
+              {
+                "id": "effect/schema/isPattern",
+                "payload": {
+                  "source": "\\S",
+                  "flags": ""
+                }
+              }
+            ]
+          },
+          "footer": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 60,
+            "x-samva-string-checks": [
+              {
+                "id": "effect/schema/isMaxLength",
+                "payload": {
+                  "maxLength": 60
+                }
+              },
+              {
+                "id": "effect/schema/isPattern",
+                "payload": {
+                  "source": "\\S",
+                  "flags": ""
+                }
+              }
+            ]
+          },
+          "button": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 20,
+            "x-samva-string-checks": [
+              {
+                "id": "effect/schema/isMaxLength",
+                "payload": {
+                  "maxLength": 20
+                }
+              },
+              {
+                "id": "effect/schema/isPattern",
+                "payload": {
+                  "source": "\\S",
+                  "flags": ""
+                }
+              }
+            ]
+          },
+          "sections": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WhatsAppListSection"
+            },
+            "minItems": 1,
+            "maxItems": 10
+          }
+        },
+        "required": [
+          "type",
+          "body",
+          "button",
+          "sections"
+        ],
+        "additionalProperties": false
+      },
+      "WhatsAppListSection": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 24,
+            "x-samva-string-checks": [
+              {
+                "id": "effect/schema/isMaxLength",
+                "payload": {
+                  "maxLength": 24
+                }
+              },
+              {
+                "id": "effect/schema/isPattern",
+                "payload": {
+                  "source": "\\S",
+                  "flags": ""
+                }
+              }
+            ]
+          },
+          "rows": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WhatsAppListRow"
+            },
+            "minItems": 1
+          }
+        },
+        "required": [
+          "rows"
+        ],
+        "additionalProperties": false
+      },
+      "WhatsAppListRow": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200,
+            "x-samva-string-checks": [
+              {
+                "id": "effect/schema/isMaxLength",
+                "payload": {
+                  "maxLength": 200
+                }
+              },
+              {
+                "id": "effect/schema/isPattern",
+                "payload": {
+                  "source": "\\S",
+                  "flags": ""
+                }
+              }
+            ]
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 24,
+            "x-samva-string-checks": [
+              {
+                "id": "effect/schema/isMaxLength",
+                "payload": {
+                  "maxLength": 24
+                }
+              },
+              {
+                "id": "effect/schema/isPattern",
+                "payload": {
+                  "source": "\\S",
+                  "flags": ""
+                }
+              }
+            ]
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 72,
+            "x-samva-string-checks": [
+              {
+                "id": "effect/schema/isMaxLength",
+                "payload": {
+                  "maxLength": 72
+                }
+              },
+              {
+                "id": "effect/schema/isPattern",
+                "payload": {
+                  "source": "\\S",
+                  "flags": ""
+                }
+              }
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "title"
+        ],
+        "additionalProperties": false
+      },
+      "WhatsAppButtonsMessage": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "buttons"
+            ]
+          },
+          "header": {
+            "$ref": "#/components/schemas/WhatsAppInteractiveHeader"
+          },
+          "body": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1024,
+            "x-samva-string-checks": [
+              {
+                "id": "effect/schema/isMaxLength",
+                "payload": {
+                  "maxLength": 1024
+                }
+              },
+              {
+                "id": "effect/schema/isPattern",
+                "payload": {
+                  "source": "\\S",
+                  "flags": ""
+                }
+              }
+            ]
+          },
+          "footer": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 60,
+            "x-samva-string-checks": [
+              {
+                "id": "effect/schema/isMaxLength",
+                "payload": {
+                  "maxLength": 60
+                }
+              },
+              {
+                "id": "effect/schema/isPattern",
+                "payload": {
+                  "source": "\\S",
+                  "flags": ""
+                }
+              }
+            ]
+          },
+          "buttons": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WhatsAppReplyButton"
+            },
+            "minItems": 1,
+            "maxItems": 3
+          }
+        },
+        "required": [
+          "type",
+          "body",
+          "buttons"
+        ],
+        "additionalProperties": false
+      },
+      "WhatsAppReplyButton": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256,
+            "x-samva-string-checks": [
+              {
+                "id": "effect/schema/isMaxLength",
+                "payload": {
+                  "maxLength": 256
+                }
+              },
+              {
+                "id": "effect/schema/isPattern",
+                "payload": {
+                  "source": "\\S",
+                  "flags": ""
+                }
+              }
+            ]
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 20,
+            "x-samva-string-checks": [
+              {
+                "id": "effect/schema/isMaxLength",
+                "payload": {
+                  "maxLength": 20
+                }
+              },
+              {
+                "id": "effect/schema/isPattern",
+                "payload": {
+                  "source": "\\S",
+                  "flags": ""
+                }
+              }
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "title"
+        ],
+        "additionalProperties": false
+      },
+      "SmsMessageContent": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string"
+          },
+          "unicode": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "parts": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "text"
+        ],
         "additionalProperties": false
       },
       "MessageDeliveryList": {
@@ -90049,6 +95666,8 @@
           "channel": {
             "type": "string",
             "enum": [
+              "sms",
+              "whatsapp",
               "email"
             ]
           },
@@ -90272,7 +95891,8 @@
               {
                 "type": "string",
                 "enum": [
-                  "http"
+                  "http",
+                  "smtp"
                 ]
               },
               {

@@ -1,5 +1,54 @@
 # Changelog
 
+## v0.59.0
+
+- 377 operations, 277 paths, 662 schemas, 39 webhook events.
+- Breaking against v0.58.0.
+- Changed operations:
+  - `GET /v1/analytics/channel-stats`
+  - `GET /v1/analytics/delivery-metrics`
+  - `GET /v1/analytics/hourly-distribution`
+  - `GET /v1/analytics/stats`
+  - `GET /v1/analytics/top-contacts`
+  - `GET /v1/contacts/{id}/activity`
+  - `GET /v1/conversations`
+  - `GET /v1/messages`
+  - `GET /v1/organizations/usage`
+  - `GET /v1/templates`
+  - `GET /v1/topics/check`
+  - `GET /v1/topics/{id}/subscriptions`
+  - `POST /v1/mailboxes/{id}/actions/{actionId}/approve`
+  - `POST /v1/mailboxes/{id}/actions/{actionId}/cancel`
+  - `POST /v1/mailboxes/{id}/actions/{actionId}/retry`
+  - `POST /v1/mailboxes/{id}/drafts/{draftId}/send`
+  - `POST /v1/mailboxes/{id}/messages`
+  - `POST /v1/mailboxes/{id}/messages/{messageId}/forward`
+  - `POST /v1/mailboxes/{id}/messages/{messageId}/reply`
+  - `POST /v1/mailboxes/{id}/messages/{messageId}/reply-all`
+  - `POST /v1/newsletters/{id}/issues/render`
+  - `POST /v1/templates/{id}/workspace/fixtures`
+  - `PUT /v1/contacts/{id}/identities/{identityId}/consent/{channel}`
+- Changed schemas:
+  - `CampaignContent`
+  - `CampaignContentInput`
+  - `ConversationChannels`
+  - `CreateMailboxDraftPayload`
+  - `DispatchSendMessagePayload`
+  - `MailboxDraft`
+  - `MailboxEndpoint`
+  - `MailboxMessage`
+  - `MailboxSendSnapshot`
+  - `MailboxThread`
+  - `NamespaceUsage`
+  - `Organization`
+  - `ReplyMailboxMessagePayload`
+  - `SendMailboxMessagePayload`
+  - `SendMessagePayload`
+  - `StoredSendMessagePayload`
+  - `Template`
+  - `TopicSubscriptionCounts`
+
+
 ## v0.58.0
 
 - 377 operations, 277 paths, 544 schemas, 39 webhook events.
