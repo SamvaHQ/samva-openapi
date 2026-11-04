@@ -84521,6 +84521,11 @@
         "pattern": "^intg_[0-9a-hjkmnp-tv-z]{16,24}$",
         "x-samva-brand": "IntegrationId"
       },
+      "KnowledgeSourceId": {
+        "type": "string",
+        "pattern": "^ksrc_[0-9a-hjkmnp-tv-z]{16,24}$",
+        "x-samva-brand": "KnowledgeSourceId"
+      },
       "AgentId": {
         "type": "string",
         "pattern": "^agt_[0-9a-hjkmnp-tv-z]{16,24}$",
@@ -84772,6 +84777,13 @@
                 }
               }
             ]
+          },
+          "knowledgeSourceIds": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/KnowledgeSourceId"
+            },
+            "maxItems": 25
           },
           "endpointIds": {
             "type": "array",
@@ -85046,6 +85058,7 @@
             "default": {
               "instructions": "",
               "knowledge": "",
+              "knowledgeSourceIds": [],
               "endpointIds": [],
               "integrations": [],
               "mode": "supervised",
