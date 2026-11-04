@@ -1,5 +1,18 @@
 # Changelog
 
+## v0.60.0
+
+- 377 operations, 277 paths, 663 schemas, 39 webhook events.
+- Breaking against v0.59.0.
+- Changed operations:
+  - `GET /v1/analytics/channel-stats`
+  - `GET /v1/analytics/delivery-metrics`
+  - `GET /v1/analytics/hourly-distribution`
+  - `GET /v1/analytics/stats`
+  - `GET /v1/analytics/top-contacts`
+  - `POST /v1/analytics/export`
+
+
 ## v0.59.0
 
 - 377 operations, 277 paths, 662 schemas, 39 webhook events.

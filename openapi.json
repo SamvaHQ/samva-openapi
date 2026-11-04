@@ -154,6 +154,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -247,6 +257,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/MessageReceipt"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -441,6 +461,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -546,6 +576,16 @@
                     "message"
                   ],
                   "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -658,6 +698,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -752,6 +802,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/MessageContent"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -1651,6 +1711,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -1736,6 +1806,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ValidateEmailResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -1894,6 +1974,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -2014,6 +2104,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/MessageEventPage"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -2160,6 +2260,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -2244,6 +2354,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Operation"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -2342,6 +2462,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/OperationAccepted"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -2460,6 +2590,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ScheduledMessage"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -2656,6 +2796,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -2740,6 +2890,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ScheduledMessage"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -2855,6 +3015,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -2959,6 +3129,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ScheduledMessage"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -3135,6 +3315,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -3264,6 +3454,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/CampaignTestSend"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -3456,6 +3656,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Campaign"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -3658,6 +3868,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -3742,6 +3962,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Campaign"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -3838,6 +4068,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Campaign"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -4019,6 +4259,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -4141,6 +4391,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/CampaignRun"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -4386,6 +4646,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -4488,6 +4758,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/CampaignRun"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -4598,6 +4878,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -4700,6 +4990,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/CampaignRunAction"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -4826,6 +5126,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/CampaignRunAction"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -4969,6 +5279,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/CampaignRunAction"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -5140,6 +5460,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -5229,6 +5559,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -5304,6 +5644,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/OnboardingReviewStatus"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -5407,6 +5757,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -5506,6 +5866,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -5589,6 +5959,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/EmailTrackingDefaults"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -5710,6 +6090,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -5783,6 +6173,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/EmailRecipientTrackingPreference"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -5885,6 +6285,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/EmailDomainDetailed"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -6126,6 +6536,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -6210,6 +6630,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/EmailDomainVerification"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -6330,6 +6760,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -6445,6 +6885,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/EmailDomainVerification"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -6577,6 +7027,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -6669,6 +7129,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/SuccessResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -6812,6 +7282,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -6941,6 +7421,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -7035,6 +7525,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/DomainConnectApplyUrlResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -7176,6 +7676,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/DomainConnectCompleteResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -7346,6 +7856,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -7496,6 +8016,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -7590,6 +8120,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/SuccessResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -7767,6 +8307,16 @@
                     "brandSlug"
                   ],
                   "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -7964,6 +8514,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -8122,6 +8682,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -8214,6 +8784,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/SuccessResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -8336,6 +8916,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -8454,6 +9044,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -8548,6 +9148,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/DomainConnectApplyUrlResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -8666,6 +9276,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/CustomTrackingDomainConnectCompleteResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -8860,6 +9480,16 @@
                     "createdAt"
                   ],
                   "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -9127,6 +9757,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -9244,6 +9884,16 @@
                     "verifiedAt"
                   ],
                   "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -9497,6 +10147,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -9589,6 +10249,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/SuccessResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -9687,6 +10357,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/SuccessResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -9838,6 +10518,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -9934,6 +10624,16 @@
                     "success"
                   ],
                   "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -10081,6 +10781,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -10188,6 +10898,16 @@
                     "success"
                   ],
                   "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -10376,6 +11096,16 @@
                     "lastEmailAt"
                   ],
                   "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -10571,6 +11301,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -10730,6 +11470,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -10805,6 +11555,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/SuppressionCounts"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -10893,6 +11653,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/SuccessResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -11047,6 +11817,16 @@
                     "createdAt"
                   ],
                   "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -11243,6 +12023,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -11327,6 +12117,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/SuccessResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -11478,6 +12278,16 @@
                     "updatedAt"
                   ],
                   "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -11686,6 +12496,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -11832,6 +12652,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -11960,6 +12790,16 @@
                     "createdAt"
                   ],
                   "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -12209,6 +13049,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -12327,6 +13177,16 @@
                     "updatedAt"
                   ],
                   "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -12564,6 +13424,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -12717,6 +13587,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -12801,6 +13681,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/DomainWarming"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -12897,6 +13787,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/DomainWarming"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -13015,6 +13915,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/DomainWarming"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -13145,6 +14055,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -13249,6 +14169,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/DomainWarming"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -13371,6 +14301,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -13489,6 +14429,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -13598,6 +14548,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -13692,6 +14652,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/CompletedMedia"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -13794,6 +14764,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -13886,6 +14866,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Media"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -13984,6 +14974,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/MediaDownloadUrl"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -14136,6 +15136,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -14245,6 +15255,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -14339,6 +15359,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/AttachmentList"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -14523,6 +15553,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -14699,6 +15739,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -14772,6 +15822,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Conversation"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -15089,6 +16149,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -15181,6 +16251,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Conversation"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -15528,6 +16608,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -15622,6 +16712,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Conversation"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -15728,6 +16828,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Conversation"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -15840,6 +16950,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -15942,6 +17062,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Conversation"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -16054,6 +17184,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -16156,6 +17296,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Conversation"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -16268,6 +17418,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -16370,6 +17530,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Conversation"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -16570,6 +17740,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -16643,6 +17823,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Contact"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -16953,6 +18143,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -17114,6 +18314,16 @@
                     "created"
                   ],
                   "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -17381,6 +18591,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -17473,6 +18693,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Contact"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -17744,6 +18974,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -17848,6 +19088,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Contact"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -17978,6 +19228,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -18097,6 +19357,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -18205,6 +19475,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -18307,6 +19587,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Contact"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -18464,6 +19754,16 @@
                     "channelsUsed"
                   ],
                   "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -18692,6 +19992,16 @@
                     "diagnosticsTruncated"
                   ],
                   "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -19203,6 +20513,16 @@
                     "resumable"
                   ],
                   "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -19792,6 +21112,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -19894,6 +21224,16 @@
                     "failed"
                   ],
                   "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -20012,6 +21352,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/BulkUpdateResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -20142,6 +21492,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/BulkUpdateResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -20303,6 +21663,16 @@
                     "count"
                   ],
                   "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -20530,6 +21900,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -20654,6 +22034,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -20758,6 +22148,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ContactEvent"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -20911,6 +22311,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -21046,6 +22456,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -21170,6 +22590,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -21243,6 +22673,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Journey"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -21392,6 +22832,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -21484,6 +22934,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Journey"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -21594,6 +23054,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -21698,6 +23168,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Journey"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -21847,6 +23327,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -21992,6 +23482,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -22096,6 +23596,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Journey"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -22235,6 +23745,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -22351,6 +23871,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -22462,6 +23992,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/JourneyStats"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -22606,6 +24146,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -22708,6 +24258,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/JourneyRunDetail"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -22828,6 +24388,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -22901,6 +24471,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Agent"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -23013,6 +24593,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -23105,6 +24695,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Agent"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -23215,6 +24815,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -23309,6 +24919,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Agent"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -23427,6 +25047,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/PublishAgentResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -23575,6 +25205,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -23681,6 +25321,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -23766,6 +25416,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/SubscribeResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -24026,6 +25686,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -24221,6 +25891,16 @@
                     "updatedAt"
                   ],
                   "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -24569,6 +26249,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -24783,6 +26473,16 @@
                     "updatedAt"
                   ],
                   "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -25030,6 +26730,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -25141,6 +26851,16 @@
                     "skipped"
                   ],
                   "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -25296,6 +27016,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -25447,6 +27177,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -25564,6 +27304,16 @@
                     "total"
                   ],
                   "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -25688,6 +27438,16 @@
                     "sample"
                   ],
                   "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -25863,6 +27623,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -26011,6 +27781,16 @@
                     "updatedAt"
                   ],
                   "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -26270,6 +28050,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -26446,6 +28236,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -26544,6 +28344,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -26617,6 +28427,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Topic"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -26784,6 +28604,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -26882,6 +28712,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -26974,6 +28814,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Topic"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -27103,6 +28953,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -27207,6 +29067,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Topic"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -27360,6 +29230,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -27452,6 +29332,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TopicSetSubscriptionsResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -27596,6 +29486,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -27688,6 +29588,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TopicForm"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -27810,6 +29720,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -27912,6 +29832,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TopicForm"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -28041,6 +29971,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -28147,6 +30087,16 @@
                     "items"
                   ],
                   "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -28274,6 +30224,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -28396,6 +30356,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Newsletter"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -28527,6 +30497,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Newsletter"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -28682,6 +30662,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -28794,6 +30784,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/NewsletterIssueList"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -29497,6 +31497,16 @@
                     "files"
                   ],
                   "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -30215,6 +32225,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -30913,6 +32933,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -31077,6 +33107,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/NewsletterIssueDocument"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -31786,6 +33826,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -32332,6 +34382,16 @@
                     "incompatibilities"
                   ],
                   "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -33031,6 +35091,16 @@
                     "incompatibilities"
                   ],
                   "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -34176,6 +36246,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -34333,6 +36413,16 @@
                     "remoteHead"
                   ],
                   "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -34542,6 +36632,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -34696,6 +36796,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/PublicationDomainPage"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -34955,6 +37065,16 @@
                     "verificationErrors"
                   ],
                   "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -35250,6 +37370,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -35527,6 +37657,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -35719,11 +37859,18 @@
             }
           },
           "400": {
-            "description": "AnalyticsQueryError",
+            "description": "AnalyticsQueryError | MalformedRequestError",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AnalyticsQueryError"
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/AnalyticsQueryError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/MalformedRequestError"
+                    }
+                  ]
                 }
               }
             }
@@ -35948,11 +38095,18 @@
             }
           },
           "400": {
-            "description": "AnalyticsQueryError",
+            "description": "AnalyticsQueryError | MalformedRequestError",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AnalyticsQueryError"
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/AnalyticsQueryError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/MalformedRequestError"
+                    }
+                  ]
                 }
               }
             }
@@ -36137,11 +38291,18 @@
             }
           },
           "400": {
-            "description": "AnalyticsQueryError",
+            "description": "AnalyticsQueryError | MalformedRequestError",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AnalyticsQueryError"
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/AnalyticsQueryError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/MalformedRequestError"
+                    }
+                  ]
                 }
               }
             }
@@ -36263,11 +38424,18 @@
             }
           },
           "400": {
-            "description": "AnalyticsQueryError",
+            "description": "AnalyticsQueryError | MalformedRequestError",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AnalyticsQueryError"
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/AnalyticsQueryError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/MalformedRequestError"
+                    }
+                  ]
                 }
               }
             }
@@ -36405,11 +38573,18 @@
             }
           },
           "400": {
-            "description": "AnalyticsQueryError",
+            "description": "AnalyticsQueryError | MalformedRequestError",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AnalyticsQueryError"
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/AnalyticsQueryError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/MalformedRequestError"
+                    }
+                  ]
                 }
               }
             }
@@ -36511,11 +38686,18 @@
             }
           },
           "400": {
-            "description": "AnalyticsQueryError",
+            "description": "AnalyticsQueryError | MalformedRequestError",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AnalyticsQueryError"
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/AnalyticsQueryError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/MalformedRequestError"
+                    }
+                  ]
                 }
               }
             }
@@ -36774,6 +38956,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -36866,6 +39058,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Template"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -37024,6 +39226,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -37097,6 +39309,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TemplateFamily"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -37199,6 +39421,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -37291,6 +39523,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TemplateFamily"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -37401,6 +39643,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -37495,6 +39747,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TemplateFamily"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -37625,6 +39887,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -37739,6 +40011,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -37847,6 +40129,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -37939,6 +40231,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Template"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -38059,6 +40361,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -38163,6 +40475,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TemplateFromWebsite"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -38299,6 +40621,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Template"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -38972,6 +41304,16 @@
                     "files"
                   ],
                   "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -39672,6 +42014,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -39991,6 +42343,16 @@
                     "assetChanges"
                   ],
                   "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -40708,6 +43070,16 @@
                     "files"
                   ],
                   "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -41452,6 +43824,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -42050,6 +44432,16 @@
                     "incompatibilities"
                   ],
                   "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -42827,6 +45219,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -43071,6 +45473,16 @@
                     "publication"
                   ],
                   "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -43734,6 +46146,16 @@
                     "incompatibilities"
                   ],
                   "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -44862,6 +47284,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -45731,6 +48163,16 @@
                     "createdAt"
                   ],
                   "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -46636,6 +49078,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -46738,6 +49190,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TemplatePublicationRender"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -46882,6 +49344,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TemplateInputContractPage"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -47031,6 +49503,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -47149,6 +49631,16 @@
                     "defaultBranch"
                   ],
                   "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -47300,6 +49792,16 @@
                     "expiresAt"
                   ],
                   "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -48005,6 +50507,16 @@
                     "updatedBy"
                   ],
                   "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -48795,6 +51307,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -48931,6 +51453,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -49004,6 +51536,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Brand"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -49117,6 +51659,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -49210,6 +51762,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Brand"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -49331,6 +51893,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -49440,6 +52012,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -49539,6 +52121,16 @@
                     "secret"
                   ],
                   "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -49717,6 +52309,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -49801,6 +52403,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/WebhookEndpoint"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -49897,6 +52509,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/WebhookEndpoint"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -50013,6 +52635,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/SuccessResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -50141,6 +52773,16 @@
                     "deliveryId"
                   ],
                   "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -50279,6 +52921,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -50389,6 +53041,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/WebhookStatsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -50527,6 +53189,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -50645,6 +53317,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -50743,6 +53425,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -50828,6 +53520,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Organization"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -50959,6 +53661,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -51042,6 +53754,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Organization"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -51290,6 +54012,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -51383,6 +54115,16 @@
                     "mailboxId"
                   ],
                   "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -51546,6 +54288,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -51637,6 +54389,16 @@
                     "defaultDomain"
                   ],
                   "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -51884,6 +54646,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -52002,6 +54774,16 @@
                     "contentTypes"
                   ],
                   "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -52285,6 +55067,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -52379,6 +55171,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/OperationAccepted"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -52488,6 +55290,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiKeyWithSecret"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -52716,6 +55528,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -52800,6 +55622,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiKey"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -52896,6 +55728,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiKey"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -53052,6 +55894,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -53156,6 +56008,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiKeyWithSecret"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -53319,6 +56181,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -53443,6 +56315,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -53532,6 +56414,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -53616,6 +56508,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Whoami"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -53741,6 +56643,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -53814,6 +56726,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Mailbox"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -53963,6 +56885,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -54055,6 +56987,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Mailbox"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -54165,6 +57107,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -54269,6 +57221,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Mailbox"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -54406,6 +57368,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -54520,6 +57492,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -54618,6 +57600,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -54712,6 +57704,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Mailbox"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -54826,6 +57828,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/MailboxAgentActivity"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -54954,6 +57966,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -55046,6 +58068,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/MailboxGrant"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -55176,6 +58208,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -55300,6 +58342,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -55408,6 +58460,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -55500,6 +58562,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/MailboxPolicy"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -55630,6 +58702,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -55730,6 +58812,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/MailboxPolicy"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -55848,6 +58940,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -55942,6 +59044,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/MailboxFolderCountList"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -56044,6 +59156,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -56136,6 +59258,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/MailboxLabel"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -56266,6 +59398,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -56376,6 +59518,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/SuccessResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -56492,6 +59644,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/MailboxNeedsYou"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -56636,6 +59798,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/OrganizationMailboxDraftPage"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -56891,6 +60063,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -57112,6 +60294,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -57218,6 +60410,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -57318,6 +60520,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/MailboxThreadState"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -57438,6 +60650,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -57548,6 +60770,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/MailboxThreadState"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -57694,6 +60926,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -57822,6 +61064,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/MailboxThreadContentPage"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -57958,6 +61210,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -58058,6 +61320,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/MailboxNote"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -58186,6 +61458,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -58304,6 +61586,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/SuccessResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -58431,6 +61723,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/MailboxPendingSendReceipt"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -58629,6 +61931,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -58731,6 +62043,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/MailboxDownloadUrl"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -58849,6 +62171,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -58959,6 +62291,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/MailboxCopiedAttachment"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -59104,6 +62446,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/MailboxPendingSendReceipt"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -59331,6 +62683,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -59550,6 +62912,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/MailboxPendingSendReceipt"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -59782,6 +63154,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -59884,6 +63266,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/MailboxQuarantinedMessage"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -60000,6 +63392,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/MailboxQuarantinedMessage"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -60156,6 +63558,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -60248,6 +63660,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/MailboxDraft"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -60368,6 +63790,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -60468,6 +63900,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/MailboxDraft"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -60592,6 +64034,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/SuccessResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -60727,6 +64179,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/MailboxPendingSendReceipt"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -60981,6 +64443,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -61083,6 +64555,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/MailboxAction"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -61199,6 +64681,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/MailboxPendingSendReceipt"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -61396,6 +64888,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -61589,6 +65091,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -61772,6 +65284,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -61939,6 +65461,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -62071,6 +65603,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -62144,6 +65686,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Namespace"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -62256,6 +65808,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -62348,6 +65910,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Namespace"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -62468,6 +66040,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -62572,6 +66154,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/NamespaceResource"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -62710,6 +66302,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -62830,6 +66432,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/NamespaceUsage"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -62966,6 +66578,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -63049,6 +66671,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/PublishExtensionVersionResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -63178,6 +66810,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Extension"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -63317,6 +66959,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -63441,6 +67093,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ExtensionVersion"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -63577,6 +67239,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -63660,6 +67332,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/InstallExtensionResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -63782,6 +67464,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -63874,6 +67566,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/SuccessResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -63982,6 +67684,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/UpgradeExtensionResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -64104,6 +67816,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -64212,6 +67934,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -64316,6 +68048,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ExtensionRunList"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
                 }
               }
             }
@@ -64436,6 +68178,16 @@
               }
             }
           },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
           "401": {
             "description": "UnauthorizedError",
             "content": {
@@ -64505,6 +68257,39 @@
   },
   "components": {
     "schemas": {
+      "MalformedRequestError": {
+        "type": "object",
+        "properties": {
+          "_tag": {
+            "type": "string",
+            "enum": [
+              "MalformedRequestError"
+            ]
+          },
+          "message": {
+            "type": "string"
+          },
+          "fields": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "required": [
+          "_tag",
+          "message",
+          "fields"
+        ],
+        "additionalProperties": false,
+        "x-category": [
+          "validation"
+        ],
+        "x-retryable": false
+      },
       "GatewayTimeoutError": {
         "type": "object",
         "properties": {
