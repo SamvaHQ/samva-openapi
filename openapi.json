@@ -78440,6 +78440,36 @@
             "items": {
               "$ref": "#/components/schemas/WebhookDailyDeliveries"
             }
+          },
+          "latestAttempt": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "errorCode": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "completedAt": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "errorCode",
+                  "completedAt"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
         "required": [
@@ -78448,7 +78478,8 @@
           "delivered",
           "exhausted",
           "cancelled",
-          "daily"
+          "daily",
+          "latestAttempt"
         ],
         "additionalProperties": false
       },

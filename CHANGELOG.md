@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.62.0
+
+- 379 operations, 279 paths, 676 schemas, 39 webhook events.
+- Breaking against v0.61.1.
+- Changed schemas:
+  - `WebhookStatsResponse`
+
+
 ## v0.61.1
 
 - 379 operations, 279 paths, 676 schemas, 39 webhook events.
