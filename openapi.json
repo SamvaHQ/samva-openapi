@@ -24495,6 +24495,16 @@
               }
             }
           },
+          "402": {
+            "description": "PaymentRequiredError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentRequiredError"
+                }
+              }
+            }
+          },
           "403": {
             "description": "ForbiddenError",
             "content": {
@@ -24559,6 +24569,95 @@
           "required": true
         },
         "x-samva-scope": "agents:create"
+      }
+    },
+    "/v1/agents/models": {
+      "get": {
+        "tags": [
+          "Agents"
+        ],
+        "operationId": "agents.listModels",
+        "parameters": [],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "AgentModelCatalog",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AgentModelCatalog"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Returns the models an agent can run on: the standard and max aliases, each with the model it points at today, then every catalog model an agent can pin. Each entry has its price per million tokens, the reasoning levels it accepts with an estimate of a typical reply at each, and whether your plan includes it. Pinning a catalog model needs the Growth or Scale plan.",
+        "summary": "List agent models",
+        "x-samva-scope": "agents:read"
       }
     },
     "/v1/agents/{id}": {
@@ -24770,8 +24869,8 @@
             }
           }
         },
-        "description": "Renames an agent.",
-        "summary": "Rename an agent",
+        "description": "Renames an agent or sets its monthly spend cap. Both take effect at once, without publishing. At the cap the agent pauses and its conversations wait for your team until the month turns (UTC) or the cap is raised or removed.",
+        "summary": "Update an agent",
         "requestBody": {
           "content": {
             "application/json": {
@@ -24943,6 +25042,16 @@
               }
             }
           },
+          "402": {
+            "description": "PaymentRequiredError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentRequiredError"
+                }
+              }
+            }
+          },
           "403": {
             "description": "ForbiddenError",
             "content": {
@@ -25004,7 +25113,7 @@
             }
           }
         },
-        "description": "Replaces the whole draft and returns the agent with a new revision. The request names the revision it read; a stale revision returns 409. Published versions, and the conversations answered on them, do not change. An endpoint answers for one agent at a time: a draft that names an endpoint another agent answers on returns 409.",
+        "description": "Replaces the whole draft and returns the agent with a new revision. The request names the revision it read; a stale revision returns 409. Published versions, and the conversations answered on them, do not change. An endpoint answers for one agent at a time: a draft that names an endpoint another agent answers on returns 409. A draft that pins a catalog model returns 402 unless your plan is Growth or Scale, and 422 when the model is not available or does not support the reasoning level.",
         "summary": "Replace an agent draft",
         "requestBody": {
           "content": {
@@ -25144,6 +25253,124 @@
           },
           "required": true
         },
+        "x-samva-scope": "agents:update"
+      }
+    },
+    "/v1/agents/{id}/continue-on-standard": {
+      "post": {
+        "tags": [
+          "Agents"
+        ],
+        "operationId": "agents.continueOnStandard",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "$ref": "#/components/schemas/AgentId"
+            },
+            "required": true
+          }
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "PublishAgentResponse",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PublishAgentResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ResourceNotFoundError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "ConflictError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConflictError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Publishes the live version again with its model set to standard, as the next immutable version, then removes the monthly spend cap. Use it when the agent pauses at its cap on a pinned model and should keep answering on Standard. The draft is left as it is, so its unpublished changes stay unpublished. The live version's reasoning level is kept when Standard supports it, and is auto otherwise. A live version already on standard publishes nothing and answers published false; the cap is still removed. An agent with no published version returns 422; a version published while the request runs returns 409.",
+        "summary": "Continue an agent on Standard",
         "x-samva-scope": "agents:update"
       }
     },
@@ -84169,15 +84396,80 @@
           },
           "publishedAt": {
             "type": "string"
+          },
+          "modelFallback": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/AgentModelFallback"
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
         "required": [
           "agentId",
           "version",
           "definition",
-          "publishedAt"
+          "publishedAt",
+          "modelFallback"
         ],
         "additionalProperties": false
+      },
+      "AgentModelFallback": {
+        "type": "object",
+        "properties": {
+          "from": {
+            "$ref": "#/components/schemas/CatalogModelId"
+          },
+          "to": {
+            "$ref": "#/components/schemas/AgentModel"
+          },
+          "reason": {
+            "$ref": "#/components/schemas/ModelFallbackReason"
+          },
+          "since": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "from",
+          "to",
+          "reason",
+          "since"
+        ],
+        "additionalProperties": false
+      },
+      "ModelFallbackReason": {
+        "type": "string",
+        "enum": [
+          "candidate",
+          "failed",
+          "retired",
+          "blocked",
+          "missing"
+        ]
+      },
+      "AgentModel": {
+        "type": "string",
+        "enum": [
+          "standard",
+          "max"
+        ]
+      },
+      "CatalogModelId": {
+        "type": "string",
+        "maxLength": 200,
+        "pattern": "^[a-z0-9][a-z0-9._-]*\\/[A-Za-z0-9._:~-]+$",
+        "x-samva-string-checks": [
+          {
+            "id": "effect/schema/isMaxLength",
+            "payload": {
+              "maxLength": 200
+            }
+          }
+        ]
       },
       "ClockTime": {
         "type": "string",
@@ -84198,11 +84490,23 @@
       "TimeZone": {
         "type": "string"
       },
-      "AgentModel": {
+      "AgentReasoning": {
         "type": "string",
         "enum": [
-          "standard",
-          "max"
+          "auto",
+          "low",
+          "medium",
+          "high"
+        ]
+      },
+      "AgentModelChoice": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/AgentModel"
+          },
+          {
+            "$ref": "#/components/schemas/CatalogModelId"
+          }
         ]
       },
       "AgentMode": {
@@ -84350,6 +84654,19 @@
               }
             ]
           },
+          "monthlySpendCapDollars": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "spend": {
+            "$ref": "#/components/schemas/AgentSpend"
+          },
           "createdAt": {
             "type": "string"
           },
@@ -84365,8 +84682,37 @@
           "draft",
           "publishedVersion",
           "publishedAt",
+          "monthlySpendCapDollars",
+          "spend",
           "createdAt",
           "updatedAt"
+        ],
+        "additionalProperties": false
+      },
+      "AgentSpend": {
+        "type": "object",
+        "properties": {
+          "month": {
+            "type": "string"
+          },
+          "spentDollars": {
+            "type": "number"
+          },
+          "capReachedAt": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "month",
+          "spentDollars",
+          "capReachedAt"
         ],
         "additionalProperties": false
       },
@@ -84445,7 +84791,10 @@
             "$ref": "#/components/schemas/AgentMode"
           },
           "model": {
-            "$ref": "#/components/schemas/AgentModel"
+            "$ref": "#/components/schemas/AgentModelChoice"
+          },
+          "reasoning": {
+            "$ref": "#/components/schemas/AgentReasoning"
           },
           "workingHours": {
             "anyOf": [
@@ -84470,6 +84819,7 @@
           "integrations",
           "mode",
           "model",
+          "reasoning",
           "workingHours",
           "takeoverTimeoutMinutes"
         ],
@@ -84621,13 +84971,36 @@
         "type": "object",
         "properties": {
           "name": {
-            "$ref": "#/components/schemas/AgentName"
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/AgentName"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "monthlySpendCapDollars": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/MonthlySpendCapDollars"
+              },
+              {
+                "type": "null"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "The most the agent may spend in a calendar month (UTC), in dollars and whole cents. Null removes the cap. Takes effect at once, without publishing."
           }
         },
-        "required": [
-          "name"
-        ],
         "additionalProperties": false
+      },
+      "MonthlySpendCapDollars": {
+        "type": "number",
+        "minimum": 0.01,
+        "maximum": 100000
       },
       "AgentName": {
         "type": "string",
@@ -84669,7 +85042,7 @@
                 "type": "null"
               }
             ],
-            "description": "The first draft. Defaults to an agent with no instructions, knowledge, or endpoints, in supervised mode on the standard model.",
+            "description": "The first draft. Defaults to an agent with no instructions, knowledge, or endpoints, in supervised mode on the standard model at auto reasoning.",
             "default": {
               "instructions": "",
               "knowledge": "",
@@ -84677,6 +85050,7 @@
               "integrations": [],
               "mode": "supervised",
               "model": "standard",
+              "reasoning": "auto",
               "workingHours": null,
               "takeoverTimeoutMinutes": 30
             }
@@ -84684,6 +85058,151 @@
         },
         "required": [
           "name"
+        ],
+        "additionalProperties": false
+      },
+      "AgentModelCatalog": {
+        "type": "object",
+        "properties": {
+          "replyFeeDollars": {
+            "type": "number"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AgentModelOption"
+            }
+          }
+        },
+        "required": [
+          "replyFeeDollars",
+          "items"
+        ],
+        "additionalProperties": false
+      },
+      "AgentModelOption": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "$ref": "#/components/schemas/AgentModelChoice"
+          },
+          "name": {
+            "type": "string"
+          },
+          "alias": {
+            "type": "boolean"
+          },
+          "model": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "$ref": "#/components/schemas/CatalogModelId"
+              },
+              "name": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id",
+              "name"
+            ],
+            "additionalProperties": false
+          },
+          "contextWindow": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
+          },
+          "inputModalities": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "price": {
+            "$ref": "#/components/schemas/AgentModelPrice"
+          },
+          "reasoning": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AgentModelReasoning"
+            }
+          },
+          "access": {
+            "$ref": "#/components/schemas/AgentModelAccess"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "alias",
+          "model",
+          "contextWindow",
+          "inputModalities",
+          "price",
+          "reasoning",
+          "access"
+        ],
+        "additionalProperties": false
+      },
+      "AgentModelAccess": {
+        "type": "string",
+        "enum": [
+          "included",
+          "upgrade"
+        ]
+      },
+      "AgentModelReasoning": {
+        "type": "object",
+        "properties": {
+          "level": {
+            "$ref": "#/components/schemas/AgentReasoning"
+          },
+          "typicalReplyDollars": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "level",
+          "typicalReplyDollars"
+        ],
+        "additionalProperties": false
+      },
+      "AgentModelPrice": {
+        "type": "object",
+        "properties": {
+          "inputPerMillionDollars": {
+            "type": "number"
+          },
+          "outputPerMillionDollars": {
+            "type": "number"
+          },
+          "cacheReadPerMillionDollars": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "cacheWritePerMillionDollars": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "inputPerMillionDollars",
+          "outputPerMillionDollars",
+          "cacheReadPerMillionDollars",
+          "cacheWritePerMillionDollars"
         ],
         "additionalProperties": false
       },
@@ -84767,6 +85286,16 @@
               }
             ]
           },
+          "monthlySpendCapDollars": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "createdAt": {
             "type": "string"
           },
@@ -84780,6 +85309,7 @@
           "namespaceId",
           "publishedVersion",
           "publishedAt",
+          "monthlySpendCapDollars",
           "createdAt",
           "updatedAt"
         ],

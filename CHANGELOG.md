@@ -1,5 +1,20 @@
 # Changelog
 
+## v0.61.0
+
+- 379 operations, 279 paths, 675 schemas, 39 webhook events.
+- Breaking against v0.60.1.
+- Added operations:
+  - `GET /v1/agents/models`
+  - `POST /v1/agents/{id}/continue-on-standard`
+- Changed schemas:
+  - `Agent`
+  - `AgentDefinition`
+  - `AgentListItem`
+  - `AgentVersion`
+  - `UpdateAgentPayload`
+
+
 ## v0.60.1
 
 - 377 operations, 277 paths, 663 schemas, 39 webhook events.
