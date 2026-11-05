@@ -60194,7 +60194,8 @@
             "name": "q",
             "in": "query",
             "schema": {
-              "type": "string"
+              "type": "string",
+              "description": "Search subjects, participants, message text, and attachment filenames by semantic and keyword relevance. Filters narrow the search. Returns up to 100 best-matching threads across cursor pages; omit q to list by recent activity. New mail can take a few seconds to become searchable. Attachment contents are not searched."
             },
             "required": false
           },
@@ -60397,7 +60398,7 @@
             }
           }
         },
-        "description": "Lists only threads in mailboxes the caller can read, newest activity first. Repeat mailboxId to narrow the scope; kind selects personal or shared mailboxes. conversation selects the threads of one conversation (the conversationId a thread reports), one per readable mailbox it reached. state=active excludes the caller's Done and shared closed threads; state=done selects the caller's Done plus closed shared threads, without duplicates. Other filters and cursor pagination match the per-mailbox list.",
+        "description": "Lists only threads in mailboxes the caller can read. With `q`, semantic and keyword search returns the best-matching threads in relevance order, capped across cursor pages. Without `q`, threads use newest activity first. Repeat mailboxId to narrow the scope; kind selects personal or shared mailboxes. conversation selects the threads of one conversation (the conversationId a thread reports), one per readable mailbox it reached. state=active excludes the caller's Done and shared closed threads; state=done selects the caller's Done plus closed shared threads, without duplicates. Other filters and cursor pagination match the per-mailbox list.",
         "summary": "List threads across your mailboxes",
         "x-samva-scope": "mailboxes:read"
       }
@@ -60463,7 +60464,8 @@
             "name": "q",
             "in": "query",
             "schema": {
-              "type": "string"
+              "type": "string",
+              "description": "Search subjects, participants, message text, and attachment filenames by semantic and keyword relevance. Filters narrow the search. Returns up to 100 best-matching threads across cursor pages; omit q to list by recent activity. New mail can take a few seconds to become searchable. Attachment contents are not searched."
             },
             "required": false
           },
@@ -60628,7 +60630,7 @@
             }
           }
         },
-        "description": "Returns thread summaries, most recent activity first. `after` and `before` filter by last activity, so an agent polling for new mail passes the last time it looked. `q` is a full-text search over subjects, senders, and message text; `folder`, `label`, `unread`, and `starred` narrow the list. Pass `nextCursor` back as `cursor` for the next page; it is null on the last page. A thread that gains activity while you page moves ahead of the cursor, so a walk lists each thread at most once.",
+        "description": "Returns thread summaries. With `q`, semantic and keyword search returns up to 100 best-matching threads in relevance order across cursor pages. It searches subjects, participants, message text including quoted history, and attachment filenames, not attachment contents. New mail can take a few seconds to become searchable. Other filters narrow the searchable set. Without `q`, threads use most recent activity first; `after` and `before` filter by last activity for polling. Pass `nextCursor` back as `cursor` for the next page; it is null on the last page. In a list without `q`, a thread that gains activity while you page moves ahead of the cursor, so a walk lists each thread at most once.",
         "summary": "List threads in a mailbox",
         "x-samva-scope": "mailboxes:read"
       }

@@ -1,5 +1,14 @@
 # Changelog
 
+## v0.65.0
+
+- 379 operations, 279 paths, 676 schemas, 39 webhook events.
+- Breaking against v0.64.0.
+- Changed operations:
+  - `GET /v1/mailboxes/threads`
+  - `GET /v1/mailboxes/{id}/threads`
+
+
 ## v0.64.0
 
 - 379 operations, 279 paths, 676 schemas, 39 webhook events.
