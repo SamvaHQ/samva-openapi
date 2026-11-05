@@ -24374,6 +24374,14 @@
               "type": "string"
             },
             "required": false
+          },
+          {
+            "name": "namespaceId",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/NamespaceId"
+            },
+            "required": false
           }
         ],
         "security": [
@@ -24453,7 +24461,7 @@
             }
           }
         },
-        "description": "Returns the agents the caller can reach, newest first, without their drafts. Pass nextCursor back as cursor for the next page.",
+        "description": "Returns the agents the caller can reach, newest first, without their drafts, optionally filtered by `namespaceId`. Pass nextCursor back as cursor for the next page.",
         "summary": "List agents",
         "x-samva-scope": "agents:read"
       },
@@ -52504,6 +52512,14 @@
             "required": false
           },
           {
+            "name": "namespaceId",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/NamespaceId"
+            },
+            "required": false
+          },
+          {
             "name": "search",
             "in": "query",
             "schema": {
@@ -52601,7 +52617,7 @@
             }
           }
         },
-        "description": "Returns the organization's webhook endpoints, oldest first, with each endpoint's delivery counts, optionally filtered by a search term matched against name and URL, and by status. Pass `nextCursor` back as `cursor` for the next page; it is null on the last page.",
+        "description": "Returns the organization's webhook endpoints, oldest first, with each endpoint's delivery counts, optionally filtered by namespace (`namespaceId`), a search term matched against name and URL, and by status. Pass `nextCursor` back as `cursor` for the next page; it is null on the last page.",
         "summary": "List webhooks",
         "x-samva-scope": "webhooks:read"
       }
@@ -55723,6 +55739,14 @@
             "required": false
           },
           {
+            "name": "namespaceId",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/NamespaceId"
+            },
+            "required": false
+          },
+          {
             "name": "status",
             "in": "query",
             "schema": {
@@ -55820,7 +55844,7 @@
             }
           }
         },
-        "description": "Returns the organization's API keys, newest first, filterable by status and a search term matched against name and description. Pass `nextCursor` back as `cursor` for the next page; it is null on the last page.",
+        "description": "Returns the organization's API keys, newest first, filterable by namespace (`namespaceId`), status and a search term matched against name and description. Pass `nextCursor` back as `cursor` for the next page; it is null on the last page.",
         "summary": "List API keys",
         "x-samva-scope": "apiKeys:read"
       }
@@ -56856,6 +56880,14 @@
               "type": "string"
             },
             "required": false
+          },
+          {
+            "name": "namespaceId",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/NamespaceId"
+            },
+            "required": false
           }
         ],
         "security": [
@@ -56935,7 +56967,7 @@
             }
           }
         },
-        "description": "Returns summaries of the mailboxes the caller can read, newest first, filterable by creation time (`after`, `before`). Pass `nextCursor` back as `cursor` for the next page; it is null on the last page. Read a mailbox's endpoints and metadata with `GET /v1/mailboxes/{id}`.",
+        "description": "Returns summaries of the mailboxes the caller can read, newest first, filterable by namespace (`namespaceId`) and creation time (`after`, `before`). Pass `nextCursor` back as `cursor` for the next page; it is null on the last page. Read a mailbox's endpoints and metadata with `GET /v1/mailboxes/{id}`.",
         "summary": "List mailboxes",
         "x-samva-scope": "mailboxes:read"
       },
@@ -66352,7 +66384,7 @@
             }
           }
         },
-        "description": "Deletes an empty namespace. A namespace that still holds anything conflicts, and the error counts what remains: mailboxes, API keys, webhook endpoints filtered to it, domains, senders, contacts, or template projects. Delete each, or return it to organization level with `DELETE /v1/namespaces/{id}/resources/{type}/{resourceId}`; mailboxes, keys, and webhook endpoints cannot move and are deleted. Messages keep the namespace they ran in.",
+        "description": "Deletes an empty namespace. A namespace that still holds anything conflicts, and the error names and counts each resource kind that remains. Delete each, or return it to organization level with `DELETE /v1/namespaces/{id}/resources/{type}/{resourceId}`; mailboxes, keys, and webhook endpoints cannot move and are deleted. Messages keep the namespace they ran in.",
         "summary": "Delete a namespace",
         "x-samva-scope": "organization:update"
       }
@@ -66410,11 +66442,18 @@
             }
           },
           "403": {
-            "description": "ForbiddenError",
+            "description": "FlagDisabledError | ForbiddenError",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ForbiddenError"
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/FlagDisabledError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ForbiddenError"
+                    }
+                  ]
                 }
               }
             }
@@ -66554,11 +66593,18 @@
             }
           },
           "403": {
-            "description": "ForbiddenError",
+            "description": "FlagDisabledError | ForbiddenError",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ForbiddenError"
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/FlagDisabledError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ForbiddenError"
+                    }
+                  ]
                 }
               }
             }
@@ -69944,6 +69990,30 @@
         ],
         "additionalProperties": false
       },
+      "FlagDisabledError": {
+        "type": "object",
+        "properties": {
+          "_tag": {
+            "type": "string",
+            "enum": [
+              "FlagDisabledError"
+            ]
+          },
+          "flag": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "_tag",
+          "flag",
+          "message"
+        ],
+        "additionalProperties": false,
+        "x-retryable": false
+      },
       "NamespaceResource": {
         "type": "object",
         "properties": {
@@ -71967,30 +72037,6 @@
           "receipt"
         ],
         "additionalProperties": false
-      },
-      "FlagDisabledError": {
-        "type": "object",
-        "properties": {
-          "_tag": {
-            "type": "string",
-            "enum": [
-              "FlagDisabledError"
-            ]
-          },
-          "flag": {
-            "type": "string"
-          },
-          "message": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "_tag",
-          "flag",
-          "message"
-        ],
-        "additionalProperties": false,
-        "x-retryable": false
       },
       "MailboxPendingAction": {
         "anyOf": [

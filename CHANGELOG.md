@@ -1,5 +1,14 @@
 # Changelog
 
+## v0.64.0
+
+- 379 operations, 279 paths, 676 schemas, 39 webhook events.
+- Breaking against v0.63.0.
+- Changed operations:
+  - `DELETE /v1/namespaces/{id}/resources/{type}/{resourceId}`
+  - `POST /v1/namespaces/{id}/resources`
+
+
 ## v0.63.0
 
 - 379 operations, 279 paths, 676 schemas, 39 webhook events.
