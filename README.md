@@ -1,6 +1,6 @@
 # Samva OpenAPI
 
-The canonical OpenAPI 3.1 description for the [Samva](https://samva.dev) email API.
+The canonical OpenAPI 3.1 description for the [Samva](https://samva.dev) email and WhatsApp API.
 
 Samva's release process publishes a release here whenever a change to the API changes the
 document. Issues and pull requests are welcome; [CONTRIBUTING.md](./CONTRIBUTING.md) explains how
