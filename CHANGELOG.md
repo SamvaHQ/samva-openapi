@@ -1,5 +1,14 @@
 # Changelog
 
+## v0.63.0
+
+- 379 operations, 279 paths, 676 schemas, 39 webhook events.
+- Breaking against v0.62.1.
+- Changed schemas:
+  - `Agent`
+  - `AgentListItem`
+
+
 ## v0.62.1
 
 - 379 operations, 279 paths, 676 schemas, 39 webhook events.

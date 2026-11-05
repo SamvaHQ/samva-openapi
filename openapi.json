@@ -84681,6 +84681,16 @@
               }
             ]
           },
+          "pausedAt": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "creditsPausedAt": {
             "anyOf": [
               {
@@ -84722,6 +84732,7 @@
           "draft",
           "publishedVersion",
           "publishedAt",
+          "pausedAt",
           "monthlySpendCapDollars",
           "spend",
           "createdAt",
@@ -85321,6 +85332,16 @@
               }
             ]
           },
+          "pausedAt": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "creditsPausedAt": {
             "anyOf": [
               {
@@ -85357,6 +85378,7 @@
           "namespaceId",
           "publishedVersion",
           "publishedAt",
+          "pausedAt",
           "monthlySpendCapDollars",
           "createdAt",
           "updatedAt"
