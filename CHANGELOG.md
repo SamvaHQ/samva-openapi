@@ -1,5 +1,18 @@
 # Changelog
 
+## v0.67.0
+
+- 378 operations, 279 paths, 686 schemas, 41 webhook events.
+- Breaking against v0.66.0.
+- Changed schemas:
+  - `Conversation`
+  - `ConversationSummary`
+  - `ScheduledMessage`
+- Added webhook events:
+  - `email.sending.paused`
+  - `email.sending.resumed`
+
+
 ## v0.66.0
 
 - 378 operations, 279 paths, 686 schemas, 39 webhook events.

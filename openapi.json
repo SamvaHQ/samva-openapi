@@ -2615,18 +2615,28 @@
             }
           },
           "403": {
-            "description": "FlagDisabledError | ForbiddenError",
+            "description": "ForbiddenError | FlagDisabledError",
             "content": {
               "application/json": {
                 "schema": {
                   "anyOf": [
                     {
-                      "$ref": "#/components/schemas/FlagDisabledError"
+                      "$ref": "#/components/schemas/ForbiddenError"
                     },
                     {
-                      "$ref": "#/components/schemas/ForbiddenError"
+                      "$ref": "#/components/schemas/FlagDisabledError"
                     }
                   ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ResourceNotFoundError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundError"
                 }
               }
             }
@@ -2690,6 +2700,19 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "namespaceId": {
+                    "anyOf": [
+                      {
+                        "$ref": "#/components/schemas/NamespaceId"
+                      },
+                      {
+                        "type": "null"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
                   "send": {
                     "$ref": "#/components/schemas/DispatchSendMessagePayload"
                   },
@@ -2760,6 +2783,14 @@
             "in": "query",
             "schema": {
               "type": "string"
+            },
+            "required": false
+          },
+          {
+            "name": "namespaceId",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/NamespaceId"
             },
             "required": false
           },
@@ -15667,6 +15698,14 @@
             "required": false
           },
           {
+            "name": "namespaceId",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/NamespaceId"
+            },
+            "required": false
+          },
+          {
             "name": "status",
             "in": "query",
             "schema": {
@@ -15860,6 +15899,26 @@
               }
             }
           },
+          "404": {
+            "description": "ResourceNotFoundError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "ConflictError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConflictError"
+                }
+              }
+            }
+          },
           "422": {
             "description": "ValidationError",
             "content": {
@@ -15899,6 +15958,16 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "namespaceId": {
+                    "anyOf": [
+                      {
+                        "$ref": "#/components/schemas/NamespaceId"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
                   "title": {
                     "anyOf": [
                       {
@@ -16295,6 +16364,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ResourceNotFoundError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "ConflictError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConflictError"
                 }
               }
             }
@@ -38116,6 +38195,14 @@
         "operationId": "analytics.getStats",
         "parameters": [
           {
+            "name": "namespaceId",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/NamespaceId"
+            },
+            "required": false
+          },
+          {
             "name": "after",
             "in": "query",
             "schema": {
@@ -38295,6 +38382,14 @@
         ],
         "operationId": "analytics.getChannelStats",
         "parameters": [
+          {
+            "name": "namespaceId",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/NamespaceId"
+            },
+            "required": false
+          },
           {
             "name": "after",
             "in": "query",
@@ -38532,6 +38627,14 @@
         "operationId": "analytics.getTopContacts",
         "parameters": [
           {
+            "name": "namespaceId",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/NamespaceId"
+            },
+            "required": false
+          },
+          {
             "name": "after",
             "in": "query",
             "schema": {
@@ -38728,6 +38831,14 @@
         "operationId": "analytics.getHourlyDistribution",
         "parameters": [
           {
+            "name": "namespaceId",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/NamespaceId"
+            },
+            "required": false
+          },
+          {
             "name": "after",
             "in": "query",
             "schema": {
@@ -38860,6 +38971,14 @@
         ],
         "operationId": "analytics.getDeliveryMetrics",
         "parameters": [
+          {
+            "name": "namespaceId",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/NamespaceId"
+            },
+            "required": false
+          },
           {
             "name": "after",
             "in": "query",
@@ -39118,6 +39237,16 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "namespaceId": {
+                    "anyOf": [
+                      {
+                        "$ref": "#/components/schemas/NamespaceId"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
                   "after": {
                     "type": "string",
                     "x-samva-schema": "AbsoluteInstant"
@@ -79723,6 +79852,8 @@
                 "webhook.test",
                 "domain.updated",
                 "domain.warming.updated",
+                "email.sending.paused",
+                "email.sending.resumed",
                 "template.registration.updated",
                 "flow.registration.updated",
                 "whatsapp.number.connected",
@@ -79900,6 +80031,8 @@
                     "webhook.test",
                     "domain.updated",
                     "domain.warming.updated",
+                    "email.sending.paused",
+                    "email.sending.resumed",
                     "template.registration.updated",
                     "flow.registration.updated",
                     "whatsapp.number.connected",
@@ -80078,6 +80211,8 @@
                 "webhook.test",
                 "domain.updated",
                 "domain.warming.updated",
+                "email.sending.paused",
+                "email.sending.resumed",
                 "template.registration.updated",
                 "flow.registration.updated",
                 "whatsapp.number.connected",
@@ -80281,6 +80416,8 @@
                 "webhook.test",
                 "domain.updated",
                 "domain.warming.updated",
+                "email.sending.paused",
+                "email.sending.resumed",
                 "template.registration.updated",
                 "flow.registration.updated",
                 "whatsapp.number.connected",
@@ -89705,6 +89842,16 @@
           "id": {
             "$ref": "#/components/schemas/ConversationId"
           },
+          "namespaceId": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/NamespaceId"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "title": {
             "anyOf": [
               {
@@ -89930,6 +90077,7 @@
         },
         "required": [
           "id",
+          "namespaceId",
           "title",
           "externalId",
           "status",
@@ -90399,6 +90547,16 @@
           "id": {
             "$ref": "#/components/schemas/ConversationId"
           },
+          "namespaceId": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/NamespaceId"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "title": {
             "anyOf": [
               {
@@ -90485,6 +90643,7 @@
         },
         "required": [
           "id",
+          "namespaceId",
           "title",
           "externalId",
           "status",
@@ -96187,6 +96346,16 @@
           "id": {
             "$ref": "#/components/schemas/ScheduledMessageId"
           },
+          "namespaceId": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/NamespaceId"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "status": {
             "type": "string",
             "enum": [
@@ -96275,6 +96444,7 @@
         },
         "required": [
           "id",
+          "namespaceId",
           "status",
           "scheduledFor",
           "timezone",
@@ -101690,7 +101860,7 @@
     },
     {
       "name": "Analytics",
-      "description": "Messaging analytics, channel stats, and data export. Every date range is half-open — `after` inclusive, `before` exclusive — and may span at most 366 days. Both bounds are absolute ISO-8601 instants carrying `Z` or a numeric offset; a bare calendar date is rejected, because reading it as UTC midnight would shift every bucket for an organization outside UTC. `AnalyticsQueryError` refuses a longer span and a `before` sent without an `after`, which bounds nothing. Omitting both bounds reports the organization's whole history. Calendar buckets follow the organization's timezone."
+      "description": "Messaging analytics, channel stats, and data export. Namespace keys read only their own traffic; organization callers can narrow results with namespaceId. Every date range is half-open — `after` inclusive, `before` exclusive — and may span at most 366 days. Both bounds are absolute ISO-8601 instants carrying `Z` or a numeric offset; a bare calendar date is rejected, because reading it as UTC midnight would shift every bucket for an organization outside UTC. `AnalyticsQueryError` refuses a longer span and a `before` sent without an `after`, which bounds nothing. Omitting both bounds reports the organization's whole history. Calendar buckets follow the organization's timezone."
     },
     {
       "name": "Templates",
@@ -107941,6 +108111,154 @@
                       "holdReason",
                       "batch",
                       "updatedAt"
+                    ],
+                    "additionalProperties": true
+                  }
+                },
+                "required": [
+                  "type",
+                  "timestamp",
+                  "data"
+                ],
+                "additionalProperties": true
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Any 2xx status acknowledges the event."
+          }
+        }
+      }
+    },
+    "email.sending.paused": {
+      "post": {
+        "operationId": "webhooks.email.sending.paused",
+        "summary": "Email sending paused",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "email.sending.paused"
+                    ]
+                  },
+                  "timestamp": {
+                    "type": "string"
+                  },
+                  "data": {
+                    "type": "object",
+                    "properties": {
+                      "organizationId": {
+                        "type": "string",
+                        "pattern": "^org_[0-9a-hjkmnp-tv-z]{16,24}$"
+                      },
+                      "namespaceId": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "pattern": "^ns_[0-9a-hjkmnp-tv-z]{16,24}$"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "channel": {
+                        "type": "string",
+                        "enum": [
+                          "email"
+                        ]
+                      },
+                      "occurredAt": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "organizationId",
+                      "namespaceId",
+                      "channel",
+                      "occurredAt"
+                    ],
+                    "additionalProperties": true
+                  }
+                },
+                "required": [
+                  "type",
+                  "timestamp",
+                  "data"
+                ],
+                "additionalProperties": true
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Any 2xx status acknowledges the event."
+          }
+        }
+      }
+    },
+    "email.sending.resumed": {
+      "post": {
+        "operationId": "webhooks.email.sending.resumed",
+        "summary": "Email sending resumed",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "email.sending.resumed"
+                    ]
+                  },
+                  "timestamp": {
+                    "type": "string"
+                  },
+                  "data": {
+                    "type": "object",
+                    "properties": {
+                      "organizationId": {
+                        "type": "string",
+                        "pattern": "^org_[0-9a-hjkmnp-tv-z]{16,24}$"
+                      },
+                      "namespaceId": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "pattern": "^ns_[0-9a-hjkmnp-tv-z]{16,24}$"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "channel": {
+                        "type": "string",
+                        "enum": [
+                          "email"
+                        ]
+                      },
+                      "occurredAt": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "organizationId",
+                      "namespaceId",
+                      "channel",
+                      "occurredAt"
                     ],
                     "additionalProperties": true
                   }
