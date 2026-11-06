@@ -1,5 +1,50 @@
 # Changelog
 
+## v0.66.0
+
+- 378 operations, 279 paths, 686 schemas, 39 webhook events.
+- Breaking against v0.65.0.
+- Removed operations:
+  - `DELETE /v1/mailboxes/{id}/policies/{policyId}`
+  - `GET /v1/mailboxes/{id}/policies`
+  - `GET /v1/mailboxes/{id}/policies/{policyId}`
+  - `PATCH /v1/mailboxes/{id}/policies/{policyId}`
+  - `POST /v1/mailboxes/{id}/policies`
+- Added operations:
+  - `DELETE /v1/policies/{kind}/{id}`
+  - `GET /v1/policies/{kind}/{id}`
+  - `POST /v1/agents/{id}/tests/rerun`
+  - `PUT /v1/policies/{kind}/{id}`
+- Changed operations:
+  - `PATCH /v1/api-keys/{id}`
+- Changed schemas:
+  - `AgentDefinition`
+  - `AgentIntegrationGrant`
+  - `AgentMode`
+  - `ApiKeyMailboxAccess`
+  - `ApiKeyMailboxAccessUpdate`
+  - `CreateAgentPayload`
+  - `CreateMailboxGrantPayload`
+  - `CreateMailboxPolicyPayload`
+  - `DenyMailboxActionPayload`
+  - `ExtensionInstallation`
+  - `InstallExtensionPayload`
+  - `MailboxActionDecision`
+  - `MailboxGrant`
+  - `MailboxNeedsYou`
+  - `MailboxNeedsYouItem`
+  - `MailboxPolicy`
+  - `MailboxPolicyId`
+  - `MailboxPolicyList`
+  - `MailboxPolicyOutcomeKind`
+  - `MailboxSendMode`
+  - `UpdateMailboxGrantPayload`
+  - `UpdateMailboxPolicyPayload`
+- Changed webhook events:
+  - `mailbox.action.pending_approval`
+  - `mailbox.action.resolved`
+
+
 ## v0.65.0
 
 - 379 operations, 279 paths, 676 schemas, 39 webhook events.
