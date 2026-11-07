@@ -8462,7 +8462,8 @@
                       {
                         "type": "array",
                         "items": {
-                          "type": "string"
+                          "type": "string",
+                          "pattern": "^(?=[^@]{1,64}@)[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+)*@[^\\s@/\\\\:#?%[\\]\\p{Cc}]+[.\\u3002\\uff0e\\uff61][^\\s@/\\\\:#?%[\\]\\p{Cc}]+$"
                         }
                       },
                       {
@@ -9625,7 +9626,8 @@
                 "type": "object",
                 "properties": {
                   "email": {
-                    "type": "string"
+                    "type": "string",
+                    "pattern": "^(?=[^@]{1,64}@)[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+)*@[^\\s@/\\\\:#?%[\\]\\p{Cc}]+[.\\u3002\\uff0e\\uff61][^\\s@/\\\\:#?%[\\]\\p{Cc}]+$"
                   },
                   "domainId": {
                     "anyOf": [
@@ -9642,6 +9644,7 @@
                       {
                         "type": "string",
                         "maxLength": 120,
+                        "pattern": "^[^\\p{Cc}]*$",
                         "x-samva-string-checks": [
                           {
                             "id": "effect/schema/isMaxLength",
@@ -9664,7 +9667,8 @@
                       {
                         "type": "array",
                         "items": {
-                          "type": "string"
+                          "type": "string",
+                          "pattern": "^(?=[^@]{1,64}@)[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+)*@[^\\s@/\\\\:#?%[\\]\\p{Cc}]+[.\\u3002\\uff0e\\uff61][^\\s@/\\\\:#?%[\\]\\p{Cc}]+$"
                         }
                       },
                       {
@@ -54686,7 +54690,8 @@
                       {
                         "type": "array",
                         "items": {
-                          "type": "string"
+                          "type": "string",
+                          "pattern": "^(?=[^@]{1,64}@)[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+)*@[^\\s@/\\\\:#?%[\\]\\p{Cc}]+[.\\u3002\\uff0e\\uff61][^\\s@/\\\\:#?%[\\]\\p{Cc}]+$"
                         }
                       },
                       {
@@ -82532,7 +82537,7 @@
               "fromDefault": {
                 "anyOf": [
                   {
-                    "$ref": "#/components/schemas/TemplateFromDefault"
+                    "$ref": "#/components/schemas/TemplateFromDefaultInput"
                   },
                   {
                     "type": "null"
@@ -82547,7 +82552,8 @@
                   {
                     "type": "array",
                     "items": {
-                      "type": "string"
+                      "type": "string",
+                      "pattern": "^(?=[^@]{1,64}@)[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+)*@[^\\s@/\\\\:#?%[\\]\\p{Cc}]+[.\\u3002\\uff0e\\uff61][^\\s@/\\\\:#?%[\\]\\p{Cc}]+$"
                     }
                   },
                   {
@@ -82589,6 +82595,39 @@
         },
         "required": [
           "data"
+        ],
+        "additionalProperties": false
+      },
+      "TemplateFromDefaultInput": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "pattern": "^(?=[^@]{1,64}@)[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+)*@[^\\s@/\\\\:#?%[\\]\\p{Cc}]+[.\\u3002\\uff0e\\uff61][^\\s@/\\\\:#?%[\\]\\p{Cc}]+$"
+          },
+          "name": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 120,
+                "pattern": "^[^\\p{Cc}]*$",
+                "x-samva-string-checks": [
+                  {
+                    "id": "effect/schema/isMaxLength",
+                    "payload": {
+                      "maxLength": 120
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "email"
         ],
         "additionalProperties": false
       },
@@ -85686,17 +85725,7 @@
         "properties": {
           "email": {
             "type": "string",
-            "pattern": "^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$",
-            "maxLength": 320,
-            "description": "The recipient email address; confirmation proves consent for this address.",
-            "x-samva-string-checks": [
-              {
-                "id": "effect/schema/isMaxLength",
-                "payload": {
-                  "maxLength": 320
-                }
-              }
-            ]
+            "pattern": "^(?=[^@]{1,64}@)[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+)*@[^\\s@/\\\\:#?%[\\]\\p{Cc}]+[.\\u3002\\uff0e\\uff61][^\\s@/\\\\:#?%[\\]\\p{Cc}]+$"
           },
           "topicId": {
             "$ref": "#/components/schemas/TopicId"
@@ -85705,13 +85734,15 @@
             "type": "object",
             "properties": {
               "email": {
-                "type": "string"
+                "type": "string",
+                "pattern": "^(?=[^@]{1,64}@)[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+)*@[^\\s@/\\\\:#?%[\\]\\p{Cc}]+[.\\u3002\\uff0e\\uff61][^\\s@/\\\\:#?%[\\]\\p{Cc}]+$"
               },
               "name": {
                 "anyOf": [
                   {
                     "type": "string",
                     "maxLength": 120,
+                    "pattern": "^[^\\p{Cc}]*$",
                     "x-samva-string-checks": [
                       {
                         "id": "effect/schema/isMaxLength",
@@ -88753,7 +88784,7 @@
             "properties": {
               "email": {
                 "type": "string",
-                "pattern": "^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$"
+                "pattern": "^(?=[^@]{1,64}@)[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+)*@[^\\s@/\\\\:#?%[\\]\\p{Cc}]+[.\\u3002\\uff0e\\uff61][^\\s@/\\\\:#?%[\\]\\p{Cc}]+$"
               },
               "id": {
                 "not": {}
@@ -94571,7 +94602,7 @@
       },
       "TrackingRecipientEmail": {
         "type": "string",
-        "pattern": "^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$"
+        "pattern": "^(?=[^@]{1,64}@)[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+)*@[^\\s@/\\\\:#?%[\\]\\p{Cc}]+[.\\u3002\\uff0e\\uff61][^\\s@/\\\\:#?%[\\]\\p{Cc}]+$"
       },
       "EmailTrackingDefaults": {
         "type": "object",
@@ -95675,7 +95706,7 @@
             ]
           },
           "attachments": {
-            "$ref": "#/components/schemas/EmailAttachments"
+            "$ref": "#/components/schemas/StoredEmailAttachments"
           },
           "publicationId": {
             "$ref": "#/components/schemas/TemplatePublicationId"
@@ -95724,7 +95755,7 @@
             ]
           },
           "replyTo": {
-            "$ref": "#/components/schemas/ReplyToAddresses"
+            "$ref": "#/components/schemas/StoredReplyToAddresses"
           },
           "topicId": {
             "anyOf": [
@@ -95808,7 +95839,7 @@
         "additionalProperties": false,
         "description": "Requested per-send engagement tracking policy. Recipient opt-out takes precedence, then explicit fields, organization defaults, and product defaults."
       },
-      "ReplyToAddresses": {
+      "StoredReplyToAddresses": {
         "anyOf": [
           {
             "type": "array",
@@ -95834,7 +95865,7 @@
           }
         ]
       },
-      "EmailAttachments": {
+      "StoredEmailAttachments": {
         "anyOf": [
           {
             "type": "array",
@@ -96323,13 +96354,14 @@
             "properties": {
               "email": {
                 "type": "string",
-                "minLength": 1
+                "pattern": "^(?=[^@]{1,64}@)[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+)*@[^\\s@/\\\\:#?%[\\]\\p{Cc}]+[.\\u3002\\uff0e\\uff61][^\\s@/\\\\:#?%[\\]\\p{Cc}]+$"
               },
               "name": {
                 "anyOf": [
                   {
                     "type": "string",
                     "maxLength": 120,
+                    "pattern": "^[^\\p{Cc}]*$",
                     "x-samva-string-checks": [
                       {
                         "id": "effect/schema/isMaxLength",
@@ -96361,7 +96393,8 @@
           "subject": {
             "anyOf": [
               {
-                "type": "string"
+                "type": "string",
+                "pattern": "^[^\\p{Cc}]*$"
               },
               {
                 "type": "null"
@@ -96482,6 +96515,37 @@
           }
         },
         "additionalProperties": false
+      },
+      "ReplyToAddresses": {
+        "anyOf": [
+          {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^(?=[^@]{1,64}@)[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+)*@[^\\s@/\\\\:#?%[\\]\\p{Cc}]+[.\\u3002\\uff0e\\uff61][^\\s@/\\\\:#?%[\\]\\p{Cc}]+$"
+            }
+          },
+          {
+            "type": "null"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "EmailAttachments": {
+        "anyOf": [
+          {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EmailAttachment"
+            },
+            "maxItems": 10
+          },
+          {
+            "type": "null"
+          }
+        ]
       },
       "CampaignPage": {
         "type": "object",
@@ -98422,7 +98486,7 @@
             ]
           },
           "email": {
-            "$ref": "#/components/schemas/EmailContent"
+            "$ref": "#/components/schemas/StoredEmailContent"
           }
         },
         "required": [
@@ -98432,7 +98496,7 @@
         ],
         "additionalProperties": false
       },
-      "EmailContent": {
+      "StoredEmailContent": {
         "type": "object",
         "properties": {
           "subject": {
@@ -98466,7 +98530,7 @@
             ]
           },
           "attachments": {
-            "$ref": "#/components/schemas/EmailAttachments"
+            "$ref": "#/components/schemas/StoredEmailAttachments"
           },
           "publicationId": {
             "$ref": "#/components/schemas/TemplatePublicationId"
@@ -98515,7 +98579,7 @@
             ]
           },
           "replyTo": {
-            "$ref": "#/components/schemas/ReplyToAddresses"
+            "$ref": "#/components/schemas/StoredReplyToAddresses"
           },
           "topicId": {
             "anyOf": [
@@ -98933,7 +98997,8 @@
           "subject": {
             "anyOf": [
               {
-                "type": "string"
+                "type": "string",
+                "pattern": "^[^\\p{Cc}]*$"
               },
               {
                 "type": "null"
@@ -99052,13 +99117,14 @@
             "properties": {
               "email": {
                 "type": "string",
-                "minLength": 1
+                "pattern": "^(?=[^@]{1,64}@)[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+)*@[^\\s@/\\\\:#?%[\\]\\p{Cc}]+[.\\u3002\\uff0e\\uff61][^\\s@/\\\\:#?%[\\]\\p{Cc}]+$"
               },
               "name": {
                 "anyOf": [
                   {
                     "type": "string",
                     "maxLength": 120,
+                    "pattern": "^[^\\p{Cc}]*$",
                     "x-samva-string-checks": [
                       {
                         "id": "effect/schema/isMaxLength",
@@ -99118,7 +99184,8 @@
             "type": "object",
             "properties": {
               "email": {
-                "type": "string"
+                "type": "string",
+                "pattern": "^(?=[^@]{1,64}@)[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+)*@[^\\s@/\\\\:#?%[\\]\\p{Cc}]+[.\\u3002\\uff0e\\uff61][^\\s@/\\\\:#?%[\\]\\p{Cc}]+$"
               },
               "name": {
                 "anyOf": [
@@ -99407,6 +99474,125 @@
           "to",
           "email"
         ],
+        "additionalProperties": false
+      },
+      "EmailContent": {
+        "type": "object",
+        "properties": {
+          "subject": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^[^\\p{Cc}]*$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "html": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "text": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "attachments": {
+            "$ref": "#/components/schemas/EmailAttachments"
+          },
+          "publicationId": {
+            "$ref": "#/components/schemas/TemplatePublicationId"
+          },
+          "inputContractId": {
+            "$ref": "#/components/schemas/TemplateInputContractId"
+          },
+          "templateId": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/TemplateId"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "templateSlug": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^(?=.{1,100}$)[a-z0-9]+(?:-[a-z0-9]+)*$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "templateData": {
+            "$ref": "#/components/schemas/TemplateData"
+          },
+          "locale": {
+            "$ref": "#/components/schemas/RenderLocale"
+          },
+          "timeZone": {
+            "$ref": "#/components/schemas/RenderTimeZone"
+          },
+          "inReplyToMessageId": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/MessageId"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "replyTo": {
+            "$ref": "#/components/schemas/ReplyToAddresses"
+          },
+          "topicId": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/TopicId"
+              },
+              {
+                "type": "null"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "The topic for this send. Omit to inherit the template topic; null disables topic inheritance for a direct send. Campaigns require a topic."
+          },
+          "tracking": {
+            "$ref": "#/components/schemas/EmailTrackingOverrideV1"
+          },
+          "footer": {
+            "$ref": "#/components/schemas/EmailFooterOverride"
+          },
+          "headers": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/EmailCustomHeaders"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
         "additionalProperties": false
       },
       "MessageReceipt": {

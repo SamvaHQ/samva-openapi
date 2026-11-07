@@ -1,5 +1,29 @@
 # Changelog
 
+## v0.70.0
+
+- 379 operations, 280 paths, 691 schemas, 41 webhook events.
+- Breaking against v0.69.0.
+- Changed operations:
+  - `PATCH /v1/email/domains/{id}/config`
+  - `PATCH /v1/organizations/current`
+  - `POST /v1/email/senders`
+- Changed schemas:
+  - `CampaignEmailContent`
+  - `CampaignEmailInput`
+  - `CampaignFromInput`
+  - `ContactEventReference`
+  - `EmailContent`
+  - `EmailDispatchContent`
+  - `EmailRecipient`
+  - `EmailSender`
+  - `ReplyToAddresses`
+  - `StoredEmailSendMessage`
+  - `SubscribePayload`
+  - `TrackingRecipientEmail`
+  - `UpdateTemplatePayload`
+
+
 ## v0.69.0
 
 - 379 operations, 280 paths, 687 schemas, 41 webhook events.
