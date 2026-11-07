@@ -1,5 +1,38 @@
 # Changelog
 
+## v0.68.0
+
+- 379 operations, 280 paths, 687 schemas, 41 webhook events.
+- Breaking against v0.67.0.
+- Added operations:
+  - `DELETE /v1/templates/projects/{id}`
+- Changed operations:
+  - `DELETE /v1/templates/{id}`
+  - `GET /v1/templates/{id}/repository`
+  - `GET /v1/templates/{id}/workspace/history`
+  - `PATCH /v1/templates/{id}/workspace`
+  - `POST /v1/templates`
+  - `POST /v1/templates/from-website`
+  - `POST /v1/templates/{id}/publications`
+  - `POST /v1/templates/{id}/repository/credentials`
+  - `POST /v1/templates/{id}/workspace`
+  - `POST /v1/templates/{id}/workspace/check`
+  - `POST /v1/templates/{id}/workspace/conflicts`
+  - `POST /v1/templates/{id}/workspace/diff`
+  - `POST /v1/templates/{id}/workspace/fixtures`
+  - `POST /v1/templates/{id}/workspace/resources`
+  - `POST /v1/templates/{id}/workspace/resources/{resourceId}/remove`
+  - `POST /v1/templates/{id}/workspace/restore`
+  - `POST /v1/templates/{id}/workspace/save`
+  - `PUT /v1/templates/{id}/workspace/assets`
+- Changed schemas:
+  - `CreateTemplatePayload`
+  - `Template`
+  - `TemplateFamilyMember`
+  - `TemplateSummary`
+  - `UpdateTemplatePayload`
+
+
 ## v0.67.0
 
 - 378 operations, 279 paths, 686 schemas, 41 webhook events.

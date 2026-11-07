@@ -3738,6 +3738,16 @@
               }
             }
           },
+          "404": {
+            "description": "ResourceNotFoundError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundError"
+                }
+              }
+            }
+          },
           "422": {
             "description": "ValidationError",
             "content": {
@@ -39589,11 +39599,18 @@
             }
           },
           "409": {
-            "description": "ConflictError",
+            "description": "ConflictError | TemplateInUseError",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ConflictError"
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/ConflictError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/TemplateInUseError"
+                    }
+                  ]
                 }
               }
             }
@@ -40820,7 +40837,7 @@
         "tags": [
           "Templates"
         ],
-        "operationId": "templates.remove",
+        "operationId": "templates.delete",
         "parameters": [
           {
             "name": "id",
@@ -40887,6 +40904,16 @@
               }
             }
           },
+          "409": {
+            "description": "TemplateInUseError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TemplateInUseError"
+                }
+              }
+            }
+          },
           "422": {
             "description": "ValidationError",
             "content": {
@@ -40918,7 +40945,7 @@
             }
           }
         },
-        "description": "Deletes a template from the organization and returns a success flag.",
+        "description": "Permanently deletes a template and its publications, input contracts, variants and preview rasters, freeing its slug. Refuses with 409 and reference kind/id pairs while in use. Sent-message history keeps its snapshots. The project and its Git files remain. External object cleanup retries durably.",
         "summary": "Delete a template",
         "x-samva-scope": "templates:delete"
       }
@@ -41006,11 +41033,18 @@
             }
           },
           "409": {
-            "description": "ConflictError",
+            "description": "ConflictError | TemplateInUseError",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ConflictError"
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/ConflictError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/TemplateInUseError"
+                    }
+                  ]
                 }
               }
             }
@@ -41205,6 +41239,124 @@
           "required": true
         },
         "x-samva-scope": "templates:create"
+      }
+    },
+    "/v1/templates/projects/{id}": {
+      "delete": {
+        "tags": [
+          "Templates"
+        ],
+        "operationId": "templates.deleteProject",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "$ref": "#/components/schemas/TemplateProjectId"
+            },
+            "required": true
+          }
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "SuccessResponse",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuccessResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ResourceNotFoundError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "TemplateInUseError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TemplateInUseError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Permanently deletes the project and every template in it. Refuses with 409 and reference kind/id pairs while any entry or the project is in use. Repository, workspace, conversations, draft assets, publications and previews are removed through durable cleanup. Sent-message history keeps its snapshots. Newsletter issue projects can only be removed through their topic.",
+        "summary": "Permanently delete a template project",
+        "x-samva-scope": "templates:delete"
       }
     },
     "/v1/templates/{id}/workspace": {
@@ -41835,11 +41987,18 @@
             }
           },
           "409": {
-            "description": "ConflictError",
+            "description": "ConflictError | TemplateInUseError",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ConflictError"
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/ConflictError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/TemplateInUseError"
+                    }
+                  ]
                 }
               }
             }
@@ -42541,11 +42700,18 @@
             }
           },
           "409": {
-            "description": "ConflictError",
+            "description": "ConflictError | TemplateInUseError",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ConflictError"
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/ConflictError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/TemplateInUseError"
+                    }
+                  ]
                 }
               }
             }
@@ -42874,11 +43040,18 @@
             }
           },
           "409": {
-            "description": "ConflictError",
+            "description": "ConflictError | TemplateInUseError",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ConflictError"
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/ConflictError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/TemplateInUseError"
+                    }
+                  ]
                 }
               }
             }
@@ -43601,11 +43774,18 @@
             }
           },
           "409": {
-            "description": "ConflictError",
+            "description": "ConflictError | TemplateInUseError",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ConflictError"
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/ConflictError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/TemplateInUseError"
+                    }
+                  ]
                 }
               }
             }
@@ -44351,11 +44531,18 @@
             }
           },
           "409": {
-            "description": "ConflictError",
+            "description": "ConflictError | TemplateInUseError",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ConflictError"
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/ConflictError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/TemplateInUseError"
+                    }
+                  ]
                 }
               }
             }
@@ -44963,11 +45150,18 @@
             }
           },
           "409": {
-            "description": "ConflictError",
+            "description": "ConflictError | TemplateInUseError",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ConflictError"
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/ConflictError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/TemplateInUseError"
+                    }
+                  ]
                 }
               }
             }
@@ -45746,11 +45940,18 @@
             }
           },
           "409": {
-            "description": "ConflictError",
+            "description": "ConflictError | TemplateInUseError",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ConflictError"
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/ConflictError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/TemplateInUseError"
+                    }
+                  ]
                 }
               }
             }
@@ -46004,11 +46205,18 @@
             }
           },
           "409": {
-            "description": "ConflictError",
+            "description": "ConflictError | TemplateInUseError",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ConflictError"
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/ConflictError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/TemplateInUseError"
+                    }
+                  ]
                 }
               }
             }
@@ -46677,11 +46885,18 @@
             }
           },
           "409": {
-            "description": "ConflictError",
+            "description": "ConflictError | TemplateInUseError",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ConflictError"
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/ConflictError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/TemplateInUseError"
+                    }
+                  ]
                 }
               }
             }
@@ -47811,11 +48026,18 @@
             }
           },
           "409": {
-            "description": "ConflictError",
+            "description": "ConflictError | TemplateInUseError",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ConflictError"
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/ConflictError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/TemplateInUseError"
+                    }
+                  ]
                 }
               }
             }
@@ -48694,11 +48916,18 @@
             }
           },
           "409": {
-            "description": "ConflictError",
+            "description": "ConflictError | TemplateInUseError",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ConflictError"
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/ConflictError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/TemplateInUseError"
+                    }
+                  ]
                 }
               }
             }
@@ -50162,11 +50391,18 @@
             }
           },
           "409": {
-            "description": "ConflictError",
+            "description": "ConflictError | TemplateInUseError",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ConflictError"
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/ConflictError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/TemplateInUseError"
+                    }
+                  ]
                 }
               }
             }
@@ -50323,11 +50559,18 @@
             }
           },
           "409": {
-            "description": "ConflictError",
+            "description": "ConflictError | TemplateInUseError",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ConflictError"
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/ConflictError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/TemplateInUseError"
+                    }
+                  ]
                 }
               }
             }
@@ -51038,11 +51281,18 @@
             }
           },
           "409": {
-            "description": "ConflictError",
+            "description": "ConflictError | TemplateInUseError",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ConflictError"
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/ConflictError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/TemplateInUseError"
+                    }
+                  ]
                 }
               }
             }
@@ -51834,11 +52084,18 @@
             }
           },
           "409": {
-            "description": "ConflictError",
+            "description": "ConflictError | TemplateInUseError",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ConflictError"
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/ConflictError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/TemplateInUseError"
+                    }
+                  ]
                 }
               }
             }
@@ -81186,6 +81443,49 @@
         ],
         "x-retryable": false
       },
+      "TemplateInUseError": {
+        "type": "object",
+        "properties": {
+          "_tag": {
+            "type": "string",
+            "enum": [
+              "TemplateInUseError"
+            ]
+          },
+          "message": {
+            "type": "string"
+          },
+          "references": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string"
+                },
+                "id": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "kind",
+                "id"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "_tag",
+          "message",
+          "references"
+        ],
+        "additionalProperties": false,
+        "x-category": [
+          "conflict"
+        ],
+        "x-retryable": false
+      },
       "TemplateProjectId": {
         "type": "string",
         "pattern": "^tproj_[0-9a-hjkmnp-tv-z]{16,24}$",
@@ -81434,9 +81734,6 @@
               "rejected",
               "archived"
             ]
-          },
-          "isActive": {
-            "type": "boolean"
           },
           "publishedAt": {
             "anyOf": [
@@ -81737,7 +82034,6 @@
           "shared",
           "entryPath",
           "status",
-          "isActive",
           "publishedAt",
           "brand",
           "fromDefault",
@@ -82213,16 +82509,6 @@
                 ],
                 "description": "Engagement tracking for sends of this template: `opens` and `clicks`, each inherited from the domain and organization defaults when omitted. A send request's own `tracking` still wins. Null clears the template's default."
               },
-              "isActive": {
-                "anyOf": [
-                  {
-                    "type": "boolean"
-                  },
-                  {
-                    "type": "null"
-                  }
-                ]
-              },
               "shared": {
                 "anyOf": [
                   {
@@ -82521,16 +82807,6 @@
               }
             ]
           },
-          "isActive": {
-            "anyOf": [
-              {
-                "type": "boolean"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
           "namespaceId": {
             "anyOf": [
               {
@@ -82621,9 +82897,6 @@
               "archived"
             ]
           },
-          "isActive": {
-            "type": "boolean"
-          },
           "createdAt": {
             "type": "string"
           },
@@ -82637,7 +82910,6 @@
           "slug",
           "channel",
           "status",
-          "isActive",
           "createdAt",
           "updatedAt"
         ],
@@ -82770,9 +83042,6 @@
               "archived"
             ]
           },
-          "isActive": {
-            "type": "boolean"
-          },
           "publishedAt": {
             "anyOf": [
               {
@@ -82835,7 +83104,6 @@
           "shared",
           "entryPath",
           "status",
-          "isActive",
           "publishedAt",
           "brand",
           "fromDefault",
