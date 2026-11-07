@@ -1,5 +1,15 @@
 # Changelog
 
+## v0.69.0
+
+- 379 operations, 280 paths, 687 schemas, 41 webhook events.
+- Breaking against v0.68.0.
+- Changed schemas:
+  - `Mailbox`
+  - `MailboxEmailEndpoint`
+  - `MailboxSummary`
+
+
 ## v0.68.0
 
 - 379 operations, 280 paths, 687 schemas, 41 webhook events.

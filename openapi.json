@@ -57469,7 +57469,27 @@
           "Mailboxes"
         ],
         "operationId": "mailboxes.create",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "idempotency-key",
+            "in": "header",
+            "schema": {
+              "type": "string",
+              "pattern": "^[\\s\\S]{1,255}$",
+              "description": "Optional key that makes mailbox creation idempotent for the calling key or member. The same key and body return the original mailbox in its current state. A different body with the same key returns 409. Keep the key after a lost response; it remains bound for the mailbox's lifetime.",
+              "x-samva-string-checks": [
+                {
+                  "id": "effect/schema/isPattern",
+                  "payload": {
+                    "source": "^[\\s\\S]{1,255}$",
+                    "flags": ""
+                  }
+                }
+              ]
+            },
+            "required": false
+          }
+        ],
         "security": [
           {
             "apiKey": []
@@ -57594,7 +57614,7 @@
             }
           }
         },
-        "description": "Creates a mailbox with one endpoint and returns it with status 201; the caller gets an admin grant on it. An email endpoint's address must be under the organization's Samva-hosted mail domain or a verified domain with receiving enabled, and the mailbox sends from it. A phone endpoint's address is a number the organization connected on that channel, in E.164 form. The slug defaults to the address's local part, or a phone number's digits. Pass `slug` when that is taken or not a valid slug. The mailbox receives mail from now on; mail that arrived earlier is not added to it. Conflicts if the address or slug is already in use. Returns 402 when the organization is at its plan's mailbox allowance or at its mailbox storage allowance; incoming mail is still received past the storage allowance.",
+        "description": "Creates a mailbox with one endpoint and returns it with status 201; the caller gets an admin grant on it. An email endpoint's address must be under the organization's Samva-hosted mail domain or a verified domain with receiving enabled, and the mailbox sends from it once its sendingStatus is ready. Hosted addresses return pending while sending setup completes. A phone endpoint's address is a number the organization connected on that channel, in E.164 form. The slug defaults to the address's local part, or a phone number's digits. Pass `slug` when that is taken or not a valid slug. The mailbox receives mail from now on; mail that arrived earlier is not added to it. Pass Idempotency-Key to retry safely: the same key and body return the original mailbox in its current state; a changed body returns 409. Conflicts if the address or slug is already in use. Returns 402 when the organization is at its plan's mailbox allowance or at its mailbox storage allowance; incoming mail is still received past the storage allowance.",
         "summary": "Create a mailbox",
         "requestBody": {
           "content": {
@@ -57606,6 +57626,7 @@
           },
           "required": true
         },
+        "x-idempotent": true,
         "x-samva-scope": "mailboxes:manage"
       }
     },
@@ -77835,6 +77856,21 @@
               }
             ]
           },
+          "sendingStatus": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "pending",
+                  "ready",
+                  "failed"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "createdAt": {
             "type": "string"
           },
@@ -77870,6 +77906,7 @@
           "name",
           "status",
           "primaryAddress",
+          "sendingStatus",
           "createdAt",
           "description",
           "metadata",
@@ -78019,6 +78056,15 @@
                 "type": "null"
               }
             ]
+          },
+          "sendingStatus": {
+            "type": "string",
+            "enum": [
+              "pending",
+              "ready",
+              "failed"
+            ],
+            "description": "Sending readiness. Pending means sending setup is incomplete. Send only when ready. If setup fails, contact support to recover the sending address."
           }
         },
         "required": [
@@ -78028,7 +78074,8 @@
           "default",
           "channel",
           "source",
-          "domainId"
+          "domainId",
+          "sendingStatus"
         ],
         "additionalProperties": false
       },
@@ -78335,6 +78382,21 @@
               }
             ]
           },
+          "sendingStatus": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "pending",
+                  "ready",
+                  "failed"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "createdAt": {
             "type": "string"
           }
@@ -78348,6 +78410,7 @@
           "name",
           "status",
           "primaryAddress",
+          "sendingStatus",
           "createdAt"
         ],
         "additionalProperties": false
