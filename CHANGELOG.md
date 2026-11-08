@@ -1,5 +1,16 @@
 # Changelog
 
+## v0.71.0
+
+- 379 operations, 280 paths, 691 schemas, 41 webhook events.
+- Breaking against v0.70.0.
+- Changed operations:
+  - `POST /v1/media`
+  - `POST /v1/media/{id}/complete`
+  - `POST /v1/messages`
+  - `POST /v1/messages/scheduled`
+
+
 ## v0.70.0
 
 - 379 operations, 280 paths, 691 schemas, 41 webhook events.

@@ -413,7 +413,7 @@
             }
           }
         },
-        "description": "Sends a message on the requested channel and returns its receipt (id, status, and why it waits when it does) with a 201 Created status. Requires `messages:create` or the send permission of the channel it sends on, such as `email:send`. `channel` selects the payload variant. Repeating an identical request with the same optional `Idempotency-Key` header returns the original receipt; reusing the key for different content returns a conflict.",
+        "description": "Sends a message on the requested channel and returns its receipt (id, status, and why it waits when it does) with a 201 Created status. Requires `messages:create` or the send permission of the channel it sends on, such as `email:send`. `channel` selects the payload variant. Email and WhatsApp sends are available. Repeating an identical request with the same optional `Idempotency-Key` header returns the original receipt; reusing the key for different content returns a conflict.",
         "summary": "Send a message",
         "requestBody": {
           "content": {
@@ -426,7 +426,7 @@
           "required": true
         },
         "x-idempotent": true,
-        "x-samva-scope": "messages:create or email:send"
+        "x-samva-scope": "messages:create or whatsapp:send or email:send"
       }
     },
     "/v1/messages/{id}": {
@@ -2692,7 +2692,7 @@
             }
           }
         },
-        "description": "Schedules a message for dispatch at the absolute ISO-8601 timestamp supplied in scheduledFor. Requires `messages:create` or the send permission of the channel it sends on, such as `email:send`. Optional timezone is validated IANA display metadata only and never changes the execution instant.",
+        "description": "Schedules a message for dispatch at the absolute ISO-8601 timestamp supplied in scheduledFor. Requires `messages:create` or the send permission of the channel it sends on, such as `email:send`. The send payload is the same channel union the immediate send accepts, with each channel's content checked at schedule time so a send that could never render fails now rather than hours later: email and WhatsApp schedules are available. Optional timezone is validated IANA display metadata only and never changes the execution instant.",
         "summary": "Schedule a message",
         "requestBody": {
           "content": {
@@ -2752,7 +2752,7 @@
           "required": true
         },
         "x-idempotent": true,
-        "x-samva-scope": "messages:create or email:send"
+        "x-samva-scope": "messages:create or whatsapp:send or email:send"
       },
       "get": {
         "tags": [
@@ -14670,7 +14670,7 @@
           },
           "required": true
         },
-        "x-samva-scope": "messages:create or email:send or mailboxes:send or mailboxes:update"
+        "x-samva-scope": "messages:create or whatsapp:send or email:send or mailboxes:send or mailboxes:update"
       }
     },
     "/v1/media/{id}/complete": {
@@ -14778,7 +14778,7 @@
         },
         "description": "Verifies the uploaded object exists in storage, marks the media object ready, and returns it with a download URL. Requires the permission that creating the media object did.",
         "summary": "Complete a media upload",
-        "x-samva-scope": "messages:create or email:send or mailboxes:send or mailboxes:update"
+        "x-samva-scope": "messages:create or whatsapp:send or email:send or mailboxes:send or mailboxes:update"
       }
     },
     "/v1/media/{id}": {
@@ -62004,7 +62004,7 @@
             }
           },
           "422": {
-            "description": "ValidationError",
+            "description": "WhatsAppServiceWindowClosedError | ValidationError",
             "content": {
               "application/json": {
                 "schema": {
@@ -62727,7 +62727,7 @@
             }
           },
           "422": {
-            "description": "ValidationError",
+            "description": "WhatsAppServiceWindowClosedError | ValidationError",
             "content": {
               "application/json": {
                 "schema": {
@@ -62794,7 +62794,7 @@
             }
           }
         },
-        "description": "Replies to the message's Reply-To address, or its sender, in the same thread and from the thread's endpoint. The server sets the recipients, subject, and threading headers. The body's `channel` must match the thread's. On a phone channel the reply goes to the number on the other side of the thread.",
+        "description": "Replies to the message's Reply-To address, or its sender, in the same thread and from the thread's endpoint. The server sets the recipients, subject, and threading headers. The body's `channel` must match the thread's. On a phone channel the reply goes to the number on the other side of the thread. On WhatsApp, free-form `text` needs the customer's 24-hour service window to be open, and a closed window is refused (422, `WhatsAppServiceWindowClosedError`) rather than converted; send an approved template with `templateId` instead.",
         "summary": "Reply to a message",
         "requestBody": {
           "content": {
@@ -62960,7 +62960,7 @@
             }
           },
           "422": {
-            "description": "ValidationError",
+            "description": "WhatsAppServiceWindowClosedError | ValidationError",
             "content": {
               "application/json": {
                 "schema": {
@@ -63193,7 +63193,7 @@
             }
           },
           "422": {
-            "description": "ValidationError",
+            "description": "WhatsAppServiceWindowClosedError | ValidationError",
             "content": {
               "application/json": {
                 "schema": {
@@ -64460,7 +64460,7 @@
             }
           },
           "422": {
-            "description": "ValidationError",
+            "description": "WhatsAppServiceWindowClosedError | ValidationError",
             "content": {
               "application/json": {
                 "schema": {
@@ -64962,7 +64962,7 @@
             }
           },
           "422": {
-            "description": "ValidationError",
+            "description": "WhatsAppServiceWindowClosedError | ValidationError",
             "content": {
               "application/json": {
                 "schema": {
@@ -65165,7 +65165,7 @@
             }
           },
           "422": {
-            "description": "ValidationError",
+            "description": "WhatsAppServiceWindowClosedError | ValidationError",
             "content": {
               "application/json": {
                 "schema": {
@@ -65368,7 +65368,7 @@
             }
           },
           "422": {
-            "description": "ValidationError",
+            "description": "WhatsAppServiceWindowClosedError | ValidationError",
             "content": {
               "application/json": {
                 "schema": {
@@ -98747,7 +98747,7 @@
           "whatsapp"
         ],
         "additionalProperties": false,
-        "description": "The payload is accepted by the contract today and the endpoint answers 403 until the channel launches for your organization."
+        "description": "Send WhatsApp messages from your connected business account."
       },
       "WhatsAppRecipients": {
         "type": "array",
@@ -99720,7 +99720,7 @@
           "whatsapp"
         ],
         "additionalProperties": false,
-        "description": "The payload is accepted by the contract today and the endpoint answers 403 until the channel launches for your organization."
+        "description": "Send WhatsApp messages from your connected business account."
       },
       "SmsSendMessagePayload": {
         "type": "object",
