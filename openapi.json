@@ -20164,7 +20164,7 @@
             }
           }
         },
-        "description": "The complete encoded JSON request must not exceed 3000000 bytes. Reads multiple declared export files without changing contacts. Restrictive evidence wins per address. Returns estimated counts and at most 100 diagnostics; processing rechecks current restrictions. Filenames never establish permission. Missing required columns refuse the file; unknown status values are conflicts and never subscribe a reader.",
+        "description": "The complete encoded JSON request must not exceed 3000000 bytes. Reads multiple export files without changing contacts. Readers are assumed opted in where permission evidence is absent or blank. Explicit restrictive evidence wins per address. Returns estimated counts and at most 100 diagnostics; processing rechecks current restrictions. Filenames never establish permission. Missing email columns refuse the file; unrecognized nonblank status values are conflicts and never subscribe a reader.",
         "summary": "Preview a list migration",
         "requestBody": {
           "content": {
@@ -20259,25 +20259,16 @@
                                   "scope"
                                 ],
                                 "additionalProperties": false
-                              }
-                            ]
-                          },
-                          "suppressionFree": {
-                            "anyOf": [
-                              {
-                                "type": "boolean"
                               },
                               {
                                 "type": "null"
                               }
-                            ],
-                            "description": "The operator declares this beehiiv export was filtered to Suppression does not exist."
+                            ]
                           }
                         },
                         "required": [
                           "name",
-                          "csv",
-                          "evidence"
+                          "csv"
                         ],
                         "additionalProperties": false
                       }
@@ -20345,25 +20336,16 @@
                                 "scope"
                               ],
                               "additionalProperties": false
-                            }
-                          ]
-                        },
-                        "suppressionFree": {
-                          "anyOf": [
-                            {
-                              "type": "boolean"
                             },
                             {
                               "type": "null"
                             }
-                          ],
-                          "description": "The operator declares this beehiiv export was filtered to Suppression does not exist."
+                          ]
                         }
                       },
                       "required": [
                         "name",
-                        "csv",
-                        "evidence"
+                        "csv"
                       ],
                       "additionalProperties": false
                     },
@@ -20821,25 +20803,16 @@
                                           "scope"
                                         ],
                                         "additionalProperties": false
-                                      }
-                                    ]
-                                  },
-                                  "suppressionFree": {
-                                    "anyOf": [
-                                      {
-                                        "type": "boolean"
                                       },
                                       {
                                         "type": "null"
                                       }
-                                    ],
-                                    "description": "The operator declares this beehiiv export was filtered to Suppression does not exist."
+                                    ]
                                   }
                                 },
                                 "required": [
                                   "name",
-                                  "csv",
-                                  "evidence"
+                                  "csv"
                                 ],
                                 "additionalProperties": false
                               }
@@ -20907,25 +20880,16 @@
                                         "scope"
                                       ],
                                       "additionalProperties": false
-                                    }
-                                  ]
-                                },
-                                "suppressionFree": {
-                                  "anyOf": [
-                                    {
-                                      "type": "boolean"
                                     },
                                     {
                                       "type": "null"
                                     }
-                                  ],
-                                  "description": "The operator declares this beehiiv export was filtered to Suppression does not exist."
+                                  ]
                                 }
                               },
                               "required": [
                                 "name",
-                                "csv",
-                                "evidence"
+                                "csv"
                               ],
                               "additionalProperties": false
                             },
@@ -89161,6 +89125,16 @@
                           {
                             "type": "object",
                             "properties": {
+                              "permissionAssumed": {
+                                "anyOf": [
+                                  {
+                                    "type": "boolean"
+                                  },
+                                  {
+                                    "type": "null"
+                                  }
+                                ]
+                              },
                               "signupAt": {
                                 "anyOf": [
                                   {
@@ -89285,11 +89259,35 @@
                                     "scope"
                                   ],
                                   "additionalProperties": false
+                                },
+                                {
+                                  "type": "null"
                                 }
                               ]
                             },
                             "suppressionFree": {
-                              "type": "boolean"
+                              "anyOf": [
+                                {
+                                  "type": "boolean"
+                                },
+                                {
+                                  "type": "null"
+                                }
+                              ]
+                            },
+                            "permissionBasis": {
+                              "anyOf": [
+                                {
+                                  "type": "string",
+                                  "enum": [
+                                    "assumed",
+                                    "exported"
+                                  ]
+                                },
+                                {
+                                  "type": "null"
+                                }
+                              ]
                             },
                             "sourceStatus": {
                               "anyOf": [
@@ -89325,8 +89323,6 @@
                           "required": [
                             "file",
                             "row",
-                            "declared",
-                            "suppressionFree",
                             "sourceStatus",
                             "signupAt",
                             "source"
@@ -89370,6 +89366,16 @@
                           {
                             "type": "object",
                             "properties": {
+                              "permissionAssumed": {
+                                "anyOf": [
+                                  {
+                                    "type": "boolean"
+                                  },
+                                  {
+                                    "type": "null"
+                                  }
+                                ]
+                              },
                               "signupAt": {
                                 "anyOf": [
                                   {
@@ -89494,11 +89500,35 @@
                                     "scope"
                                   ],
                                   "additionalProperties": false
+                                },
+                                {
+                                  "type": "null"
                                 }
                               ]
                             },
                             "suppressionFree": {
-                              "type": "boolean"
+                              "anyOf": [
+                                {
+                                  "type": "boolean"
+                                },
+                                {
+                                  "type": "null"
+                                }
+                              ]
+                            },
+                            "permissionBasis": {
+                              "anyOf": [
+                                {
+                                  "type": "string",
+                                  "enum": [
+                                    "assumed",
+                                    "exported"
+                                  ]
+                                },
+                                {
+                                  "type": "null"
+                                }
+                              ]
                             },
                             "sourceStatus": {
                               "anyOf": [
@@ -89534,8 +89564,6 @@
                           "required": [
                             "file",
                             "row",
-                            "declared",
-                            "suppressionFree",
                             "sourceStatus",
                             "signupAt",
                             "source"

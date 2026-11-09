@@ -1,5 +1,16 @@
 # Changelog
 
+## v0.74.0
+
+- 379 operations, 280 paths, 692 schemas, 41 webhook events.
+- Breaking against v0.73.0.
+- Changed operations:
+  - `POST /v1/contacts/imports`
+  - `POST /v1/contacts/imports/plan`
+- Changed schemas:
+  - `Contact`
+
+
 ## v0.73.0
 
 - 379 operations, 280 paths, 692 schemas, 41 webhook events.
