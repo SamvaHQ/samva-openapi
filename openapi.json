@@ -29841,7 +29841,7 @@
             }
           }
         },
-        "description": "Upserts explicit subscribed or unsubscribed status for one channel. Each contact is named by ID, email, or phone. New addresses create contacts in the topic's namespace. Repeating the same status is idempotent.",
+        "description": "Upserts explicit subscribed or unsubscribed status for one channel. Each contact is named by ID, email, or phone. New addresses create contacts in the topic's namespace. Repeating the same status is idempotent. On email, setting subscribed never overrides a contact's explicit unsubscribe: those contacts are counted in kept, and only the recipient can resubscribe them.",
         "summary": "Set topic subscriptions",
         "requestBody": {
           "content": {
@@ -84404,10 +84404,17 @@
             "type": "integer",
             "minimum": 0,
             "maximum": 9007199254740991
+          },
+          "kept": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991,
+            "description": "Email contacts left unsubscribed because they explicitly unsubscribed from this topic. Only the recipient can resubscribe them, through the preference page or double opt-in."
           }
         },
         "required": [
-          "updated"
+          "updated",
+          "kept"
         ],
         "additionalProperties": false
       },

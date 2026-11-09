@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.75.0
+
+- 379 operations, 280 paths, 692 schemas, 41 webhook events.
+- Breaking against v0.74.0.
+- Changed schemas:
+  - `TopicSetSubscriptionsResult`
+
+
 ## v0.74.0
 
 - 379 operations, 280 paths, 692 schemas, 41 webhook events.
