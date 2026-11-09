@@ -86035,6 +86035,16 @@
           "name": {
             "type": "string"
           },
+          "setupJob": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/AgentSetupJob"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "namespaceId": {
             "anyOf": [
               {
@@ -86119,6 +86129,7 @@
         "required": [
           "id",
           "name",
+          "setupJob",
           "namespaceId",
           "revision",
           "draft",
@@ -86158,6 +86169,14 @@
           "capReachedAt"
         ],
         "additionalProperties": false
+      },
+      "AgentSetupJob": {
+        "type": "string",
+        "enum": [
+          "support",
+          "store",
+          "booking"
+        ]
       },
       "PublishAgentPayload": {
         "type": "object",
@@ -86497,6 +86516,17 @@
           "name": {
             "$ref": "#/components/schemas/AgentName"
           },
+          "setupJob": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/AgentSetupJob"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "What the agent mostly does: support answers customer questions, store helps shoppers, and booking handles appointments. Omit when no job is stated. Returned as setupJob on the agent; it does not change the supplied definition."
+          },
           "namespaceId": {
             "anyOf": [
               {
@@ -86742,6 +86772,16 @@
           "name": {
             "type": "string"
           },
+          "setupJob": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/AgentSetupJob"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "namespaceId": {
             "anyOf": [
               {
@@ -86817,6 +86857,7 @@
         "required": [
           "id",
           "name",
+          "setupJob",
           "namespaceId",
           "publishedVersion",
           "publishedAt",
