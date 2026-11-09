@@ -89565,6 +89565,16 @@
               }
             ]
           },
+          "addedAt": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "createdAt": {
             "type": "string"
           },
@@ -89587,6 +89597,7 @@
           "tags",
           "metadata",
           "importProvenance",
+          "addedAt",
           "createdAt",
           "updatedAt"
         ],
@@ -94979,6 +94990,7 @@
                       "type": "string",
                       "enum": [
                         "unsubscribed",
+                        "not_added",
                         "blocked",
                         "suppressed",
                         "opted_out",
@@ -95271,6 +95283,7 @@
             "type": "string",
             "enum": [
               "unsubscribed",
+              "not_added",
               "blocked",
               "suppressed",
               "opted_out",
@@ -96015,6 +96028,7 @@
             "type": "string",
             "enum": [
               "unsubscribed",
+              "not_added",
               "blocked",
               "suppressed",
               "opted_out",
