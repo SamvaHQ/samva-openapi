@@ -54389,6 +54389,222 @@
         "x-samva-scope": "webhooks:update"
       }
     },
+    "/v1/organizations/members/invitations": {
+      "post": {
+        "tags": [
+          "Organizations"
+        ],
+        "operationId": "organizations.inviteMember",
+        "parameters": [],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "$ref": "#/components/schemas/InvitationId"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "role": {
+                      "type": "string",
+                      "enum": [
+                        "member",
+                        "admin",
+                        "mail_user"
+                      ]
+                    },
+                    "namespaceId": {
+                      "anyOf": [
+                        {
+                          "$ref": "#/components/schemas/NamespaceId"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "mailboxAddress": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "pending"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "email",
+                    "role",
+                    "namespaceId",
+                    "mailboxAddress",
+                    "status"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "PaymentRequiredError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentRequiredError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ResourceNotFoundError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "ConflictError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConflictError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "BillingProviderError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BillingProviderError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Invites a member with a personal mailbox address. A namespace confines the member and their credentials to its resources and requires a verified receiving domain in that namespace.",
+        "summary": "Invite an organization member",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "pattern": "^(?=[^@]{1,64}@)[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+)*@[^\\s@/\\\\:#?%[\\]\\p{Cc}]+[.\\u3002\\uff0e\\uff61][^\\s@/\\\\:#?%[\\]\\p{Cc}]+$"
+                  },
+                  "role": {
+                    "type": "string",
+                    "enum": [
+                      "member",
+                      "admin",
+                      "mail_user"
+                    ]
+                  },
+                  "mailboxAddress": {
+                    "type": "string"
+                  },
+                  "namespaceId": {
+                    "anyOf": [
+                      {
+                        "$ref": "#/components/schemas/NamespaceId"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  }
+                },
+                "required": [
+                  "email",
+                  "role",
+                  "mailboxAddress"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          "required": true
+        },
+        "x-samva-scope": "member:invite"
+      }
+    },
     "/v1/organizations": {
       "post": {
         "tags": [
@@ -55249,7 +55465,16 @@
           "Organizations"
         ],
         "operationId": "organizations.getPersonalMailboxAddressOptions",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "namespaceId",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/NamespaceId"
+            },
+            "required": false
+          }
+        ],
         "security": [
           {
             "apiKey": []
@@ -55308,6 +55533,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ForbiddenError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ResourceNotFoundError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundError"
                 }
               }
             }
@@ -56284,7 +56519,7 @@
             }
           }
         },
-        "description": "Creates a new API key for the organization and returns the created key, including the plaintext secret, with a 201 response.",
+        "description": "Creates a new API key for the organization and returns the created key, including the plaintext secret, with a 201 response. A restricted member can issue keys only in their namespace, capped by its available resources.",
         "summary": "Create an API key",
         "requestBody": {
           "content": {
@@ -56334,7 +56569,7 @@
                         "type": "null"
                       }
                     ],
-                    "description": "Defaults to full access. A restricted API key creating a key defaults to its own grants and cannot issue full access."
+                    "description": "Defaults to full access for an unrestricted member, or namespace grants for a restricted member. A restricted API key creating a key defaults to its own grants and cannot issue full access."
                   }
                 },
                 "required": [
@@ -56486,7 +56721,7 @@
             }
           }
         },
-        "description": "Returns the organization's API keys, newest first, filterable by namespace (`namespaceId`), status and a search term matched against name and description. Pass `nextCursor` back as `cursor` for the next page; it is null on the last page.",
+        "description": "Returns the organization's API keys, newest first, filterable by namespace (`namespaceId`), status and a search term matched against name and description. Restricted members receive only keys stored in their namespace. Pass `nextCursor` back as `cursor` for the next page; it is null on the last page.",
         "summary": "List API keys",
         "x-samva-scope": "apiKeys:read"
       }
@@ -56594,7 +56829,7 @@
             }
           }
         },
-        "description": "Returns the API key with the given ID, including its metadata and access.",
+        "description": "Returns the API key with the given ID, including its metadata and access. Restricted members can read only keys stored in their namespace.",
         "summary": "Get an API key",
         "x-samva-scope": "apiKeys:read"
       },
@@ -56861,7 +57096,7 @@
             }
           }
         },
-        "description": "Deactivates an API key so it can no longer authenticate requests. Revocation is final: a revoked key never authenticates again. Its record stays listable, so the messages it sent stay attributed to it.",
+        "description": "Deactivates an API key so it can no longer authenticate requests. Restricted members can revoke only keys stored in their namespace. Revocation is final: a revoked key never authenticates again. Its record stays listable, so the messages it sent stay attributed to it.",
         "summary": "Revoke an API key",
         "x-samva-scope": "apiKeys:delete"
       }
@@ -79906,6 +80141,11 @@
       },
       "IanaTimezone": {
         "type": "string"
+      },
+      "InvitationId": {
+        "type": "string",
+        "pattern": "^inv_[0-9a-hjkmnp-tv-z]{16,24}$",
+        "x-samva-brand": "InvitationId"
       },
       "WebhookSigningSecret": {
         "type": "object",

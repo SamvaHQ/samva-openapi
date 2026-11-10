@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.80.1
+
+- 380 operations, 281 paths, 694 schemas, 41 webhook events.
+- Compatible against v0.80.0.
+- Added operations:
+  - `POST /v1/organizations/members/invitations`
+
+
 ## v0.80.0
 
 - 379 operations, 280 paths, 693 schemas, 41 webhook events.
