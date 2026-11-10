@@ -1,5 +1,16 @@
 # Changelog
 
+## v0.79.0
+
+- 379 operations, 280 paths, 692 schemas, 41 webhook events.
+- Breaking against v0.78.0.
+- Changed operations:
+  - `PATCH /v1/email/domains/{id}/config`
+- Changed schemas:
+  - `EmailDomainDetailed`
+  - `EmailDomainPage`
+
+
 ## v0.78.0
 
 - 379 operations, 280 paths, 692 schemas, 41 webhook events.

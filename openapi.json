@@ -6491,6 +6491,16 @@
                         "type": "null"
                       }
                     ]
+                  },
+                  "shared": {
+                    "anyOf": [
+                      {
+                        "type": "boolean"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
                   }
                 },
                 "required": [
@@ -6557,6 +6567,21 @@
             "in": "query",
             "schema": {
               "$ref": "#/components/schemas/NamespaceId"
+            },
+            "required": false
+          },
+          {
+            "name": "shared",
+            "in": "query",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ]
             },
             "required": false
           }
@@ -6638,7 +6663,7 @@
             }
           }
         },
-        "description": "Returns the organization's sending domains, newest first. A namespace-scoped key lists only its namespace's domains; an organization-wide caller lists every domain, or one namespace's with `namespaceId`. Pass `nextCursor` back as `cursor` for the next page; it is null on the last page. `sendable=true` lists only domains a send can use now: active, and verified, or verified before and degraded since. Each row carries `deliverability` (bounce and complaint rates over the last 24 hours, the window the 5% bounce limit is enforced over) and `series`, the last 14 days of daily email sends attributed to the domain, oldest first.",
+        "description": "Returns the organization's sending domains, newest first. A namespace-scoped caller lists its namespace's domains and shared organization domains; an organization-wide caller lists every domain, or one namespace's with `namespaceId`. Pass `nextCursor` back as `cursor` for the next page; it is null on the last page. `sendable=true` lists only domains a send can use now: active, and verified, or verified before and degraded since. Each row carries `deliverability` (bounce and complaint rates over the last 24 hours, the window the 5% bounce limit is enforced over) and `series`, the last 14 days of daily email sends attributed to the domain, oldest first.",
         "summary": "List sending domains",
         "x-samva-scope": "domains:read"
       }
@@ -7214,12 +7239,32 @@
               }
             }
           },
+          "409": {
+            "description": "ConflictError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConflictError"
+                }
+              }
+            }
+          },
           "422": {
             "description": "ValidationError",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "RateLimitedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RateLimitedError"
                 }
               }
             }
@@ -8273,6 +8318,9 @@
                     "id": {
                       "$ref": "#/components/schemas/EmailDomainId"
                     },
+                    "shared": {
+                      "type": "boolean"
+                    },
                     "openTracking": {
                       "anyOf": [
                         {
@@ -8340,6 +8388,7 @@
                   },
                   "required": [
                     "id",
+                    "shared",
                     "openTracking",
                     "clickTracking",
                     "replyTo",
@@ -8392,6 +8441,16 @@
               }
             }
           },
+          "409": {
+            "description": "ConflictError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConflictError"
+                }
+              }
+            }
+          },
           "422": {
             "description": "ValidationError",
             "content": {
@@ -8402,12 +8461,32 @@
               }
             }
           },
+          "429": {
+            "description": "RateLimitedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RateLimitedError"
+                }
+              }
+            }
+          },
           "500": {
             "description": "InternalError",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "EmailChannelError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmailChannelError"
                 }
               }
             }
@@ -8431,6 +8510,16 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "shared": {
+                    "anyOf": [
+                      {
+                        "type": "boolean"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
                   "openTracking": {
                     "anyOf": [
                       {
@@ -9863,7 +9952,7 @@
             }
           }
         },
-        "description": "Returns senders, newest first. A namespace-scoped key lists only its namespace's senders; an organization-wide caller lists every sender, or one namespace's with `namespaceId`. Optionally filtered by verification status, active state, or default flag. Pass `nextCursor` back as `cursor` for the next page; it is null on the last page. Each row carries `deliverability` (bounce and complaint rates over the last 24 hours) and `series`, the last 14 days of daily email sends from the address, oldest first.",
+        "description": "Returns senders, newest first. A namespace-scoped caller lists its namespace's senders and senders on shared organization domains; an organization-wide caller lists every sender, or one namespace's with `namespaceId`. Optionally filtered by verification status, active state, or default flag. Pass `nextCursor` back as `cursor` for the next page; it is null on the last page. Each row carries `deliverability` (bounce and complaint rates over the last 24 hours) and `series`, the last 14 days of daily email sends from the address, oldest first.",
         "summary": "List senders",
         "x-samva-scope": "domains:read"
       }
@@ -10446,6 +10535,16 @@
               }
             }
           },
+          "409": {
+            "description": "ConflictError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConflictError"
+                }
+              }
+            }
+          },
           "422": {
             "description": "ValidationError",
             "content": {
@@ -10456,12 +10555,32 @@
               }
             }
           },
+          "429": {
+            "description": "RateLimitedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RateLimitedError"
+                }
+              }
+            }
+          },
           "500": {
             "description": "InternalError",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "EmailChannelError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmailChannelError"
                 }
               }
             }
@@ -10477,8 +10596,31 @@
             }
           }
         },
-        "description": "Marks a verified, active sender as the default of its scope, atomically clearing the previous default of the same scope: the organization level, or the sender's namespace. Omitted-`from` sends use it when neither the request nor the template names a `from`; with no default, the organization's sole verified sender is used.",
+        "description": "Sets a verified, active sender as the default for the caller's namespace, the explicit namespaceId, or the sender's own scope. A namespace can select its own sender or a sender on a shared organization domain. This changes only the namespace's default; it does not change a shared sender. Omitted-`from` sends use this default when neither the request nor the template names a `from`.",
         "summary": "Set the default sender",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "namespaceId": {
+                    "anyOf": [
+                      {
+                        "$ref": "#/components/schemas/NamespaceId"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  }
+                },
+                "additionalProperties": false
+              }
+            }
+          },
+          "required": true
+        },
         "x-samva-scope": "domains:update"
       }
     },
@@ -93685,7 +93827,10 @@
                 "type": "null"
               }
             ],
-            "description": "The namespace the domain belongs to, or null at organization level. Only that namespace's keys and organization-wide callers reach it."
+            "description": "The namespace the domain belongs to, or null at organization level. Namespace callers also reach organization-level domains whose shared flag is true."
+          },
+          "shared": {
+            "type": "boolean"
           },
           "isDefault": {
             "type": "boolean"
@@ -93708,6 +93853,7 @@
           "dnsRecords",
           "verifiedAt",
           "namespaceId",
+          "shared",
           "isDefault",
           "deliverability",
           "createdAt",
@@ -94639,7 +94785,10 @@
                       "type": "null"
                     }
                   ],
-                  "description": "The namespace the domain belongs to, or null at organization level. Only that namespace's keys and organization-wide callers reach it."
+                  "description": "The namespace the domain belongs to, or null at organization level. Namespace callers also reach organization-level domains whose shared flag is true."
+                },
+                "shared": {
+                  "type": "boolean"
                 },
                 "isDefault": {
                   "type": "boolean"
@@ -94663,6 +94812,7 @@
                 "domain",
                 "phase",
                 "namespaceId",
+                "shared",
                 "isDefault",
                 "deliverability",
                 "series",
