@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.77.0
+
+- 379 operations, 280 paths, 692 schemas, 41 webhook events.
+- Breaking against v0.76.0.
+- Changed schemas:
+  - `SuppressionEntry`
+
+
 ## v0.76.0
 
 - 379 operations, 280 paths, 692 schemas, 41 webhook events.

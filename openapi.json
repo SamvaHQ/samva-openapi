@@ -11434,6 +11434,14 @@
         "operationId": "email.listSuppressions",
         "parameters": [
           {
+            "name": "namespaceId",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/NamespaceId"
+            },
+            "required": false
+          },
+          {
             "name": "type",
             "in": "query",
             "schema": {
@@ -11580,7 +11588,7 @@
             }
           }
         },
-        "description": "Returns the addresses this organization will not send to, newest first, optionally filtered by suppression type, active or expired state, and an address substring. Pass `nextCursor` back as `cursor` for the next page; it is null on the last page.",
+        "description": "Returns suppressed addresses, newest first, optionally filtered by suppression type, active or expired state, and an address substring. A namespace-scoped key lists only its namespace; an organization-wide caller lists every scope, or exactly one namespace with `namespaceId`. Each entry includes its `namespaceId`; null identifies organization-wide protection across every namespace. Pass `nextCursor` back as `cursor` for the next page; it is null on the last page.",
         "summary": "List suppressed addresses",
         "x-samva-scope": "email:read"
       }
@@ -11591,7 +11599,16 @@
           "Email"
         ],
         "operationId": "email.countSuppressions",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "namespaceId",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/NamespaceId"
+            },
+            "required": false
+          }
+        ],
         "security": [
           {
             "apiKey": []
@@ -11669,7 +11686,7 @@
             }
           }
         },
-        "description": "Returns how many addresses this organization will not send to now, by suppression type. Expired suppressions are not counted.",
+        "description": "Returns active suppression counts by type. A namespace-scoped key counts only its namespace; an organization-wide caller counts every scope, or exactly one namespace with `namespaceId`. Expired suppressions are not counted.",
         "summary": "Count suppressed addresses",
         "x-samva-scope": "email:read"
       }
@@ -11746,6 +11763,16 @@
               }
             }
           },
+          "409": {
+            "description": "ConflictError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConflictError"
+                }
+              }
+            }
+          },
           "422": {
             "description": "ValidationError",
             "content": {
@@ -11787,7 +11814,7 @@
             }
           }
         },
-        "description": "Deletes a suppression so this organization can send to the address again. If the deletion cannot complete, it fails rather than reporting success, and it is safe to retry. Deliverability caveat: a bounce or complaint suppression records a real delivery failure, and sending to the address again risks the reputation damage the suppression prevented.",
+        "description": "Deletes one suppression in its own scope after clearing its saved provider owners. Other applicable suppressions remain enforced. A namespace-scoped key can remove only its namespace's entries; other scopes answer as not found. If new feedback changes the entry during removal, it returns 409 and retains the entry for a fresh read before retrying. Provider failures retain the local entry. Deliverability caveat: a bounce or complaint suppression records a real delivery failure, and sending to the address again risks the reputation damage the suppression prevented.",
         "summary": "Remove a suppressed address",
         "x-samva-scope": "email:send"
       }
@@ -20697,7 +20724,7 @@
             }
           }
         },
-        "description": "The complete encoded JSON request, including new-start metadata, must not exceed 3000000 bytes. Admits a durable import using the preview hash and an Idempotency-Key header, or resumes the same persisted input at its committed cursor. The header is required for mode:new and optional for mode:resume. Only mode:new supports idempotent replay. Resume uses expectedGeneration and must not be automatically retried; read getImportJob after an ambiguous response. Imports never restore an existing unsubscribe, suppression or bounce. Namespace-scoped credentials cannot create organization-wide suppressions; those rows are conflicts and create no contact. New active contacts are billable and normal contact events apply.",
+        "description": "The complete encoded JSON request, including new-start metadata, must not exceed 3000000 bytes. Admits a durable import using the preview hash and an Idempotency-Key header, or resumes the same persisted input at its committed cursor. The header is required for mode:new and optional for mode:resume. Only mode:new supports idempotent replay. Resume uses expectedGeneration and must not be automatically retried; read getImportJob after an ambiguous response. Imports never restore an existing unsubscribe, suppression or bounce. Imported suppressions use the contact's namespace. Namespace-scoped credentials import contacts and restrictions only into their own namespace; organization-level suppressions protect every namespace. New active contacts are billable and normal contact events apply.",
         "summary": "Start or resume a list migration",
         "requestBody": {
           "content": {
@@ -92722,6 +92749,17 @@
           "email": {
             "type": "string"
           },
+          "namespaceId": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/NamespaceId"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "The namespace this suppression protects; null protects sending across the organization"
+          },
           "type": {
             "type": "string",
             "enum": [
@@ -92791,6 +92829,7 @@
         "required": [
           "id",
           "email",
+          "namespaceId",
           "type",
           "bounceType",
           "bounceSubType",
