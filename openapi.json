@@ -72137,6 +72137,17 @@
               }
             ],
             "description": "The tool a `toolCall` runs, with its arguments and their hash; an approval covers exactly this call. Null for every other action type."
+          },
+          "handoff": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/MailboxHandoff"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "The hand-off a `handoff` asks for, with the agent's reason for handing the conversation to people. Null for every other action type."
           }
         },
         "required": [
@@ -72151,7 +72162,21 @@
           "updatedAt",
           "type",
           "state",
-          "tool"
+          "tool",
+          "handoff"
+        ],
+        "additionalProperties": false
+      },
+      "MailboxHandoff": {
+        "type": "object",
+        "properties": {
+          "reason": {
+            "type": "string",
+            "description": "Why the conversation needs people, in the agent's words."
+          }
+        },
+        "required": [
+          "reason"
         ],
         "additionalProperties": false
       },

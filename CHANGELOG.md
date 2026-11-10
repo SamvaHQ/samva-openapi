@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.80.0
+
+- 379 operations, 280 paths, 693 schemas, 41 webhook events.
+- Breaking against v0.79.0.
+- Changed schemas:
+  - `MailboxNonSendAction`
+
+
 ## v0.79.0
 
 - 379 operations, 280 paths, 692 schemas, 41 webhook events.
