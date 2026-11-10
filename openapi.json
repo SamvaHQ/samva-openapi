@@ -73276,6 +73276,11 @@
           "updatedAt": {
             "type": "string"
           },
+          "revision": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 9007199254740991
+          },
           "text": {
             "anyOf": [
               {
@@ -73298,6 +73303,7 @@
           "subject",
           "createdAt",
           "updatedAt",
+          "revision",
           "text"
         ],
         "additionalProperties": false
@@ -73377,6 +73383,11 @@
           "updatedAt": {
             "type": "string"
           },
+          "revision": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 9007199254740991
+          },
           "endpointId": {
             "anyOf": [
               {
@@ -73444,6 +73455,7 @@
           "subject",
           "createdAt",
           "updatedAt",
+          "revision",
           "endpointId",
           "cc",
           "bcc",
