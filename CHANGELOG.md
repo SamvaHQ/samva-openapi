@@ -1,5 +1,15 @@
 # Changelog
 
+## v0.80.2
+
+- 383 operations, 283 paths, 701 schemas, 41 webhook events.
+- Compatible against v0.80.1.
+- Added operations:
+  - `DELETE /v1/namespaces/{id}/portal-links/{linkId}`
+  - `GET /v1/namespaces/{id}/portal-links`
+  - `POST /v1/namespaces/{id}/portal-links`
+
+
 ## v0.80.1
 
 - 380 operations, 281 paths, 694 schemas, 41 webhook events.

@@ -67391,6 +67391,372 @@
         "x-samva-scope": "organization:update"
       }
     },
+    "/v1/namespaces/{id}/portal-links": {
+      "post": {
+        "tags": [
+          "Namespaces"
+        ],
+        "operationId": "namespaces.createPortalLink",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "$ref": "#/components/schemas/NamespaceId"
+            },
+            "required": true
+          }
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "CreatedNamespacePortalLink",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreatedNamespacePortalLink"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ResourceNotFoundError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Creates a reusable hosted portal link without a Samva account. Only organization-wide callers may mint links. The token appears once in the returned URL fragment; Samva stores only its hash. expiresIn is seconds, defaults to 7 days, and cannot exceed 30 days.",
+        "summary": "Create a namespace portal link",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateNamespacePortalLinkPayload"
+              }
+            }
+          },
+          "required": true
+        },
+        "x-samva-scope": "organization:update"
+      },
+      "get": {
+        "tags": [
+          "Namespaces"
+        ],
+        "operationId": "namespaces.listPortalLinks",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "$ref": "#/components/schemas/NamespaceId"
+            },
+            "required": true
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "maximum": 100,
+                  "exclusiveMinimum": 0,
+                  "description": "Items per page, at most 100."
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "required": false
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          }
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "NamespacePortalLinkPage",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NamespacePortalLinkPage"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ResourceNotFoundError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Lists links newest first without their tokens. Only organization-wide callers may list links.",
+        "summary": "List namespace portal links",
+        "x-samva-scope": "organization:read"
+      }
+    },
+    "/v1/namespaces/{id}/portal-links/{linkId}": {
+      "delete": {
+        "tags": [
+          "Namespaces"
+        ],
+        "operationId": "namespaces.revokePortalLink",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "$ref": "#/components/schemas/NamespaceId"
+            },
+            "required": true
+          },
+          {
+            "name": "linkId",
+            "in": "path",
+            "schema": {
+              "$ref": "#/components/schemas/NamespacePortalLinkId"
+            },
+            "required": true
+          }
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "NamespacePortalLink",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NamespacePortalLink"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ResourceNotFoundError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Revokes the link and ends sessions using it. Only organization-wide callers may revoke links.",
+        "summary": "Revoke a namespace portal link",
+        "x-samva-scope": "organization:update"
+      }
+    },
     "/v1/namespaces/{id}/usage": {
       "get": {
         "tags": [
@@ -70978,6 +71344,228 @@
           "totalMessages"
         ],
         "additionalProperties": false
+      },
+      "NamespacePortalLink": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "$ref": "#/components/schemas/NamespacePortalLinkId"
+          },
+          "organizationId": {
+            "$ref": "#/components/schemas/OrganizationId"
+          },
+          "namespaceId": {
+            "$ref": "#/components/schemas/NamespaceId"
+          },
+          "createdBy": {
+            "$ref": "#/components/schemas/UserId"
+          },
+          "expiresAt": {
+            "type": "string"
+          },
+          "revokedAt": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "redirectUrl": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/NamespacePortalLinkMetadata"
+          },
+          "createdAt": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "organizationId",
+          "namespaceId",
+          "createdBy",
+          "expiresAt",
+          "revokedAt",
+          "redirectUrl",
+          "metadata",
+          "createdAt"
+        ],
+        "additionalProperties": false
+      },
+      "NamespacePortalLinkMetadata": {
+        "type": "object",
+        "propertyNames": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 64
+        },
+        "additionalProperties": {
+          "type": "string",
+          "maxLength": 512,
+          "x-samva-string-checks": [
+            {
+              "id": "effect/schema/isMaxLength",
+              "payload": {
+                "maxLength": 512
+              }
+            }
+          ]
+        }
+      },
+      "NamespacePortalLinkId": {
+        "type": "string",
+        "pattern": "^npl_[0-9a-hjkmnp-tv-z]{16,24}$",
+        "x-samva-brand": "NamespacePortalLinkId"
+      },
+      "NamespacePortalLinkPage": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NamespacePortalLink"
+            }
+          },
+          "nextCursor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "items",
+          "nextCursor"
+        ],
+        "additionalProperties": false
+      },
+      "CreatedNamespacePortalLink": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "$ref": "#/components/schemas/NamespacePortalLinkId"
+          },
+          "organizationId": {
+            "$ref": "#/components/schemas/OrganizationId"
+          },
+          "namespaceId": {
+            "$ref": "#/components/schemas/NamespaceId"
+          },
+          "createdBy": {
+            "$ref": "#/components/schemas/UserId"
+          },
+          "expiresAt": {
+            "type": "string"
+          },
+          "revokedAt": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "redirectUrl": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/NamespacePortalLinkMetadata"
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string",
+            "x-sensitive": true
+          }
+        },
+        "required": [
+          "id",
+          "organizationId",
+          "namespaceId",
+          "createdBy",
+          "expiresAt",
+          "revokedAt",
+          "redirectUrl",
+          "metadata",
+          "createdAt",
+          "url"
+        ],
+        "additionalProperties": false
+      },
+      "CreateNamespacePortalLinkPayload": {
+        "type": "object",
+        "properties": {
+          "redirectUrl": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/WhatsAppSetupLinkRedirectUrl"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "metadata": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/NamespacePortalLinkMetadata"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "expiresIn": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "maximum": 2592000,
+                "exclusiveMinimum": 0
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "additionalProperties": false
+      },
+      "WhatsAppSetupLinkRedirectUrl": {
+        "type": "string",
+        "maxLength": 2048,
+        "x-samva-string-checks": [
+          {
+            "id": "effect/schema/isMaxLength",
+            "payload": {
+              "maxLength": 2048
+            }
+          }
+        ]
       },
       "FlagDisabledError": {
         "type": "object",
