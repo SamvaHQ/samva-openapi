@@ -65803,7 +65803,7 @@
             }
           }
         },
-        "description": "Records approval of a send and returns 202 while it is pending. A send is queued for automatic retry within 15 minutes of approval; repeating approval does not extend this deadline. Accepted, completed, and notSent replays return 200. No expiry applies before approval. Only a person signed in or through OAuth may approve, and never the proposer. Non-send approvals execute synchronously and return 200 with their own execution states. Set `always: true` to add an actor-specific rule allowing matching future actions, subject to policy floors and guards. Remembering an allowance for a hosted agent or API key requires an organization owner or admin. A hand-off cannot be always allowed. The action's `resolution` names the approver; approving a held send publishes one `mailbox.action.resolved` event.",
+        "description": "Records approval of a send and returns 202 while it is pending. A send is queued for automatic retry within 15 minutes of approval; repeating approval does not extend this deadline. Accepted, completed, and notSent replays return 200. No expiry applies before approval. Only a person signed in or through OAuth may approve, and never the proposer. Non-send approvals execute synchronously and return 200 with their own execution states. Set `always: true` to add an actor-specific rule allowing matching future actions, subject to policy floors and guards. Remembering an allowance for a hosted agent or API key requires an organization owner or admin; for a hosted agent's integration tool call it lets that tool run without approval for every agent, which only the organization owner may do. A held action's `alwaysAllow` says who may and whether the caller can. A hand-off cannot be always allowed. The action's `resolution` names the approver; approving a held send publishes one `mailbox.action.resolved` event.",
         "summary": "Approve a mailbox action",
         "requestBody": {
           "content": {
@@ -72919,6 +72919,17 @@
             ],
             "description": "How a held action's approval ended: who approved, denied, or cancelled it, when, and the denial reason. Null while it waits for approval and for an action that never needed one."
           },
+          "alwaysAllow": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/MailboxAlwaysAllow"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Who may approve this held action with Always allow, and whether the caller may. Null for an action that is not held, a hand-off, and a reply held for integration data."
+          },
           "createdAt": {
             "type": "string"
           },
@@ -72983,6 +72994,7 @@
           "draftId",
           "decision",
           "resolution",
+          "alwaysAllow",
           "createdAt",
           "updatedAt",
           "type",
@@ -73036,6 +73048,29 @@
           "name",
           "argumentsHash",
           "arguments"
+        ],
+        "additionalProperties": false
+      },
+      "MailboxAlwaysAllow": {
+        "type": "object",
+        "properties": {
+          "by": {
+            "type": "string",
+            "enum": [
+              "owner",
+              "admin",
+              "approver"
+            ],
+            "description": "Who may approve with Always allow. `owner`: only the organization owner, because it lets an integration tool run without approval for every agent. `admin`: an organization owner or admin, because it adds a rule for one hosted agent or API key. `approver`: anyone who may approve the action."
+          },
+          "allowed": {
+            "type": "boolean",
+            "description": "Whether the caller is someone `by` names."
+          }
+        },
+        "required": [
+          "by",
+          "allowed"
         ],
         "additionalProperties": false
       },
@@ -73214,6 +73249,17 @@
             ],
             "description": "How a held action's approval ended: who approved, denied, or cancelled it, when, and the denial reason. Null while it waits for approval and for an action that never needed one."
           },
+          "alwaysAllow": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/MailboxAlwaysAllow"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Who may approve this held action with Always allow, and whether the caller may. Null for an action that is not held, a hand-off, and a reply held for integration data."
+          },
           "createdAt": {
             "type": "string"
           },
@@ -73260,6 +73306,7 @@
           "draftId",
           "decision",
           "resolution",
+          "alwaysAllow",
           "createdAt",
           "updatedAt",
           "type",
@@ -77744,6 +77791,16 @@
                   "system"
                 ]
               },
+              "alwaysAllow": {
+                "anyOf": [
+                  {
+                    "$ref": "#/components/schemas/MailboxAlwaysAllow"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
               "createdAt": {
                 "type": "string"
               }
@@ -77760,6 +77817,7 @@
               "draftId",
               "proposedBy",
               "source",
+              "alwaysAllow",
               "createdAt"
             ],
             "additionalProperties": false
