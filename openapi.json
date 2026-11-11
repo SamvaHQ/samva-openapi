@@ -72260,6 +72260,7 @@
                   "type": "string",
                   "enum": [
                     "organization",
+                    "integration",
                     "mailbox",
                     "agent",
                     "apiKey"
@@ -72289,6 +72290,7 @@
                         "type": "string",
                         "enum": [
                           "organization",
+                          "integration",
                           "mailbox",
                           "agent",
                           "apiKey"
@@ -77842,6 +77844,7 @@
                   "type": "string",
                   "enum": [
                     "organization",
+                    "integration",
                     "mailbox",
                     "agent",
                     "apiKey"
@@ -77871,6 +77874,7 @@
                         "type": "string",
                         "enum": [
                           "organization",
+                          "integration",
                           "mailbox",
                           "agent",
                           "apiKey"
@@ -111181,6 +111185,7 @@
                                       "type": "string",
                                       "enum": [
                                         "organization",
+                                        "integration",
                                         "mailbox",
                                         "agent",
                                         "apiKey"
@@ -111210,6 +111215,7 @@
                                             "type": "string",
                                             "enum": [
                                               "organization",
+                                              "integration",
                                               "mailbox",
                                               "agent",
                                               "apiKey"
