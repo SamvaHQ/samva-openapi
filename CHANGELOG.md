@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.82.0
+
+- 383 operations, 283 paths, 702 schemas, 41 webhook events.
+- Breaking against v0.81.0.
+- Changed schemas:
+  - `WhoamiOrganization`
+
+
 ## v0.81.0
 
 - 383 operations, 283 paths, 702 schemas, 41 webhook events.
