@@ -1,5 +1,14 @@
 # Changelog
 
+## v0.82.1
+
+- 385 operations, 285 paths, 708 schemas, 41 webhook events.
+- Compatible against v0.82.0.
+- Added operations:
+  - `POST /v1/templates/from-brief`
+  - `POST /v1/templates/suggestions`
+
+
 ## v0.82.0
 
 - 383 operations, 283 paths, 702 schemas, 41 webhook events.

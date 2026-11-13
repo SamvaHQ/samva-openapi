@@ -41087,6 +41087,268 @@
         "x-samva-scope": "templates:delete"
       }
     },
+    "/v1/templates/suggestions": {
+      "post": {
+        "tags": [
+          "Templates"
+        ],
+        "operationId": "templates.suggestStarters",
+        "parameters": [],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "TemplateStarterSuggestions",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TemplateStarterSuggestions"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Ranks Samva's gallery designs for a brief and returns the three to start a new email from, best first, each with the `galleryTemplateId` that creates a template from it. When the brief names a company's email, `recreation` says whether the gallery recreates that kind of email from it, recreates another kind (start from it for the look), or has none. The ranking is deterministic: the same brief returns the same designs.",
+        "summary": "Suggest designs for a brief",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SuggestTemplateStartersPayload"
+              }
+            }
+          },
+          "required": true
+        },
+        "x-samva-scope": "templates:read"
+      }
+    },
+    "/v1/templates/from-brief": {
+      "post": {
+        "tags": [
+          "Templates"
+        ],
+        "operationId": "templates.createFromBrief",
+        "parameters": [
+          {
+            "name": "idempotency-key",
+            "in": "header",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 255,
+              "x-samva-string-checks": [
+                {
+                  "id": "effect/schema/isMaxLength",
+                  "payload": {
+                    "maxLength": 255
+                  }
+                }
+              ]
+            },
+            "required": true
+          }
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TemplateFromBrief"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ResourceNotFoundError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "ConflictError | TemplateInUseError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/ConflictError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/TemplateInUseError"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "TemplateSourceError | ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/TemplateSourceError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ValidationError"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "ServiceUnavailableError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceUnavailableError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Creates an email template project from the gallery design that best fits a brief (the first of `POST /v1/templates/suggestions`, or the `galleryTemplateId` you name) and returns it with status 201, the design it started from, the other suggestions, any company email the brief named, and the request that makes the template assistant adapt the design. The assistant runs when that request is sent in the editor; an agent of your own adapts the design through the workspace endpoints instead.",
+        "summary": "Create a template from a brief",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateTemplateFromBriefPayload"
+              }
+            }
+          },
+          "required": true
+        },
+        "x-idempotent": true,
+        "x-samva-scope": "templates:create"
+      }
+    },
     "/v1/templates/from-website": {
       "post": {
         "tags": [
@@ -83858,6 +84120,320 @@
         },
         "required": [
           "url"
+        ],
+        "additionalProperties": false
+      },
+      "TemplateFromBrief": {
+        "type": "object",
+        "properties": {
+          "template": {
+            "$ref": "#/components/schemas/Template"
+          },
+          "startedFrom": {
+            "$ref": "#/components/schemas/TemplateStarterSuggestion"
+          },
+          "alternatives": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TemplateStarterSuggestion"
+            },
+            "description": "The other designs suggested for the brief, best first."
+          },
+          "recreation": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/TemplateRecreationMatch"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "ask": {
+            "type": "string",
+            "description": "The request to send the template assistant in the editor: the brief, then the design the project starts from and what the gallery has of a company email the brief names. The assistant adapts the design to it; nothing runs until it is sent."
+          }
+        },
+        "required": [
+          "template",
+          "startedFrom",
+          "alternatives",
+          "recreation",
+          "ask"
+        ],
+        "additionalProperties": false,
+        "description": "A template project created from a brief. `startedFrom` is the gallery design the project was created from."
+      },
+      "TemplateRecreationMatch": {
+        "anyOf": [
+          {
+            "type": "object",
+            "properties": {
+              "status": {
+                "type": "string",
+                "enum": [
+                  "exact"
+                ]
+              },
+              "company": {
+                "type": "string"
+              },
+              "galleryTemplateId": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "status",
+              "company",
+              "galleryTemplateId"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "status": {
+                "type": "string",
+                "enum": [
+                  "kind-differs"
+                ]
+              },
+              "company": {
+                "type": "string"
+              },
+              "galleryTemplateId": {
+                "type": "string"
+              },
+              "recreationName": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "status",
+              "company",
+              "galleryTemplateId",
+              "recreationName"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "status": {
+                "type": "string",
+                "enum": [
+                  "missing"
+                ]
+              },
+              "company": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "status",
+              "company"
+            ],
+            "additionalProperties": false
+          }
+        ],
+        "description": "The company email the brief named: `exact` when the gallery recreates that kind of email from it, `kind-differs` when it recreates another kind (start from it for the look and adapt the kind), `missing` when the gallery has no recreation of that company."
+      },
+      "TemplateStarterSuggestion": {
+        "type": "object",
+        "properties": {
+          "galleryTemplateId": {
+            "type": "string",
+            "description": "The gallery design to start from. Pass it as `galleryTemplateId` to create a template from it."
+          },
+          "slug": {
+            "type": "string",
+            "description": "The design's gallery page, under /templates/."
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "intent": {
+            "type": "string",
+            "description": "The brief this design fits, in one sentence."
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "structure": {
+            "type": "string",
+            "description": "How the design is built: letter, code, ledger, timeline, grid, poster, and so on."
+          },
+          "imagery": {
+            "type": "string",
+            "enum": [
+              "none",
+              "markup",
+              "pictures"
+            ],
+            "description": "Whether adapting it means replacing pictures: none, graphics built in markup, or image files."
+          },
+          "recreates": {
+            "type": "string",
+            "description": "The company whose email this design recreates."
+          },
+          "reason": {
+            "type": "string",
+            "description": "Why it was suggested for this brief."
+          }
+        },
+        "required": [
+          "galleryTemplateId",
+          "slug",
+          "name",
+          "description",
+          "intent",
+          "tags",
+          "structure",
+          "imagery",
+          "reason"
+        ],
+        "additionalProperties": false
+      },
+      "CreateTemplateFromBriefPayload": {
+        "type": "object",
+        "properties": {
+          "brief": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4000,
+            "description": "What the email is for, as a person would ask for it: who sends it, to whom, and why. Naming a company's email (\"like the Vercel login email\") starts from Samva's recreation of it when the gallery has one.",
+            "x-samva-string-checks": [
+              {
+                "id": "effect/schema/isMaxLength",
+                "payload": {
+                  "maxLength": 4000
+                }
+              }
+            ]
+          },
+          "name": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200,
+                "description": "The template's name. Defaults to the name of the design it starts from.",
+                "x-samva-string-checks": [
+                  {
+                    "id": "effect/schema/isMaxLength",
+                    "payload": {
+                      "maxLength": 200
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "galleryTemplateId": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 128,
+                "description": "Start from this gallery design instead of the first suggestion, for example another one the suggestions offered.",
+                "x-samva-string-checks": [
+                  {
+                    "id": "effect/schema/isMaxLength",
+                    "payload": {
+                      "maxLength": 128
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "useBrand": {
+            "anyOf": [
+              {
+                "type": "boolean",
+                "description": "Whether the new project's `theme.css` imports the organization's default brand over the design's look. Defaults to false."
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "namespaceId": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/NamespaceId"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "The namespace the new template project belongs to. Omit for organization level. A namespace-scoped key always creates in its own namespace."
+          }
+        },
+        "required": [
+          "brief"
+        ],
+        "additionalProperties": false
+      },
+      "TemplateStarterSuggestions": {
+        "type": "object",
+        "properties": {
+          "suggestions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TemplateStarterSuggestion"
+            },
+            "description": "Best first; a new email for this brief starts from the first."
+          },
+          "recreation": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/TemplateRecreationMatch"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "suggestions",
+          "recreation"
+        ],
+        "additionalProperties": false
+      },
+      "SuggestTemplateStartersPayload": {
+        "type": "object",
+        "properties": {
+          "brief": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4000,
+            "description": "What the email is for, as a person would ask for it: who sends it, to whom, and why. Naming a company's email (\"like the Vercel login email\") starts from Samva's recreation of it when the gallery has one.",
+            "x-samva-string-checks": [
+              {
+                "id": "effect/schema/isMaxLength",
+                "payload": {
+                  "maxLength": 4000
+                }
+              }
+            ]
+          }
+        },
+        "required": [
+          "brief"
         ],
         "additionalProperties": false
       },
