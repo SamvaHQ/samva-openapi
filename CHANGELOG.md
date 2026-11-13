@@ -1,5 +1,70 @@
 # Changelog
 
+## v0.84.0
+
+- 385 operations, 285 paths, 708 schemas, 41 webhook events.
+- Breaking against v0.83.0.
+- Changed operations:
+  - `GET /v1/newsletters/{id}/issues/document`
+  - `GET /v1/newsletters/{id}/issues/workspace`
+  - `GET /v1/templates/{id}/publications/{publicationId}`
+  - `PATCH /v1/email/domains/{id}/config`
+  - `PATCH /v1/newsletters/{id}/issues`
+  - `PATCH /v1/organizations/current`
+  - `PATCH /v1/templates/{id}/workspace`
+  - `POST /v1/email/senders`
+  - `POST /v1/newsletters/{id}/issues`
+  - `POST /v1/newsletters/{id}/issues/check`
+  - `POST /v1/newsletters/{id}/issues/remove`
+  - `POST /v1/newsletters/{id}/issues/render`
+  - `POST /v1/newsletters/{id}/issues/save`
+  - `POST /v1/organizations/members/invitations`
+  - `POST /v1/templates/{id}/publications`
+  - `POST /v1/templates/{id}/workspace`
+  - `POST /v1/templates/{id}/workspace/check`
+  - `POST /v1/templates/{id}/workspace/conflicts`
+  - `POST /v1/templates/{id}/workspace/diff`
+  - `POST /v1/templates/{id}/workspace/fixtures`
+  - `POST /v1/templates/{id}/workspace/resources`
+  - `POST /v1/templates/{id}/workspace/resources/{resourceId}/remove`
+  - `POST /v1/templates/{id}/workspace/restore`
+  - `POST /v1/templates/{id}/workspace/save`
+  - `PUT /v1/templates/{id}/workspace/assets`
+- Changed schemas:
+  - `AddTemplateEntryPayload`
+  - `CampaignEmailContent`
+  - `CampaignEmailInput`
+  - `CampaignFromInput`
+  - `ContactEventReference`
+  - `CreateTemplatePayload`
+  - `EmailCampaignContent`
+  - `EmailCampaignContentInput`
+  - `EmailContent`
+  - `EmailDispatchContent`
+  - `EmailRecipient`
+  - `EmailSender`
+  - `JourneySendEmailConfig`
+  - `NewsletterIssueCheckPayload`
+  - `NewsletterIssueCreatePayload`
+  - `NewsletterIssueDocument`
+  - `NewsletterIssueListItem`
+  - `NewsletterIssueRemovePayload`
+  - `NewsletterIssueRenderPayload`
+  - `NewsletterIssueUpdatePayload`
+  - `ReplyToAddresses`
+  - `SmsContent`
+  - `SmsDispatchContent`
+  - `StoredEmailContent`
+  - `SubscribePayload`
+  - `Template`
+  - `TemplateFromDefaultInput`
+  - `TemplateSummary`
+  - `TrackingRecipientEmail`
+  - `UpdateTemplatePayload`
+  - `WhatsAppTemplateDispatch`
+  - `WhatsAppTemplateSlugContent`
+
+
 ## v0.83.0
 
 - 385 operations, 285 paths, 708 schemas, 41 webhook events.
