@@ -1,5 +1,15 @@
 # Changelog
 
+## v0.83.0
+
+- 385 operations, 285 paths, 708 schemas, 41 webhook events.
+- Breaking against v0.82.1.
+- Changed operations:
+  - `GET /v1/email/senders/{id}`
+- Changed schemas:
+  - `EmailSenderPage`
+
+
 ## v0.82.1
 
 - 385 operations, 285 paths, 708 schemas, 41 webhook events.

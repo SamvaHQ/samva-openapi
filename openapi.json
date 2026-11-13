@@ -10205,6 +10205,10 @@
                         }
                       ]
                     },
+                    "sendable": {
+                      "type": "boolean",
+                      "description": "Whether a send from this address passes the ownership check every send runs: the sender is verified and active, and the address or its domain is a sending identity this organization owns. Always false for a pending, failed, or inactive sender. A verified sender whose domain is no longer verified here, or whose sending identity setup failed, is not sendable, and sends from it are refused with 403."
+                    },
                     "providerLifecycle": {
                       "type": "string",
                       "enum": [
@@ -10266,6 +10270,7 @@
                     "verificationStatus",
                     "verifiedAt",
                     "verificationToken",
+                    "sendable",
                     "providerLifecycle",
                     "providerFailureCode",
                     "isDefault",
@@ -10596,7 +10601,7 @@
             }
           }
         },
-        "description": "Sets a verified, active sender as the default for the caller's namespace, the explicit namespaceId, or the sender's own scope. A namespace can select its own sender or a sender on a shared organization domain. This changes only the namespace's default; it does not change a shared sender. Omitted-`from` sends use this default when neither the request nor the template names a `from`.",
+        "description": "Sets a sendable sender (see `sendable` on the sender) as the default for the caller's namespace, the explicit namespaceId, or the sender's own scope. A namespace can select its own sender or a sender on a shared organization domain. This changes only the namespace's default; it does not change a shared sender. Omitted-`from` sends use this default when neither the request nor the template names a `from`.",
         "summary": "Set the default sender",
         "requestBody": {
           "content": {
@@ -94567,6 +94572,10 @@
                     }
                   ]
                 },
+                "sendable": {
+                  "type": "boolean",
+                  "description": "Whether a send from this address passes the ownership check every send runs: the sender is verified and active, and the address or its domain is a sending identity this organization owns. Always false for a pending, failed, or inactive sender. A verified sender whose domain is no longer verified here, or whose sending identity setup failed, is not sendable, and sends from it are refused with 403."
+                },
                 "providerLifecycle": {
                   "type": "string",
                   "enum": [
@@ -94628,6 +94637,7 @@
                 "verificationStatus",
                 "verifiedAt",
                 "verificationToken",
+                "sendable",
                 "providerLifecycle",
                 "providerFailureCode",
                 "isDefault",
