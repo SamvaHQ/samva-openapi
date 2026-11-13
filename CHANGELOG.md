@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.85.0
+
+- 385 operations, 285 paths, 708 schemas, 41 webhook events.
+- Breaking against v0.84.0.
+- Changed webhook events:
+  - `message.received`
+
+
 ## v0.84.0
 
 - 385 operations, 285 paths, 708 schemas, 41 webhook events.

@@ -75250,6 +75250,7 @@
               "dmarc",
               "virus",
               "virus_unscanned",
+              "verdict_missing",
               "phishing",
               "fraud",
               "prompt_injection"
@@ -78141,6 +78142,7 @@
                   "dmarc",
                   "virus",
                   "virus_unscanned",
+                  "verdict_missing",
                   "phishing",
                   "fraud",
                   "prompt_injection"
@@ -106539,6 +106541,36 @@
                           }
                         ]
                       },
+                      "disposition": {
+                        "type": "string",
+                        "enum": [
+                          "delivered",
+                          "quarantined",
+                          "isolated"
+                        ],
+                        "description": "The message disposition when this event was committed, before mailbox content screening."
+                      },
+                      "reason": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "enum": [
+                              "spam",
+                              "dmarc",
+                              "virus",
+                              "virus_unscanned",
+                              "verdict_missing",
+                              "phishing",
+                              "fraud",
+                              "prompt_injection"
+                            ]
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ],
+                        "description": "Why the message is held, or null when delivered."
+                      },
                       "campaign": {
                         "anyOf": [
                           {
@@ -107836,6 +107868,8 @@
                     },
                     "required": [
                       "channel",
+                      "disposition",
+                      "reason",
                       "messageId",
                       "organizationId"
                     ],
@@ -112544,6 +112578,7 @@
                           "dmarc",
                           "virus",
                           "virus_unscanned",
+                          "verdict_missing",
                           "phishing",
                           "fraud",
                           "prompt_injection"
@@ -112727,6 +112762,7 @@
                           "dmarc",
                           "virus",
                           "virus_unscanned",
+                          "verdict_missing",
                           "phishing",
                           "fraud",
                           "prompt_injection"
@@ -113061,6 +113097,7 @@
                           "dmarc",
                           "virus",
                           "virus_unscanned",
+                          "verdict_missing",
                           "phishing",
                           "fraud",
                           "prompt_injection"
