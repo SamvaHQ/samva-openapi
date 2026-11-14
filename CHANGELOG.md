@@ -1,5 +1,41 @@
 # Changelog
 
+## v0.85.1
+
+- 414 operations, 306 paths, 748 schemas, 41 webhook events.
+- Compatible against v0.85.0.
+- Added operations:
+  - `DELETE /v1/whatsapp/business-accounts/{accountId}`
+  - `GET /v1/templates/{id}/registrations`
+  - `GET /v1/templates/{id}/registrations/{registrationId}`
+  - `GET /v1/whatsapp/business-accounts`
+  - `GET /v1/whatsapp/business-accounts/{accountId}`
+  - `GET /v1/whatsapp/flows`
+  - `GET /v1/whatsapp/flows/{id}`
+  - `GET /v1/whatsapp/flows/{id}/registrations`
+  - `GET /v1/whatsapp/flows/{id}/versions`
+  - `GET /v1/whatsapp/media/{deliveryId}/download-url`
+  - `GET /v1/whatsapp/service-window/billing`
+  - `GET /v1/whatsapp/service-window/status`
+  - `GET /v1/whatsapp/setup-links`
+  - `GET /v1/whatsapp/setup-links/{linkId}`
+  - `GET /v1/whatsapp/stats`
+  - `GET /v1/whatsapp/templates/stats`
+  - `PATCH /v1/whatsapp/business-accounts/{accountId}`
+  - `POST /v1/templates/{id}/registrations`
+  - `POST /v1/whatsapp/business-accounts`
+  - `POST /v1/whatsapp/business-accounts/{accountId}/set-default`
+  - `POST /v1/whatsapp/business-accounts/{accountId}/sync`
+  - `POST /v1/whatsapp/flows`
+  - `POST /v1/whatsapp/flows/encryption-key/rotate`
+  - `POST /v1/whatsapp/flows/{id}/endpoint/rotate-secret`
+  - `POST /v1/whatsapp/flows/{id}/registrations`
+  - `POST /v1/whatsapp/flows/{id}/versions`
+  - `POST /v1/whatsapp/setup-links`
+  - `POST /v1/whatsapp/setup-links/{linkId}/revoke`
+  - `PUT /v1/whatsapp/flows/{id}/endpoint`
+
+
 ## v0.85.0
 
 - 385 operations, 285 paths, 708 schemas, 41 webhook events.
