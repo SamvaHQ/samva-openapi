@@ -38440,13 +38440,20 @@
                             "type": "integer",
                             "minimum": 0,
                             "maximum": 9007199254740991
+                          },
+                          "emailFailed": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 9007199254740991,
+                            "description": "Emails in this bucket that bounced or failed. A subset of `email`."
                           }
                         },
                         "required": [
                           "date",
                           "email",
                           "whatsapp",
-                          "sms"
+                          "sms",
+                          "emailFailed"
                         ],
                         "additionalProperties": false
                       }
@@ -39037,11 +39044,21 @@
                         "type": "integer",
                         "minimum": 0,
                         "maximum": 9007199254740991
+                      },
+                      "weekdays": {
+                        "type": "array",
+                        "items": {
+                          "type": "integer",
+                          "minimum": 0,
+                          "maximum": 9007199254740991
+                        },
+                        "description": "`count` split by organization-local weekday: seven entries, Monday first, summing to `count`."
                       }
                     },
                     "required": [
                       "hour",
-                      "count"
+                      "count",
+                      "weekdays"
                     ],
                     "additionalProperties": false
                   }

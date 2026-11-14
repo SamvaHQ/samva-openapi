@@ -1,5 +1,14 @@
 # Changelog
 
+## v0.86.0
+
+- 414 operations, 306 paths, 748 schemas, 41 webhook events.
+- Breaking against v0.85.1.
+- Changed operations:
+  - `GET /v1/analytics/hourly-distribution`
+  - `GET /v1/analytics/stats`
+
+
 ## v0.85.1
 
 - 414 operations, 306 paths, 748 schemas, 41 webhook events.
