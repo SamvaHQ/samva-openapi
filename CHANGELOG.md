@@ -1,5 +1,17 @@
 # Changelog
 
+## v0.88.2
+
+- 434 operations, 320 paths, 763 schemas, 41 webhook events.
+- Compatible against v0.88.1.
+- Added operations:
+  - `DELETE /v1/mailboxes/{id}/scheduled/{outboxId}`
+  - `GET /v1/mailboxes/{id}/scheduled`
+  - `PATCH /v1/mailboxes/{id}/scheduled/{outboxId}`
+  - `POST /v1/mailboxes/{id}/drafts/{draftId}/schedule`
+  - `POST /v1/mailboxes/{id}/scheduled/{outboxId}/send`
+
+
 ## v0.88.1
 
 - 429 operations, 316 paths, 753 schemas, 41 webhook events.

@@ -65869,6 +65869,722 @@
         "x-samva-scope": "mailboxes:quarantine.release"
       }
     },
+    "/v1/mailboxes/{id}/drafts/{draftId}/schedule": {
+      "post": {
+        "tags": [
+          "Mailboxes"
+        ],
+        "operationId": "mailboxes.scheduleDraft",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "$ref": "#/components/schemas/MailboxId"
+            },
+            "required": true
+          },
+          {
+            "name": "draftId",
+            "in": "path",
+            "schema": {
+              "$ref": "#/components/schemas/MailboxDraftId"
+            },
+            "required": true
+          }
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "MailCommandReceipt",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MailCommandReceipt"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ResourceNotFoundError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "ConflictError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConflictError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "RateLimitedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RateLimitedError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Changes the caller's private scheduled sends. The revision and idempotency key protect retries and concurrent changes. Sending uses the mailbox's current permissions and policies.",
+        "summary": "Schedule a mailbox draft",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ScheduleMailboxDraft"
+              }
+            }
+          },
+          "required": true
+        },
+        "x-samva-scope": "mailboxes:send"
+      }
+    },
+    "/v1/mailboxes/{id}/scheduled/{outboxId}": {
+      "patch": {
+        "tags": [
+          "Mailboxes"
+        ],
+        "operationId": "mailboxes.rescheduleSend",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "$ref": "#/components/schemas/MailboxId"
+            },
+            "required": true
+          },
+          {
+            "name": "outboxId",
+            "in": "path",
+            "schema": {
+              "$ref": "#/components/schemas/MailOutboxItemId"
+            },
+            "required": true
+          }
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "MailCommandReceipt",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MailCommandReceipt"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ResourceNotFoundError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "ConflictError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConflictError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "RateLimitedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RateLimitedError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Changes the caller's private scheduled sends. The revision and idempotency key protect retries and concurrent changes. Sending uses the mailbox's current permissions and policies.",
+        "summary": "Reschedule a mailbox send",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RescheduleMailboxSend"
+              }
+            }
+          },
+          "required": true
+        },
+        "x-samva-scope": "mailboxes:send"
+      },
+      "delete": {
+        "tags": [
+          "Mailboxes"
+        ],
+        "operationId": "mailboxes.unscheduleSend",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "$ref": "#/components/schemas/MailboxId"
+            },
+            "required": true
+          },
+          {
+            "name": "outboxId",
+            "in": "path",
+            "schema": {
+              "$ref": "#/components/schemas/MailOutboxItemId"
+            },
+            "required": true
+          }
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "MailCommandReceipt",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MailCommandReceipt"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ResourceNotFoundError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "ConflictError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConflictError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "RateLimitedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RateLimitedError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Changes the caller's private scheduled sends. The revision and idempotency key protect retries and concurrent changes. Sending uses the mailbox's current permissions and policies.",
+        "summary": "Return a scheduled send to Drafts",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChangeMailboxSchedule"
+              }
+            }
+          },
+          "required": true
+        },
+        "x-samva-scope": "mailboxes:send"
+      }
+    },
+    "/v1/mailboxes/{id}/scheduled/{outboxId}/send": {
+      "post": {
+        "tags": [
+          "Mailboxes"
+        ],
+        "operationId": "mailboxes.sendScheduledNow",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "$ref": "#/components/schemas/MailboxId"
+            },
+            "required": true
+          },
+          {
+            "name": "outboxId",
+            "in": "path",
+            "schema": {
+              "$ref": "#/components/schemas/MailOutboxItemId"
+            },
+            "required": true
+          }
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "MailCommandReceipt",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MailCommandReceipt"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ResourceNotFoundError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "ConflictError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConflictError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "RateLimitedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RateLimitedError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Changes the caller's private scheduled sends. The revision and idempotency key protect retries and concurrent changes. Sending uses the mailbox's current permissions and policies.",
+        "summary": "Send a scheduled message now",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChangeMailboxSchedule"
+              }
+            }
+          },
+          "required": true
+        },
+        "x-samva-scope": "mailboxes:send"
+      }
+    },
+    "/v1/mailboxes/{id}/scheduled": {
+      "get": {
+        "tags": [
+          "Mailboxes"
+        ],
+        "operationId": "mailboxes.listScheduledSends",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "$ref": "#/components/schemas/MailboxId"
+            },
+            "required": true
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "maximum": 100,
+                  "exclusiveMinimum": 0,
+                  "description": "Items per page, at most 100."
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "required": false
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          }
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "MailboxScheduledSendPage",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MailboxScheduledSendPage"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ResourceNotFoundError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Lists the caller's private scheduled sends in this mailbox. Items leave this list when sent, held, failed, or returned to Drafts.",
+        "summary": "List scheduled mailbox sends",
+        "x-samva-scope": "mailboxes:read"
+      }
+    },
     "/v1/mailboxes/{id}/drafts": {
       "get": {
         "tags": [
@@ -84512,6 +85228,442 @@
         ],
         "description": "The channel an endpoint, thread, or message belongs to."
       },
+      "MailboxScheduledSendPage": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MailOutboxItem"
+            }
+          },
+          "nextCursor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "items",
+          "nextCursor"
+        ],
+        "additionalProperties": false
+      },
+      "MailOutboxItem": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "$ref": "#/components/schemas/MailOutboxItemId"
+          },
+          "mailboxId": {
+            "$ref": "#/components/schemas/MailboxId"
+          },
+          "threadId": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/MailboxThreadId"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "draftId": {
+            "$ref": "#/components/schemas/MailboxDraftId"
+          },
+          "draftRevision": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 9007199254740991
+          },
+          "draftSummary": {
+            "type": "object",
+            "properties": {
+              "to": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "subject": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "to",
+              "subject"
+            ],
+            "additionalProperties": false
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "queued",
+              "held",
+              "dispatched",
+              "cancelled",
+              "failed"
+            ]
+          },
+          "scheduledFor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "holdReason": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "threadChanged"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "revision": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 9007199254740991
+          },
+          "baseSeq": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991
+          },
+          "heldAtSeq": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 9007199254740991
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "actionId": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/MailboxActionId"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "problem": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/MailOutboxProblem"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "mailboxId",
+          "threadId",
+          "draftId",
+          "draftRevision",
+          "status",
+          "holdReason",
+          "revision",
+          "baseSeq",
+          "heldAtSeq",
+          "actionId",
+          "problem",
+          "createdAt",
+          "updatedAt"
+        ],
+        "additionalProperties": false
+      },
+      "MailOutboxProblem": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "code",
+          "message"
+        ],
+        "additionalProperties": false
+      },
+      "MailOutboxItemId": {
+        "type": "string",
+        "pattern": "^mout_[0-9a-hjkmnp-tv-z]{16,24}$",
+        "x-samva-brand": "MailOutboxItemId"
+      },
+      "MailCommandReceipt": {
+        "type": "object",
+        "properties": {
+          "idempotencyKey": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_-]{8,128}$"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "thread.patch",
+              "thread.labels",
+              "draft.create",
+              "draft.update",
+              "draft.delete",
+              "send",
+              "outbox.reschedule",
+              "outbox.sendNow",
+              "outbox.review",
+              "outbox.cancel"
+            ]
+          },
+          "outcome": {
+            "type": "string",
+            "enum": [
+              "applied",
+              "conflict",
+              "held",
+              "queued",
+              "cancelled",
+              "failed"
+            ]
+          },
+          "position": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/MailSyncPosition"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "conflict": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/MailCommandConflict"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "draft": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "$ref": "#/components/schemas/MailboxDraftId"
+                  },
+                  "revision": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 9007199254740991
+                  }
+                },
+                "required": [
+                  "id",
+                  "revision"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "outbox": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/MailOutboxItem"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "send": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/MailboxSendReceipt"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "idempotencyKey",
+          "type",
+          "outcome",
+          "position",
+          "conflict",
+          "draft",
+          "outbox",
+          "send"
+        ],
+        "additionalProperties": false
+      },
+      "MailCommandConflict": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "enum": [
+              "draftChanged",
+              "outboxChanged"
+            ]
+          },
+          "message": {
+            "type": "string"
+          },
+          "currentRevision": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 9007199254740991
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "currentRevision"
+        ],
+        "additionalProperties": false
+      },
+      "MailSyncPosition": {
+        "type": "object",
+        "properties": {
+          "epoch": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_-]{1,64}$"
+          },
+          "seq": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991
+          }
+        },
+        "required": [
+          "epoch",
+          "seq"
+        ],
+        "additionalProperties": false
+      },
+      "ChangeMailboxSchedule": {
+        "type": "object",
+        "properties": {
+          "idempotencyKey": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_-]{8,128}$"
+          },
+          "base": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_-]{1,64}\\.(0|[1-9]\\d{0,15})\\.[A-Za-z0-9_-]{1,64}$"
+          },
+          "expectedRevision": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 9007199254740991
+          }
+        },
+        "required": [
+          "idempotencyKey",
+          "base",
+          "expectedRevision"
+        ],
+        "additionalProperties": false
+      },
+      "RescheduleMailboxSend": {
+        "type": "object",
+        "properties": {
+          "idempotencyKey": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_-]{8,128}$"
+          },
+          "base": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_-]{1,64}\\.(0|[1-9]\\d{0,15})\\.[A-Za-z0-9_-]{1,64}$"
+          },
+          "expectedRevision": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 9007199254740991
+          },
+          "sendAt": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "idempotencyKey",
+          "base",
+          "expectedRevision",
+          "sendAt"
+        ],
+        "additionalProperties": false
+      },
+      "ScheduleMailboxDraft": {
+        "type": "object",
+        "properties": {
+          "idempotencyKey": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_-]{8,128}$"
+          },
+          "base": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_-]{1,64}\\.(0|[1-9]\\d{0,15})\\.[A-Za-z0-9_-]{1,64}$"
+          },
+          "draftRevision": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 9007199254740991
+          },
+          "sendAt": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "idempotencyKey",
+          "base",
+          "draftRevision",
+          "sendAt"
+        ],
+        "additionalProperties": false
+      },
       "MailboxQuarantinedMessage": {
         "type": "object",
         "properties": {
@@ -86124,6 +87276,26 @@
               }
             ]
           },
+          "reminderSetAt": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "reminderInboxAt": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "doneAt": {
             "anyOf": [
               {
@@ -86321,6 +87493,19 @@
                 "type": "null"
               }
             ]
+          },
+          "ifNoReply": {
+            "type": "boolean"
+          },
+          "reminderInboxAt": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
         "additionalProperties": false
@@ -86404,6 +87589,26 @@
             "type": "boolean"
           },
           "snoozedUntil": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "reminderSetAt": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "reminderInboxAt": {
             "anyOf": [
               {
                 "type": "string"
@@ -86757,6 +87962,26 @@
               }
             ]
           },
+          "reminderSetAt": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "reminderInboxAt": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "doneAt": {
             "anyOf": [
               {
@@ -86950,6 +88175,26 @@
             "type": "boolean"
           },
           "snoozedUntil": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "reminderSetAt": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "reminderInboxAt": {
             "anyOf": [
               {
                 "type": "string"
