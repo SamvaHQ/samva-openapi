@@ -1,5 +1,19 @@
 # Changelog
 
+## v0.87.0
+
+- 419 operations, 308 paths, 750 schemas, 41 webhook events.
+- Breaking against v0.86.0.
+- Added operations:
+  - `DELETE /v1/template-projects/{projectId}/starter`
+  - `GET /v1/template-projects/{projectId}/starter`
+  - `PATCH /v1/template-projects/{projectId}/starter`
+  - `POST /v1/template-projects/{projectId}/starter`
+  - `POST /v1/template-projects/{projectId}/starter/update`
+- Changed schemas:
+  - `CreateTemplatePayload`
+
+
 ## v0.86.0
 
 - 414 operations, 306 paths, 748 schemas, 41 webhook events.
