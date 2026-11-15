@@ -1,5 +1,16 @@
 # Changelog
 
+## v0.89.1
+
+- 438 operations, 324 paths, 765 schemas, 41 webhook events.
+- Compatible against v0.89.0.
+- Added operations:
+  - `GET /v1/mailboxes/{id}/imports`
+  - `GET /v1/mailboxes/{id}/imports/{importId}`
+  - `POST /v1/mailboxes/{id}/imports/uploads`
+  - `POST /v1/mailboxes/{id}/imports/{importId}/start`
+
+
 ## v0.89.0
 
 - 434 operations, 320 paths, 763 schemas, 41 webhook events.
