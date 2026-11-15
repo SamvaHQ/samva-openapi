@@ -1,5 +1,28 @@
 # Changelog
 
+## v0.89.2
+
+- 454 operations, 336 paths, 793 schemas, 41 webhook events.
+- Compatible against v0.89.1.
+- Added operations:
+  - `DELETE /v1/accounts/{accountId}`
+  - `DELETE /v1/integrations/{integrationId}`
+  - `GET /v1/accounts`
+  - `GET /v1/accounts/contact-connections`
+  - `GET /v1/accounts/{accountId}`
+  - `GET /v1/integrations`
+  - `GET /v1/integrations/catalog`
+  - `GET /v1/integrations/catalog/search`
+  - `GET /v1/integrations/{integrationId}`
+  - `GET /v1/integrations/{integrationId}/tools`
+  - `GET /v1/integrations/{integrationId}/tools/{tool}`
+  - `PATCH /v1/integrations/{integrationId}`
+  - `POST /v1/accounts/connect`
+  - `POST /v1/accounts/{accountId}/check`
+  - `POST /v1/integrations`
+  - `POST /v1/integrations/catalog/prepare`
+
+
 ## v0.89.1
 
 - 438 operations, 324 paths, 765 schemas, 41 webhook events.

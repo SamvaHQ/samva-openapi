@@ -26504,6 +26504,2160 @@
         "x-samva-scope": "agents:read"
       }
     },
+    "/v1/accounts/contact-connections": {
+      "get": {
+        "tags": [
+          "Accounts"
+        ],
+        "operationId": "accounts.listContactConnections",
+        "parameters": [
+          {
+            "name": "provider",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/IntegrationKey"
+            },
+            "required": false
+          }
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "organizationId": {
+                            "$ref": "#/components/schemas/OrganizationId"
+                          },
+                          "integrationId": {
+                            "$ref": "#/components/schemas/IntegrationId"
+                          },
+                          "contactId": {
+                            "$ref": "#/components/schemas/ContactId"
+                          },
+                          "accountId": {
+                            "$ref": "#/components/schemas/IntegrationAccountId"
+                          },
+                          "provider": {
+                            "$ref": "#/components/schemas/IntegrationKey"
+                          },
+                          "info": {
+                            "$ref": "#/components/schemas/AccountInfo"
+                          },
+                          "lastUsedAt": {
+                            "type": "string"
+                          },
+                          "idleExpiresAt": {
+                            "type": "string"
+                          },
+                          "createdAt": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "organizationId",
+                          "integrationId",
+                          "contactId",
+                          "accountId",
+                          "info",
+                          "lastUsedAt",
+                          "idleExpiresAt",
+                          "createdAt"
+                        ],
+                        "additionalProperties": false
+                      }
+                    }
+                  },
+                  "required": [
+                    "items"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Lists the contact credentials connected for this organization. An administrator can disconnect each account by accountId.",
+        "summary": "List contact connections",
+        "x-samva-scope": "agents:read"
+      }
+    },
+    "/v1/accounts": {
+      "get": {
+        "tags": [
+          "Accounts"
+        ],
+        "operationId": "accounts.list",
+        "parameters": [],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "IntegrationAccountList",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IntegrationAccountList"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Returns the organization's connected provider accounts, newest first.",
+        "summary": "List accounts",
+        "x-samva-scope": "agents:read"
+      }
+    },
+    "/v1/accounts/{accountId}": {
+      "get": {
+        "tags": [
+          "Accounts"
+        ],
+        "operationId": "accounts.get",
+        "parameters": [
+          {
+            "name": "accountId",
+            "in": "path",
+            "schema": {
+              "$ref": "#/components/schemas/IntegrationAccountId"
+            },
+            "required": true
+          }
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "IntegrationAccount",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IntegrationAccount"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ResourceNotFoundError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Returns one account with its status and granted scopes. A Shopify account missing requested scopes, including read_products and read_legal_policies, needs reconnecting.",
+        "summary": "Get an account",
+        "x-samva-scope": "agents:read"
+      },
+      "delete": {
+        "tags": [
+          "Accounts"
+        ],
+        "operationId": "accounts.remove",
+        "parameters": [
+          {
+            "name": "accountId",
+            "in": "path",
+            "schema": {
+              "$ref": "#/components/schemas/IntegrationAccountId"
+            },
+            "required": true
+          }
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "DeleteAccountResponse",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteAccountResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ResourceNotFoundError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Revokes Samva's access at the provider and deletes the account with the integrations that link it, and their grants from every agent's draft. A published agent version that granted them can no longer use them; publish the agent to drop the grants.",
+        "summary": "Disconnect an account",
+        "x-samva-scope": "agents:delete"
+      }
+    },
+    "/v1/accounts/{accountId}/check": {
+      "post": {
+        "tags": [
+          "Accounts"
+        ],
+        "operationId": "accounts.check",
+        "parameters": [
+          {
+            "name": "accountId",
+            "in": "path",
+            "schema": {
+              "$ref": "#/components/schemas/IntegrationAccountId"
+            },
+            "required": true
+          }
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "IntegrationAccountHealth",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IntegrationAccountHealth"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ResourceNotFoundError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Checks the saved credential on demand. A provider outage does not require reconnecting; refused access or missing requested scopes does.",
+        "summary": "Check an account",
+        "x-samva-scope": "agents:create"
+      }
+    },
+    "/v1/accounts/connect": {
+      "post": {
+        "tags": [
+          "Accounts"
+        ],
+        "operationId": "accounts.connect",
+        "parameters": [],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "ConnectAccountResponse",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectAccountResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ResourceNotFoundError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Connects a provider account. OAuth returns an authorization URL; credential connections return null after validation. Name an app to ask for its scopes and install it when the connection finishes. Pass accountId to reconnect an account for renewed access or additional scopes. Connecting or reconnecting Shopify with read_products and read_legal_policies creates its Shopify store knowledge source.",
+        "summary": "Connect an account",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ConnectAccountPayload"
+              }
+            }
+          },
+          "required": true
+        },
+        "x-samva-scope": "agents:create"
+      }
+    },
+    "/v1/integrations/catalog/prepare": {
+      "post": {
+        "tags": [
+          "Integrations catalog"
+        ],
+        "operationId": "integrationCatalog.prepare",
+        "parameters": [],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "connectSpec": {
+                      "type": "object",
+                      "properties": {
+                        "provider": {
+                          "$ref": "#/components/schemas/IntegrationKey"
+                        },
+                        "auth": {
+                          "type": "string",
+                          "enum": [
+                            "discover",
+                            "oauth",
+                            "none",
+                            "apiKey"
+                          ]
+                        },
+                        "inputs": {
+                          "type": "object",
+                          "propertyNames": {
+                            "type": "string",
+                            "maxLength": 128,
+                            "pattern": "^[a-zA-Z][a-zA-Z0-9_-]*$"
+                          },
+                          "additionalProperties": {
+                            "type": "object",
+                            "properties": {
+                              "label": {
+                                "type": "string",
+                                "maxLength": 256,
+                                "x-samva-string-checks": [
+                                  {
+                                    "id": "effect/schema/isMaxLength",
+                                    "payload": {
+                                      "maxLength": 256
+                                    }
+                                  }
+                                ]
+                              },
+                              "description": {
+                                "type": "string",
+                                "maxLength": 2048,
+                                "x-samva-string-checks": [
+                                  {
+                                    "id": "effect/schema/isMaxLength",
+                                    "payload": {
+                                      "maxLength": 2048
+                                    }
+                                  }
+                                ]
+                              },
+                              "pattern": {
+                                "type": "string",
+                                "maxLength": 512,
+                                "x-samva-string-checks": [
+                                  {
+                                    "id": "effect/schema/isMaxLength",
+                                    "payload": {
+                                      "maxLength": 512
+                                    }
+                                  }
+                                ]
+                              },
+                              "maxLength": {
+                                "type": "integer",
+                                "minimum": 1,
+                                "maximum": 2048
+                              },
+                              "example": {
+                                "type": "string",
+                                "maxLength": 2048,
+                                "x-samva-string-checks": [
+                                  {
+                                    "id": "effect/schema/isMaxLength",
+                                    "payload": {
+                                      "maxLength": 2048
+                                    }
+                                  }
+                                ]
+                              },
+                              "default": {
+                                "type": "string",
+                                "maxLength": 2048,
+                                "x-samva-string-checks": [
+                                  {
+                                    "id": "effect/schema/isMaxLength",
+                                    "payload": {
+                                      "maxLength": 2048
+                                    }
+                                  }
+                                ]
+                              },
+                              "kind": {
+                                "type": "string",
+                                "enum": [
+                                  "hostnameLabel",
+                                  "httpsUrl"
+                                ]
+                              }
+                            },
+                            "required": [
+                              "label",
+                              "description",
+                              "pattern",
+                              "maxLength",
+                              "example"
+                            ],
+                            "additionalProperties": false
+                          }
+                        },
+                        "credentials": {
+                          "type": "object",
+                          "additionalProperties": {
+                            "type": "object",
+                            "properties": {
+                              "label": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "label"
+                            ],
+                            "additionalProperties": false
+                          }
+                        }
+                      },
+                      "required": [
+                        "provider",
+                        "auth",
+                        "inputs",
+                        "credentials"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "hosts": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "connectState": {
+                      "type": "string",
+                      "enum": [
+                        "ready",
+                        "checkedAtConnect",
+                        "unavailable"
+                      ]
+                    },
+                    "reason": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "connectSpec",
+                    "hosts",
+                    "connectState",
+                    "reason"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Resolves what connecting a catalog provider needs: the inputs and credentials it asks for, the hosts its API and OAuth credentials reach, and whether it can connect. Pass input for server inputs such as an API description URL. An unavailable provider carries a reason.",
+        "summary": "Prepare an integration connection",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "provider": {
+                    "$ref": "#/components/schemas/IntegrationKey"
+                  },
+                  "input": {
+                    "$ref": "#/components/schemas/JsonObject"
+                  }
+                },
+                "required": [
+                  "provider"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          "required": true
+        },
+        "x-samva-scope": "agents:create"
+      }
+    },
+    "/v1/integrations/catalog/search": {
+      "get": {
+        "tags": [
+          "Integrations catalog"
+        ],
+        "operationId": "integrationCatalog.search",
+        "parameters": [
+          {
+            "name": "key",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/IntegrationKey"
+            },
+            "required": false
+          },
+          {
+            "name": "query",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "maxLength": 256,
+              "x-samva-string-checks": [
+                {
+                  "id": "effect/schema/isMaxLength",
+                  "payload": {
+                    "maxLength": 256
+                  }
+                }
+              ]
+            },
+            "required": false
+          },
+          {
+            "name": "category",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "commerce",
+                "payments",
+                "shipping",
+                "calendar",
+                "crm",
+                "helpdesk",
+                "knowledge",
+                "forms",
+                "accounting",
+                "reviews",
+                "productivity",
+                "dns",
+                "channel",
+                "other"
+              ]
+            },
+            "required": false
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "required": false
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100
+            },
+            "required": false
+          }
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "IntegrationCatalogSearchPage",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IntegrationCatalogSearchPage"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Searches the providers this organization can connect, by key, text or category. Each entry carries its connection requirements and whether it can connect. Follow nextOffset until it is null.",
+        "summary": "Search the integrations catalog",
+        "x-samva-scope": "agents:read"
+      }
+    },
+    "/v1/integrations/catalog": {
+      "get": {
+        "tags": [
+          "Integrations catalog"
+        ],
+        "operationId": "integrationCatalog.list",
+        "parameters": [],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "IntegrationCatalogResponse",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IntegrationCatalogResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Returns the providers this organization can connect, each with its connections and the agents and journeys that use them.",
+        "summary": "List the integrations catalog",
+        "x-samva-scope": "agents:read domains:read"
+      }
+    },
+    "/v1/integrations": {
+      "get": {
+        "tags": [
+          "Integrations"
+        ],
+        "operationId": "integrations.list",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "maximum": 100,
+                  "exclusiveMinimum": 0,
+                  "description": "Items per page, at most 100."
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "required": false
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          }
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "IntegrationList",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IntegrationList"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Returns a bounded page of installed integrations, newest first, with compact tool summaries. Follow nextCursor and each integration's toolPage.nextOffset for the complete inventory.",
+        "summary": "List integrations",
+        "x-samva-scope": "agents:read"
+      },
+      "post": {
+        "tags": [
+          "Integrations"
+        ],
+        "operationId": "integrations.install",
+        "parameters": [],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Integration",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Integration"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ResourceNotFoundError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Installs an app on connected accounts, one for each of the app's account slots. Installing the same app on the same accounts again returns the existing integration.",
+        "summary": "Install an integration",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InstallIntegrationPayload"
+              }
+            }
+          },
+          "required": true
+        },
+        "x-samva-scope": "agents:create"
+      }
+    },
+    "/v1/integrations/{integrationId}/tools": {
+      "get": {
+        "tags": [
+          "Integrations"
+        ],
+        "operationId": "integrations.listTools",
+        "parameters": [
+          {
+            "name": "integrationId",
+            "in": "path",
+            "schema": {
+              "$ref": "#/components/schemas/IntegrationId"
+            },
+            "required": true
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 9007199254740991
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "required": false
+          },
+          {
+            "name": "revision",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            },
+            "required": false
+          }
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "nextOffset": {
+                      "anyOf": [
+                        {
+                          "type": "integer",
+                          "minimum": 0,
+                          "maximum": 9007199254740991
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "total": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 9007199254740991
+                    },
+                    "revision": {
+                      "type": "string",
+                      "pattern": "^[a-f0-9]{64}$"
+                    },
+                    "offset": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 9007199254740991
+                    },
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/IntegrationToolView"
+                      },
+                      "maxItems": 50
+                    }
+                  },
+                  "required": [
+                    "nextOffset",
+                    "total",
+                    "revision",
+                    "offset",
+                    "items"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ResourceNotFoundError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "ConflictError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConflictError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Returns a page of the tools an integration gives agents. Send the first page's revision with each later offset; if the integration's tools change during the read, the request returns 409 and the read restarts at offset zero.",
+        "summary": "List integration tools",
+        "x-samva-scope": "agents:read"
+      }
+    },
+    "/v1/integrations/{integrationId}/tools/{tool}": {
+      "get": {
+        "tags": [
+          "Integrations"
+        ],
+        "operationId": "integrations.readTool",
+        "parameters": [
+          {
+            "name": "integrationId",
+            "in": "path",
+            "schema": {
+              "$ref": "#/components/schemas/IntegrationId"
+            },
+            "required": true
+          },
+          {
+            "name": "tool",
+            "in": "path",
+            "schema": {
+              "$ref": "#/components/schemas/IntegrationTool"
+            },
+            "required": true
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 9007199254740991
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "required": false
+          },
+          {
+            "name": "revision",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            },
+            "required": false
+          }
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "string",
+                      "maxLength": 32000,
+                      "x-samva-string-checks": [
+                        {
+                          "id": "effect/schema/isMaxLength",
+                          "payload": {
+                            "maxLength": 32000
+                          }
+                        }
+                      ]
+                    },
+                    "offset": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 9007199254740991
+                    },
+                    "nextOffset": {
+                      "anyOf": [
+                        {
+                          "type": "integer",
+                          "minimum": 0,
+                          "maximum": 9007199254740991
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "totalCharacters": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 9007199254740991
+                    },
+                    "revision": {
+                      "type": "string",
+                      "pattern": "^[a-f0-9]{64}$"
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "offset",
+                    "nextOffset",
+                    "totalCharacters",
+                    "revision"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ResourceNotFoundError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "ConflictError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConflictError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Returns one tool's full descriptor. A revision that no longer matches the integration's tools returns 409.",
+        "summary": "Read an integration tool descriptor",
+        "x-samva-scope": "agents:read"
+      }
+    },
+    "/v1/integrations/{integrationId}": {
+      "get": {
+        "tags": [
+          "Integrations"
+        ],
+        "operationId": "integrations.get",
+        "parameters": [
+          {
+            "name": "integrationId",
+            "in": "path",
+            "schema": {
+              "$ref": "#/components/schemas/IntegrationId"
+            },
+            "required": true
+          }
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Integration",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Integration"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ResourceNotFoundError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Returns one integration with its linked accounts, settings and tools. A Shopify integration needs reconnecting when its account has not granted the requested scopes, including read_products and read_legal_policies.",
+        "summary": "Get an integration",
+        "x-samva-scope": "agents:read"
+      },
+      "patch": {
+        "tags": [
+          "Integrations"
+        ],
+        "operationId": "integrations.update",
+        "parameters": [
+          {
+            "name": "integrationId",
+            "in": "path",
+            "schema": {
+              "$ref": "#/components/schemas/IntegrationId"
+            },
+            "required": true
+          }
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Integration",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Integration"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ResourceNotFoundError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "ConflictError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConflictError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Changes an integration's settings, enabled tools, which tools run without approval, and whether replies using its data need approval. Only an organization owner may change answerWithoutApproval or a tool's runsWithoutApproval: false makes a read tool ask first, true lets a tool that changes something run, each for the tool's current effect. Fields not named keep their values. What an agent may do with the integration is the agent's grant.",
+        "summary": "Update an integration",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateIntegrationPayload"
+              }
+            }
+          },
+          "required": true
+        },
+        "x-samva-scope": "agents:update"
+      },
+      "delete": {
+        "tags": [
+          "Integrations"
+        ],
+        "operationId": "integrations.remove",
+        "parameters": [
+          {
+            "name": "integrationId",
+            "in": "path",
+            "schema": {
+              "$ref": "#/components/schemas/IntegrationId"
+            },
+            "required": true
+          }
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "DeleteIntegrationResponse",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteIntegrationResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ResourceNotFoundError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "ConflictError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConflictError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Removes the integration and its grant from every agent's draft. Contact accounts are disconnected; organization accounts stay connected. A published agent version that granted it can no longer use it; publish the agent to drop the grant.",
+        "summary": "Remove an integration",
+        "x-samva-scope": "agents:delete"
+      }
+    },
     "/v1/subscriptions": {
       "post": {
         "tags": [
@@ -98709,6 +100863,1052 @@
         ],
         "additionalProperties": false
       },
+      "DeleteIntegrationResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "$ref": "#/components/schemas/IntegrationId"
+          },
+          "deleted": {
+            "type": "boolean",
+            "enum": [
+              true
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "deleted"
+        ],
+        "additionalProperties": false
+      },
+      "Integration": {
+        "type": "object",
+        "properties": {
+          "app": {
+            "$ref": "#/components/schemas/IntegrationKey"
+          },
+          "settings": {
+            "$ref": "#/components/schemas/JsonObject"
+          },
+          "id": {
+            "$ref": "#/components/schemas/IntegrationId"
+          },
+          "status": {
+            "$ref": "#/components/schemas/IntegrationStatus"
+          },
+          "accounts": {
+            "$ref": "#/components/schemas/AccountLinks"
+          },
+          "supportsContactAccounts": {
+            "type": "boolean"
+          },
+          "answerWithoutApproval": {
+            "$ref": "#/components/schemas/AnswerWithoutApproval"
+          },
+          "tools": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IntegrationToolView"
+            }
+          },
+          "toolPage": {
+            "type": "object",
+            "properties": {
+              "nextOffset": {
+                "anyOf": [
+                  {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "total": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 9007199254740991
+              },
+              "revision": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              }
+            },
+            "required": [
+              "nextOffset",
+              "total",
+              "revision"
+            ],
+            "additionalProperties": false
+          },
+          "installedBy": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/UserId"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "app",
+          "settings",
+          "id",
+          "status",
+          "accounts",
+          "supportsContactAccounts",
+          "answerWithoutApproval",
+          "tools",
+          "toolPage",
+          "installedBy",
+          "createdAt",
+          "updatedAt"
+        ],
+        "additionalProperties": false
+      },
+      "IntegrationToolView": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "$ref": "#/components/schemas/IntegrationTool"
+          },
+          "title": {
+            "type": "string",
+            "maxLength": 256,
+            "x-samva-string-checks": [
+              {
+                "id": "effect/schema/isMaxLength",
+                "payload": {
+                  "maxLength": 256
+                }
+              }
+            ]
+          },
+          "kind": {
+            "$ref": "#/components/schemas/IntegrationToolKind"
+          },
+          "effect": {
+            "type": "string",
+            "enum": [
+              "read",
+              "write",
+              "final"
+            ]
+          },
+          "guards": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "pinnedDestination",
+                "insideHours"
+              ]
+            }
+          },
+          "granted": {
+            "type": "boolean"
+          },
+          "unavailableReason": {
+            "type": "string",
+            "enum": [
+              "input_schema_too_large"
+            ]
+          },
+          "enabled": {
+            "type": "boolean"
+          },
+          "runsWithoutApproval": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "name",
+          "title",
+          "kind",
+          "effect",
+          "guards",
+          "granted",
+          "enabled",
+          "runsWithoutApproval"
+        ],
+        "additionalProperties": false
+      },
+      "IntegrationToolKind": {
+        "type": "string",
+        "enum": [
+          "query",
+          "mutation"
+        ]
+      },
+      "IntegrationTool": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9_.]{0,63}$"
+      },
+      "AnswerWithoutApproval": {
+        "type": "boolean"
+      },
+      "AccountLinks": {
+        "type": "object",
+        "additionalProperties": {
+          "$ref": "#/components/schemas/IntegrationAccountId"
+        }
+      },
+      "IntegrationAccountId": {
+        "type": "string",
+        "pattern": "^intgacct_[0-9a-hjkmnp-tv-z]{16,24}$",
+        "x-samva-brand": "IntegrationAccountId"
+      },
+      "IntegrationStatus": {
+        "type": "string",
+        "enum": [
+          "pending",
+          "connected",
+          "needsReconnect"
+        ]
+      },
+      "IntegrationKey": {
+        "type": "string",
+        "pattern": "^[a-z0-9][a-z0-9_-]{0,63}$"
+      },
+      "UpdateIntegrationPayload": {
+        "type": "object",
+        "properties": {
+          "answerWithoutApproval": {
+            "$ref": "#/components/schemas/AnswerWithoutApproval"
+          },
+          "enabledTools": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IntegrationTool"
+            }
+          },
+          "tool": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "$ref": "#/components/schemas/IntegrationTool"
+              },
+              "enabled": {
+                "type": "boolean"
+              },
+              "runsWithoutApproval": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "name"
+            ],
+            "additionalProperties": false
+          },
+          "settings": {
+            "$ref": "#/components/schemas/JsonObject"
+          }
+        },
+        "additionalProperties": false
+      },
+      "InstallIntegrationPayload": {
+        "type": "object",
+        "properties": {
+          "app": {
+            "$ref": "#/components/schemas/IntegrationKey"
+          },
+          "accounts": {
+            "$ref": "#/components/schemas/AccountLinks"
+          },
+          "settings": {
+            "$ref": "#/components/schemas/JsonObject"
+          }
+        },
+        "required": [
+          "app",
+          "accounts"
+        ],
+        "additionalProperties": false
+      },
+      "IntegrationList": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Integration"
+            }
+          },
+          "nextCursor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "items",
+          "nextCursor"
+        ],
+        "additionalProperties": false
+      },
+      "IntegrationCatalogResponse": {
+        "type": "object",
+        "properties": {
+          "entries": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IntegrationCatalogEntry"
+            }
+          }
+        },
+        "required": [
+          "entries"
+        ],
+        "additionalProperties": false
+      },
+      "IntegrationCatalogEntry": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "maxLength": 64,
+            "x-samva-string-checks": [
+              {
+                "id": "effect/schema/isMaxLength",
+                "payload": {
+                  "maxLength": 64
+                }
+              }
+            ]
+          },
+          "name": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string",
+            "enum": [
+              "commerce",
+              "payments",
+              "shipping",
+              "calendar",
+              "crm",
+              "helpdesk",
+              "knowledge",
+              "forms",
+              "accounting",
+              "reviews",
+              "productivity",
+              "dns",
+              "channel",
+              "other"
+            ]
+          },
+          "blurb": {
+            "type": "string"
+          },
+          "connect": {
+            "type": "string",
+            "enum": [
+              "account",
+              "dns",
+              "channelLink"
+            ]
+          },
+          "inviteOnly": {
+            "type": "string"
+          },
+          "app": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/IntegrationKey"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "href": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "/whatsapp"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "connections": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IntegrationCatalogConnection"
+            }
+          },
+          "usedBy": {
+            "type": "object",
+            "properties": {
+              "agents": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 9007199254740991
+              },
+              "journeys": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 9007199254740991
+              }
+            },
+            "required": [
+              "agents",
+              "journeys"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "category",
+          "blurb",
+          "connect",
+          "connections",
+          "usedBy"
+        ],
+        "additionalProperties": false
+      },
+      "IntegrationCatalogConnection": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "account": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "status": {
+            "$ref": "#/components/schemas/IntegrationStatus"
+          }
+        },
+        "required": [
+          "id",
+          "account",
+          "status"
+        ],
+        "additionalProperties": false
+      },
+      "IntegrationCatalogSearchPage": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IntegrationCatalogSearchEntry"
+            }
+          },
+          "total": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991
+          },
+          "nextOffset": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 9007199254740991
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "items",
+          "total",
+          "nextOffset"
+        ],
+        "additionalProperties": false
+      },
+      "IntegrationCatalogSearchEntry": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "$ref": "#/components/schemas/IntegrationKey"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "mcp",
+              "openapi",
+              "graphql"
+            ]
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "domain": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "category": {
+            "type": "string",
+            "enum": [
+              "commerce",
+              "payments",
+              "shipping",
+              "calendar",
+              "crm",
+              "helpdesk",
+              "knowledge",
+              "forms",
+              "accounting",
+              "reviews",
+              "productivity",
+              "dns",
+              "channel",
+              "other"
+            ]
+          },
+          "icon": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "logo": {
+            "type": "object",
+            "properties": {
+              "file": {
+                "type": "string",
+                "maxLength": 128,
+                "x-samva-string-checks": [
+                  {
+                    "id": "effect/schema/isMaxLength",
+                    "payload": {
+                      "maxLength": 128
+                    }
+                  }
+                ]
+              },
+              "monochrome": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "file"
+            ],
+            "additionalProperties": false
+          },
+          "featured": {
+            "type": "boolean"
+          },
+          "connectSpec": {
+            "type": "object",
+            "properties": {
+              "provider": {
+                "$ref": "#/components/schemas/IntegrationKey"
+              },
+              "auth": {
+                "type": "string",
+                "enum": [
+                  "discover",
+                  "oauth",
+                  "none",
+                  "apiKey"
+                ]
+              },
+              "inputs": {
+                "type": "object",
+                "propertyNames": {
+                  "type": "string",
+                  "maxLength": 128,
+                  "pattern": "^[a-zA-Z][a-zA-Z0-9_-]*$"
+                },
+                "additionalProperties": {
+                  "type": "object",
+                  "properties": {
+                    "label": {
+                      "type": "string",
+                      "maxLength": 256,
+                      "x-samva-string-checks": [
+                        {
+                          "id": "effect/schema/isMaxLength",
+                          "payload": {
+                            "maxLength": 256
+                          }
+                        }
+                      ]
+                    },
+                    "description": {
+                      "type": "string",
+                      "maxLength": 2048,
+                      "x-samva-string-checks": [
+                        {
+                          "id": "effect/schema/isMaxLength",
+                          "payload": {
+                            "maxLength": 2048
+                          }
+                        }
+                      ]
+                    },
+                    "pattern": {
+                      "type": "string",
+                      "maxLength": 512,
+                      "x-samva-string-checks": [
+                        {
+                          "id": "effect/schema/isMaxLength",
+                          "payload": {
+                            "maxLength": 512
+                          }
+                        }
+                      ]
+                    },
+                    "maxLength": {
+                      "type": "integer",
+                      "minimum": 1,
+                      "maximum": 2048
+                    },
+                    "example": {
+                      "type": "string",
+                      "maxLength": 2048,
+                      "x-samva-string-checks": [
+                        {
+                          "id": "effect/schema/isMaxLength",
+                          "payload": {
+                            "maxLength": 2048
+                          }
+                        }
+                      ]
+                    },
+                    "default": {
+                      "type": "string",
+                      "maxLength": 2048,
+                      "x-samva-string-checks": [
+                        {
+                          "id": "effect/schema/isMaxLength",
+                          "payload": {
+                            "maxLength": 2048
+                          }
+                        }
+                      ]
+                    },
+                    "kind": {
+                      "type": "string",
+                      "enum": [
+                        "hostnameLabel",
+                        "httpsUrl"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "label",
+                    "description",
+                    "pattern",
+                    "maxLength",
+                    "example"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "credentials": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "object",
+                  "properties": {
+                    "label": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "label"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "required": [
+              "provider",
+              "auth",
+              "inputs",
+              "credentials"
+            ],
+            "additionalProperties": false
+          },
+          "connectState": {
+            "type": "string",
+            "enum": [
+              "ready",
+              "checkedAtConnect",
+              "unavailable"
+            ]
+          },
+          "reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "key",
+          "kind",
+          "name",
+          "description",
+          "domain",
+          "category",
+          "icon",
+          "featured",
+          "connectSpec",
+          "connectState",
+          "reason"
+        ],
+        "additionalProperties": false
+      },
+      "DeleteAccountResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "$ref": "#/components/schemas/IntegrationAccountId"
+          },
+          "deleted": {
+            "type": "boolean",
+            "enum": [
+              true
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "deleted"
+        ],
+        "additionalProperties": false
+      },
+      "ConnectAccountResponse": {
+        "type": "object",
+        "properties": {
+          "accountId": {
+            "$ref": "#/components/schemas/IntegrationAccountId"
+          },
+          "authorizationUrl": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "accountId",
+          "authorizationUrl"
+        ],
+        "additionalProperties": false
+      },
+      "ConnectAccountPayload": {
+        "type": "object",
+        "properties": {
+          "provider": {
+            "$ref": "#/components/schemas/IntegrationKey"
+          },
+          "input": {
+            "$ref": "#/components/schemas/JsonObject"
+          },
+          "credentials": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "app": {
+            "$ref": "#/components/schemas/IntegrationKey"
+          },
+          "accountId": {
+            "$ref": "#/components/schemas/IntegrationAccountId"
+          },
+          "expectedHosts": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "returnTo": {
+            "$ref": "#/components/schemas/IntegrationReturnTo"
+          }
+        },
+        "required": [
+          "provider",
+          "returnTo"
+        ],
+        "additionalProperties": false
+      },
+      "IntegrationReturnTo": {
+        "type": "string",
+        "maxLength": 2048,
+        "pattern": "^\\/(?![/\\\\])[\\x21-\\x7e]*$",
+        "description": "A dashboard path starting with a single slash, such as /dashboard/acme/agents.",
+        "x-samva-string-checks": [
+          {
+            "id": "effect/schema/isMaxLength",
+            "payload": {
+              "maxLength": 2048
+            }
+          }
+        ]
+      },
+      "IntegrationAccountHealth": {
+        "type": "object",
+        "properties": {
+          "accountId": {
+            "$ref": "#/components/schemas/IntegrationAccountId"
+          },
+          "status": {
+            "$ref": "#/components/schemas/AccountHealthStatus"
+          },
+          "checkedAt": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "accountId",
+          "status",
+          "checkedAt"
+        ],
+        "additionalProperties": false
+      },
+      "AccountHealthStatus": {
+        "type": "string",
+        "enum": [
+          "pending",
+          "healthy",
+          "needsReconnect",
+          "forbidden",
+          "unavailable"
+        ]
+      },
+      "IntegrationAccount": {
+        "type": "object",
+        "properties": {
+          "provider": {
+            "$ref": "#/components/schemas/IntegrationKey"
+          },
+          "input": {
+            "$ref": "#/components/schemas/JsonObject"
+          },
+          "id": {
+            "$ref": "#/components/schemas/IntegrationAccountId"
+          },
+          "webhooks": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "app": {
+                  "type": "string"
+                },
+                "url": {
+                  "type": "string"
+                },
+                "events": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "signatureHeader": {
+                  "type": "string"
+                },
+                "deliveryIdHeader": {
+                  "type": "string"
+                },
+                "secretSetup": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "app",
+                "url",
+                "events",
+                "signatureHeader",
+                "deliveryIdHeader",
+                "secretSetup"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "status": {
+            "$ref": "#/components/schemas/AccountStatus"
+          },
+          "info": {
+            "$ref": "#/components/schemas/AccountInfo"
+          },
+          "grantedScopes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "connectedBy": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/UserId"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "connectedAt": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "provider",
+          "input",
+          "id",
+          "status",
+          "info",
+          "grantedScopes",
+          "connectedBy",
+          "connectedAt",
+          "createdAt",
+          "updatedAt"
+        ],
+        "additionalProperties": false
+      },
+      "AccountInfo": {
+        "type": "object",
+        "properties": {
+          "externalId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 255,
+            "x-samva-string-checks": [
+              {
+                "id": "effect/schema/isMaxLength",
+                "payload": {
+                  "maxLength": 255
+                }
+              }
+            ]
+          },
+          "displayName": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 255,
+            "x-samva-string-checks": [
+              {
+                "id": "effect/schema/isMaxLength",
+                "payload": {
+                  "maxLength": 255
+                }
+              }
+            ]
+          },
+          "email": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 255,
+            "x-samva-string-checks": [
+              {
+                "id": "effect/schema/isMaxLength",
+                "payload": {
+                  "maxLength": 255
+                }
+              }
+            ]
+          },
+          "timeZone": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 255,
+            "x-samva-string-checks": [
+              {
+                "id": "effect/schema/isMaxLength",
+                "payload": {
+                  "maxLength": 255
+                }
+              }
+            ]
+          }
+        },
+        "additionalProperties": false
+      },
+      "AccountStatus": {
+        "type": "string",
+        "enum": [
+          "pending",
+          "connected",
+          "needsReconnect"
+        ]
+      },
+      "IntegrationAccountList": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IntegrationAccount"
+            }
+          }
+        },
+        "required": [
+          "items"
+        ],
+        "additionalProperties": false
+      },
       "AgentVersion": {
         "type": "object",
         "properties": {
@@ -99286,6 +102486,13 @@
         "properties": {
           "integrationId": {
             "$ref": "#/components/schemas/IntegrationId"
+          },
+          "subject": {
+            "type": "string",
+            "enum": [
+              "org",
+              "contact"
+            ]
           },
           "tools": {
             "$ref": "#/components/schemas/AgentToolScope"
@@ -115578,6 +118785,18 @@
     {
       "name": "Agents",
       "description": "Agents that answer conversations on your mailbox endpoints, with a draft, published versions, and rules for action review, hours, and staff takeover"
+    },
+    {
+      "name": "Accounts",
+      "description": "Provider accounts connected for integrations"
+    },
+    {
+      "name": "Integrations catalog",
+      "description": "Providers an organization can connect"
+    },
+    {
+      "name": "Integrations",
+      "description": "Apps installed for hosted agents, on connected accounts"
     },
     {
       "name": "Subscriptions",
