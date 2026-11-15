@@ -1,5 +1,16 @@
 # Changelog
 
+## v0.87.2
+
+- 423 operations, 312 paths, 753 schemas, 41 webhook events.
+- Compatible against v0.87.1.
+- Added operations:
+  - `GET /v1/approval-requests/{id}`
+  - `POST /v1/approval-requests`
+  - `POST /v1/approval-requests/{id}/approve`
+  - `POST /v1/approval-requests/{id}/reject`
+
+
 ## v0.87.1
 
 - 419 operations, 308 paths, 750 schemas, 41 webhook events.

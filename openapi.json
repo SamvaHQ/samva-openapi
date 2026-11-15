@@ -6,6 +6,529 @@
     "description": "Samva is the email and WhatsApp API for your app and your agents. Send in one typed call. Delivery events and customer replies come back as signed webhooks, and replies thread to the conversation they answer."
   },
   "paths": {
+    "/v1/approval-requests": {
+      "post": {
+        "tags": [
+          "Approval requests"
+        ],
+        "operationId": "approvalRequests.create",
+        "parameters": [],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "ApprovalRequest",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApprovalRequest"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "ConflictError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConflictError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Creates one immutable batch of up to 20 tool calls for one intent. Only an OAuth access token may create a request. The owner opens approvalUrl and decides in a signed-in owner session. Requests expire after 30 minutes; the original OAuth token must remain valid. Repeating idempotencyKey for the same caller returns the same request; different content conflicts. Credential-bearing arguments are refused.",
+        "summary": "Request approval for an OAuth tool intent",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "intent": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 500,
+                    "x-samva-string-checks": [
+                      {
+                        "id": "effect/schema/isMaxLength",
+                        "payload": {
+                          "maxLength": 500
+                        }
+                      }
+                    ]
+                  },
+                  "calls": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/ApprovalCall"
+                    },
+                    "minItems": 1,
+                    "maxItems": 20
+                  },
+                  "idempotencyKey": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 128,
+                    "x-samva-string-checks": [
+                      {
+                        "id": "effect/schema/isMaxLength",
+                        "payload": {
+                          "maxLength": 128
+                        }
+                      }
+                    ]
+                  }
+                },
+                "required": [
+                  "intent",
+                  "calls",
+                  "idempotencyKey"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    "/v1/approval-requests/{id}": {
+      "get": {
+        "tags": [
+          "Approval requests"
+        ],
+        "operationId": "approvalRequests.get",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "$ref": "#/components/schemas/ApprovalRequestId"
+            },
+            "required": true
+          }
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ApprovalRequest",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApprovalRequest"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ResourceNotFoundError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Returns the exact calls, requester, decision and execution receipt. The original OAuth caller may read its own requests; an organization owner may read them from a signed-in session. A pending request past its deadline reads expired.",
+        "summary": "Read an approval request"
+      }
+    },
+    "/v1/approval-requests/{id}/approve": {
+      "post": {
+        "tags": [
+          "Approval requests"
+        ],
+        "operationId": "approvalRequests.approve",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "$ref": "#/components/schemas/ApprovalRequestId"
+            },
+            "required": true
+          }
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ApprovalRequest",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApprovalRequest"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ResourceNotFoundError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "ConflictError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConflictError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Only an organization owner in a signed-in session may approve. Claims a pending, unexpired request once, then executes its exact calls with the original OAuth authority. Repeating a decision returns the existing receipt. Execution is never retried automatically; a failed receipt can mean some actions completed, and must be reconciled before another request is created.",
+        "summary": "Approve and execute an OAuth tool intent"
+      }
+    },
+    "/v1/approval-requests/{id}/reject": {
+      "post": {
+        "tags": [
+          "Approval requests"
+        ],
+        "operationId": "approvalRequests.reject",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "$ref": "#/components/schemas/ApprovalRequestId"
+            },
+            "required": true
+          }
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ApprovalRequest",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApprovalRequest"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ResourceNotFoundError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "ConflictError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConflictError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Only an organization owner in a signed-in session may reject a pending request. Records the optional reason and destroys the retained execution credential. Repeated decisions return the existing receipt.",
+        "summary": "Reject an OAuth tool intent",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "reason": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "maxLength": 1000,
+                        "x-samva-string-checks": [
+                          {
+                            "id": "effect/schema/isMaxLength",
+                            "payload": {
+                              "maxLength": 1000
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  }
+                },
+                "additionalProperties": false
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
     "/v1/messages": {
       "get": {
         "tags": [
@@ -111445,6 +111968,164 @@
         ],
         "additionalProperties": false
       },
+      "ApprovalRequest": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "$ref": "#/components/schemas/ApprovalRequestId"
+          },
+          "organizationId": {
+            "$ref": "#/components/schemas/OrganizationId"
+          },
+          "namespaceId": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/NamespaceId"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "clientId": {
+            "type": "string"
+          },
+          "requestedBy": {
+            "$ref": "#/components/schemas/UserId"
+          },
+          "intent": {
+            "type": "string"
+          },
+          "calls": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApprovalCall"
+            },
+            "minItems": 1,
+            "maxItems": 20
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "pending",
+              "executing",
+              "executed",
+              "rejected",
+              "failed",
+              "expired"
+            ]
+          },
+          "expiresAt": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "decidedAt": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "decidedBy": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/UserId"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "results": {
+            "anyOf": [
+              {
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "error": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "approvalUrl": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "organizationId",
+          "namespaceId",
+          "clientId",
+          "requestedBy",
+          "intent",
+          "calls",
+          "status",
+          "expiresAt",
+          "createdAt",
+          "decidedAt",
+          "decidedBy",
+          "reason",
+          "results",
+          "error",
+          "approvalUrl"
+        ],
+        "additionalProperties": false
+      },
+      "ApprovalCall": {
+        "type": "object",
+        "properties": {
+          "toolName": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128,
+            "x-samva-string-checks": [
+              {
+                "id": "effect/schema/isMaxLength",
+                "payload": {
+                  "maxLength": 128
+                }
+              }
+            ]
+          },
+          "arguments": {
+            "$ref": "#/components/schemas/JsonObject"
+          }
+        },
+        "required": [
+          "toolName",
+          "arguments"
+        ],
+        "additionalProperties": false
+      },
+      "ApprovalRequestId": {
+        "type": "string",
+        "pattern": "^apr_[0-9a-hjkmnp-tv-z]{16,24}$",
+        "x-samva-brand": "ApprovalRequestId"
+      },
       "JsonValue": {
         "anyOf": [
           {
@@ -111486,6 +112167,10 @@
   },
   "security": [],
   "tags": [
+    {
+      "name": "Approval requests",
+      "description": "Immutable tool intents requested by OAuth clients and decided by organization owners in their signed-in sessions."
+    },
     {
       "name": "Messages",
       "description": "Send messages and read their delivery state and timeline."
