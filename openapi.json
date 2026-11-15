@@ -62221,6 +62221,47 @@
             "required": false
           },
           {
+            "name": "recipient",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "name": "senders",
+            "in": "query",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              ]
+            },
+            "required": false
+          },
+          {
+            "name": "excludeTrash",
+            "in": "query",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "required": false
+          },
+          {
             "name": "q",
             "in": "query",
             "schema": {
@@ -62487,6 +62528,47 @@
             "in": "query",
             "schema": {
               "type": "string"
+            },
+            "required": false
+          },
+          {
+            "name": "recipient",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "name": "senders",
+            "in": "query",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              ]
+            },
+            "required": false
+          },
+          {
+            "name": "excludeTrash",
+            "in": "query",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ]
             },
             "required": false
           },
@@ -67839,6 +67921,1333 @@
         },
         "description": "Returns mailbox audit records, newest first, filterable by when they happened (`after`, `before`). Audit event types: `mailbox.created`, `endpoint.attached`, `endpoint.detached`, `message.received`, `message.released`, `message.sent`, `thread.created`, `action.proposed`, `action.policy_decided`, `action.approval_requested`, `action.approval_resolved`, `action.accepted`, `action.executed`, `action.failed`. Thread and draft changes have no dedicated audit event types. Pass `nextCursor` back as `cursor` for the next page; it is null on the last page.",
         "summary": "List mailbox events",
+        "x-samva-scope": "mailboxes:read"
+      }
+    },
+    "/v1/mailboxes/splits/counts": {
+      "get": {
+        "tags": [
+          "Mailboxes"
+        ],
+        "operationId": "mailboxes.countSplits",
+        "parameters": [],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "splitId": {
+                        "type": "string"
+                      },
+                      "unread": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 9007199254740991
+                      },
+                      "capped": {
+                        "type": "boolean"
+                      }
+                    },
+                    "required": [
+                      "splitId",
+                      "unread",
+                      "capped"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Returns each saved split’s unread actionable Inbox threads: not Done, not snoozed, and not Closed in shared mailboxes. Query splits use bounded search results; capped is true when search reaches its candidate limit, so unread is a lower bound. Requires a person signed in through Mail or the CLI.",
+        "summary": "Count unread Mail split threads",
+        "x-samva-scope": "mailboxes:read"
+      }
+    },
+    "/v1/mailboxes/splits": {
+      "get": {
+        "tags": [
+          "Mailboxes"
+        ],
+        "operationId": "mailboxes.listSplits",
+        "parameters": [],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 100,
+                        "x-samva-string-checks": [
+                          {
+                            "id": "effect/schema/isMaxLength",
+                            "payload": {
+                              "maxLength": 100
+                            }
+                          }
+                        ]
+                      },
+                      "filter": {
+                        "anyOf": [
+                          {
+                            "type": "object",
+                            "properties": {
+                              "kind": {
+                                "type": "string",
+                                "enum": [
+                                  "query"
+                                ]
+                              },
+                              "query": {
+                                "type": "string",
+                                "minLength": 1
+                              }
+                            },
+                            "required": [
+                              "kind",
+                              "query"
+                            ],
+                            "additionalProperties": false
+                          },
+                          {
+                            "type": "object",
+                            "properties": {
+                              "kind": {
+                                "type": "string",
+                                "enum": [
+                                  "address"
+                                ]
+                              },
+                              "address": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "kind",
+                              "address"
+                            ],
+                            "additionalProperties": false
+                          },
+                          {
+                            "type": "object",
+                            "properties": {
+                              "kind": {
+                                "type": "string",
+                                "enum": [
+                                  "vip"
+                                ]
+                              },
+                              "senders": {
+                                "type": "array",
+                                "prefixItems": [
+                                  {
+                                    "type": "string"
+                                  }
+                                ],
+                                "minItems": 1,
+                                "items": {
+                                  "type": "string"
+                                }
+                              }
+                            },
+                            "required": [
+                              "kind",
+                              "senders"
+                            ],
+                            "additionalProperties": false
+                          }
+                        ]
+                      },
+                      "mailboxId": {
+                        "anyOf": [
+                          {
+                            "$ref": "#/components/schemas/MailboxId"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "position": {
+                        "type": "integer",
+                        "minimum": -9007199254740991,
+                        "maximum": 9007199254740991
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "name",
+                      "filter",
+                      "mailboxId",
+                      "position"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Returns the signed-in reader’s saved filters in sidebar order. Splits are private to this user and organization. Requires a person signed in through Mail or the CLI.",
+        "summary": "List Mail splits",
+        "x-samva-scope": "mailboxes:read"
+      },
+      "post": {
+        "tags": [
+          "Mailboxes"
+        ],
+        "operationId": "mailboxes.createSplit",
+        "parameters": [],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 100,
+                      "x-samva-string-checks": [
+                        {
+                          "id": "effect/schema/isMaxLength",
+                          "payload": {
+                            "maxLength": 100
+                          }
+                        }
+                      ]
+                    },
+                    "filter": {
+                      "anyOf": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "kind": {
+                              "type": "string",
+                              "enum": [
+                                "query"
+                              ]
+                            },
+                            "query": {
+                              "type": "string",
+                              "minLength": 1
+                            }
+                          },
+                          "required": [
+                            "kind",
+                            "query"
+                          ],
+                          "additionalProperties": false
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "kind": {
+                              "type": "string",
+                              "enum": [
+                                "address"
+                              ]
+                            },
+                            "address": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "kind",
+                            "address"
+                          ],
+                          "additionalProperties": false
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "kind": {
+                              "type": "string",
+                              "enum": [
+                                "vip"
+                              ]
+                            },
+                            "senders": {
+                              "type": "array",
+                              "prefixItems": [
+                                {
+                                  "type": "string"
+                                }
+                              ],
+                              "minItems": 1,
+                              "items": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "required": [
+                            "kind",
+                            "senders"
+                          ],
+                          "additionalProperties": false
+                        }
+                      ]
+                    },
+                    "mailboxId": {
+                      "anyOf": [
+                        {
+                          "$ref": "#/components/schemas/MailboxId"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "position": {
+                      "type": "integer",
+                      "minimum": -9007199254740991,
+                      "maximum": 9007199254740991
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "name",
+                    "filter",
+                    "mailboxId",
+                    "position"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ResourceNotFoundError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Saves a named query, recipient address, or VIP sender list for the signed-in reader. Requires a person signed in through Mail or the CLI.",
+        "summary": "Create a Mail split",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 100,
+                    "x-samva-string-checks": [
+                      {
+                        "id": "effect/schema/isMaxLength",
+                        "payload": {
+                          "maxLength": 100
+                        }
+                      }
+                    ]
+                  },
+                  "filter": {
+                    "anyOf": [
+                      {
+                        "type": "object",
+                        "properties": {
+                          "kind": {
+                            "type": "string",
+                            "enum": [
+                              "query"
+                            ]
+                          },
+                          "query": {
+                            "type": "string",
+                            "minLength": 1
+                          }
+                        },
+                        "required": [
+                          "kind",
+                          "query"
+                        ],
+                        "additionalProperties": false
+                      },
+                      {
+                        "type": "object",
+                        "properties": {
+                          "kind": {
+                            "type": "string",
+                            "enum": [
+                              "address"
+                            ]
+                          },
+                          "address": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "kind",
+                          "address"
+                        ],
+                        "additionalProperties": false
+                      },
+                      {
+                        "type": "object",
+                        "properties": {
+                          "kind": {
+                            "type": "string",
+                            "enum": [
+                              "vip"
+                            ]
+                          },
+                          "senders": {
+                            "type": "array",
+                            "prefixItems": [
+                              {
+                                "type": "string"
+                              }
+                            ],
+                            "minItems": 1,
+                            "items": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "required": [
+                          "kind",
+                          "senders"
+                        ],
+                        "additionalProperties": false
+                      }
+                    ]
+                  },
+                  "mailboxId": {
+                    "anyOf": [
+                      {
+                        "$ref": "#/components/schemas/MailboxId"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "position": {
+                    "type": "integer",
+                    "minimum": -9007199254740991,
+                    "maximum": 9007199254740991
+                  }
+                },
+                "required": [
+                  "name",
+                  "filter",
+                  "mailboxId",
+                  "position"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          "required": true
+        },
+        "x-samva-scope": "mailboxes:send"
+      }
+    },
+    "/v1/mailboxes/splits/{splitId}": {
+      "put": {
+        "tags": [
+          "Mailboxes"
+        ],
+        "operationId": "mailboxes.updateSplit",
+        "parameters": [
+          {
+            "name": "splitId",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 100,
+                      "x-samva-string-checks": [
+                        {
+                          "id": "effect/schema/isMaxLength",
+                          "payload": {
+                            "maxLength": 100
+                          }
+                        }
+                      ]
+                    },
+                    "filter": {
+                      "anyOf": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "kind": {
+                              "type": "string",
+                              "enum": [
+                                "query"
+                              ]
+                            },
+                            "query": {
+                              "type": "string",
+                              "minLength": 1
+                            }
+                          },
+                          "required": [
+                            "kind",
+                            "query"
+                          ],
+                          "additionalProperties": false
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "kind": {
+                              "type": "string",
+                              "enum": [
+                                "address"
+                              ]
+                            },
+                            "address": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "kind",
+                            "address"
+                          ],
+                          "additionalProperties": false
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "kind": {
+                              "type": "string",
+                              "enum": [
+                                "vip"
+                              ]
+                            },
+                            "senders": {
+                              "type": "array",
+                              "prefixItems": [
+                                {
+                                  "type": "string"
+                                }
+                              ],
+                              "minItems": 1,
+                              "items": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "required": [
+                            "kind",
+                            "senders"
+                          ],
+                          "additionalProperties": false
+                        }
+                      ]
+                    },
+                    "mailboxId": {
+                      "anyOf": [
+                        {
+                          "$ref": "#/components/schemas/MailboxId"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "position": {
+                      "type": "integer",
+                      "minimum": -9007199254740991,
+                      "maximum": 9007199254740991
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "name",
+                    "filter",
+                    "mailboxId",
+                    "position"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ResourceNotFoundError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Replaces the name, filter, mailbox scope and sidebar position of a split owned by the signed-in reader. Requires a person signed in through Mail or the CLI.",
+        "summary": "Update a Mail split",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 100,
+                    "x-samva-string-checks": [
+                      {
+                        "id": "effect/schema/isMaxLength",
+                        "payload": {
+                          "maxLength": 100
+                        }
+                      }
+                    ]
+                  },
+                  "filter": {
+                    "anyOf": [
+                      {
+                        "type": "object",
+                        "properties": {
+                          "kind": {
+                            "type": "string",
+                            "enum": [
+                              "query"
+                            ]
+                          },
+                          "query": {
+                            "type": "string",
+                            "minLength": 1
+                          }
+                        },
+                        "required": [
+                          "kind",
+                          "query"
+                        ],
+                        "additionalProperties": false
+                      },
+                      {
+                        "type": "object",
+                        "properties": {
+                          "kind": {
+                            "type": "string",
+                            "enum": [
+                              "address"
+                            ]
+                          },
+                          "address": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "kind",
+                          "address"
+                        ],
+                        "additionalProperties": false
+                      },
+                      {
+                        "type": "object",
+                        "properties": {
+                          "kind": {
+                            "type": "string",
+                            "enum": [
+                              "vip"
+                            ]
+                          },
+                          "senders": {
+                            "type": "array",
+                            "prefixItems": [
+                              {
+                                "type": "string"
+                              }
+                            ],
+                            "minItems": 1,
+                            "items": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "required": [
+                          "kind",
+                          "senders"
+                        ],
+                        "additionalProperties": false
+                      }
+                    ]
+                  },
+                  "mailboxId": {
+                    "anyOf": [
+                      {
+                        "$ref": "#/components/schemas/MailboxId"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "position": {
+                    "type": "integer",
+                    "minimum": -9007199254740991,
+                    "maximum": 9007199254740991
+                  }
+                },
+                "required": [
+                  "name",
+                  "filter",
+                  "mailboxId",
+                  "position"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          "required": true
+        },
+        "x-samva-scope": "mailboxes:update"
+      },
+      "delete": {
+        "tags": [
+          "Mailboxes"
+        ],
+        "operationId": "mailboxes.deleteSplit",
+        "parameters": [
+          {
+            "name": "splitId",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 100,
+                      "x-samva-string-checks": [
+                        {
+                          "id": "effect/schema/isMaxLength",
+                          "payload": {
+                            "maxLength": 100
+                          }
+                        }
+                      ]
+                    },
+                    "filter": {
+                      "anyOf": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "kind": {
+                              "type": "string",
+                              "enum": [
+                                "query"
+                              ]
+                            },
+                            "query": {
+                              "type": "string",
+                              "minLength": 1
+                            }
+                          },
+                          "required": [
+                            "kind",
+                            "query"
+                          ],
+                          "additionalProperties": false
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "kind": {
+                              "type": "string",
+                              "enum": [
+                                "address"
+                              ]
+                            },
+                            "address": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "kind",
+                            "address"
+                          ],
+                          "additionalProperties": false
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "kind": {
+                              "type": "string",
+                              "enum": [
+                                "vip"
+                              ]
+                            },
+                            "senders": {
+                              "type": "array",
+                              "prefixItems": [
+                                {
+                                  "type": "string"
+                                }
+                              ],
+                              "minItems": 1,
+                              "items": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "required": [
+                            "kind",
+                            "senders"
+                          ],
+                          "additionalProperties": false
+                        }
+                      ]
+                    },
+                    "mailboxId": {
+                      "anyOf": [
+                        {
+                          "$ref": "#/components/schemas/MailboxId"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "position": {
+                      "type": "integer",
+                      "minimum": -9007199254740991,
+                      "maximum": 9007199254740991
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "name",
+                    "filter",
+                    "mailboxId",
+                    "position"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ResourceNotFoundError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Deletes the signed-in reader’s saved split and returns it. Requires a person signed in through Mail or the CLI.",
+        "summary": "Delete a Mail split",
+        "x-samva-scope": "mailboxes:update"
+      }
+    },
+    "/v1/mailboxes/{id}/addresses": {
+      "get": {
+        "tags": [
+          "Mailboxes"
+        ],
+        "operationId": "mailboxes.listAddresses",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "$ref": "#/components/schemas/MailboxId"
+            },
+            "required": true
+          },
+          {
+            "name": "recipient",
+            "in": "query",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              ]
+            },
+            "required": false
+          }
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ResourceNotFoundError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Lists up to 1000 distinct registered and observed email addresses in sorted order, retaining registered endpoints first when the bound applies. With recipient query parameters, resolves only those candidates as this mailbox’s own addresses, including plus fallback but excluding literal tagged endpoints owned by another mailbox. Use this candidate read for reply addressing.",
+        "summary": "List mailbox addresses",
         "x-samva-scope": "mailboxes:read"
       }
     },
