@@ -40304,11 +40304,11 @@
             }
           },
           "410": {
-            "description": "TemplateStarterUnavailable",
+            "description": "ShareLinkUnavailable",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/TemplateStarterUnavailable"
+                  "$ref": "#/components/schemas/ShareLinkUnavailable"
                 }
               }
             }
@@ -40361,7 +40361,7 @@
             }
           }
         },
-        "description": "Creates a named or gallery template project. With only starterSlug, copies every exported email into the caller's organization and returns the first template with its projectId. Repeated opens reuse that organization's existing copy; an unavailable starter returns 410.",
+        "description": "Creates a named or gallery template project. With only shareLinkSlug, copies every exported email into the caller's organization and returns the first template with its projectId. Repeated opens reuse that organization's existing copy; an unavailable share link returns 410.",
         "summary": "Create a template",
         "requestBody": {
           "content": {
@@ -53159,12 +53159,12 @@
         "x-samva-scope": "templates:delete"
       }
     },
-    "/v1/template-projects/{projectId}/starter": {
+    "/v1/template-projects/{projectId}/share-link": {
       "post": {
         "tags": [
-          "Template starters"
+          "Template share links"
         ],
-        "operationId": "templateStarters.publish",
+        "operationId": "templateShareLinks.create",
         "parameters": [
           {
             "name": "projectId",
@@ -53195,6 +53195,9 @@
                     "url": {
                       "type": "string"
                     },
+                    "canonicalPath": {
+                      "type": "string"
+                    },
                     "views": {
                       "type": "integer",
                       "minimum": -9007199254740991,
@@ -53212,6 +53215,7 @@
                   "required": [
                     "slug",
                     "url",
+                    "canonicalPath",
                     "views",
                     "opens",
                     "updatedAt"
@@ -53326,8 +53330,8 @@
             }
           }
         },
-        "description": "Exports the project's latest Save as an unlisted starter. Omit slug to use for- followed by the project name.",
-        "summary": "Publish an unlisted starter",
+        "description": "Exports the project's latest Save as a share link. Omit slug to use the slugified project name.",
+        "summary": "Create a share link",
         "requestBody": {
           "content": {
             "application/json": {
@@ -53356,9 +53360,9 @@
       },
       "patch": {
         "tags": [
-          "Template starters"
+          "Template share links"
         ],
-        "operationId": "templateStarters.rename",
+        "operationId": "templateShareLinks.rename",
         "parameters": [
           {
             "name": "projectId",
@@ -53389,6 +53393,9 @@
                     "url": {
                       "type": "string"
                     },
+                    "canonicalPath": {
+                      "type": "string"
+                    },
                     "views": {
                       "type": "integer",
                       "minimum": -9007199254740991,
@@ -53406,6 +53413,7 @@
                   "required": [
                     "slug",
                     "url",
+                    "canonicalPath",
                     "views",
                     "opens",
                     "updatedAt"
@@ -53521,7 +53529,7 @@
           }
         },
         "description": "Changes the slug. The old link immediately stops working, with no redirect.",
-        "summary": "Rename a starter link",
+        "summary": "Rename a share link",
         "requestBody": {
           "content": {
             "application/json": {
@@ -53546,9 +53554,9 @@
       },
       "get": {
         "tags": [
-          "Template starters"
+          "Template share links"
         ],
-        "operationId": "templateStarters.get",
+        "operationId": "templateShareLinks.get",
         "parameters": [
           {
             "name": "projectId",
@@ -53581,6 +53589,9 @@
                         "url": {
                           "type": "string"
                         },
+                        "canonicalPath": {
+                          "type": "string"
+                        },
                         "views": {
                           "type": "integer",
                           "minimum": -9007199254740991,
@@ -53598,6 +53609,7 @@
                       "required": [
                         "slug",
                         "url",
+                        "canonicalPath",
                         "views",
                         "opens",
                         "updatedAt"
@@ -53717,15 +53729,15 @@
             }
           }
         },
-        "description": "Returns the starter link and counts, or null when the project has no published starter.",
-        "summary": "Get a project's starter",
+        "description": "Returns the share link and counts, or null when the project has no share link.",
+        "summary": "Get a project's share link",
         "x-samva-scope": "templates:read"
       },
       "delete": {
         "tags": [
-          "Template starters"
+          "Template share links"
         ],
-        "operationId": "templateStarters.unpublish",
+        "operationId": "templateShareLinks.delete",
         "parameters": [
           {
             "name": "projectId",
@@ -53749,12 +53761,12 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "unpublished": {
+                    "deleted": {
                       "type": "boolean"
                     }
                   },
                   "required": [
-                    "unpublished"
+                    "deleted"
                   ],
                   "additionalProperties": false
                 }
@@ -53867,16 +53879,16 @@
           }
         },
         "description": "Disables the public link. Copies already opened remain with their owners.",
-        "summary": "Unpublish a starter",
+        "summary": "Delete a share link",
         "x-samva-scope": "templates:update"
       }
     },
-    "/v1/template-projects/{projectId}/starter/update": {
+    "/v1/template-projects/{projectId}/share-link/update": {
       "post": {
         "tags": [
-          "Template starters"
+          "Template share links"
         ],
-        "operationId": "templateStarters.update",
+        "operationId": "templateShareLinks.update",
         "parameters": [
           {
             "name": "projectId",
@@ -53907,6 +53919,9 @@
                     "url": {
                       "type": "string"
                     },
+                    "canonicalPath": {
+                      "type": "string"
+                    },
                     "views": {
                       "type": "integer",
                       "minimum": -9007199254740991,
@@ -53924,6 +53939,7 @@
                   "required": [
                     "slug",
                     "url",
+                    "canonicalPath",
                     "views",
                     "opens",
                     "updatedAt"
@@ -54038,8 +54054,8 @@
             }
           }
         },
-        "description": "Replaces the starter snapshot from the latest Save, keeping its link and counts.",
-        "summary": "Update a starter",
+        "description": "Replaces the share link snapshot from the latest Save, keeping its link and counts.",
+        "summary": "Update a share link",
         "x-samva-scope": "templates:update"
       }
     },
@@ -94985,13 +95001,13 @@
         ],
         "additionalProperties": false
       },
-      "TemplateStarterUnavailable": {
+      "ShareLinkUnavailable": {
         "type": "object",
         "properties": {
           "_tag": {
             "type": "string",
             "enum": [
-              "TemplateStarterUnavailable"
+              "ShareLinkUnavailable"
             ]
           },
           "message": {
@@ -95026,9 +95042,9 @@
                 "type": "null"
               }
             ],
-            "description": "Required for a named or gallery project. Omit when copying an unlisted starter with starterSlug."
+            "description": "Required for a named or gallery project. Omit when copying a share link with shareLinkSlug."
           },
-          "starterSlug": {
+          "shareLinkSlug": {
             "anyOf": [
               {
                 "type": "string",
@@ -114963,8 +114979,8 @@
       "description": "Git-backed email template projects, workspace editing, immutable publications, and delivery defaults"
     },
     {
-      "name": "Template starters",
-      "description": "Publish and maintain unlisted starter snapshots."
+      "name": "Template share links",
+      "description": "Create and maintain share link snapshots."
     },
     {
       "name": "Brands",

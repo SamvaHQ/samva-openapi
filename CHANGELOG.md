@@ -1,5 +1,28 @@
 # Changelog
 
+## v0.89.0
+
+- 434 operations, 320 paths, 763 schemas, 41 webhook events.
+- Breaking against v0.88.2.
+- Removed operations:
+  - `DELETE /v1/template-projects/{projectId}/starter`
+  - `GET /v1/template-projects/{projectId}/starter`
+  - `PATCH /v1/template-projects/{projectId}/starter`
+  - `POST /v1/template-projects/{projectId}/starter`
+  - `POST /v1/template-projects/{projectId}/starter/update`
+- Added operations:
+  - `DELETE /v1/template-projects/{projectId}/share-link`
+  - `GET /v1/template-projects/{projectId}/share-link`
+  - `PATCH /v1/template-projects/{projectId}/share-link`
+  - `POST /v1/template-projects/{projectId}/share-link`
+  - `POST /v1/template-projects/{projectId}/share-link/update`
+- Changed operations:
+  - `POST /v1/templates`
+- Changed schemas:
+  - `CreateTemplatePayload`
+  - `TemplateStarterUnavailable`
+
+
 ## v0.88.2
 
 - 434 operations, 320 paths, 763 schemas, 41 webhook events.
