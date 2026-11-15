@@ -95830,6 +95830,34 @@
             },
             "maxItems": 20
           },
+          "eventTriggers": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 255,
+              "pattern": "^[A-Za-z][A-Za-z0-9_.-]*$",
+              "x-samva-string-checks": [
+                {
+                  "id": "effect/schema/isMaxLength",
+                  "payload": {
+                    "maxLength": 255
+                  }
+                }
+              ]
+            }
+          },
+          "followUpTemplate": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/TemplateId"
+              },
+              {
+                "type": "string",
+                "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+              }
+            ]
+          },
           "policy": {
             "$ref": "#/components/schemas/PolicyConfiguration"
           },
@@ -96128,6 +96156,7 @@
               "knowledgeSourceIds": [],
               "endpointIds": [],
               "integrations": [],
+              "eventTriggers": [],
               "policy": {
                 "presets": [
                   "samva/auto"
@@ -97118,11 +97147,19 @@
         "type": "string",
         "minLength": 1,
         "maxLength": 255,
+        "pattern": "^[A-Za-z][A-Za-z0-9_.-]*$",
         "x-samva-string-checks": [
           {
             "id": "effect/schema/isMaxLength",
             "payload": {
               "maxLength": 255
+            }
+          },
+          {
+            "id": "effect/schema/isPattern",
+            "payload": {
+              "source": "^[A-Za-z][A-Za-z0-9_.-]*$",
+              "flags": "u"
             }
           },
           {
@@ -98307,11 +98344,19 @@
             "type": "string",
             "minLength": 1,
             "maxLength": 255,
+            "pattern": "^[A-Za-z][A-Za-z0-9_.-]*$",
             "x-samva-string-checks": [
               {
                 "id": "effect/schema/isMaxLength",
                 "payload": {
                   "maxLength": 255
+                }
+              },
+              {
+                "id": "effect/schema/isPattern",
+                "payload": {
+                  "source": "^[A-Za-z][A-Za-z0-9_.-]*$",
+                  "flags": "u"
                 }
               },
               {

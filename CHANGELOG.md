@@ -1,5 +1,14 @@
 # Changelog
 
+## v0.88.0
+
+- 423 operations, 312 paths, 753 schemas, 41 webhook events.
+- Breaking against v0.87.2.
+- Changed schemas:
+  - `CreateEventPayload`
+  - `JourneyCustomEventName`
+
+
 ## v0.87.2
 
 - 423 operations, 312 paths, 753 schemas, 41 webhook events.
