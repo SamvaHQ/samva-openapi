@@ -1,5 +1,14 @@
 # Changelog
 
+## v0.91.1
+
+- 457 operations, 338 paths, 802 schemas, 41 webhook events.
+- Compatible against v0.91.0.
+- Added operations:
+  - `POST /v1/contacts/{id}/merge`
+  - `POST /v1/contacts/{id}/merge-by-connection`
+
+
 ## v0.91.0
 
 - 455 operations, 336 paths, 800 schemas, 41 webhook events.

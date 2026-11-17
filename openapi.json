@@ -19850,6 +19850,298 @@
         "x-samva-scope": "contacts:delete"
       }
     },
+    "/v1/contacts/{id}/merge": {
+      "post": {
+        "tags": [
+          "Contacts"
+        ],
+        "operationId": "contacts.merge",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "$ref": "#/components/schemas/ContactId"
+            },
+            "required": true
+          },
+          {
+            "name": "x-samva-conversation-agent-admission",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          }
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Contact",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Contact"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ResourceNotFoundError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "ConflictError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConflictError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "BillingProviderError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BillingProviderError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Merges `from` into the contact in the path, within one organization and namespace. The kept contact wins profile and metadata conflicts, blank fields fill, and an explicit topic unsubscribe wins. The absorbed contact remains a record pointing to the kept contact; duplicate campaign recipients and other conflict history stay available. A merge cannot be undone. Agents use the merge-by-connection operation with their own verified connection instead of choosing a source contact.",
+        "summary": "Merge contacts",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MergeContactPayload"
+              }
+            }
+          },
+          "required": true
+        },
+        "x-samva-scope": "contacts:update"
+      }
+    },
+    "/v1/contacts/{id}/merge-by-connection": {
+      "post": {
+        "tags": [
+          "Contacts"
+        ],
+        "operationId": "contacts.mergeByConnection",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "$ref": "#/components/schemas/ContactId"
+            },
+            "required": true
+          },
+          {
+            "name": "x-samva-conversation-agent-admission",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          }
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Contact",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Contact"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ResourceNotFoundError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "ConflictError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConflictError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "BillingProviderError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BillingProviderError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Uses the conversation's active per-contact connection and a current signed conversation admission to derive the contact holding its verified email. Supply the account ID as `connection`; an unverified address, another contact's connection, or a different organization or namespace is refused. If no contact holds the verified email, attaches that identity instead. The conversation contact is kept, and the merge conflict rules are the same as the merge operation.",
+        "summary": "Merge contacts by verified connection",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MergeContactByConnectionPayload"
+              }
+            }
+          },
+          "required": true
+        },
+        "x-samva-scope": "contacts:update"
+      }
+    },
     "/v1/contacts/{id}/identities": {
       "post": {
         "tags": [
@@ -102016,6 +102308,9 @@
               }
             ]
           },
+          "verifiedEmail": {
+            "type": "string"
+          },
           "timeZone": {
             "type": "string",
             "minLength": 1,
@@ -103730,6 +104025,7 @@
           "timed_out",
           "goal",
           "archived",
+          "merged",
           "failed"
         ]
       },
@@ -103758,7 +104054,8 @@
         "enum": [
           "completed",
           "goal",
-          "archived"
+          "archived",
+          "merged"
         ]
       },
       "JourneyRunStatus": {
@@ -105662,6 +105959,16 @@
           "id": {
             "$ref": "#/components/schemas/ContactId"
           },
+          "mergedInto": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ContactId"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "namespaceId": {
             "anyOf": [
               {
@@ -106631,6 +106938,30 @@
         "required": [
           "type",
           "identifier"
+        ],
+        "additionalProperties": false
+      },
+      "MergeContactByConnectionPayload": {
+        "type": "object",
+        "properties": {
+          "connection": {
+            "$ref": "#/components/schemas/IntegrationAccountId"
+          }
+        },
+        "required": [
+          "connection"
+        ],
+        "additionalProperties": false
+      },
+      "MergeContactPayload": {
+        "type": "object",
+        "properties": {
+          "from": {
+            "$ref": "#/components/schemas/ContactId"
+          }
+        },
+        "required": [
+          "from"
         ],
         "additionalProperties": false
       },
