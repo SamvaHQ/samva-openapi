@@ -26060,6 +26060,16 @@
               }
             }
           },
+          "402": {
+            "description": "PaymentRequiredError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentRequiredError"
+                }
+              }
+            }
+          },
           "403": {
             "description": "ForbiddenError",
             "content": {
@@ -26136,12 +26146,12 @@
         "x-samva-scope": "agents:update"
       }
     },
-    "/v1/agents/{id}/continue-on-standard": {
+    "/v1/agents/{id}/versions": {
       "post": {
         "tags": [
           "Agents"
         ],
-        "operationId": "agents.continueOnStandard",
+        "operationId": "agents.publishVersion",
         "parameters": [
           {
             "name": "id",
@@ -26184,6 +26194,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "PaymentRequiredError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentRequiredError"
                 }
               }
             }
@@ -26249,12 +26269,20 @@
             }
           }
         },
-        "description": "Publishes the live version again with its model set to standard, as the next immutable version, then removes the monthly spend cap. Use it when the agent pauses at its cap on a pinned model and should keep answering on Standard. The draft is left as it is, so its unpublished changes stay unpublished. The live version's reasoning level is kept when Standard supports it, and is auto otherwise. A live version already on standard publishes nothing and answers published false; the cap is still removed. An agent with no published version returns 422; a version published while the request runs returns 409.",
-        "summary": "Continue an agent on Standard",
+        "description": "Publishes a self-contained JavaScript module and its manifest as the next immutable version. Source is stored by its SHA-256 digest without execution. The revision protects the draft read by the publisher; a stale revision returns 409. Publishing the same manifest, source, and definition again returns published false. The manifest controls the model, endpoints, integration grants, and action policy. Draft instructions and knowledge remain editable builder data; the hosted runtime reads instructions and tools from the published module.",
+        "summary": "Publish an agent module",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PublishAgentVersionPayload"
+              }
+            }
+          },
+          "required": true
+        },
         "x-samva-scope": "agents:update"
-      }
-    },
-    "/v1/agents/{id}/versions": {
+      },
       "get": {
         "tags": [
           "Agents"
@@ -26388,6 +26416,124 @@
         "x-samva-scope": "agents:read"
       }
     },
+    "/v1/agents/{id}/continue-on-standard": {
+      "post": {
+        "tags": [
+          "Agents"
+        ],
+        "operationId": "agents.continueOnStandard",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "$ref": "#/components/schemas/AgentId"
+            },
+            "required": true
+          }
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "PublishAgentResponse",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PublishAgentResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ResourceNotFoundError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "ConflictError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConflictError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Publishes the live version again with its model set to standard, as the next immutable version, then removes the monthly spend cap. Use it when the agent pauses at its cap on a pinned model and should keep answering on Standard. The draft is left as it is, so its unpublished changes stay unpublished. The live version's reasoning level is kept when Standard supports it, and is auto otherwise. A live version already on standard publishes nothing and answers published false; the cap is still removed. An agent with no published version returns 422; a version published while the request runs returns 409.",
+        "summary": "Continue an agent on Standard",
+        "x-samva-scope": "agents:update"
+      }
+    },
     "/v1/agents/{id}/versions/{version}": {
       "get": {
         "tags": [
@@ -26499,7 +26645,7 @@
             }
           }
         },
-        "description": "Returns the immutable definition of one published version.",
+        "description": "Returns the immutable definition and bundle digest, size, and manifest of one published version.",
         "summary": "Get a published agent version",
         "x-samva-scope": "agents:read"
       }
@@ -83414,7 +83560,7 @@
             "anyOf": [
               {
                 "type": "string",
-                "pattern": "^[a-z][a-z0-9_]*(?:\\.[a-z][a-z0-9_]*)*(?:\\.\\*)?$"
+                "pattern": "^[A-Za-z][A-Za-z0-9_-]*(?:\\.[A-Za-z][A-Za-z0-9_-]*)*(?:\\.\\*)?$"
               },
               {
                 "type": "null"
@@ -101923,6 +102069,16 @@
           "definition": {
             "$ref": "#/components/schemas/AgentDefinition"
           },
+          "bundle": {
+            "$ref": "#/components/schemas/AgentBundle"
+          },
+          "authoring": {
+            "type": "string",
+            "enum": [
+              "builder",
+              "code"
+            ]
+          },
           "publishedAt": {
             "type": "string"
           },
@@ -101941,6 +102097,8 @@
           "agentId",
           "version",
           "definition",
+          "bundle",
+          "authoring",
           "publishedAt",
           "modelFallback"
         ],
@@ -102000,6 +102158,216 @@
           }
         ]
       },
+      "AgentBundle": {
+        "type": "object",
+        "properties": {
+          "sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "sizeBytes": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 1048576
+          },
+          "manifest": {
+            "$ref": "#/components/schemas/AgentModuleManifest"
+          }
+        },
+        "required": [
+          "sha256",
+          "sizeBytes",
+          "manifest"
+        ],
+        "additionalProperties": false
+      },
+      "AgentModuleManifest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "$ref": "#/components/schemas/AgentName"
+          },
+          "version": {
+            "type": "string",
+            "pattern": "^\\d{1,6}\\.\\d{1,6}\\.\\d{1,6}(?:-[0-9A-Za-z.-]{1,64})?$"
+          },
+          "knowledgeSourceIds": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/KnowledgeSourceId"
+            },
+            "maxItems": 25
+          },
+          "endpointIds": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MailboxEndpointId"
+            },
+            "maxItems": 20
+          },
+          "integrations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AgentIntegrationGrant"
+            },
+            "maxItems": 20
+          },
+          "policy": {
+            "$ref": "#/components/schemas/PolicyConfiguration"
+          },
+          "model": {
+            "$ref": "#/components/schemas/AgentModelChoice"
+          },
+          "reasoning": {
+            "$ref": "#/components/schemas/AgentReasoning"
+          },
+          "workingHours": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/WorkingHours"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "takeoverTimeoutMinutes": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 10080
+          },
+          "eventTriggers": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 255,
+              "pattern": "^[A-Za-z][A-Za-z0-9_.-]*$",
+              "x-samva-string-checks": [
+                {
+                  "id": "effect/schema/isMaxLength",
+                  "payload": {
+                    "maxLength": 255
+                  }
+                }
+              ]
+            }
+          },
+          "followUpTemplate": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/TemplateId"
+              },
+              {
+                "type": "string",
+                "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+              }
+            ]
+          },
+          "tools": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/AgentModuleTool"
+            }
+          },
+          "skills": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$"
+            },
+            "maxItems": 100
+          },
+          "events": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 255,
+              "pattern": "^[A-Za-z][A-Za-z0-9_.-]*$",
+              "x-samva-string-checks": [
+                {
+                  "id": "effect/schema/isMaxLength",
+                  "payload": {
+                    "maxLength": 255
+                  }
+                }
+              ]
+            },
+            "maxItems": 100
+          },
+          "schedules": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^\\S+\\s+\\S+\\s+\\S+\\s+\\S+\\s+\\S+$",
+              "maxLength": 200,
+              "x-samva-string-checks": [
+                {
+                  "id": "effect/schema/isMaxLength",
+                  "payload": {
+                    "maxLength": 200
+                  }
+                }
+              ]
+            },
+            "maxItems": 100
+          }
+        },
+        "required": [
+          "name",
+          "version",
+          "endpointIds",
+          "integrations",
+          "policy",
+          "model",
+          "reasoning",
+          "workingHours",
+          "takeoverTimeoutMinutes",
+          "tools",
+          "skills",
+          "events",
+          "schedules"
+        ],
+        "additionalProperties": false
+      },
+      "AgentModuleTool": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2000,
+            "x-samva-string-checks": [
+              {
+                "id": "effect/schema/isMaxLength",
+                "payload": {
+                  "maxLength": 2000
+                }
+              }
+            ]
+          },
+          "input": {
+            "$ref": "#/components/schemas/JsonObject"
+          },
+          "approval": {
+            "$ref": "#/components/schemas/PolicyRequirement"
+          },
+          "replay": {
+            "type": "string",
+            "enum": [
+              "safe",
+              "unsafe"
+            ]
+          }
+        },
+        "required": [
+          "description",
+          "input",
+          "replay"
+        ],
+        "additionalProperties": false
+      },
       "ClockTime": {
         "type": "string",
         "pattern": "^(?:[01]\\d|2[0-3]):[0-5]\\d$"
@@ -102043,6 +102411,20 @@
         "pattern": "^ksrc_[0-9a-hjkmnp-tv-z]{16,24}$",
         "x-samva-brand": "KnowledgeSourceId"
       },
+      "AgentName": {
+        "type": "string",
+        "pattern": "^\\S[\\s\\S]*\\S$|^\\S$|^$",
+        "minLength": 1,
+        "maxLength": 120,
+        "x-samva-string-checks": [
+          {
+            "id": "effect/schema/isMaxLength",
+            "payload": {
+              "maxLength": 120
+            }
+          }
+        ]
+      },
       "AgentVersionPage": {
         "type": "object",
         "properties": {
@@ -102080,6 +102462,16 @@
             "minimum": -9007199254740991,
             "maximum": 9007199254740991
           },
+          "bundle": {
+            "$ref": "#/components/schemas/AgentBundle"
+          },
+          "authoring": {
+            "type": "string",
+            "enum": [
+              "builder",
+              "code"
+            ]
+          },
           "publishedAt": {
             "type": "string"
           }
@@ -102087,6 +102479,8 @@
         "required": [
           "agentId",
           "version",
+          "bundle",
+          "authoring",
           "publishedAt"
         ],
         "additionalProperties": false
@@ -102263,147 +102657,36 @@
           "booking"
         ]
       },
-      "PublishAgentPayload": {
-        "type": "object",
-        "properties": {
-          "revision": {
-            "type": "string",
-            "minLength": 1
-          }
-        },
-        "required": [
-          "revision"
-        ],
-        "additionalProperties": false
-      },
-      "ReplaceAgentDraftPayload": {
+      "PublishAgentVersionPayload": {
         "type": "object",
         "properties": {
           "revision": {
             "type": "string",
             "minLength": 1
           },
-          "definition": {
-            "$ref": "#/components/schemas/AgentDefinition"
+          "bundle": {
+            "$ref": "#/components/schemas/AgentModuleBundle"
           }
         },
         "required": [
           "revision",
-          "definition"
+          "bundle"
         ],
         "additionalProperties": false
       },
-      "AgentDefinition": {
+      "AgentModuleBundle": {
         "type": "object",
         "properties": {
-          "instructions": {
-            "type": "string",
-            "maxLength": 20000,
-            "x-samva-string-checks": [
-              {
-                "id": "effect/schema/isMaxLength",
-                "payload": {
-                  "maxLength": 20000
-                }
-              }
-            ]
+          "source": {
+            "type": "string"
           },
-          "knowledge": {
-            "type": "string",
-            "maxLength": 100000,
-            "x-samva-string-checks": [
-              {
-                "id": "effect/schema/isMaxLength",
-                "payload": {
-                  "maxLength": 100000
-                }
-              }
-            ]
-          },
-          "knowledgeSourceIds": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/KnowledgeSourceId"
-            },
-            "maxItems": 25
-          },
-          "endpointIds": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/MailboxEndpointId"
-            },
-            "maxItems": 20
-          },
-          "integrations": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/AgentIntegrationGrant"
-            },
-            "maxItems": 20
-          },
-          "eventTriggers": {
-            "type": "array",
-            "items": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 255,
-              "pattern": "^[A-Za-z][A-Za-z0-9_.-]*$",
-              "x-samva-string-checks": [
-                {
-                  "id": "effect/schema/isMaxLength",
-                  "payload": {
-                    "maxLength": 255
-                  }
-                }
-              ]
-            }
-          },
-          "followUpTemplate": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/TemplateId"
-              },
-              {
-                "type": "string",
-                "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
-              }
-            ]
-          },
-          "policy": {
-            "$ref": "#/components/schemas/PolicyConfiguration"
-          },
-          "model": {
-            "$ref": "#/components/schemas/AgentModelChoice"
-          },
-          "reasoning": {
-            "$ref": "#/components/schemas/AgentReasoning"
-          },
-          "workingHours": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/WorkingHours"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "takeoverTimeoutMinutes": {
-            "type": "integer",
-            "minimum": 1,
-            "maximum": 10080
+          "manifest": {
+            "$ref": "#/components/schemas/AgentModuleManifest"
           }
         },
         "required": [
-          "instructions",
-          "knowledge",
-          "endpointIds",
-          "integrations",
-          "policy",
-          "model",
-          "reasoning",
-          "workingHours",
-          "takeoverTimeoutMinutes"
+          "source",
+          "manifest"
         ],
         "additionalProperties": false
       },
@@ -102562,6 +102845,150 @@
           }
         ]
       },
+      "PublishAgentPayload": {
+        "type": "object",
+        "properties": {
+          "revision": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "revision"
+        ],
+        "additionalProperties": false
+      },
+      "ReplaceAgentDraftPayload": {
+        "type": "object",
+        "properties": {
+          "revision": {
+            "type": "string",
+            "minLength": 1
+          },
+          "definition": {
+            "$ref": "#/components/schemas/AgentDefinition"
+          }
+        },
+        "required": [
+          "revision",
+          "definition"
+        ],
+        "additionalProperties": false
+      },
+      "AgentDefinition": {
+        "type": "object",
+        "properties": {
+          "instructions": {
+            "type": "string",
+            "maxLength": 20000,
+            "x-samva-string-checks": [
+              {
+                "id": "effect/schema/isMaxLength",
+                "payload": {
+                  "maxLength": 20000
+                }
+              }
+            ]
+          },
+          "knowledge": {
+            "type": "string",
+            "maxLength": 100000,
+            "x-samva-string-checks": [
+              {
+                "id": "effect/schema/isMaxLength",
+                "payload": {
+                  "maxLength": 100000
+                }
+              }
+            ]
+          },
+          "knowledgeSourceIds": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/KnowledgeSourceId"
+            },
+            "maxItems": 25
+          },
+          "endpointIds": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MailboxEndpointId"
+            },
+            "maxItems": 20
+          },
+          "integrations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AgentIntegrationGrant"
+            },
+            "maxItems": 20
+          },
+          "policy": {
+            "$ref": "#/components/schemas/PolicyConfiguration"
+          },
+          "model": {
+            "$ref": "#/components/schemas/AgentModelChoice"
+          },
+          "reasoning": {
+            "$ref": "#/components/schemas/AgentReasoning"
+          },
+          "workingHours": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/WorkingHours"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "takeoverTimeoutMinutes": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 10080
+          },
+          "eventTriggers": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 255,
+              "pattern": "^[A-Za-z][A-Za-z0-9_.-]*$",
+              "x-samva-string-checks": [
+                {
+                  "id": "effect/schema/isMaxLength",
+                  "payload": {
+                    "maxLength": 255
+                  }
+                }
+              ]
+            }
+          },
+          "followUpTemplate": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/TemplateId"
+              },
+              {
+                "type": "string",
+                "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+              }
+            ]
+          }
+        },
+        "required": [
+          "instructions",
+          "knowledge",
+          "endpointIds",
+          "integrations",
+          "policy",
+          "model",
+          "reasoning",
+          "workingHours",
+          "takeoverTimeoutMinutes"
+        ],
+        "additionalProperties": false
+      },
       "DeleteAgentResponse": {
         "type": "object",
         "properties": {
@@ -102615,20 +103042,6 @@
         "type": "number",
         "minimum": 0.01,
         "maximum": 100000
-      },
-      "AgentName": {
-        "type": "string",
-        "pattern": "^\\S[\\s\\S]*\\S$|^\\S$|^$",
-        "minLength": 1,
-        "maxLength": 120,
-        "x-samva-string-checks": [
-          {
-            "id": "effect/schema/isMaxLength",
-            "payload": {
-              "maxLength": 120
-            }
-          }
-        ]
       },
       "CreateAgentPayload": {
         "type": "object",

@@ -1,5 +1,17 @@
 # Changelog
 
+## v0.90.0
+
+- 455 operations, 336 paths, 798 schemas, 41 webhook events.
+- Breaking against v0.89.2.
+- Added operations:
+  - `POST /v1/agents/{id}/versions`
+- Changed schemas:
+  - `AgentVersion`
+  - `AgentVersionSummary`
+  - `PolicyRuleMatch`
+
+
 ## v0.89.2
 
 - 454 operations, 336 paths, 793 schemas, 41 webhook events.
