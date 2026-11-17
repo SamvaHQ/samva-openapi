@@ -101522,7 +101522,8 @@
             "enum": [
               "contact.created",
               "contact.tag_added",
-              "contact.joined_group"
+              "contact.joined_group",
+              "contact.connection_completed"
             ]
           }
         ]
