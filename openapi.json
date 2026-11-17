@@ -74849,1748 +74849,6 @@
         "x-samva-scope": "organization:read"
       }
     },
-    "/v1/extensions": {
-      "get": {
-        "tags": [
-          "Extensions"
-        ],
-        "operationId": "extensions.list",
-        "parameters": [
-          {
-            "name": "limit",
-            "in": "query",
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "integer",
-                  "maximum": 100,
-                  "exclusiveMinimum": 0,
-                  "description": "Items per page, at most 100."
-                },
-                {
-                  "type": "null"
-                }
-              ]
-            },
-            "required": false
-          },
-          {
-            "name": "cursor",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            },
-            "required": false
-          },
-          {
-            "name": "after",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            },
-            "required": false
-          },
-          {
-            "name": "before",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            },
-            "required": false
-          }
-        ],
-        "security": [
-          {
-            "apiKey": []
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "ExtensionPage",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ExtensionPage"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "MalformedRequestError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MalformedRequestError"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "UnauthorizedError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UnauthorizedError"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "ForbiddenError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenError"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "ResourceNotFoundError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResourceNotFoundError"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "ValidationError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationError"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "InternalError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/InternalError"
-                }
-              }
-            }
-          },
-          "504": {
-            "description": "GatewayTimeoutError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GatewayTimeoutError"
-                }
-              }
-            }
-          }
-        },
-        "description": "Returns the organization's published extensions with their latest version, newest first, filterable by creation time (`after`, `before`). Pass `nextCursor` back as `cursor` for the next page; it is null on the last page.",
-        "summary": "List extensions",
-        "x-samva-scope": "mailboxes:read"
-      },
-      "post": {
-        "tags": [
-          "Extensions"
-        ],
-        "operationId": "extensions.publish",
-        "parameters": [],
-        "security": [
-          {
-            "apiKey": []
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "PublishExtensionVersionResponse",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PublishExtensionVersionResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "MalformedRequestError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MalformedRequestError"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "UnauthorizedError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UnauthorizedError"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "ForbiddenError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenError"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "ResourceNotFoundError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResourceNotFoundError"
-                }
-              }
-            }
-          },
-          "409": {
-            "description": "ConflictError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ConflictError"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "ValidationError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationError"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "InternalError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/InternalError"
-                }
-              }
-            }
-          },
-          "504": {
-            "description": "GatewayTimeoutError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GatewayTimeoutError"
-                }
-              }
-            }
-          }
-        },
-        "description": "Publishes one version from its manifest and returns it with status 201, creating the extension named by the manifest on its first version. A hosted manifest carries its bundle. Publishing a version again with the same manifest and bundle returns it; a different one conflicts, so bump the manifest's version. Only a person can publish, not an API key.",
-        "summary": "Publish an extension version",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/PublishExtensionVersionPayload"
-              }
-            }
-          },
-          "required": true
-        },
-        "x-samva-scope": "mailboxes:manage"
-      }
-    },
-    "/v1/extensions/{id}": {
-      "get": {
-        "tags": [
-          "Extensions"
-        ],
-        "operationId": "extensions.get",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "schema": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 64,
-              "description": "The extension's id (`ext_…`) or its name.",
-              "x-samva-string-checks": [
-                {
-                  "id": "effect/schema/isMaxLength",
-                  "payload": {
-                    "maxLength": 64
-                  }
-                }
-              ]
-            },
-            "required": true
-          }
-        ],
-        "security": [
-          {
-            "apiKey": []
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Extension",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Extension"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "MalformedRequestError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MalformedRequestError"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "UnauthorizedError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UnauthorizedError"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "ForbiddenError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenError"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "ResourceNotFoundError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResourceNotFoundError"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "ValidationError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationError"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "InternalError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/InternalError"
-                }
-              }
-            }
-          },
-          "504": {
-            "description": "GatewayTimeoutError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GatewayTimeoutError"
-                }
-              }
-            }
-          }
-        },
-        "description": "Returns one extension by its id or name. Its versions are `GET /v1/extensions/{id}/versions`.",
-        "summary": "Get an extension",
-        "x-samva-scope": "mailboxes:read"
-      }
-    },
-    "/v1/extensions/{id}/versions": {
-      "get": {
-        "tags": [
-          "Extensions"
-        ],
-        "operationId": "extensions.listVersions",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "schema": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 64,
-              "description": "The extension's id (`ext_…`) or its name.",
-              "x-samva-string-checks": [
-                {
-                  "id": "effect/schema/isMaxLength",
-                  "payload": {
-                    "maxLength": 64
-                  }
-                }
-              ]
-            },
-            "required": true
-          },
-          {
-            "name": "limit",
-            "in": "query",
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "integer",
-                  "maximum": 100,
-                  "exclusiveMinimum": 0,
-                  "description": "Items per page, at most 100."
-                },
-                {
-                  "type": "null"
-                }
-              ]
-            },
-            "required": false
-          },
-          {
-            "name": "cursor",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            },
-            "required": false
-          }
-        ],
-        "security": [
-          {
-            "apiKey": []
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "ExtensionVersionPage",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ExtensionVersionPage"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "MalformedRequestError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MalformedRequestError"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "UnauthorizedError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UnauthorizedError"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "ForbiddenError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenError"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "ResourceNotFoundError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResourceNotFoundError"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "ValidationError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationError"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "InternalError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/InternalError"
-                }
-              }
-            }
-          },
-          "504": {
-            "description": "GatewayTimeoutError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GatewayTimeoutError"
-                }
-              }
-            }
-          }
-        },
-        "description": "Returns summaries of an extension's published versions, newest first. Pass `nextCursor` back as `cursor` for the next page; it is null on the last page. Read a version's manifest with `GET /v1/extensions/{id}/versions/{versionId}`.",
-        "summary": "List an extension's versions",
-        "x-samva-scope": "mailboxes:read"
-      }
-    },
-    "/v1/extensions/{id}/versions/{versionId}": {
-      "get": {
-        "tags": [
-          "Extensions"
-        ],
-        "operationId": "extensions.getVersion",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "schema": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 64,
-              "description": "The extension's id (`ext_…`) or its name.",
-              "x-samva-string-checks": [
-                {
-                  "id": "effect/schema/isMaxLength",
-                  "payload": {
-                    "maxLength": 64
-                  }
-                }
-              ]
-            },
-            "required": true
-          },
-          {
-            "name": "versionId",
-            "in": "path",
-            "schema": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 85,
-              "description": "The version's id (`extver_…`) or its version string, such as `1.0.0`.",
-              "x-samva-string-checks": [
-                {
-                  "id": "effect/schema/isMaxLength",
-                  "payload": {
-                    "maxLength": 85
-                  }
-                }
-              ]
-            },
-            "required": true
-          }
-        ],
-        "security": [
-          {
-            "apiKey": []
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "ExtensionVersion",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ExtensionVersion"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "MalformedRequestError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MalformedRequestError"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "UnauthorizedError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UnauthorizedError"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "ForbiddenError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenError"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "ResourceNotFoundError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResourceNotFoundError"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "ValidationError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationError"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "InternalError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/InternalError"
-                }
-              }
-            }
-          },
-          "504": {
-            "description": "GatewayTimeoutError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GatewayTimeoutError"
-                }
-              }
-            }
-          }
-        },
-        "description": "Returns one version, by its id or version string, with the manifest it was published with.",
-        "summary": "Get an extension version",
-        "x-samva-scope": "mailboxes:read"
-      }
-    },
-    "/v1/extension-installations": {
-      "get": {
-        "tags": [
-          "Extension installations"
-        ],
-        "operationId": "extensionInstallations.list",
-        "parameters": [
-          {
-            "name": "limit",
-            "in": "query",
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "integer",
-                  "maximum": 100,
-                  "exclusiveMinimum": 0,
-                  "description": "Items per page, at most 100."
-                },
-                {
-                  "type": "null"
-                }
-              ]
-            },
-            "required": false
-          },
-          {
-            "name": "cursor",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            },
-            "required": false
-          },
-          {
-            "name": "after",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            },
-            "required": false
-          },
-          {
-            "name": "before",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            },
-            "required": false
-          }
-        ],
-        "security": [
-          {
-            "apiKey": []
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "ExtensionInstallationPage",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ExtensionInstallationPage"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "MalformedRequestError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MalformedRequestError"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "UnauthorizedError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UnauthorizedError"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "ForbiddenError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenError"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "ResourceNotFoundError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResourceNotFoundError"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "ValidationError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationError"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "InternalError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/InternalError"
-                }
-              }
-            }
-          },
-          "504": {
-            "description": "GatewayTimeoutError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GatewayTimeoutError"
-                }
-              }
-            }
-          }
-        },
-        "description": "Returns summaries of the organization's extension installations, newest first, filterable by creation time (`after`, `before`). Pass `nextCursor` back as `cursor` for the next page; it is null on the last page. Read an installation's permissions, scope, and webhook with `GET /v1/extension-installations/{id}`.",
-        "summary": "List installations",
-        "x-samva-scope": "mailboxes:read"
-      },
-      "post": {
-        "tags": [
-          "Extension installations"
-        ],
-        "operationId": "extensionInstallations.install",
-        "parameters": [],
-        "security": [
-          {
-            "apiKey": []
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "InstallExtensionResponse",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/InstallExtensionResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "MalformedRequestError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MalformedRequestError"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "UnauthorizedError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UnauthorizedError"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "ForbiddenError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenError"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "ResourceNotFoundError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResourceNotFoundError"
-                }
-              }
-            }
-          },
-          "409": {
-            "description": "ConflictError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ConflictError"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "ValidationError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationError"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "InternalError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/InternalError"
-                }
-              }
-            }
-          },
-          "504": {
-            "description": "GatewayTimeoutError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GatewayTimeoutError"
-                }
-              }
-            }
-          }
-        },
-        "description": "Installs a published version with a scope, permissions, and an action policy, and returns it with status 201. The installation acts on your grants narrowed to these; a webhook installation's API key and webhook secret are returned once. Only a person can install, not an API key.",
-        "summary": "Install an extension",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/InstallExtensionPayload"
-              }
-            }
-          },
-          "required": true
-        },
-        "x-samva-scope": "mailboxes:manage"
-      }
-    },
-    "/v1/extension-installations/{id}": {
-      "get": {
-        "tags": [
-          "Extension installations"
-        ],
-        "operationId": "extensionInstallations.get",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "schema": {
-              "$ref": "#/components/schemas/ExtensionInstallationId"
-            },
-            "required": true
-          }
-        ],
-        "security": [
-          {
-            "apiKey": []
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "ExtensionInstallation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ExtensionInstallation"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "MalformedRequestError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MalformedRequestError"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "UnauthorizedError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UnauthorizedError"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "ForbiddenError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenError"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "ResourceNotFoundError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResourceNotFoundError"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "ValidationError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationError"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "InternalError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/InternalError"
-                }
-              }
-            }
-          },
-          "504": {
-            "description": "GatewayTimeoutError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GatewayTimeoutError"
-                }
-              }
-            }
-          }
-        },
-        "description": "Returns one installation with its permissions, scope, action policy, and webhook endpoint.",
-        "summary": "Get an installation",
-        "x-samva-scope": "mailboxes:read"
-      },
-      "delete": {
-        "tags": [
-          "Extension installations"
-        ],
-        "operationId": "extensionInstallations.uninstall",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "schema": {
-              "$ref": "#/components/schemas/ExtensionInstallationId"
-            },
-            "required": true
-          }
-        ],
-        "security": [
-          {
-            "apiKey": []
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "SuccessResponse",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SuccessResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "MalformedRequestError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MalformedRequestError"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "UnauthorizedError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UnauthorizedError"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "ForbiddenError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenError"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "ResourceNotFoundError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResourceNotFoundError"
-                }
-              }
-            }
-          },
-          "409": {
-            "description": "ConflictError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ConflictError"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "ValidationError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationError"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "InternalError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/InternalError"
-                }
-              }
-            }
-          },
-          "504": {
-            "description": "GatewayTimeoutError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GatewayTimeoutError"
-                }
-              }
-            }
-          }
-        },
-        "description": "Deletes the installation with its API key and webhook endpoint. Actions it took keep their attribution.",
-        "summary": "Uninstall an extension",
-        "x-samva-scope": "mailboxes:manage"
-      }
-    },
-    "/v1/extension-installations/{id}/upgrade": {
-      "post": {
-        "tags": [
-          "Extension installations"
-        ],
-        "operationId": "extensionInstallations.upgrade",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "schema": {
-              "$ref": "#/components/schemas/ExtensionInstallationId"
-            },
-            "required": true
-          }
-        ],
-        "security": [
-          {
-            "apiKey": []
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "UpgradeExtensionResponse",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UpgradeExtensionResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "MalformedRequestError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MalformedRequestError"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "UnauthorizedError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UnauthorizedError"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "ForbiddenError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenError"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "ResourceNotFoundError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResourceNotFoundError"
-                }
-              }
-            }
-          },
-          "409": {
-            "description": "ConflictError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ConflictError"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "ValidationError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationError"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "InternalError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/InternalError"
-                }
-              }
-            }
-          },
-          "504": {
-            "description": "GatewayTimeoutError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GatewayTimeoutError"
-                }
-              }
-            }
-          }
-        },
-        "description": "Changes the pinned version in place. Omit version for the latest publication, or name a version string or id, including an older version to roll back. Preview with dryRun; changing requires acceptPermissions to list exactly the added permission: and event: grants. Only a person can upgrade. Credentials, owner, scope, policy, and status stay attached to the installation.",
-        "summary": "Upgrade or roll back an installation",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpgradeExtensionPayload"
-              }
-            }
-          },
-          "required": true
-        },
-        "x-samva-scope": "mailboxes:manage"
-      }
-    },
-    "/v1/extension-installations/{id}/disable": {
-      "post": {
-        "tags": [
-          "Extension installations"
-        ],
-        "operationId": "extensionInstallations.disable",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "schema": {
-              "$ref": "#/components/schemas/ExtensionInstallationId"
-            },
-            "required": true
-          }
-        ],
-        "security": [
-          {
-            "apiKey": []
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "ExtensionInstallation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ExtensionInstallation"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "MalformedRequestError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MalformedRequestError"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "UnauthorizedError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UnauthorizedError"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "ForbiddenError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenError"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "ResourceNotFoundError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResourceNotFoundError"
-                }
-              }
-            }
-          },
-          "409": {
-            "description": "ConflictError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ConflictError"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "ValidationError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationError"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "InternalError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/InternalError"
-                }
-              }
-            }
-          },
-          "504": {
-            "description": "GatewayTimeoutError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GatewayTimeoutError"
-                }
-              }
-            }
-          }
-        },
-        "description": "Stops the installation at once: its events stop, and its credential is refused on every surface until it is enabled again.",
-        "summary": "Disable an installation",
-        "x-samva-scope": "mailboxes:manage"
-      }
-    },
-    "/v1/extension-installations/{id}/enable": {
-      "post": {
-        "tags": [
-          "Extension installations"
-        ],
-        "operationId": "extensionInstallations.enable",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "schema": {
-              "$ref": "#/components/schemas/ExtensionInstallationId"
-            },
-            "required": true
-          }
-        ],
-        "security": [
-          {
-            "apiKey": []
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "ExtensionInstallation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ExtensionInstallation"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "MalformedRequestError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MalformedRequestError"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "UnauthorizedError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UnauthorizedError"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "ForbiddenError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenError"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "ResourceNotFoundError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResourceNotFoundError"
-                }
-              }
-            }
-          },
-          "409": {
-            "description": "ConflictError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ConflictError"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "ValidationError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationError"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "InternalError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/InternalError"
-                }
-              }
-            }
-          },
-          "504": {
-            "description": "GatewayTimeoutError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GatewayTimeoutError"
-                }
-              }
-            }
-          }
-        },
-        "description": "Resumes a disabled installation. Events published while it was disabled are not delivered.",
-        "summary": "Enable an installation",
-        "x-samva-scope": "mailboxes:manage"
-      }
-    },
-    "/v1/extension-installations/{id}/runs": {
-      "get": {
-        "tags": [
-          "Extension installations"
-        ],
-        "operationId": "extensionInstallations.listRuns",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "schema": {
-              "$ref": "#/components/schemas/ExtensionInstallationId"
-            },
-            "required": true
-          }
-        ],
-        "security": [
-          {
-            "apiKey": []
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "ExtensionRunList",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ExtensionRunList"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "MalformedRequestError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MalformedRequestError"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "UnauthorizedError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UnauthorizedError"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "ForbiddenError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenError"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "ResourceNotFoundError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResourceNotFoundError"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "ValidationError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationError"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "InternalError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/InternalError"
-                }
-              }
-            }
-          },
-          "504": {
-            "description": "GatewayTimeoutError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GatewayTimeoutError"
-                }
-              }
-            }
-          }
-        },
-        "description": "Returns the hosted installation's retained handler runs, newest first: outcome, duration, and error. The host keeps the last 100 runs, so the list is bounded and has no cursor. Read a run's logged lines with `GET /v1/extension-installations/{id}/runs/{runId}`.",
-        "summary": "List a hosted installation's runs",
-        "x-samva-scope": "mailboxes:manage"
-      }
-    },
-    "/v1/extension-installations/{id}/runs/{runId}": {
-      "get": {
-        "tags": [
-          "Extension installations"
-        ],
-        "operationId": "extensionInstallations.getRun",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "schema": {
-              "$ref": "#/components/schemas/ExtensionInstallationId"
-            },
-            "required": true
-          },
-          {
-            "name": "runId",
-            "in": "path",
-            "schema": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 64,
-              "x-samva-string-checks": [
-                {
-                  "id": "effect/schema/isMaxLength",
-                  "payload": {
-                    "maxLength": 64
-                  }
-                }
-              ]
-            },
-            "required": true
-          }
-        ],
-        "security": [
-          {
-            "apiKey": []
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "ExtensionRun",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ExtensionRun"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "MalformedRequestError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MalformedRequestError"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "UnauthorizedError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UnauthorizedError"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "ForbiddenError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenError"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "ResourceNotFoundError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResourceNotFoundError"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "ValidationError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationError"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "InternalError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/InternalError"
-                }
-              }
-            }
-          },
-          "504": {
-            "description": "GatewayTimeoutError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GatewayTimeoutError"
-                }
-              }
-            }
-          }
-        },
-        "description": "Returns one retained run with the lines its handler logged: at most 50 lines of 500 characters.",
-        "summary": "Get a hosted run",
-        "x-samva-scope": "mailboxes:manage"
-      }
-    },
     "/v1/whatsapp/stats": {
       "get": {
         "tags": [
@@ -83383,51 +81641,61 @@
         "pattern": "^camp_[0-9a-hjkmnp-tv-z]{16,24}$",
         "x-samva-brand": "CampaignId"
       },
-      "ExtensionRun": {
+      "NamespaceUsage": {
+        "type": "object",
+        "properties": {
+          "namespaceId": {
+            "$ref": "#/components/schemas/NamespaceId"
+          },
+          "periodStart": {
+            "type": "string"
+          },
+          "periodEnd": {
+            "type": "string"
+          },
+          "emailCount": {
+            "type": "number"
+          },
+          "smsCount": {
+            "type": "number"
+          },
+          "whatsappCount": {
+            "type": "number"
+          },
+          "totalMessages": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "namespaceId",
+          "periodStart",
+          "periodEnd",
+          "emailCount",
+          "smsCount",
+          "whatsappCount",
+          "totalMessages"
+        ],
+        "additionalProperties": false
+      },
+      "NamespacePortalLink": {
         "type": "object",
         "properties": {
           "id": {
+            "$ref": "#/components/schemas/NamespacePortalLinkId"
+          },
+          "organizationId": {
+            "$ref": "#/components/schemas/OrganizationId"
+          },
+          "namespaceId": {
+            "$ref": "#/components/schemas/NamespaceId"
+          },
+          "createdBy": {
+            "$ref": "#/components/schemas/UserId"
+          },
+          "expiresAt": {
             "type": "string"
           },
-          "eventId": {
-            "type": "string"
-          },
-          "eventType": {
-            "type": "string",
-            "enum": [
-              "mailbox.message.received",
-              "mailbox.message.sent",
-              "mailbox.action.pending_approval",
-              "mailbox.action.resolved",
-              "mailbox.message.quarantined",
-              "mailbox.message.released",
-              "mailbox.message.discarded"
-            ]
-          },
-          "attempt": {
-            "type": "integer",
-            "minimum": -9007199254740991,
-            "maximum": 9007199254740991
-          },
-          "startedAt": {
-            "type": "string"
-          },
-          "durationMs": {
-            "type": "integer",
-            "minimum": -9007199254740991,
-            "maximum": 9007199254740991
-          },
-          "outcome": {
-            "type": "string",
-            "enum": [
-              "succeeded",
-              "failed",
-              "timed_out",
-              "budget_exhausted",
-              "revoked"
-            ]
-          },
-          "error": {
+          "revokedAt": {
             "anyOf": [
               {
                 "type": "string"
@@ -83437,91 +81705,76 @@
               }
             ]
           },
-          "logs": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
+          "redirectUrl": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/NamespacePortalLinkMetadata"
+          },
+          "createdAt": {
+            "type": "string"
           }
         },
         "required": [
           "id",
-          "eventId",
-          "eventType",
-          "attempt",
-          "startedAt",
-          "durationMs",
-          "outcome",
-          "error",
-          "logs"
+          "organizationId",
+          "namespaceId",
+          "createdBy",
+          "expiresAt",
+          "revokedAt",
+          "redirectUrl",
+          "metadata",
+          "createdAt"
         ],
         "additionalProperties": false
       },
-      "ExtensionInstallationId": {
-        "type": "string",
-        "pattern": "^exti_[0-9a-hjkmnp-tv-z]{16,24}$",
-        "x-samva-brand": "ExtensionInstallationId"
+      "NamespacePortalLinkMetadata": {
+        "type": "object",
+        "propertyNames": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 64
+        },
+        "additionalProperties": {
+          "type": "string",
+          "maxLength": 512,
+          "x-samva-string-checks": [
+            {
+              "id": "effect/schema/isMaxLength",
+              "payload": {
+                "maxLength": 512
+              }
+            }
+          ]
+        }
       },
-      "ExtensionRunList": {
+      "UserId": {
+        "type": "string",
+        "pattern": "^user_[0-9a-hjkmnp-tv-z]{16,24}$",
+        "x-samva-brand": "UserId"
+      },
+      "NamespacePortalLinkId": {
+        "type": "string",
+        "pattern": "^npl_[0-9a-hjkmnp-tv-z]{16,24}$",
+        "x-samva-brand": "NamespacePortalLinkId"
+      },
+      "NamespacePortalLinkPage": {
         "type": "object",
         "properties": {
           "items": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/ExtensionRunSummary"
+              "$ref": "#/components/schemas/NamespacePortalLink"
             }
-          }
-        },
-        "required": [
-          "items"
-        ],
-        "additionalProperties": false
-      },
-      "ExtensionRunSummary": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
           },
-          "eventId": {
-            "type": "string"
-          },
-          "eventType": {
-            "type": "string",
-            "enum": [
-              "mailbox.message.received",
-              "mailbox.message.sent",
-              "mailbox.action.pending_approval",
-              "mailbox.action.resolved",
-              "mailbox.message.quarantined",
-              "mailbox.message.released",
-              "mailbox.message.discarded"
-            ]
-          },
-          "attempt": {
-            "type": "integer",
-            "minimum": -9007199254740991,
-            "maximum": 9007199254740991
-          },
-          "startedAt": {
-            "type": "string"
-          },
-          "durationMs": {
-            "type": "integer",
-            "minimum": -9007199254740991,
-            "maximum": 9007199254740991
-          },
-          "outcome": {
-            "type": "string",
-            "enum": [
-              "succeeded",
-              "failed",
-              "timed_out",
-              "budget_exhausted",
-              "revoked"
-            ]
-          },
-          "error": {
+          "nextCursor": {
             "anyOf": [
               {
                 "type": "string"
@@ -83533,142 +81786,304 @@
           }
         },
         "required": [
-          "id",
-          "eventId",
-          "eventType",
-          "attempt",
-          "startedAt",
-          "durationMs",
-          "outcome",
-          "error"
+          "items",
+          "nextCursor"
         ],
         "additionalProperties": false
       },
-      "ExtensionInstallation": {
+      "CreatedNamespacePortalLink": {
         "type": "object",
         "properties": {
           "id": {
-            "$ref": "#/components/schemas/ExtensionInstallationId"
+            "$ref": "#/components/schemas/NamespacePortalLinkId"
           },
-          "extensionId": {
-            "$ref": "#/components/schemas/ExtensionId"
+          "organizationId": {
+            "$ref": "#/components/schemas/OrganizationId"
           },
-          "name": {
+          "namespaceId": {
+            "$ref": "#/components/schemas/NamespaceId"
+          },
+          "createdBy": {
+            "$ref": "#/components/schemas/UserId"
+          },
+          "expiresAt": {
             "type": "string"
           },
-          "displayName": {
-            "type": "string"
-          },
-          "version": {
-            "$ref": "#/components/schemas/ExtensionVersionRef"
-          },
-          "runtime": {
-            "type": "string",
-            "enum": [
-              "hosted",
-              "webhook"
+          "revokedAt": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
             ]
           },
-          "status": {
-            "type": "string",
-            "enum": [
-              "active",
-              "disabled"
+          "redirectUrl": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
             ]
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/NamespacePortalLinkMetadata"
           },
           "createdAt": {
             "type": "string"
           },
-          "events": {
-            "type": "array",
-            "items": {
-              "type": "string",
-              "enum": [
-                "mailbox.message.received",
-                "mailbox.message.sent",
-                "mailbox.action.pending_approval",
-                "mailbox.action.resolved",
-                "mailbox.message.quarantined",
-                "mailbox.message.released",
-                "mailbox.message.discarded"
-              ]
-            }
-          },
-          "permissions": {
-            "type": "array",
-            "items": {
-              "type": "string",
-              "enum": [
-                "read",
-                "update",
-                "send",
-                "quarantine.read"
-              ]
-            }
-          },
-          "policy": {
-            "$ref": "#/components/schemas/PolicyConfiguration"
-          },
-          "scope": {
-            "type": "object",
-            "properties": {
-              "mailboxIds": {
-                "anyOf": [
-                  {
-                    "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/MailboxId"
-                    }
-                  },
-                  {
-                    "type": "null"
-                  }
-                ]
-              },
-              "namespaceId": {
-                "anyOf": [
-                  {
-                    "$ref": "#/components/schemas/NamespaceId"
-                  },
-                  {
-                    "type": "null"
-                  }
-                ]
-              }
-            },
-            "required": [
-              "mailboxIds",
-              "namespaceId"
-            ],
-            "additionalProperties": false
-          },
-          "webhook": {
+          "url": {
+            "type": "string",
+            "x-sensitive": true
+          }
+        },
+        "required": [
+          "id",
+          "organizationId",
+          "namespaceId",
+          "createdBy",
+          "expiresAt",
+          "revokedAt",
+          "redirectUrl",
+          "metadata",
+          "createdAt",
+          "url"
+        ],
+        "additionalProperties": false
+      },
+      "CreateNamespacePortalLinkPayload": {
+        "type": "object",
+        "properties": {
+          "redirectUrl": {
             "anyOf": [
               {
-                "type": "object",
-                "properties": {
-                  "endpointId": {
-                    "$ref": "#/components/schemas/WebhookEndpointId"
-                  },
-                  "url": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "endpointId",
-                  "url"
-                ],
-                "additionalProperties": false
+                "$ref": "#/components/schemas/WhatsAppSetupLinkRedirectUrl"
               },
               {
                 "type": "null"
               }
             ]
           },
-          "updatedAt": {
+          "metadata": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/NamespacePortalLinkMetadata"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "expiresIn": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "maximum": 2592000,
+                "exclusiveMinimum": 0
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "additionalProperties": false
+      },
+      "NamespaceResource": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/NamespaceResourceType"
+          },
+          "id": {
             "type": "string"
           },
-          "disabledAt": {
+          "namespaceId": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/NamespaceId"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "type",
+          "id",
+          "namespaceId"
+        ],
+        "additionalProperties": false
+      },
+      "NamespaceResourceType": {
+        "type": "string",
+        "enum": [
+          "domain",
+          "sender",
+          "whatsappNumber",
+          "smsNumber",
+          "contact",
+          "template"
+        ]
+      },
+      "AssignNamespaceResourcePayload": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/NamespaceResourceType"
+          },
+          "resourceId": {
+            "type": "string",
+            "description": "The resource's id, such as `dom_...` for a domain."
+          }
+        },
+        "required": [
+          "type",
+          "resourceId"
+        ],
+        "additionalProperties": false
+      },
+      "SuccessResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "success"
+        ],
+        "additionalProperties": false
+      },
+      "Namespace": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "$ref": "#/components/schemas/NamespaceId"
+          },
+          "name": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/NamespaceMetadata"
+          },
+          "updatedAt": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "createdAt",
+          "metadata",
+          "updatedAt"
+        ],
+        "additionalProperties": false
+      },
+      "NamespaceMetadata": {
+        "type": "object",
+        "additionalProperties": {
+          "type": "string"
+        },
+        "description": "Your own labels for the namespace, such as the id of your customer it serves. Samva stores them and never reads them."
+      },
+      "UpdateNamespacePayload": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^\\S[\\s\\S]*\\S$|^\\S$|^$",
+                "minLength": 1,
+                "maxLength": 128,
+                "x-samva-string-checks": [
+                  {
+                    "id": "effect/schema/isMaxLength",
+                    "payload": {
+                      "maxLength": 128
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "metadata": {
+            "anyOf": [
+              {
+                "type": "object",
+                "additionalProperties": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreateNamespacePayload": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "pattern": "^\\S[\\s\\S]*\\S$|^\\S$|^$",
+            "minLength": 1,
+            "maxLength": 128,
+            "x-samva-string-checks": [
+              {
+                "id": "effect/schema/isMaxLength",
+                "payload": {
+                  "maxLength": 128
+                }
+              }
+            ]
+          },
+          "metadata": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/NamespaceMetadata"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "additionalProperties": false
+      },
+      "NamespacePage": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NamespaceSummary"
+            }
+          },
+          "nextCursor": {
             "anyOf": [
               {
                 "type": "string"
@@ -83680,33 +82095,72 @@
           }
         },
         "required": [
-          "id",
-          "extensionId",
-          "name",
-          "displayName",
-          "version",
-          "runtime",
-          "status",
-          "createdAt",
-          "events",
-          "permissions",
-          "policy",
-          "scope",
-          "webhook",
-          "updatedAt",
-          "disabledAt"
+          "items",
+          "nextCursor"
         ],
         "additionalProperties": false
       },
-      "WebhookEndpointId": {
-        "type": "string",
-        "pattern": "^wep_[0-9a-hjkmnp-tv-z]{16,24}$",
-        "x-samva-brand": "WebhookEndpointId"
+      "NamespaceSummary": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "$ref": "#/components/schemas/NamespaceId"
+          },
+          "name": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "createdAt"
+        ],
+        "additionalProperties": false
       },
-      "MailboxId": {
-        "type": "string",
-        "pattern": "^mbx_[0-9a-hjkmnp-tv-z]{16,24}$",
-        "x-samva-brand": "MailboxId"
+      "PolicySnapshot": {
+        "type": "object",
+        "properties": {
+          "presets": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "rules": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PolicyRule"
+            }
+          },
+          "instructions": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "version": {
+            "$ref": "#/components/schemas/PolicyVersion"
+          }
+        },
+        "required": [
+          "presets",
+          "rules",
+          "version"
+        ],
+        "additionalProperties": false
+      },
+      "PolicyVersion": {
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 9007199254740991
       },
       "PolicyRule": {
         "anyOf": [
@@ -83961,10 +82415,10 @@
           }
         ]
       },
-      "UserId": {
+      "ExtensionInstallationId": {
         "type": "string",
-        "pattern": "^user_[0-9a-hjkmnp-tv-z]{16,24}$",
-        "x-samva-brand": "UserId"
+        "pattern": "^exti_[0-9a-hjkmnp-tv-z]{16,24}$",
+        "x-samva-brand": "ExtensionInstallationId"
       },
       "ApiKeyId": {
         "type": "string",
@@ -83983,1346 +82437,6 @@
           "write",
           "final"
         ]
-      },
-      "ExtensionVersionRef": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "$ref": "#/components/schemas/ExtensionVersionId"
-          },
-          "version": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "id",
-          "version"
-        ],
-        "additionalProperties": false
-      },
-      "ExtensionVersionId": {
-        "type": "string",
-        "pattern": "^extver_[0-9a-hjkmnp-tv-z]{16,24}$",
-        "x-samva-brand": "ExtensionVersionId"
-      },
-      "ExtensionId": {
-        "type": "string",
-        "pattern": "^ext_[0-9a-hjkmnp-tv-z]{16,24}$",
-        "x-samva-brand": "ExtensionId"
-      },
-      "UpgradeExtensionResponse": {
-        "type": "object",
-        "properties": {
-          "installation": {
-            "$ref": "#/components/schemas/ExtensionInstallation"
-          },
-          "fromVersion": {
-            "$ref": "#/components/schemas/ExtensionVersionRef"
-          },
-          "toVersion": {
-            "$ref": "#/components/schemas/ExtensionVersionRef"
-          },
-          "permissionDiff": {
-            "$ref": "#/components/schemas/ExtensionPermissionDiff"
-          },
-          "dryRun": {
-            "type": "boolean"
-          },
-          "versionChange": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/ExtensionVersionChange"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          }
-        },
-        "required": [
-          "installation",
-          "fromVersion",
-          "toVersion",
-          "permissionDiff",
-          "dryRun",
-          "versionChange"
-        ],
-        "additionalProperties": false
-      },
-      "ExtensionVersionChange": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "organizationId": {
-            "$ref": "#/components/schemas/OrganizationId"
-          },
-          "installationId": {
-            "$ref": "#/components/schemas/ExtensionInstallationId"
-          },
-          "extensionId": {
-            "$ref": "#/components/schemas/ExtensionId"
-          },
-          "fromVersion": {
-            "$ref": "#/components/schemas/ExtensionVersionRef"
-          },
-          "toVersion": {
-            "$ref": "#/components/schemas/ExtensionVersionRef"
-          },
-          "permissionDiff": {
-            "$ref": "#/components/schemas/ExtensionPermissionDiff"
-          },
-          "changedBy": {
-            "$ref": "#/components/schemas/UserId"
-          },
-          "changedAt": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "id",
-          "organizationId",
-          "installationId",
-          "extensionId",
-          "fromVersion",
-          "toVersion",
-          "permissionDiff",
-          "changedBy",
-          "changedAt"
-        ],
-        "additionalProperties": false
-      },
-      "ExtensionPermissionDiff": {
-        "type": "object",
-        "properties": {
-          "added": {
-            "type": "array",
-            "items": {
-              "type": "string",
-              "enum": [
-                "permission:read",
-                "permission:update",
-                "permission:send",
-                "permission:quarantine.read",
-                "event:mailbox.message.received",
-                "event:mailbox.message.sent",
-                "event:mailbox.action.pending_approval",
-                "event:mailbox.action.resolved",
-                "event:mailbox.message.quarantined",
-                "event:mailbox.message.released",
-                "event:mailbox.message.discarded"
-              ]
-            }
-          },
-          "removed": {
-            "type": "array",
-            "items": {
-              "type": "string",
-              "enum": [
-                "permission:read",
-                "permission:update",
-                "permission:send",
-                "permission:quarantine.read",
-                "event:mailbox.message.received",
-                "event:mailbox.message.sent",
-                "event:mailbox.action.pending_approval",
-                "event:mailbox.action.resolved",
-                "event:mailbox.message.quarantined",
-                "event:mailbox.message.released",
-                "event:mailbox.message.discarded"
-              ]
-            }
-          }
-        },
-        "required": [
-          "added",
-          "removed"
-        ],
-        "additionalProperties": false
-      },
-      "UpgradeExtensionPayload": {
-        "type": "object",
-        "properties": {
-          "version": {
-            "anyOf": [
-              {
-                "type": "string",
-                "pattern": "^\\d{1,6}\\.\\d{1,6}\\.\\d{1,6}(?:-[0-9A-Za-z.-]{1,64})?$"
-              },
-              {
-                "$ref": "#/components/schemas/ExtensionVersionId"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "acceptPermissions": {
-            "anyOf": [
-              {
-                "type": "array",
-                "items": {
-                  "type": "string",
-                  "enum": [
-                    "permission:read",
-                    "permission:update",
-                    "permission:send",
-                    "permission:quarantine.read",
-                    "event:mailbox.message.received",
-                    "event:mailbox.message.sent",
-                    "event:mailbox.action.pending_approval",
-                    "event:mailbox.action.resolved",
-                    "event:mailbox.message.quarantined",
-                    "event:mailbox.message.released",
-                    "event:mailbox.message.discarded"
-                  ]
-                }
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "dryRun": {
-            "anyOf": [
-              {
-                "type": "boolean"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          }
-        },
-        "additionalProperties": false
-      },
-      "SuccessResponse": {
-        "type": "object",
-        "properties": {
-          "success": {
-            "type": "boolean"
-          }
-        },
-        "required": [
-          "success"
-        ],
-        "additionalProperties": false
-      },
-      "InstallExtensionResponse": {
-        "type": "object",
-        "properties": {
-          "installation": {
-            "$ref": "#/components/schemas/ExtensionInstallation"
-          },
-          "credentials": {
-            "anyOf": [
-              {
-                "type": "object",
-                "properties": {
-                  "apiKey": {
-                    "type": "string",
-                    "x-sensitive": true
-                  },
-                  "webhookSecret": {
-                    "type": "string",
-                    "x-sensitive": true
-                  }
-                },
-                "required": [
-                  "apiKey",
-                  "webhookSecret"
-                ],
-                "additionalProperties": false
-              },
-              {
-                "type": "null"
-              }
-            ]
-          }
-        },
-        "required": [
-          "installation",
-          "credentials"
-        ],
-        "additionalProperties": false
-      },
-      "InstallExtensionPayload": {
-        "type": "object",
-        "properties": {
-          "extension": {
-            "type": "string"
-          },
-          "version": {
-            "anyOf": [
-              {
-                "type": "string",
-                "pattern": "^\\d{1,6}\\.\\d{1,6}\\.\\d{1,6}(?:-[0-9A-Za-z.-]{1,64})?$"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "mailboxIds": {
-            "anyOf": [
-              {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/MailboxId"
-                },
-                "minItems": 1
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "namespaceId": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/NamespaceId"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "permissions": {
-            "anyOf": [
-              {
-                "type": "array",
-                "items": {
-                  "type": "string",
-                  "enum": [
-                    "read",
-                    "update",
-                    "send",
-                    "quarantine.read"
-                  ]
-                }
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "policy": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/PolicyConfiguration"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "webhookUrl": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          }
-        },
-        "required": [
-          "extension"
-        ],
-        "additionalProperties": false
-      },
-      "ExtensionInstallationPage": {
-        "type": "object",
-        "properties": {
-          "items": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ExtensionInstallationSummary"
-            }
-          },
-          "nextCursor": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          }
-        },
-        "required": [
-          "items",
-          "nextCursor"
-        ],
-        "additionalProperties": false
-      },
-      "ExtensionInstallationSummary": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "$ref": "#/components/schemas/ExtensionInstallationId"
-          },
-          "extensionId": {
-            "$ref": "#/components/schemas/ExtensionId"
-          },
-          "name": {
-            "type": "string"
-          },
-          "displayName": {
-            "type": "string"
-          },
-          "version": {
-            "$ref": "#/components/schemas/ExtensionVersionRef"
-          },
-          "runtime": {
-            "type": "string",
-            "enum": [
-              "hosted",
-              "webhook"
-            ]
-          },
-          "status": {
-            "type": "string",
-            "enum": [
-              "active",
-              "disabled"
-            ]
-          },
-          "createdAt": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "id",
-          "extensionId",
-          "name",
-          "displayName",
-          "version",
-          "runtime",
-          "status",
-          "createdAt"
-        ],
-        "additionalProperties": false
-      },
-      "ExtensionVersion": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "$ref": "#/components/schemas/ExtensionVersionId"
-          },
-          "version": {
-            "type": "string"
-          },
-          "runtime": {
-            "type": "string",
-            "enum": [
-              "hosted",
-              "webhook"
-            ]
-          },
-          "bundle": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/ExtensionBundle"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "publishedAt": {
-            "type": "string"
-          },
-          "manifest": {
-            "type": "object",
-            "properties": {
-              "name": {
-                "type": "string",
-                "pattern": "^[a-z][a-z0-9-]{1,62}[a-z0-9]$"
-              },
-              "displayName": {
-                "type": "string",
-                "minLength": 1,
-                "maxLength": 80,
-                "x-samva-string-checks": [
-                  {
-                    "id": "effect/schema/isMaxLength",
-                    "payload": {
-                      "maxLength": 80
-                    }
-                  }
-                ]
-              },
-              "description": {
-                "anyOf": [
-                  {
-                    "type": "string",
-                    "maxLength": 500,
-                    "x-samva-string-checks": [
-                      {
-                        "id": "effect/schema/isMaxLength",
-                        "payload": {
-                          "maxLength": 500
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "type": "null"
-                  }
-                ]
-              },
-              "version": {
-                "type": "string",
-                "pattern": "^\\d{1,6}\\.\\d{1,6}\\.\\d{1,6}(?:-[0-9A-Za-z.-]{1,64})?$"
-              },
-              "runtime": {
-                "type": "string",
-                "enum": [
-                  "hosted",
-                  "webhook"
-                ]
-              },
-              "events": {
-                "type": "array",
-                "items": {
-                  "type": "string",
-                  "enum": [
-                    "mailbox.message.received",
-                    "mailbox.message.sent",
-                    "mailbox.action.pending_approval",
-                    "mailbox.action.resolved",
-                    "mailbox.message.quarantined",
-                    "mailbox.message.released",
-                    "mailbox.message.discarded"
-                  ]
-                },
-                "minItems": 1
-              },
-              "permissions": {
-                "type": "array",
-                "items": {
-                  "type": "string",
-                  "enum": [
-                    "read",
-                    "update",
-                    "send",
-                    "quarantine.read"
-                  ]
-                }
-              }
-            },
-            "required": [
-              "name",
-              "displayName",
-              "version",
-              "runtime",
-              "events",
-              "permissions"
-            ],
-            "additionalProperties": false
-          }
-        },
-        "required": [
-          "id",
-          "version",
-          "runtime",
-          "bundle",
-          "publishedAt",
-          "manifest"
-        ],
-        "additionalProperties": false
-      },
-      "ExtensionBundle": {
-        "type": "object",
-        "properties": {
-          "sha256": {
-            "type": "string"
-          },
-          "sizeBytes": {
-            "type": "integer",
-            "minimum": -9007199254740991,
-            "maximum": 9007199254740991
-          }
-        },
-        "required": [
-          "sha256",
-          "sizeBytes"
-        ],
-        "additionalProperties": false
-      },
-      "ExtensionVersionPage": {
-        "type": "object",
-        "properties": {
-          "items": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ExtensionVersionSummary"
-            }
-          },
-          "nextCursor": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          }
-        },
-        "required": [
-          "items",
-          "nextCursor"
-        ],
-        "additionalProperties": false
-      },
-      "ExtensionVersionSummary": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "$ref": "#/components/schemas/ExtensionVersionId"
-          },
-          "version": {
-            "type": "string"
-          },
-          "runtime": {
-            "type": "string",
-            "enum": [
-              "hosted",
-              "webhook"
-            ]
-          },
-          "bundle": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/ExtensionBundle"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "publishedAt": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "id",
-          "version",
-          "runtime",
-          "bundle",
-          "publishedAt"
-        ],
-        "additionalProperties": false
-      },
-      "Extension": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "$ref": "#/components/schemas/ExtensionId"
-          },
-          "name": {
-            "type": "string"
-          },
-          "displayName": {
-            "type": "string"
-          },
-          "description": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "runtime": {
-            "type": "string",
-            "enum": [
-              "hosted",
-              "webhook"
-            ]
-          },
-          "latestVersion": {
-            "$ref": "#/components/schemas/ExtensionVersionRef"
-          },
-          "createdAt": {
-            "type": "string"
-          },
-          "updatedAt": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "id",
-          "name",
-          "displayName",
-          "description",
-          "runtime",
-          "latestVersion",
-          "createdAt",
-          "updatedAt"
-        ],
-        "additionalProperties": false
-      },
-      "PublishExtensionVersionResponse": {
-        "type": "object",
-        "properties": {
-          "extension": {
-            "$ref": "#/components/schemas/Extension"
-          },
-          "version": {
-            "$ref": "#/components/schemas/ExtensionVersion"
-          }
-        },
-        "required": [
-          "extension",
-          "version"
-        ],
-        "additionalProperties": false
-      },
-      "PublishExtensionVersionPayload": {
-        "type": "object",
-        "properties": {
-          "manifest": {
-            "type": "object",
-            "properties": {
-              "name": {
-                "type": "string",
-                "pattern": "^[a-z][a-z0-9-]{1,62}[a-z0-9]$"
-              },
-              "displayName": {
-                "type": "string",
-                "minLength": 1,
-                "maxLength": 80,
-                "x-samva-string-checks": [
-                  {
-                    "id": "effect/schema/isMaxLength",
-                    "payload": {
-                      "maxLength": 80
-                    }
-                  }
-                ]
-              },
-              "description": {
-                "anyOf": [
-                  {
-                    "type": "string",
-                    "maxLength": 500,
-                    "x-samva-string-checks": [
-                      {
-                        "id": "effect/schema/isMaxLength",
-                        "payload": {
-                          "maxLength": 500
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "type": "null"
-                  }
-                ]
-              },
-              "version": {
-                "type": "string",
-                "pattern": "^\\d{1,6}\\.\\d{1,6}\\.\\d{1,6}(?:-[0-9A-Za-z.-]{1,64})?$"
-              },
-              "runtime": {
-                "type": "string",
-                "enum": [
-                  "hosted",
-                  "webhook"
-                ]
-              },
-              "events": {
-                "type": "array",
-                "items": {
-                  "type": "string",
-                  "enum": [
-                    "mailbox.message.received",
-                    "mailbox.message.sent",
-                    "mailbox.action.pending_approval",
-                    "mailbox.action.resolved",
-                    "mailbox.message.quarantined",
-                    "mailbox.message.released",
-                    "mailbox.message.discarded"
-                  ]
-                },
-                "minItems": 1
-              },
-              "permissions": {
-                "type": "array",
-                "items": {
-                  "type": "string",
-                  "enum": [
-                    "read",
-                    "update",
-                    "send",
-                    "quarantine.read"
-                  ]
-                }
-              }
-            },
-            "required": [
-              "name",
-              "displayName",
-              "version",
-              "runtime",
-              "events",
-              "permissions"
-            ],
-            "additionalProperties": false
-          },
-          "bundle": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          }
-        },
-        "required": [
-          "manifest"
-        ],
-        "additionalProperties": false
-      },
-      "ExtensionPage": {
-        "type": "object",
-        "properties": {
-          "items": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Extension"
-            }
-          },
-          "nextCursor": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          }
-        },
-        "required": [
-          "items",
-          "nextCursor"
-        ],
-        "additionalProperties": false
-      },
-      "NamespaceUsage": {
-        "type": "object",
-        "properties": {
-          "namespaceId": {
-            "$ref": "#/components/schemas/NamespaceId"
-          },
-          "periodStart": {
-            "type": "string"
-          },
-          "periodEnd": {
-            "type": "string"
-          },
-          "emailCount": {
-            "type": "number"
-          },
-          "smsCount": {
-            "type": "number"
-          },
-          "whatsappCount": {
-            "type": "number"
-          },
-          "totalMessages": {
-            "type": "number"
-          }
-        },
-        "required": [
-          "namespaceId",
-          "periodStart",
-          "periodEnd",
-          "emailCount",
-          "smsCount",
-          "whatsappCount",
-          "totalMessages"
-        ],
-        "additionalProperties": false
-      },
-      "NamespacePortalLink": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "$ref": "#/components/schemas/NamespacePortalLinkId"
-          },
-          "organizationId": {
-            "$ref": "#/components/schemas/OrganizationId"
-          },
-          "namespaceId": {
-            "$ref": "#/components/schemas/NamespaceId"
-          },
-          "createdBy": {
-            "$ref": "#/components/schemas/UserId"
-          },
-          "expiresAt": {
-            "type": "string"
-          },
-          "revokedAt": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "redirectUrl": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "metadata": {
-            "$ref": "#/components/schemas/NamespacePortalLinkMetadata"
-          },
-          "createdAt": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "id",
-          "organizationId",
-          "namespaceId",
-          "createdBy",
-          "expiresAt",
-          "revokedAt",
-          "redirectUrl",
-          "metadata",
-          "createdAt"
-        ],
-        "additionalProperties": false
-      },
-      "NamespacePortalLinkMetadata": {
-        "type": "object",
-        "propertyNames": {
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 64
-        },
-        "additionalProperties": {
-          "type": "string",
-          "maxLength": 512,
-          "x-samva-string-checks": [
-            {
-              "id": "effect/schema/isMaxLength",
-              "payload": {
-                "maxLength": 512
-              }
-            }
-          ]
-        }
-      },
-      "NamespacePortalLinkId": {
-        "type": "string",
-        "pattern": "^npl_[0-9a-hjkmnp-tv-z]{16,24}$",
-        "x-samva-brand": "NamespacePortalLinkId"
-      },
-      "NamespacePortalLinkPage": {
-        "type": "object",
-        "properties": {
-          "items": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/NamespacePortalLink"
-            }
-          },
-          "nextCursor": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          }
-        },
-        "required": [
-          "items",
-          "nextCursor"
-        ],
-        "additionalProperties": false
-      },
-      "CreatedNamespacePortalLink": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "$ref": "#/components/schemas/NamespacePortalLinkId"
-          },
-          "organizationId": {
-            "$ref": "#/components/schemas/OrganizationId"
-          },
-          "namespaceId": {
-            "$ref": "#/components/schemas/NamespaceId"
-          },
-          "createdBy": {
-            "$ref": "#/components/schemas/UserId"
-          },
-          "expiresAt": {
-            "type": "string"
-          },
-          "revokedAt": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "redirectUrl": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "metadata": {
-            "$ref": "#/components/schemas/NamespacePortalLinkMetadata"
-          },
-          "createdAt": {
-            "type": "string"
-          },
-          "url": {
-            "type": "string",
-            "x-sensitive": true
-          }
-        },
-        "required": [
-          "id",
-          "organizationId",
-          "namespaceId",
-          "createdBy",
-          "expiresAt",
-          "revokedAt",
-          "redirectUrl",
-          "metadata",
-          "createdAt",
-          "url"
-        ],
-        "additionalProperties": false
-      },
-      "CreateNamespacePortalLinkPayload": {
-        "type": "object",
-        "properties": {
-          "redirectUrl": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/WhatsAppSetupLinkRedirectUrl"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "metadata": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/NamespacePortalLinkMetadata"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "expiresIn": {
-            "anyOf": [
-              {
-                "type": "integer",
-                "maximum": 2592000,
-                "exclusiveMinimum": 0
-              },
-              {
-                "type": "null"
-              }
-            ]
-          }
-        },
-        "additionalProperties": false
-      },
-      "NamespaceResource": {
-        "type": "object",
-        "properties": {
-          "type": {
-            "$ref": "#/components/schemas/NamespaceResourceType"
-          },
-          "id": {
-            "type": "string"
-          },
-          "namespaceId": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/NamespaceId"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          }
-        },
-        "required": [
-          "type",
-          "id",
-          "namespaceId"
-        ],
-        "additionalProperties": false
-      },
-      "NamespaceResourceType": {
-        "type": "string",
-        "enum": [
-          "domain",
-          "sender",
-          "whatsappNumber",
-          "smsNumber",
-          "contact",
-          "template"
-        ]
-      },
-      "AssignNamespaceResourcePayload": {
-        "type": "object",
-        "properties": {
-          "type": {
-            "$ref": "#/components/schemas/NamespaceResourceType"
-          },
-          "resourceId": {
-            "type": "string",
-            "description": "The resource's id, such as `dom_...` for a domain."
-          }
-        },
-        "required": [
-          "type",
-          "resourceId"
-        ],
-        "additionalProperties": false
-      },
-      "Namespace": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "$ref": "#/components/schemas/NamespaceId"
-          },
-          "name": {
-            "type": "string"
-          },
-          "createdAt": {
-            "type": "string"
-          },
-          "metadata": {
-            "$ref": "#/components/schemas/NamespaceMetadata"
-          },
-          "updatedAt": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "id",
-          "name",
-          "createdAt",
-          "metadata",
-          "updatedAt"
-        ],
-        "additionalProperties": false
-      },
-      "NamespaceMetadata": {
-        "type": "object",
-        "additionalProperties": {
-          "type": "string"
-        },
-        "description": "Your own labels for the namespace, such as the id of your customer it serves. Samva stores them and never reads them."
-      },
-      "UpdateNamespacePayload": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "anyOf": [
-              {
-                "type": "string",
-                "pattern": "^\\S[\\s\\S]*\\S$|^\\S$|^$",
-                "minLength": 1,
-                "maxLength": 128,
-                "x-samva-string-checks": [
-                  {
-                    "id": "effect/schema/isMaxLength",
-                    "payload": {
-                      "maxLength": 128
-                    }
-                  }
-                ]
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "metadata": {
-            "anyOf": [
-              {
-                "type": "object",
-                "additionalProperties": {
-                  "anyOf": [
-                    {
-                      "type": "string"
-                    },
-                    {
-                      "type": "null"
-                    }
-                  ]
-                }
-              },
-              {
-                "type": "null"
-              }
-            ]
-          }
-        },
-        "additionalProperties": false
-      },
-      "CreateNamespacePayload": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string",
-            "pattern": "^\\S[\\s\\S]*\\S$|^\\S$|^$",
-            "minLength": 1,
-            "maxLength": 128,
-            "x-samva-string-checks": [
-              {
-                "id": "effect/schema/isMaxLength",
-                "payload": {
-                  "maxLength": 128
-                }
-              }
-            ]
-          },
-          "metadata": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/NamespaceMetadata"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          }
-        },
-        "required": [
-          "name"
-        ],
-        "additionalProperties": false
-      },
-      "NamespacePage": {
-        "type": "object",
-        "properties": {
-          "items": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/NamespaceSummary"
-            }
-          },
-          "nextCursor": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          }
-        },
-        "required": [
-          "items",
-          "nextCursor"
-        ],
-        "additionalProperties": false
-      },
-      "NamespaceSummary": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "$ref": "#/components/schemas/NamespaceId"
-          },
-          "name": {
-            "type": "string"
-          },
-          "createdAt": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "id",
-          "name",
-          "createdAt"
-        ],
-        "additionalProperties": false
-      },
-      "PolicySnapshot": {
-        "type": "object",
-        "properties": {
-          "presets": {
-            "type": "array",
-            "items": {
-              "type": "string",
-              "minLength": 1
-            }
-          },
-          "rules": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/PolicyRule"
-            }
-          },
-          "instructions": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "version": {
-            "$ref": "#/components/schemas/PolicyVersion"
-          }
-        },
-        "required": [
-          "presets",
-          "rules",
-          "version"
-        ],
-        "additionalProperties": false
-      },
-      "PolicyVersion": {
-        "type": "integer",
-        "minimum": 0,
-        "maximum": 9007199254740991
       },
       "PolicyReplacement": {
         "type": "object",
@@ -85360,6 +82474,11 @@
           "ifVersion"
         ],
         "additionalProperties": false
+      },
+      "MailboxId": {
+        "type": "string",
+        "pattern": "^mbx_[0-9a-hjkmnp-tv-z]{16,24}$",
+        "x-samva-brand": "MailboxId"
       },
       "MailboxEventPage": {
         "type": "object",
@@ -94899,6 +92018,11 @@
           "previousExpiresAt"
         ],
         "additionalProperties": false
+      },
+      "WebhookEndpointId": {
+        "type": "string",
+        "pattern": "^wep_[0-9a-hjkmnp-tv-z]{16,24}$",
+        "x-samva-brand": "WebhookEndpointId"
       },
       "WebhookAttemptId": {
         "type": "string",
@@ -119713,14 +116837,6 @@
     {
       "name": "Namespaces",
       "description": "Sub-tenants that confine domains, senders, mailboxes, contacts, templates, and API keys inside an organization"
-    },
-    {
-      "name": "Extensions",
-      "description": "Code that receives mailbox events and acts through the mailbox API"
-    },
-    {
-      "name": "Extension installations",
-      "description": "Extension versions installed into the organization, each acting as its own principal"
     },
     {
       "name": "WhatsApp",

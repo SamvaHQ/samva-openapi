@@ -1,5 +1,50 @@
 # Changelog
 
+## v0.92.0
+
+- 443 operations, 327 paths, 779 schemas, 41 webhook events.
+- Breaking against v0.91.1.
+- Removed operations:
+  - `DELETE /v1/extension-installations/{id}`
+  - `GET /v1/extension-installations`
+  - `GET /v1/extension-installations/{id}`
+  - `GET /v1/extension-installations/{id}/runs`
+  - `GET /v1/extension-installations/{id}/runs/{runId}`
+  - `GET /v1/extensions`
+  - `GET /v1/extensions/{id}`
+  - `GET /v1/extensions/{id}/versions`
+  - `GET /v1/extensions/{id}/versions/{versionId}`
+  - `POST /v1/extension-installations`
+  - `POST /v1/extension-installations/{id}/disable`
+  - `POST /v1/extension-installations/{id}/enable`
+  - `POST /v1/extension-installations/{id}/upgrade`
+  - `POST /v1/extensions`
+- Changed schemas:
+  - `Extension`
+  - `ExtensionBundle`
+  - `ExtensionId`
+  - `ExtensionInstallation`
+  - `ExtensionInstallationPage`
+  - `ExtensionInstallationSummary`
+  - `ExtensionPage`
+  - `ExtensionPermissionDiff`
+  - `ExtensionRun`
+  - `ExtensionRunList`
+  - `ExtensionRunSummary`
+  - `ExtensionVersion`
+  - `ExtensionVersionChange`
+  - `ExtensionVersionId`
+  - `ExtensionVersionPage`
+  - `ExtensionVersionRef`
+  - `ExtensionVersionSummary`
+  - `InstallExtensionPayload`
+  - `InstallExtensionResponse`
+  - `PublishExtensionVersionPayload`
+  - `PublishExtensionVersionResponse`
+  - `UpgradeExtensionPayload`
+  - `UpgradeExtensionResponse`
+
+
 ## v0.91.1
 
 - 457 operations, 338 paths, 802 schemas, 41 webhook events.
