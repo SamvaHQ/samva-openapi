@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.91.0
+
+- 455 operations, 336 paths, 800 schemas, 41 webhook events.
+- Breaking against v0.90.0.
+- Changed schemas:
+  - `WhatsAppJourneySendNode`
+
+
 ## v0.90.0
 
 - 455 operations, 336 paths, 798 schemas, 41 webhook events.

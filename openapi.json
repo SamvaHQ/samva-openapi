@@ -104038,6 +104038,25 @@
           },
           "reentry": {
             "type": "boolean"
+          },
+          "enrollment": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "shopify_order"
+                ]
+              },
+              "shop": {
+                "$ref": "#/components/schemas/ShopifyShop"
+              }
+            },
+            "required": [
+              "type",
+              "shop"
+            ],
+            "additionalProperties": false
           }
         },
         "required": [
@@ -104046,6 +104065,19 @@
           "nodes"
         ],
         "additionalProperties": false
+      },
+      "ShopifyShop": {
+        "type": "string",
+        "maxLength": 255,
+        "pattern": "^[a-z0-9][a-z0-9-]*\\.myshopify\\.com$(?![\\s\\S])",
+        "x-samva-string-checks": [
+          {
+            "id": "effect/schema/isMaxLength",
+            "payload": {
+              "maxLength": 255
+            }
+          }
+        ]
       },
       "JourneyGoal": {
         "type": "object",
@@ -104696,7 +104728,7 @@
             ]
           },
           "config": {
-            "$ref": "#/components/schemas/WhatsAppTemplateDispatch"
+            "$ref": "#/components/schemas/JourneySendWhatsAppConfig"
           },
           "next": {
             "type": "array",
@@ -104713,6 +104745,63 @@
           "type",
           "config",
           "next"
+        ],
+        "additionalProperties": false
+      },
+      "JourneySendWhatsAppConfig": {
+        "type": "object",
+        "properties": {
+          "template": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/TemplateId"
+              },
+              {
+                "type": "string",
+                "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+              }
+            ]
+          },
+          "templateData": {
+            "$ref": "#/components/schemas/WhatsAppTemplateDispatchData"
+          },
+          "bindings": {
+            "$ref": "#/components/schemas/WhatsAppTemplateBindings"
+          },
+          "businessAccountId": {
+            "$ref": "#/components/schemas/WhatsAppBusinessAccountId"
+          },
+          "pinnedRegistration": {
+            "type": "object",
+            "properties": {
+              "registrationId": {
+                "$ref": "#/components/schemas/TemplateRegistrationId"
+              },
+              "templateChannelVariantId": {
+                "$ref": "#/components/schemas/TemplateChannelVariantId"
+              }
+            },
+            "required": [
+              "registrationId",
+              "templateChannelVariantId"
+            ],
+            "additionalProperties": false
+          },
+          "eventBindings": {
+            "type": "object",
+            "propertyNames": {
+              "type": "string",
+              "minLength": 1
+            },
+            "additionalProperties": {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "^[a-zA-Z0-9_]+(?:\\.[a-zA-Z0-9_]+)*$"
+            }
+          }
+        },
+        "required": [
+          "template"
         ],
         "additionalProperties": false
       },
@@ -104765,6 +104854,9 @@
                 "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
               }
             ]
+          },
+          "publicationId": {
+            "$ref": "#/components/schemas/TemplatePublicationId"
           },
           "senderId": {
             "$ref": "#/components/schemas/EmailSenderId"
