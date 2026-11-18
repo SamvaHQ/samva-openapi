@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.93.1
+
+- 443 operations, 327 paths, 781 schemas, 41 webhook events.
+- Compatible against v0.93.0.
+
+
 ## v0.93.0
 
 - 443 operations, 327 paths, 781 schemas, 41 webhook events.
