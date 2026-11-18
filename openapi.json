@@ -43001,6 +43001,19 @@
               "type": "string"
             },
             "required": false
+          },
+          {
+            "name": "namespaceId",
+            "in": "query",
+            "schema": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/NamespaceId"
+                }
+              ],
+              "description": "Only this namespace's families. A namespace-scoped key always lists its own namespace's."
+            },
+            "required": false
           }
         ],
         "security": [
@@ -43136,6 +43149,16 @@
               }
             }
           },
+          "404": {
+            "description": "ResourceNotFoundError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundError"
+                }
+              }
+            }
+          },
           "422": {
             "description": "ValidationError",
             "content": {
@@ -43167,13 +43190,13 @@
             }
           }
         },
-        "description": "Creates an empty template family with the supplied name and returns it with status 201.",
+        "description": "Creates an empty template family with the supplied name, in `namespaceId` or at organization level, and returns it with status 201.",
         "summary": "Create a template family",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/TemplateFamilyName"
+                "$ref": "#/components/schemas/CreateTemplateFamilyPayload"
               }
             }
           },
@@ -43625,7 +43648,7 @@
             }
           }
         },
-        "description": "Creates a template family containing the specified template and returns the new family with status 201.",
+        "description": "Creates a template family containing the specified template, in that template's namespace, and returns the new family with status 201.",
         "summary": "Create a family from a template",
         "requestBody": {
           "content": {
@@ -43761,7 +43784,7 @@
             }
           }
         },
-        "description": "Adds an existing template as a channel member of the family and returns the updated family.",
+        "description": "Adds an existing template as a channel member of the family and returns the updated family. The template must be in the family's namespace; another namespace's template answers 409.",
         "summary": "Attach a template to a family",
         "x-samva-scope": "templates:create"
       },
@@ -44324,7 +44347,7 @@
             }
           }
         },
-        "description": "Ranks Samva's gallery designs for a brief and returns the three to start a new email from, best first, each with the `galleryTemplateId` that creates a template from it. When the brief names a company's email, `recreation` says whether the gallery recreates that kind of email from it, recreates another kind (start from it for the look), or has none. The ranking is deterministic: the same brief returns the same designs.",
+        "description": "Ranks Samva's gallery designs for a brief and returns the three to start a new email from (or, with `channel: \"whatsapp\"`, Samva's WhatsApp starters), best first, each with the `galleryTemplateId` that creates a template from it. When the brief names a company's email, `recreation` says whether the gallery recreates that kind of email from it, recreates another kind (start from it for the look), or has none. The ranking is deterministic: the same brief returns the same designs.",
         "summary": "Suggest designs for a brief",
         "requestBody": {
           "content": {
@@ -44486,7 +44509,7 @@
             }
           }
         },
-        "description": "Creates an email template project from the gallery design that best fits a brief (the first of `POST /v1/templates/suggestions`, or the `galleryTemplateId` you name) and returns it with status 201, the design it started from, the other suggestions, any company email the brief named, and the request that makes the template assistant adapt the design. The assistant runs when that request is sent in the editor; an agent of your own adapts the design through the workspace endpoints instead.",
+        "description": "Creates an email template project (or a WhatsApp one, with `channel: \"whatsapp\"`) from the gallery design that best fits a brief (the first of `POST /v1/templates/suggestions`, or the `galleryTemplateId` you name) and returns it with status 201, the design it started from, the other suggestions, any company email the brief named, and the request that makes the template assistant adapt the design. The assistant runs when that request is sent in the editor; an agent of your own adapts the design through the workspace endpoints instead.",
         "summary": "Create a template from a brief",
         "requestBody": {
           "content": {
@@ -80123,6 +80146,9 @@
           "publicationId": {
             "$ref": "#/components/schemas/TemplatePublicationId"
           },
+          "templateChannelVariantId": {
+            "$ref": "#/components/schemas/TemplateChannelVariantId_1"
+          },
           "target": {
             "$ref": "#/components/schemas/TemplateRegistrationTarget"
           },
@@ -80142,6 +80168,17 @@
               "paused",
               "disabled"
             ]
+          },
+          "pendingTemplateChannelVariantId": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/TemplateChannelVariantId"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Content a submission sent to the provider whose outcome is not yet recorded, because its request failed or is still in flight; the provider may already hold it. While it is set nothing sends from this registration, even when `status` is `approved`. Submitting again settles it."
           },
           "category": {
             "type": "string",
@@ -80218,10 +80255,12 @@
           "id",
           "templateId",
           "publicationId",
+          "templateChannelVariantId",
           "target",
           "name",
           "language",
           "status",
+          "pendingTemplateChannelVariantId",
           "category",
           "providerCategory",
           "providerTemplateId",
@@ -80232,6 +80271,11 @@
           "updatedAt"
         ],
         "additionalProperties": false
+      },
+      "TemplateChannelVariantId": {
+        "type": "string",
+        "pattern": "^tvar_[0-9a-hjkmnp-tv-z]{16,24}$",
+        "x-samva-brand": "TemplateChannelVariantId"
       },
       "TemplateRegistrationTarget": {
         "anyOf": [
@@ -80284,6 +80328,11 @@
           "wabaId"
         ],
         "additionalProperties": false
+      },
+      "TemplateChannelVariantId_1": {
+        "type": "string",
+        "pattern": "^tvar_[0-9a-hjkmnp-tv-z]{16,24}$",
+        "description": "The exact content this registration last submitted. A journey step or scheduled send pins it with `id` as `pinnedRegistration`, and then sends only while this registration holds that content approved."
       },
       "TemplatePublicationId": {
         "type": "string",
@@ -84057,11 +84106,6 @@
         "additionalProperties": {
           "$ref": "#/components/schemas/JsonValue"
         }
-      },
-      "TemplateChannelVariantId": {
-        "type": "string",
-        "pattern": "^tvar_[0-9a-hjkmnp-tv-z]{16,24}$",
-        "x-samva-brand": "TemplateChannelVariantId"
       },
       "MailboxSmsEndpointBinding": {
         "type": "object",
@@ -95166,9 +95210,24 @@
             "type": "string",
             "description": "The gallery design to start from. Pass it as `galleryTemplateId` to create a template from it."
           },
-          "slug": {
+          "channel": {
             "type": "string",
-            "description": "The design's gallery page, under /templates/."
+            "enum": [
+              "email",
+              "whatsapp"
+            ],
+            "description": "The channel the design's template sends on."
+          },
+          "slug": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "The design's public gallery page, under /templates/. Null for a design without one, such as a WhatsApp starter."
           },
           "name": {
             "type": "string"
@@ -95210,6 +95269,7 @@
         },
         "required": [
           "galleryTemplateId",
+          "channel",
           "slug",
           "name",
           "description",
@@ -95228,7 +95288,7 @@
             "type": "string",
             "minLength": 1,
             "maxLength": 4000,
-            "description": "What the email is for, as a person would ask for it: who sends it, to whom, and why. Naming a company's email (\"like the Vercel login email\") starts from Samva's recreation of it when the gallery has one.",
+            "description": "What the message is for, as a person would ask for it: who sends it, to whom, and why. Naming a company's email (\"like the Vercel login email\") starts from Samva's recreation of it when the gallery has one.",
             "x-samva-string-checks": [
               {
                 "id": "effect/schema/isMaxLength",
@@ -95237,6 +95297,21 @@
                 }
               }
             ]
+          },
+          "channel": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "email",
+                  "whatsapp"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "The channel to start a template for. Defaults to email. WhatsApp starts from Samva's WhatsApp starters and is available where WhatsApp is enabled for the organization."
           },
           "name": {
             "anyOf": [
@@ -95300,7 +95375,18 @@
                 "type": "null"
               }
             ],
-            "description": "The namespace the new template project belongs to. Omit for organization level. A namespace-scoped key always creates in its own namespace."
+            "description": "The namespace the new template project belongs to. Omit for organization level. A namespace-scoped key always creates in its own namespace. With `variantOf`, omit it or name the source's namespace."
+          },
+          "variantOf": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/TemplateId"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Make this template another channel's version of an existing template the caller can change: it is created in that template's namespace, holds that template's current draft as a read-only resource the template assistant reads facts from, and joins that template's family (one is made when it has none). The returned `ask` says where the snapshot is mounted; its `variant-source.json` names the source, its entry and the revision taken. A retry with the same idempotency key finishes the same version; the key refuses a different source, or a request without `variantOf`. Refused when `channel` is the source's own or its family already has a template on `channel`. The source's files are mounted whole: a project with more than 31 files, a file over 4 MB, or more than 8 MB in all is refused before anything is created."
           }
         },
         "required": [
@@ -95342,7 +95428,7 @@
             "type": "string",
             "minLength": 1,
             "maxLength": 4000,
-            "description": "What the email is for, as a person would ask for it: who sends it, to whom, and why. Naming a company's email (\"like the Vercel login email\") starts from Samva's recreation of it when the gallery has one.",
+            "description": "What the message is for, as a person would ask for it: who sends it, to whom, and why. Naming a company's email (\"like the Vercel login email\") starts from Samva's recreation of it when the gallery has one.",
             "x-samva-string-checks": [
               {
                 "id": "effect/schema/isMaxLength",
@@ -95351,6 +95437,21 @@
                 }
               }
             ]
+          },
+          "channel": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "email",
+                  "whatsapp"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "The channel to start a template for. Defaults to email. WhatsApp starts from Samva's WhatsApp starters and is available where WhatsApp is enabled for the organization."
           }
         },
         "required": [
@@ -95544,6 +95645,17 @@
           "name": {
             "type": "string"
           },
+          "namespaceId": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/NamespaceId"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "The namespace the family belongs to, which every member it gains shares. Null at organization level. A namespace-scoped key reaches only its own namespace's families."
+          },
           "members": {
             "type": "array",
             "items": {
@@ -95560,6 +95672,7 @@
         "required": [
           "id",
           "name",
+          "namespaceId",
           "members",
           "createdAt",
           "updatedAt"
@@ -95621,6 +95734,30 @@
           "name": {
             "type": "string",
             "minLength": 1
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "additionalProperties": false
+      },
+      "CreateTemplateFamilyPayload": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "namespaceId": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/NamespaceId"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "The namespace the family belongs to; every member it gains must be in it. Omit for organization level. A namespace-scoped key always creates in its own namespace."
           }
         },
         "required": [
@@ -123292,6 +123429,11 @@
                         "type": "string",
                         "pattern": "^tpub_[0-9a-hjkmnp-tv-z]{16,24}$"
                       },
+                      "templateChannelVariantId": {
+                        "type": "string",
+                        "pattern": "^tvar_[0-9a-hjkmnp-tv-z]{16,24}$",
+                        "description": "The exact content this registration last submitted. A journey step or scheduled send pins it with `id` as `pinnedRegistration`, and then sends only while this registration holds that content approved."
+                      },
                       "target": {
                         "anyOf": [
                           {
@@ -123354,6 +123496,18 @@
                           "paused",
                           "disabled"
                         ]
+                      },
+                      "pendingTemplateChannelVariantId": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "pattern": "^tvar_[0-9a-hjkmnp-tv-z]{16,24}$"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ],
+                        "description": "Content a submission sent to the provider whose outcome is not yet recorded, because its request failed or is still in flight; the provider may already hold it. While it is set nothing sends from this registration, even when `status` is `approved`. Submitting again settles it."
                       },
                       "category": {
                         "type": "string",
@@ -123445,10 +123599,12 @@
                       "id",
                       "templateId",
                       "publicationId",
+                      "templateChannelVariantId",
                       "target",
                       "name",
                       "language",
                       "status",
+                      "pendingTemplateChannelVariantId",
                       "category",
                       "providerCategory",
                       "providerTemplateId",

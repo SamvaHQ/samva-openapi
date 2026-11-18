@@ -1,5 +1,19 @@
 # Changelog
 
+## v0.93.0
+
+- 443 operations, 327 paths, 781 schemas, 41 webhook events.
+- Breaking against v0.92.1.
+- Changed operations:
+  - `POST /v1/templates/families`
+- Changed schemas:
+  - `TemplateFamily`
+  - `TemplateRegistration`
+  - `TemplateStarterSuggestion`
+- Changed webhook events:
+  - `template.registration.updated`
+
+
 ## v0.92.1
 
 - 443 operations, 327 paths, 779 schemas, 41 webhook events.
