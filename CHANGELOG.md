@@ -1,5 +1,16 @@
 # Changelog
 
+## v0.94.0
+
+- 443 operations, 327 paths, 780 schemas, 41 webhook events.
+- Breaking against v0.93.1.
+- Changed schemas:
+  - `IntegrationReturnTo`
+  - `ShopifyShop`
+  - `TemplateChannelVariantId_1`
+  - `TemplateRegistration`
+
+
 ## v0.93.1
 
 - 443 operations, 327 paths, 781 schemas, 41 webhook events.

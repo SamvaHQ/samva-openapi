@@ -79543,7 +79543,7 @@
         ],
         "responses": {
           "201": {
-            "description": "TemplateRegistration",
+            "description": "`templateChannelVariantId` identifies the exact content last submitted. A journey step or scheduled send pins it with `id` in `pinnedRegistration` and sends only while this registration holds that content approved.",
             "content": {
               "application/json": {
                 "schema": {
@@ -79816,7 +79816,7 @@
         ],
         "responses": {
           "200": {
-            "description": "TemplateRegistration",
+            "description": "`templateChannelVariantId` identifies the exact content last submitted. A journey step or scheduled send pins it with `id` in `pinnedRegistration` and sends only while this registration holds that content approved.",
             "content": {
               "application/json": {
                 "schema": {
@@ -80147,7 +80147,7 @@
             "$ref": "#/components/schemas/TemplatePublicationId"
           },
           "templateChannelVariantId": {
-            "$ref": "#/components/schemas/TemplateChannelVariantId_1"
+            "$ref": "#/components/schemas/TemplateChannelVariantId"
           },
           "target": {
             "$ref": "#/components/schemas/TemplateRegistrationTarget"
@@ -80270,7 +80270,8 @@
           "createdAt",
           "updatedAt"
         ],
-        "additionalProperties": false
+        "additionalProperties": false,
+        "description": "`templateChannelVariantId` identifies the exact content last submitted. A journey step or scheduled send pins it with `id` in `pinnedRegistration` and sends only while this registration holds that content approved."
       },
       "TemplateChannelVariantId": {
         "type": "string",
@@ -80328,11 +80329,6 @@
           "wabaId"
         ],
         "additionalProperties": false
-      },
-      "TemplateChannelVariantId_1": {
-        "type": "string",
-        "pattern": "^tvar_[0-9a-hjkmnp-tv-z]{16,24}$",
-        "description": "The exact content this registration last submitted. A journey step or scheduled send pins it with `id` as `pinnedRegistration`, and then sends only while this registration holds that content approved."
       },
       "TemplatePublicationId": {
         "type": "string",
@@ -99403,7 +99399,7 @@
       "IntegrationReturnTo": {
         "type": "string",
         "maxLength": 2048,
-        "pattern": "^\\/(?![/\\\\])[\\x21-\\x7e]*$",
+        "pattern": "^\\/(?:[\\x21-\\x2e\\x30-\\x5b\\x5d-\\x7e][\\x21-\\x7e]*)?$",
         "description": "A dashboard path starting with a single slash, such as /dashboard/acme/agents.",
         "x-samva-string-checks": [
           {
@@ -101647,7 +101643,7 @@
       "ShopifyShop": {
         "type": "string",
         "maxLength": 255,
-        "pattern": "^[a-z0-9][a-z0-9-]*\\.myshopify\\.com$(?![\\s\\S])",
+        "pattern": "^[a-z0-9][a-z0-9-]*\\.myshopify\\.com$",
         "x-samva-string-checks": [
           {
             "id": "effect/schema/isMaxLength",
@@ -123451,8 +123447,7 @@
                       },
                       "templateChannelVariantId": {
                         "type": "string",
-                        "pattern": "^tvar_[0-9a-hjkmnp-tv-z]{16,24}$",
-                        "description": "The exact content this registration last submitted. A journey step or scheduled send pins it with `id` as `pinnedRegistration`, and then sends only while this registration holds that content approved."
+                        "pattern": "^tvar_[0-9a-hjkmnp-tv-z]{16,24}$"
                       },
                       "target": {
                         "anyOf": [
