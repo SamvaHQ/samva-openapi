@@ -1,5 +1,16 @@
 # Changelog
 
+## v0.94.1
+
+- 445 operations, 328 paths, 781 schemas, 42 webhook events.
+- Compatible against v0.94.0.
+- Added operations:
+  - `DELETE /v1/mailboxes/{id}/threads/{threadId}`
+  - `POST /v1/mailboxes/{id}/trash/empty`
+- Added webhook events:
+  - `mailbox.thread.deleted`
+
+
 ## v0.94.0
 
 - 443 operations, 327 paths, 780 schemas, 41 webhook events.

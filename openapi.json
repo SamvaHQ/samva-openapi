@@ -66120,6 +66120,238 @@
           "required": true
         },
         "x-samva-scope": "mailboxes:update"
+      },
+      "delete": {
+        "tags": [
+          "Mailboxes"
+        ],
+        "operationId": "mailboxes.deleteThread",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "$ref": "#/components/schemas/MailboxId"
+            },
+            "required": true
+          },
+          {
+            "name": "threadId",
+            "in": "path",
+            "schema": {
+              "$ref": "#/components/schemas/MailboxThreadId"
+            },
+            "required": true
+          }
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "SuccessResponse",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuccessResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ResourceNotFoundError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "ConflictError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConflictError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Deletes a thread from Trash. Requires thread:write. Returns 409 if the thread is outside Trash. Publishes mailbox.thread.deleted. Cleanup of stored files runs after the deletion commits.",
+        "summary": "Permanently delete a mailbox thread",
+        "x-samva-scope": "mailboxes:update"
+      }
+    },
+    "/v1/mailboxes/{id}/trash/empty": {
+      "post": {
+        "tags": [
+          "Mailboxes"
+        ],
+        "operationId": "mailboxes.emptyTrash",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "$ref": "#/components/schemas/MailboxId"
+            },
+            "required": true
+          }
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "MailboxEmptyTrashAccepted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MailboxEmptyTrashAccepted"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ResourceNotFoundError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Queues permanent deletion of the threads currently in Trash and returns their count. Requires thread:write. A thread restored before processing is skipped.",
+        "summary": "Empty a mailbox's Trash",
+        "x-samva-scope": "mailboxes:update"
       }
     },
     "/v1/mailboxes/{id}/threads/{threadId}/labels": {
@@ -87689,6 +87921,20 @@
         ],
         "additionalProperties": false
       },
+      "MailboxEmptyTrashAccepted": {
+        "type": "object",
+        "properties": {
+          "count": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991
+          }
+        },
+        "required": [
+          "count"
+        ],
+        "additionalProperties": false
+      },
       "UpdateMailboxThreadPayload": {
         "type": "object",
         "properties": {
@@ -92508,6 +92754,7 @@
                 "mailbox.message.quarantined",
                 "mailbox.message.released",
                 "mailbox.message.discarded",
+                "mailbox.thread.deleted",
                 "mailbox.message.delivered",
                 "mailbox.message.read",
                 "mailbox.message.failed",
@@ -92687,6 +92934,7 @@
                     "mailbox.message.quarantined",
                     "mailbox.message.released",
                     "mailbox.message.discarded",
+                    "mailbox.thread.deleted",
                     "mailbox.message.delivered",
                     "mailbox.message.read",
                     "mailbox.message.failed",
@@ -92867,6 +93115,7 @@
                 "mailbox.message.quarantined",
                 "mailbox.message.released",
                 "mailbox.message.discarded",
+                "mailbox.thread.deleted",
                 "mailbox.message.delivered",
                 "mailbox.message.read",
                 "mailbox.message.failed",
@@ -93072,6 +93321,7 @@
                 "mailbox.message.quarantined",
                 "mailbox.message.released",
                 "mailbox.message.discarded",
+                "mailbox.thread.deleted",
                 "mailbox.message.delivered",
                 "mailbox.message.read",
                 "mailbox.message.failed",
@@ -125950,6 +126200,74 @@
                       "disposition",
                       "reason",
                       "message"
+                    ],
+                    "additionalProperties": true
+                  }
+                },
+                "required": [
+                  "type",
+                  "timestamp",
+                  "data"
+                ],
+                "additionalProperties": true
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Any 2xx status acknowledges the event."
+          }
+        }
+      }
+    },
+    "mailbox.thread.deleted": {
+      "post": {
+        "operationId": "webhooks.mailbox.thread.deleted",
+        "summary": "Mailbox thread deleted",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "mailbox.thread.deleted"
+                    ]
+                  },
+                  "timestamp": {
+                    "type": "string"
+                  },
+                  "data": {
+                    "type": "object",
+                    "properties": {
+                      "mailboxId": {
+                        "type": "string",
+                        "pattern": "^mbx_[0-9a-hjkmnp-tv-z]{16,24}$"
+                      },
+                      "namespaceId": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "pattern": "^ns_[0-9a-hjkmnp-tv-z]{16,24}$"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "threadId": {
+                        "type": "string",
+                        "pattern": "^thread_[0-9a-hjkmnp-tv-z]{16,24}$"
+                      }
+                    },
+                    "required": [
+                      "mailboxId",
+                      "namespaceId",
+                      "threadId"
                     ],
                     "additionalProperties": true
                   }
