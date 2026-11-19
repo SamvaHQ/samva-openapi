@@ -1,5 +1,33 @@
 # Changelog
 
+## v0.95.0
+
+- 445 operations, 328 paths, 783 schemas, 41 webhook events.
+- Breaking against v0.94.1.
+- Removed operations:
+  - `GET /v1/mailboxes/{id}/quarantine`
+  - `POST /v1/mailboxes/{id}/messages/{messageId}/discard`
+  - `POST /v1/mailboxes/{id}/messages/{messageId}/release`
+- Added operations:
+  - `GET /v1/mailboxes/{id}/spam/held`
+  - `POST /v1/mailboxes/{id}/spam/empty`
+  - `POST /v1/mailboxes/{id}/spam/held/{messageId}/discard`
+- Changed schemas:
+  - `ApiKeyMailboxAccess`
+  - `CreateWebhookPayload`
+  - `MailboxGrant`
+  - `MailboxQuarantinePage`
+  - `MailboxQuarantinedMessage`
+  - `UpdateWebhookPayload`
+  - `WebhookEndpoint`
+  - `WebhookEndpointListItem`
+- Removed webhook events:
+  - `mailbox.message.quarantined`
+  - `mailbox.message.released`
+- Added webhook events:
+  - `mailbox.message.spam`
+
+
 ## v0.94.1
 
 - 445 operations, 328 paths, 781 schemas, 42 webhook events.

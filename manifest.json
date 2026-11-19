@@ -1,21 +1,21 @@
 {
   "$schema": "./manifest.schema.json",
   "schemaVersion": 3,
-  "version": "0.94.1",
-  "releasedAt": "2026-11-19T12:24:02.534Z",
+  "version": "0.95.0",
+  "releasedAt": "2026-11-19T13:44:22.349Z",
   "compatibility": {
-    "classification": "compatible",
-    "baseline": "v0.94.0"
+    "classification": "breaking",
+    "baseline": "v0.94.1"
   },
   "openapi": {
     "artifact": "openapi.json",
     "version": "3.1.0",
     "apiVersion": "1.0.0",
-    "sha256": "69f15aa8132ef8cb63d7ad37713263911d4ee550760d410db90c7d747186083b",
-    "bytes": 3832616,
+    "sha256": "42a2775084bbdee88b3e1349e5834077155e2a875a900cbab34e708281af839d",
+    "bytes": 3820722,
     "paths": 328,
     "operations": 445,
-    "schemas": 781,
-    "webhooks": 42
+    "schemas": 783,
+    "webhooks": 41
   }
 }

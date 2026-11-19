@@ -66241,7 +66241,7 @@
             }
           }
         },
-        "description": "Deletes a thread from Trash. Requires thread:write. Returns 409 if the thread is outside Trash. Publishes mailbox.thread.deleted. Cleanup of stored files runs after the deletion commits.",
+        "description": "Deletes a thread from Trash or Spam. Requires thread:write. Returns 409 if the thread is outside those folders. Publishes mailbox.thread.deleted. Cleanup of stored files runs after the deletion commits.",
         "summary": "Permanently delete a mailbox thread",
         "x-samva-scope": "mailboxes:update"
       }
@@ -66351,6 +66351,114 @@
         },
         "description": "Queues permanent deletion of the threads currently in Trash and returns their count. Requires thread:write. A thread restored before processing is skipped.",
         "summary": "Empty a mailbox's Trash",
+        "x-samva-scope": "mailboxes:update"
+      }
+    },
+    "/v1/mailboxes/{id}/spam/empty": {
+      "post": {
+        "tags": [
+          "Mailboxes"
+        ],
+        "operationId": "mailboxes.emptySpam",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "$ref": "#/components/schemas/MailboxId"
+            },
+            "required": true
+          }
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "MailboxEmptySpamAccepted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MailboxEmptySpamAccepted"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ResourceNotFoundError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Queues permanent deletion of the threads currently in Spam and returns their count. Requires thread:write. A thread restored before processing is skipped.",
+        "summary": "Empty a mailbox's Spam",
         "x-samva-scope": "mailboxes:update"
       }
     },
@@ -68824,12 +68932,12 @@
         "x-samva-scope": "mailboxes:send"
       }
     },
-    "/v1/mailboxes/{id}/quarantine": {
+    "/v1/mailboxes/{id}/spam/held": {
       "get": {
         "tags": [
           "Mailboxes"
         ],
-        "operationId": "mailboxes.listQuarantine",
+        "operationId": "mailboxes.listSpamHeld",
         "parameters": [
           {
             "name": "id",
@@ -68889,11 +68997,11 @@
         ],
         "responses": {
           "200": {
-            "description": "MailboxQuarantinePage",
+            "description": "MailboxSpamHeldPage",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/MailboxQuarantinePage"
+                  "$ref": "#/components/schemas/MailboxSpamHeldPage"
                 }
               }
             }
@@ -68969,17 +69077,17 @@
             }
           }
         },
-        "description": "Returns the messages this mailbox holds instead of delivering, most recently held first: suspected spam, phishing, fraud, or prompt injection (`quarantined`), and malware (`isolated`). Each is metadata only; a held message appears in no thread, search, or `mailbox.message.received` event until a person releases it. `after` and `before` filter by when the message was held. Needs `quarantine.read`.",
-        "summary": "List quarantined messages",
-        "x-samva-scope": "mailboxes:quarantine.read"
+        "description": "Lists isolated messages, newest first. Only metadata is stored. Use the thread list with folder=spam to read Spam. The after and before filters apply to when the message was held.",
+        "summary": "List malware held outside Spam threads",
+        "x-samva-scope": "mailboxes:spam.read"
       }
     },
-    "/v1/mailboxes/{id}/messages/{messageId}/release": {
+    "/v1/mailboxes/{id}/spam/held/{messageId}/discard": {
       "post": {
         "tags": [
           "Mailboxes"
         ],
-        "operationId": "mailboxes.releaseMessage",
+        "operationId": "mailboxes.discardSpamHeld",
         "parameters": [
           {
             "name": "id",
@@ -69005,11 +69113,11 @@
         ],
         "responses": {
           "200": {
-            "description": "MailboxQuarantinedMessage",
+            "description": "MailboxSpamHeldMessage",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/MailboxQuarantinedMessage"
+                  "$ref": "#/components/schemas/MailboxSpamHeldMessage"
                 }
               }
             }
@@ -69050,142 +69158,6 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ResourceNotFoundError"
-                }
-              }
-            }
-          },
-          "409": {
-            "description": "ConflictError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ConflictError"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "ValidationError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationError"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "InternalError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/InternalError"
-                }
-              }
-            }
-          },
-          "504": {
-            "description": "GatewayTimeoutError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GatewayTimeoutError"
-                }
-              }
-            }
-          }
-        },
-        "description": "Delivers a quarantined message into the thread it would have joined and publishes one `mailbox.message.released` event. Releasing it again returns the same result and publishes nothing. Only a person can release; API keys never hold `quarantine.release`. Isolated (malware) messages and discarded messages cannot be released: 409.",
-        "summary": "Release a quarantined message",
-        "x-samva-scope": "mailboxes:quarantine.release"
-      }
-    },
-    "/v1/mailboxes/{id}/messages/{messageId}/discard": {
-      "post": {
-        "tags": [
-          "Mailboxes"
-        ],
-        "operationId": "mailboxes.discardMessage",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "schema": {
-              "$ref": "#/components/schemas/MailboxId"
-            },
-            "required": true
-          },
-          {
-            "name": "messageId",
-            "in": "path",
-            "schema": {
-              "$ref": "#/components/schemas/MessageId"
-            },
-            "required": true
-          }
-        ],
-        "security": [
-          {
-            "apiKey": []
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "MailboxQuarantinedMessage",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MailboxQuarantinedMessage"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "MalformedRequestError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MalformedRequestError"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "UnauthorizedError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UnauthorizedError"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "ForbiddenError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenError"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "ResourceNotFoundError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResourceNotFoundError"
-                }
-              }
-            }
-          },
-          "409": {
-            "description": "ConflictError",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ConflictError"
                 }
               }
             }
@@ -69231,9 +69203,9 @@
             }
           }
         },
-        "description": "Removes a held message from the mailbox's quarantine for good: it leaves the quarantine list, never reaches a thread, and can no longer be released. Quarantined and isolated (malware) messages can both be discarded. Publishes one `mailbox.message.discarded` event; discarding it again returns the same result and publishes nothing. A released message is in its thread and cannot be discarded: 409. Only a person can discard; API keys never hold `quarantine.release`.",
-        "summary": "Discard a quarantined message",
-        "x-samva-scope": "mailboxes:quarantine.release"
+        "description": "Permanently removes isolated malware from the mailbox's held list. Publishes one `mailbox.message.discarded` event. Retrying returns the same result and publishes nothing. Delete readable Spam through the thread delete endpoint. Only a person with `spam.discard` can discard held mail.",
+        "summary": "Discard held malware",
+        "x-samva-scope": "mailboxes:spam.discard"
       }
     },
     "/v1/mailboxes/{id}/drafts/{draftId}/schedule": {
@@ -86167,7 +86139,7 @@
         ],
         "additionalProperties": false
       },
-      "MailboxQuarantinedMessage": {
+      "MailboxSpamHeldMessage": {
         "type": "object",
         "properties": {
           "id": {
@@ -86285,13 +86257,13 @@
         ],
         "additionalProperties": false
       },
-      "MailboxQuarantinePage": {
+      "MailboxSpamHeldPage": {
         "type": "object",
         "properties": {
           "items": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/MailboxQuarantinedMessage"
+              "$ref": "#/components/schemas/MailboxSpamHeldMessage"
             }
           },
           "nextCursor": {
@@ -87897,7 +87869,8 @@
           "pending",
           "sent",
           "archived",
-          "trash"
+          "trash",
+          "spam"
         ]
       },
       "MailboxThreadLabels": {
@@ -87918,6 +87891,20 @@
         },
         "required": [
           "labels"
+        ],
+        "additionalProperties": false
+      },
+      "MailboxEmptySpamAccepted": {
+        "type": "object",
+        "properties": {
+          "count": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991
+          }
+        },
+        "required": [
+          "count"
         ],
         "additionalProperties": false
       },
@@ -88089,6 +88076,9 @@
           },
           "folder": {
             "$ref": "#/components/schemas/MailboxThreadFolder"
+          },
+          "spam": {
+            "$ref": "#/components/schemas/MailboxThreadSpam"
           },
           "priority": {
             "$ref": "#/components/schemas/MailboxThreadPriority"
@@ -88335,6 +88325,44 @@
         ],
         "additionalProperties": false
       },
+      "MailboxThreadSpam": {
+        "type": "object",
+        "properties": {
+          "reason": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "spam",
+                  "dmarc",
+                  "virus",
+                  "virus_unscanned",
+                  "verdict_missing",
+                  "phishing",
+                  "fraud",
+                  "prompt_injection"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "source": {
+            "type": "string",
+            "enum": [
+              "receipt",
+              "classifier",
+              "reader"
+            ]
+          }
+        },
+        "required": [
+          "reason",
+          "source"
+        ],
+        "additionalProperties": false
+      },
       "MailboxThreadSender": {
         "type": "object",
         "properties": {
@@ -88453,6 +88481,9 @@
           },
           "folder": {
             "$ref": "#/components/schemas/MailboxThreadFolder"
+          },
+          "spam": {
+            "$ref": "#/components/schemas/MailboxThreadSpam"
           },
           "priority": {
             "$ref": "#/components/schemas/MailboxThreadPriority"
@@ -88675,6 +88706,9 @@
           },
           "folder": {
             "$ref": "#/components/schemas/MailboxThreadFolder"
+          },
+          "spam": {
+            "$ref": "#/components/schemas/MailboxThreadSpam"
           },
           "priority": {
             "$ref": "#/components/schemas/MailboxThreadPriority"
@@ -89981,8 +90015,8 @@
                 "action:propose",
                 "action:approve",
                 "policy:read",
-                "quarantine:read",
-                "quarantine:release"
+                "spam:read",
+                "spam:discard"
               ]
             }
           },
@@ -91131,7 +91165,7 @@
                   "read",
                   "update",
                   "send",
-                  "quarantine.read"
+                  "spam.read"
                 ]
               }
             ],
@@ -91142,10 +91176,10 @@
                 "read",
                 "update",
                 "send",
-                "quarantine.read"
+                "spam.read"
               ]
             },
-            "description": "`read` reads mailboxes, threads, and messages; `update` changes thread state, labels, drafts, and notes; `send` sends and replies; `quarantine.read` reads quarantined mail."
+            "description": "`read` reads mailboxes, threads, and messages; `update` changes thread state, labels, drafts, and notes; `send` sends and replies; `spam.read` reads quarantined mail."
           },
           "mailboxIds": {
             "anyOf": [
@@ -92751,8 +92785,7 @@
                 "mailbox.message.sent",
                 "mailbox.action.pending_approval",
                 "mailbox.action.resolved",
-                "mailbox.message.quarantined",
-                "mailbox.message.released",
+                "mailbox.message.spam",
                 "mailbox.message.discarded",
                 "mailbox.thread.deleted",
                 "mailbox.message.delivered",
@@ -92931,8 +92964,7 @@
                     "mailbox.message.sent",
                     "mailbox.action.pending_approval",
                     "mailbox.action.resolved",
-                    "mailbox.message.quarantined",
-                    "mailbox.message.released",
+                    "mailbox.message.spam",
                     "mailbox.message.discarded",
                     "mailbox.thread.deleted",
                     "mailbox.message.delivered",
@@ -93112,8 +93144,7 @@
                 "mailbox.message.sent",
                 "mailbox.action.pending_approval",
                 "mailbox.action.resolved",
-                "mailbox.message.quarantined",
-                "mailbox.message.released",
+                "mailbox.message.spam",
                 "mailbox.message.discarded",
                 "mailbox.thread.deleted",
                 "mailbox.message.delivered",
@@ -93318,8 +93349,7 @@
                 "mailbox.message.sent",
                 "mailbox.action.pending_approval",
                 "mailbox.action.resolved",
-                "mailbox.message.quarantined",
-                "mailbox.message.released",
+                "mailbox.message.spam",
                 "mailbox.message.discarded",
                 "mailbox.thread.deleted",
                 "mailbox.message.delivered",
@@ -125564,10 +125594,10 @@
         }
       }
     },
-    "mailbox.message.quarantined": {
+    "mailbox.message.spam": {
       "post": {
-        "operationId": "webhooks.mailbox.message.quarantined",
-        "summary": "Mailbox message quarantined",
+        "operationId": "webhooks.mailbox.message.spam",
+        "summary": "Mailbox message screened as spam",
         "requestBody": {
           "required": true,
           "content": {
@@ -125578,7 +125608,7 @@
                   "type": {
                     "type": "string",
                     "enum": [
-                      "mailbox.message.quarantined"
+                      "mailbox.message.spam"
                     ]
                   },
                   "timestamp": {
@@ -125605,28 +125635,47 @@
                       "disposition": {
                         "type": "string",
                         "enum": [
-                          "quarantined",
+                          "spam",
                           "isolated"
                         ]
                       },
+                      "threadId": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "pattern": "^thread_[0-9a-hjkmnp-tv-z]{16,24}$"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
                       "reason": {
-                        "type": "string",
-                        "enum": [
-                          "spam",
-                          "dmarc",
-                          "virus",
-                          "virus_unscanned",
-                          "verdict_missing",
-                          "phishing",
-                          "fraud",
-                          "prompt_injection"
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "enum": [
+                              "spam",
+                              "dmarc",
+                              "virus",
+                              "virus_unscanned",
+                              "verdict_missing",
+                              "phishing",
+                              "fraud",
+                              "prompt_injection"
+                            ]
+                          },
+                          {
+                            "type": "null"
+                          }
                         ]
                       },
                       "source": {
                         "type": "string",
                         "enum": [
                           "receipt",
-                          "classifier"
+                          "classifier",
+                          "reader"
                         ]
                       },
                       "message": {
@@ -125685,337 +125734,10 @@
                       "mailboxId",
                       "namespaceId",
                       "disposition",
+                      "threadId",
                       "reason",
                       "source",
                       "message"
-                    ],
-                    "additionalProperties": true
-                  }
-                },
-                "required": [
-                  "type",
-                  "timestamp",
-                  "data"
-                ],
-                "additionalProperties": true
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Any 2xx status acknowledges the event."
-          }
-        }
-      }
-    },
-    "mailbox.message.released": {
-      "post": {
-        "operationId": "webhooks.mailbox.message.released",
-        "summary": "Mailbox message released",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "type": {
-                    "type": "string",
-                    "enum": [
-                      "mailbox.message.released"
-                    ]
-                  },
-                  "timestamp": {
-                    "type": "string"
-                  },
-                  "data": {
-                    "type": "object",
-                    "properties": {
-                      "mailboxId": {
-                        "type": "string",
-                        "pattern": "^mbx_[0-9a-hjkmnp-tv-z]{16,24}$"
-                      },
-                      "namespaceId": {
-                        "anyOf": [
-                          {
-                            "type": "string",
-                            "pattern": "^ns_[0-9a-hjkmnp-tv-z]{16,24}$"
-                          },
-                          {
-                            "type": "null"
-                          }
-                        ]
-                      },
-                      "releasedBy": {
-                        "type": "object",
-                        "properties": {
-                          "kind": {
-                            "type": "string",
-                            "enum": [
-                              "user",
-                              "apiKey",
-                              "extension",
-                              "externalAgent",
-                              "samvaAgent",
-                              "system"
-                            ]
-                          },
-                          "id": {
-                            "type": "string"
-                          },
-                          "displayName": {
-                            "anyOf": [
-                              {
-                                "type": "string"
-                              },
-                              {
-                                "type": "null"
-                              }
-                            ]
-                          },
-                          "source": {
-                            "type": "string",
-                            "enum": [
-                              "humanUi",
-                              "externalApi",
-                              "externalAgent",
-                              "extension",
-                              "samvaManagedAgent",
-                              "system"
-                            ]
-                          }
-                        },
-                        "required": [
-                          "kind",
-                          "id",
-                          "source"
-                        ],
-                        "additionalProperties": true
-                      },
-                      "reason": {
-                        "type": "string",
-                        "enum": [
-                          "spam",
-                          "dmarc",
-                          "virus",
-                          "virus_unscanned",
-                          "verdict_missing",
-                          "phishing",
-                          "fraud",
-                          "prompt_injection"
-                        ]
-                      },
-                      "message": {
-                        "type": "object",
-                        "properties": {
-                          "id": {
-                            "type": "string",
-                            "pattern": "^msg_[0-9a-hjkmnp-tv-z]{16,24}$"
-                          },
-                          "campaign": {
-                            "anyOf": [
-                              {
-                                "type": "object",
-                                "properties": {
-                                  "campaignId": {
-                                    "type": "string",
-                                    "pattern": "^camp_[0-9a-hjkmnp-tv-z]{16,24}$"
-                                  },
-                                  "runId": {
-                                    "type": "string",
-                                    "pattern": "^crun_[0-9a-hjkmnp-tv-z]{16,24}$"
-                                  }
-                                },
-                                "required": [
-                                  "campaignId",
-                                  "runId"
-                                ],
-                                "additionalProperties": true
-                              },
-                              {
-                                "type": "null"
-                              }
-                            ]
-                          },
-                          "channel": {
-                            "type": "string",
-                            "enum": [
-                              "sms",
-                              "whatsapp",
-                              "email"
-                            ],
-                            "description": "Deliveries recorded before this field existed omit it; they are email."
-                          },
-                          "threadId": {
-                            "type": "string",
-                            "pattern": "^thread_[0-9a-hjkmnp-tv-z]{16,24}$"
-                          },
-                          "from": {
-                            "type": "object",
-                            "properties": {
-                              "address": {
-                                "type": "string"
-                              },
-                              "name": {
-                                "anyOf": [
-                                  {
-                                    "type": "string"
-                                  },
-                                  {
-                                    "type": "null"
-                                  }
-                                ]
-                              }
-                            },
-                            "required": [
-                              "address"
-                            ],
-                            "additionalProperties": true
-                          },
-                          "to": {
-                            "type": "array",
-                            "items": {
-                              "type": "string"
-                            }
-                          },
-                          "cc": {
-                            "type": "array",
-                            "items": {
-                              "type": "string"
-                            }
-                          },
-                          "subject": {
-                            "anyOf": [
-                              {
-                                "type": "string"
-                              },
-                              {
-                                "type": "null"
-                              }
-                            ]
-                          },
-                          "text": {
-                            "anyOf": [
-                              {
-                                "type": "string"
-                              },
-                              {
-                                "type": "null"
-                              }
-                            ]
-                          },
-                          "replyText": {
-                            "anyOf": [
-                              {
-                                "type": "string"
-                              },
-                              {
-                                "type": "null"
-                              }
-                            ]
-                          },
-                          "attachments": {
-                            "type": "array",
-                            "items": {
-                              "type": "object",
-                              "properties": {
-                                "id": {
-                                  "type": "string",
-                                  "pattern": "^att_[0-9a-hjkmnp-tv-z]{16,24}$"
-                                },
-                                "filename": {
-                                  "type": "string"
-                                },
-                                "contentType": {
-                                  "type": "string"
-                                },
-                                "size": {
-                                  "type": "number"
-                                }
-                              },
-                              "required": [
-                                "id",
-                                "filename",
-                                "contentType",
-                                "size"
-                              ],
-                              "additionalProperties": true
-                            }
-                          },
-                          "occurredAt": {
-                            "type": "string"
-                          }
-                        },
-                        "required": [
-                          "id",
-                          "threadId",
-                          "from",
-                          "to",
-                          "cc",
-                          "subject",
-                          "text",
-                          "replyText",
-                          "attachments",
-                          "occurredAt"
-                        ],
-                        "additionalProperties": true
-                      },
-                      "thread": {
-                        "type": "object",
-                        "properties": {
-                          "id": {
-                            "type": "string",
-                            "pattern": "^thread_[0-9a-hjkmnp-tv-z]{16,24}$"
-                          },
-                          "endpointId": {
-                            "anyOf": [
-                              {
-                                "type": "string",
-                                "pattern": "^mbxep_[0-9a-hjkmnp-tv-z]{16,24}$"
-                              },
-                              {
-                                "type": "null"
-                              }
-                            ],
-                            "description": "The endpoint the message arrived at; null once it is removed. Deliveries recorded before this field existed omit it."
-                          },
-                          "subject": {
-                            "anyOf": [
-                              {
-                                "type": "string"
-                              },
-                              {
-                                "type": "null"
-                              }
-                            ]
-                          },
-                          "preview": {
-                            "anyOf": [
-                              {
-                                "type": "string"
-                              },
-                              {
-                                "type": "null"
-                              }
-                            ]
-                          }
-                        },
-                        "required": [
-                          "id",
-                          "subject",
-                          "preview"
-                        ],
-                        "additionalProperties": true
-                      }
-                    },
-                    "required": [
-                      "mailboxId",
-                      "namespaceId",
-                      "releasedBy",
-                      "reason",
-                      "message",
-                      "thread"
                     ],
                     "additionalProperties": true
                   }
