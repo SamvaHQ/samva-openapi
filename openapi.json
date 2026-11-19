@@ -2305,7 +2305,7 @@
             }
           }
         },
-        "description": "Returns email delivery details for a message, optionally including signed URLs for its raw MIME, HTML, and text content.",
+        "description": "Returns email delivery details for a message, optionally including signed URLs for its raw MIME, HTML, and text content. Requesting download URLs for inbound email without a passing malware scan returns 404 (`ResourceNotFoundError`). Omit `includeDownloadUrls` to read the details.",
         "summary": "Get email message details",
         "x-samva-scope": "messages:read"
       }
@@ -16366,7 +16366,7 @@
             }
           }
         },
-        "description": "Generates a presigned, time-limited download URL for the attachment; expiry is configurable via the expiresIn query parameter.",
+        "description": "Generates a presigned, time-limited download URL for the attachment. Set `expiresIn` to configure expiry. Returns 404 (`ResourceNotFoundError`) for an inbound email attachment without a passing malware scan.",
         "summary": "Get an attachment download URL",
         "x-samva-scope": "messages:read"
       }
@@ -67970,7 +67970,7 @@
             }
           }
         },
-        "description": "Returns a short-lived URL for the message exactly as it was received (`message/rfc822`). Sent messages have no stored MIME.",
+        "description": "Returns a short-lived URL for the message exactly as it was received (`message/rfc822`). Sent messages have no stored MIME. Inbound email without a passing malware scan returns 404 (`ResourceNotFoundError`).",
         "summary": "Get a message's raw MIME",
         "x-samva-scope": "mailboxes:read"
       }
@@ -68094,7 +68094,7 @@
             }
           }
         },
-        "description": "Returns a short-lived download URL for one of the message's attachments.",
+        "description": "Returns a short-lived download URL for one of the message's attachments. Inbound email without a passing malware scan returns 404 (`ResourceNotFoundError`).",
         "summary": "Get a message attachment",
         "x-samva-scope": "mailboxes:read"
       }
@@ -68228,7 +68228,7 @@
             }
           }
         },
-        "description": "Copies one of a received message's attachments into the organization's media and returns it as a draft attachment (`mediaId`), so a draft can carry it. A draft that forwards a message saves each original attachment this way.",
+        "description": "Copies one of a received message's attachments into the organization's media and returns it as a draft attachment (`mediaId`), so a draft can carry it. A draft that forwards a message saves each original attachment this way. Inbound email without a passing malware scan returns 404 (`ResourceNotFoundError`).",
         "summary": "Copy a message attachment",
         "x-samva-scope": "mailboxes:send"
       }
@@ -68916,7 +68916,7 @@
             }
           }
         },
-        "description": "Forwards an email to new recipients as a new conversation from the thread's endpoint, with the original quoted below the caller's text and its attachments attached ahead of any the caller adds. The combined attachments must fit the email attachment limits.",
+        "description": "Forwards an email to new recipients as a new conversation from the thread's endpoint, with the original quoted below the caller's text and its attachments attached ahead of any the caller adds. The combined attachments must fit the email attachment limits. Forwarding an inbound email with attachments and without a passing malware scan returns 404 (`ResourceNotFoundError`).",
         "summary": "Forward a message",
         "requestBody": {
           "content": {
