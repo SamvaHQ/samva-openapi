@@ -88033,6 +88033,17 @@
               }
             ]
           },
+          "deliveredTo": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "The mailbox address that received the thread's first inbound email, including any plus tag. Null when no receiving address is known."
+          },
           "subject": {
             "anyOf": [
               {
@@ -88216,6 +88227,7 @@
           "id",
           "channel",
           "endpointId",
+          "deliveredTo",
           "subject",
           "preview",
           "from",
@@ -88438,6 +88450,17 @@
               }
             ]
           },
+          "deliveredTo": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "The mailbox address that received the thread's first inbound email, including any plus tag. Null when no receiving address is known."
+          },
           "subject": {
             "anyOf": [
               {
@@ -88599,6 +88622,7 @@
           "id",
           "channel",
           "endpointId",
+          "deliveredTo",
           "subject",
           "preview",
           "from",
@@ -88662,6 +88686,17 @@
                 "type": "null"
               }
             ]
+          },
+          "deliveredTo": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "The mailbox address that received the thread's first inbound email, including any plus tag. Null when no receiving address is known."
           },
           "subject": {
             "anyOf": [
@@ -88827,6 +88862,7 @@
           "id",
           "channel",
           "endpointId",
+          "deliveredTo",
           "subject",
           "preview",
           "from",

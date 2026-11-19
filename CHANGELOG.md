@@ -1,5 +1,15 @@
 # Changelog
 
+## v0.96.0
+
+- 445 operations, 328 paths, 783 schemas, 41 webhook events.
+- Breaking against v0.95.1.
+- Changed schemas:
+  - `MailboxThread`
+  - `MailboxThreadSummary`
+  - `OrganizationMailboxThreadSummary`
+
+
 ## v0.95.1
 
 - 445 operations, 328 paths, 783 schemas, 41 webhook events.
