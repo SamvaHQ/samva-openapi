@@ -1,5 +1,30 @@
 # Changelog
 
+## v0.97.0
+
+- 459 operations, 341 paths, 803 schemas, 41 webhook events.
+- Breaking against v0.96.0.
+- Added operations:
+  - `GET /v1/integrations/catalog/recipes`
+  - `GET /v1/integrations/catalog/recipes/post-delivery-check-in/connections/{provider}`
+  - `GET /v1/integrations/catalog/recipes/post-delivery-check-in/owner-test/handoff`
+  - `GET /v1/integrations/catalog/recipes/post-delivery-check-in/owner-test/whatsapp/{accountId}/challenges/{id}`
+  - `GET /v1/integrations/catalog/recipes/post-delivery-check-in/owner-test/{requestId}`
+  - `GET /v1/integrations/catalog/recipes/post-delivery-check-in/readiness`
+  - `GET /v1/integrations/catalog/recipes/post-delivery-check-in/setups`
+  - `GET /v1/integrations/catalog/recipes/post-delivery-check-in/setups/{id}`
+  - `POST /v1/integrations/catalog/recipes/post-delivery-check-in/owner-test`
+  - `POST /v1/integrations/catalog/recipes/post-delivery-check-in/owner-test/whatsapp/{accountId}/challenges`
+  - `POST /v1/integrations/catalog/recipes/post-delivery-check-in/owner-test/whatsapp/{accountId}/challenges/{id}/confirm`
+  - `POST /v1/integrations/catalog/recipes/post-delivery-check-in/preview`
+  - `POST /v1/integrations/catalog/recipes/post-delivery-check-in/setups/{id}/activate`
+  - `PUT /v1/integrations/catalog/recipes/post-delivery-check-in/setups/{id}`
+- Changed schemas:
+  - `MessageDelivery`
+  - `MessageDeliveryList`
+  - `SubmitTemplateRegistrationPayload`
+
+
 ## v0.96.0
 
 - 445 operations, 328 paths, 783 schemas, 41 webhook events.

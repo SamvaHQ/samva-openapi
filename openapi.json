@@ -1292,7 +1292,7 @@
             }
           }
         },
-        "description": "Returns one delivery per recipient: its status, attempts, delivery times, and why it failed or is waiting.",
+        "description": "Returns per-recipient queueing, provider acceptance (sentAt), delivery and read times, failures and waits. Includes recipients skipped at admission and the first reply linked by a message reference. Mailbox endpoints and threads require mailbox read access.",
         "summary": "List message deliveries",
         "x-samva-scope": "messages:read"
       }
@@ -27610,6 +27610,1898 @@
           "required": true
         },
         "x-samva-scope": "agents:create"
+      }
+    },
+    "/v1/integrations/catalog/recipes/post-delivery-check-in/connections/{provider}": {
+      "get": {
+        "tags": [
+          "Integrations catalog"
+        ],
+        "operationId": "integrationCatalog.recipeConnectionHandoff",
+        "parameters": [
+          {
+            "name": "provider",
+            "in": "path",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "shopify",
+                "whatsapp"
+              ]
+            },
+            "required": true
+          },
+          {
+            "name": "integrationAccountId",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/IntegrationAccountId"
+            },
+            "required": false
+          },
+          {
+            "name": "whatsappAccountId",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/WhatsAppBusinessAccountId"
+            },
+            "required": false
+          },
+          {
+            "name": "setupId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|[fF]{8}-[fF]{4}-[fF]{4}-[fF]{4}-[fF]{12})$",
+              "format": "uuid"
+            },
+            "required": false
+          }
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "RecipeHandoff",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RecipeHandoff"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenError | FlagDisabledError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/ForbiddenError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/FlagDisabledError"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ResourceNotFoundError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Returns a browser link for an organization administrator. Shopify opens the saved check-in when setupId is supplied and the Shopify integration page otherwise. WhatsApp opens its settings page with the specified account, if any, even when setupId is supplied. Provider authorization takes place in the browser.",
+        "summary": "Get a Shopify or WhatsApp browser connection handoff",
+        "x-samva-scope": "agents:create or whatsappAccounts:create"
+      }
+    },
+    "/v1/integrations/catalog/recipes/post-delivery-check-in/owner-test/handoff": {
+      "get": {
+        "tags": [
+          "Integrations catalog"
+        ],
+        "operationId": "integrationCatalog.recipeTestHandoff",
+        "parameters": [
+          {
+            "name": "channel",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "email",
+                "whatsapp"
+              ]
+            },
+            "required": true
+          },
+          {
+            "name": "templateId",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/TemplateId"
+            },
+            "required": true
+          },
+          {
+            "name": "publicationId",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/TemplatePublicationId"
+            },
+            "required": true
+          },
+          {
+            "name": "mailboxEndpointId",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/MailboxEndpointId"
+            },
+            "required": true
+          },
+          {
+            "name": "fixture",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "maxLength": 100,
+              "x-samva-string-checks": [
+                {
+                  "id": "effect/schema/isMaxLength",
+                  "payload": {
+                    "maxLength": 100
+                  }
+                }
+              ]
+            },
+            "required": false
+          },
+          {
+            "name": "senderId",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/EmailSenderId"
+            },
+            "required": false
+          },
+          {
+            "name": "businessAccountId",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/WhatsAppBusinessAccountId"
+            },
+            "required": false
+          },
+          {
+            "name": "registrationId",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/TemplateRegistrationId"
+            },
+            "required": false
+          }
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "RecipeHandoff",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RecipeHandoff"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ResourceNotFoundError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Opens the owner review screen for the specified publication and reply mailbox endpoint. Creating this link submits no message or provider request.",
+        "summary": "Get a browser handoff for a verified owner test",
+        "x-samva-scope": "messages:create or email:send or whatsapp:send"
+      }
+    },
+    "/v1/integrations/catalog/recipes/post-delivery-check-in/setups": {
+      "get": {
+        "tags": [
+          "Integrations catalog"
+        ],
+        "operationId": "integrationCatalog.recipeSetupsList",
+        "parameters": [],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "RecipeSetups",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RecipeSetups"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Requires organization-wide access. Lists the 100 most recently updated selections the caller can read. Read live readiness separately.",
+        "summary": "List saved post-delivery check-in setups",
+        "x-samva-scope": "agents:read templates:read mailboxes:read email:read domains:read whatsappAccounts:read messages:read"
+      }
+    },
+    "/v1/integrations/catalog/recipes/post-delivery-check-in/setups/{id}": {
+      "get": {
+        "tags": [
+          "Integrations catalog"
+        ],
+        "operationId": "integrationCatalog.recipeSetupGet",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string",
+              "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|[fF]{8}-[fF]{4}-[fF]{4}-[fF]{4}-[fF]{12})$",
+              "format": "uuid"
+            },
+            "required": true
+          }
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "RecipeSetup",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RecipeSetup"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ResourceNotFoundError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Requires organization-wide access. Returns the saved resource IDs and revision for a setup the caller can read.",
+        "summary": "Read post-delivery check-in setup references",
+        "x-samva-scope": "agents:read templates:read mailboxes:read email:read domains:read whatsappAccounts:read messages:read"
+      },
+      "put": {
+        "tags": [
+          "Integrations catalog"
+        ],
+        "operationId": "integrationCatalog.recipeSetupReplace",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string",
+              "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|[fF]{8}-[fF]{4}-[fF]{4}-[fF]{4}-[fF]{12})$",
+              "format": "uuid"
+            },
+            "required": true
+          }
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "RecipeSetup",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RecipeSetup"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ResourceNotFoundError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "ConflictError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConflictError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Requires organization-wide access. Creates a setup under a new UUID with a null revision or replaces it with its current revision. Validates references without submitting provider requests.",
+        "summary": "Save post-delivery check-in setup references",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReplaceRecipeSetup"
+              }
+            }
+          },
+          "required": true
+        },
+        "x-samva-scope": "agents:read templates:read mailboxes:read email:read domains:read whatsappAccounts:read messages:create"
+      }
+    },
+    "/v1/integrations/catalog/recipes/post-delivery-check-in/setups/{id}/activate": {
+      "post": {
+        "tags": [
+          "Integrations catalog"
+        ],
+        "operationId": "integrationCatalog.recipeSetupActivate",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string",
+              "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|[fF]{8}-[fF]{4}-[fF]{4}-[fF]{4}-[fF]{12})$",
+              "format": "uuid"
+            },
+            "required": true
+          }
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ActivatedRecipeSetup",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActivatedRecipeSetup"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "PaymentRequiredError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentRequiredError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenError | FlagDisabledError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/ForbiddenError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/FlagDisabledError"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ResourceNotFoundError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "ConflictError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConflictError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "BillingProviderError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BillingProviderError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Publishes the saved setup's reviewed send selection on its own journey. Reuse the same revision and selection after an interrupted response. A changed setup returns 409. Existing runs keep their published version.",
+        "summary": "Activate the reviewed Shopify post-delivery check-in",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ActivateRecipeSetup"
+              }
+            }
+          },
+          "required": true
+        },
+        "x-samva-scope": "agents:read templates:read mailboxes:read email:read domains:read whatsappAccounts:read messages:create messages:update"
+      }
+    },
+    "/v1/integrations/catalog/recipes/post-delivery-check-in/preview": {
+      "post": {
+        "tags": [
+          "Integrations catalog"
+        ],
+        "operationId": "integrationCatalog.recipePreview",
+        "parameters": [],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "RecipePreviewResponse",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RecipePreviewResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ResourceNotFoundError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Renders the exact publication without sending, enrolling a recipient, or requiring a verified test destination.",
+        "summary": "Render a check-in preview with a labelled sample order",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RecipePreviewPayload"
+              }
+            }
+          },
+          "required": true
+        },
+        "x-samva-scope": "templates:read"
+      }
+    },
+    "/v1/integrations/catalog/recipes/post-delivery-check-in/owner-test/whatsapp/{accountId}/challenges": {
+      "post": {
+        "tags": [
+          "Integrations catalog"
+        ],
+        "operationId": "integrationCatalog.recipeWhatsAppChallengeBegin",
+        "parameters": [
+          {
+            "name": "accountId",
+            "in": "path",
+            "schema": {
+              "$ref": "#/components/schemas/WhatsAppBusinessAccountId"
+            },
+            "required": true
+          }
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "RecipeChallengeStarted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RecipeChallengeStarted"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenError | FlagDisabledError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/ForbiddenError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/FlagDisabledError"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ResourceNotFoundError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "ConflictError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConflictError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Requires a signed-in owner. The owner sends the returned code directly from their personal WhatsApp to the listed business number before the code expires.",
+        "summary": "Open a WhatsApp owner verification challenge",
+        "x-samva-scope": "whatsappAccounts:read whatsapp:send"
+      }
+    },
+    "/v1/integrations/catalog/recipes/post-delivery-check-in/owner-test/whatsapp/{accountId}/challenges/{id}": {
+      "get": {
+        "tags": [
+          "Integrations catalog"
+        ],
+        "operationId": "integrationCatalog.recipeWhatsAppChallengeGet",
+        "parameters": [
+          {
+            "name": "accountId",
+            "in": "path",
+            "schema": {
+              "$ref": "#/components/schemas/WhatsAppBusinessAccountId"
+            },
+            "required": true
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string",
+              "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|[fF]{8}-[fF]{4}-[fF]{4}-[fF]{4}-[fF]{12})$",
+              "format": "uuid"
+            },
+            "required": true
+          }
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "RecipeChallengeStatus",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RecipeChallengeStatus"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenError | FlagDisabledError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/ForbiddenError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/FlagDisabledError"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ResourceNotFoundError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "ConflictError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConflictError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Requires the same signed-in owner. The observed phone is available only after authenticated inbound delivery on the selected business number.",
+        "summary": "Read the observed sender for a WhatsApp owner challenge",
+        "x-samva-scope": "whatsappAccounts:read whatsapp:send"
+      }
+    },
+    "/v1/integrations/catalog/recipes/post-delivery-check-in/owner-test/whatsapp/{accountId}/challenges/{id}/confirm": {
+      "post": {
+        "tags": [
+          "Integrations catalog"
+        ],
+        "operationId": "integrationCatalog.recipeWhatsAppChallengeConfirm",
+        "parameters": [
+          {
+            "name": "accountId",
+            "in": "path",
+            "schema": {
+              "$ref": "#/components/schemas/WhatsAppBusinessAccountId"
+            },
+            "required": true
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string",
+              "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|[fF]{8}-[fF]{4}-[fF]{4}-[fF]{4}-[fF]{12})$",
+              "format": "uuid"
+            },
+            "required": true
+          }
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "RecipeChallengeStatus",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RecipeChallengeStatus"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenError | FlagDisabledError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/ForbiddenError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/FlagDisabledError"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ResourceNotFoundError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "ConflictError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConflictError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Requires the same signed-in owner and an exact match with the number reported by WhatsApp. Confirmation does not record consent.",
+        "summary": "Confirm the phone observed on a WhatsApp test challenge",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "observedPhone": {
+                    "type": "string",
+                    "pattern": "^\\+[1-9]\\d{1,14}$"
+                  }
+                },
+                "required": [
+                  "observedPhone"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          "required": true
+        },
+        "x-samva-scope": "whatsappAccounts:read whatsapp:send"
+      }
+    },
+    "/v1/integrations/catalog/recipes/post-delivery-check-in/owner-test": {
+      "post": {
+        "tags": [
+          "Integrations catalog"
+        ],
+        "operationId": "integrationCatalog.recipeTest",
+        "parameters": [],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "RecipeTestResponse",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RecipeTestResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "PaymentRequiredError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentRequiredError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenError | FlagDisabledError | OnboardingReviewRequiredError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/ForbiddenError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/FlagDisabledError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/OnboardingReviewRequiredError"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ResourceNotFoundError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "ConflictError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConflictError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError | FromAddressRequiredError | BrandAddressRequiredError | CampaignFooterRequiredError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/ValidationError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/FromAddressRequiredError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/BrandAddressRequiredError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/CampaignFooterRequiredError"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "RateLimitedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RateLimitedError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "BillingProviderError | ExternalServiceError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/BillingProviderError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ExternalServiceError"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "SenderNotReadyError | DeliveryUnavailableError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/SenderNotReadyError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/DeliveryUnavailableError"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Takes no recipient. Samva resolves the acting owner's signed-in verified email or confirmed WhatsApp challenge. Normal send admission, billing, suppression and consent apply. Reuse the same request ID to reconcile an uncertain response.",
+        "summary": "Run an owner-only test of a Shopify check-in",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RecipeTestPayload"
+              }
+            }
+          },
+          "required": true
+        },
+        "x-samva-scope": "messages:create or email:send or whatsapp:send"
+      }
+    },
+    "/v1/integrations/catalog/recipes/post-delivery-check-in/owner-test/{requestId}": {
+      "get": {
+        "tags": [
+          "Integrations catalog"
+        ],
+        "operationId": "integrationCatalog.recipeTestReceipt",
+        "parameters": [
+          {
+            "name": "requestId",
+            "in": "path",
+            "schema": {
+              "type": "string",
+              "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|[fF]{8}-[fF]{4}-[fF]{4}-[fF]{4}-[fF]{12})$",
+              "format": "uuid"
+            },
+            "required": true
+          }
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/RecipeTestReceipt"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ResourceNotFoundError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Requires messages:read and the signed-in owner in the dashboard or Samva CLI. Returns that owner's test receipt by request ID. Read message deliveries for provider and reply state.",
+        "summary": "Reconcile an owner test after an uncertain response",
+        "x-samva-scope": "messages:read"
+      }
+    },
+    "/v1/integrations/catalog/recipes": {
+      "get": {
+        "tags": [
+          "Integrations catalog"
+        ],
+        "operationId": "integrationCatalog.recipeCatalog",
+        "parameters": [],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "RecipeCatalogResponse",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RecipeCatalogResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Returns recipe defaults, event property schemas and labelled sample payloads.",
+        "summary": "List Shopify journey recipes and event inputs",
+        "x-samva-scope": "messages:read"
+      }
+    },
+    "/v1/integrations/catalog/recipes/post-delivery-check-in/readiness": {
+      "get": {
+        "tags": [
+          "Integrations catalog"
+        ],
+        "operationId": "integrationCatalog.recipeReadiness",
+        "parameters": [
+          {
+            "name": "channel",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "email",
+                "whatsapp"
+              ]
+            },
+            "required": true
+          },
+          {
+            "name": "integrationAccountId",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/IntegrationAccountId"
+            },
+            "required": false
+          },
+          {
+            "name": "publicationId",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/TemplatePublicationId"
+            },
+            "required": false
+          },
+          {
+            "name": "senderId",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/EmailSenderId"
+            },
+            "required": false
+          },
+          {
+            "name": "whatsappAccountId",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/WhatsAppBusinessAccountId"
+            },
+            "required": false
+          },
+          {
+            "name": "registrationId",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/TemplateRegistrationId"
+            },
+            "required": false
+          },
+          {
+            "name": "mailboxEndpointId",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/MailboxEndpointId"
+            },
+            "required": false
+          }
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "RecipeReadinessResponse",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RecipeReadinessResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "BillingProviderError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BillingProviderError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Checks selected resources and current feature availability. A namespace caller sees its reachable resources. Shopify account and plan fields are null, and full recipe readiness requires organization-wide access. Omit the email sender or WhatsApp account to see the sender or number selected for the publication and caller scope. Requires email:read and domains:read for email, or whatsappAccounts:read for WhatsApp.",
+        "summary": "Read Shopify post-delivery check-in readiness",
+        "x-samva-scope": "messages:read agents:read templates:read mailboxes:read"
       }
     },
     "/v1/integrations/catalog/prepare": {
@@ -79850,6 +81742,16 @@
               }
             }
           },
+          "503": {
+            "description": "ServiceUnavailableError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceUnavailableError"
+                }
+              }
+            }
+          },
           "504": {
             "description": "GatewayTimeoutError",
             "content": {
@@ -79861,7 +81763,7 @@
             }
           }
         },
-        "description": "Submits the template's current publication for the provider's review: for WhatsApp, as a message template on the business account of the named number, or of the default number. A first submission creates the provider template; a later one resubmits the newer publication's content to the same template.",
+        "description": "Submits the template's current publication for review on a WhatsApp business account. Pass approval to bind a reviewed submission to the exact publication, workspace revision, connected number and Meta business account. A changed selection returns a conflict. An immediate submission uses the named or default number. A first submission creates the provider template. A later one resubmits through the same registration.",
         "summary": "Submit a template registration",
         "requestBody": {
           "content": {
@@ -80564,6 +82466,33 @@
         ],
         "additionalProperties": false
       },
+      "ServiceUnavailableError": {
+        "type": "object",
+        "properties": {
+          "_tag": {
+            "type": "string",
+            "enum": [
+              "ServiceUnavailableError"
+            ]
+          },
+          "message": {
+            "type": "string"
+          },
+          "retryAfterSeconds": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "_tag",
+          "message",
+          "retryAfterSeconds"
+        ],
+        "additionalProperties": false,
+        "x-category": [
+          "transient"
+        ],
+        "x-retryable": true
+      },
       "CredentialsError": {
         "type": "object",
         "properties": {
@@ -80739,7 +82668,10 @@
             ]
           },
           "businessAccountId": {
-            "$ref": "#/components/schemas/WhatsAppBusinessAccountId"
+            "$ref": "#/components/schemas/WhatsAppBusinessAccountId_1"
+          },
+          "approval": {
+            "$ref": "#/components/schemas/TemplateRegistrationApproval"
           }
         },
         "required": [
@@ -80747,10 +82679,62 @@
         ],
         "additionalProperties": false
       },
-      "WhatsAppBusinessAccountId": {
+      "TemplateRegistrationApproval": {
+        "type": "object",
+        "properties": {
+          "publicationId": {
+            "$ref": "#/components/schemas/TemplatePublicationId"
+          },
+          "businessAccountId": {
+            "$ref": "#/components/schemas/WhatsAppBusinessAccountId_2"
+          },
+          "expectedWabaId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128,
+            "description": "The Meta business account ID shown for the selected number before approval.",
+            "x-samva-string-checks": [
+              {
+                "id": "effect/schema/isMaxLength",
+                "payload": {
+                  "maxLength": 128
+                }
+              }
+            ]
+          },
+          "expectedWorkspaceRevision": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128,
+            "description": "The workspace revision reviewed for this submission.",
+            "x-samva-string-checks": [
+              {
+                "id": "effect/schema/isMaxLength",
+                "payload": {
+                  "maxLength": 128
+                }
+              }
+            ]
+          }
+        },
+        "required": [
+          "publicationId",
+          "businessAccountId",
+          "expectedWabaId",
+          "expectedWorkspaceRevision"
+        ],
+        "additionalProperties": false,
+        "description": "For a reviewed submission, the exact publication, workspace revision, number and Meta business account. Omit the separate businessAccountId when supplying approval."
+      },
+      "WhatsAppBusinessAccountId_2": {
         "type": "string",
         "pattern": "^waba_[0-9a-hjkmnp-tv-z]{16,24}$",
-        "x-samva-brand": "WhatsAppBusinessAccountId"
+        "description": "The connected WhatsApp number selected for this submission."
+      },
+      "WhatsAppBusinessAccountId_1": {
+        "type": "string",
+        "pattern": "^waba_[0-9a-hjkmnp-tv-z]{16,24}$",
+        "description": "For an immediate submission, the connected number to register on. Defaults to the number for the template's scope."
       },
       "WhatsAppSetupLinkUnavailableError": {
         "type": "object",
@@ -80863,6 +82847,11 @@
           "updatedAt"
         ],
         "additionalProperties": false
+      },
+      "WhatsAppBusinessAccountId": {
+        "type": "string",
+        "pattern": "^waba_[0-9a-hjkmnp-tv-z]{16,24}$",
+        "x-samva-brand": "WhatsAppBusinessAccountId"
       },
       "WhatsAppSetupLinkMetadata": {
         "type": "object",
@@ -81471,33 +83460,6 @@
           "createdAt"
         ],
         "additionalProperties": false
-      },
-      "ServiceUnavailableError": {
-        "type": "object",
-        "properties": {
-          "_tag": {
-            "type": "string",
-            "enum": [
-              "ServiceUnavailableError"
-            ]
-          },
-          "message": {
-            "type": "string"
-          },
-          "retryAfterSeconds": {
-            "type": "number"
-          }
-        },
-        "required": [
-          "_tag",
-          "message",
-          "retryAfterSeconds"
-        ],
-        "additionalProperties": false,
-        "x-category": [
-          "transient"
-        ],
-        "x-retryable": true
       },
       "RecordWhatsAppFlowVersionPayload": {
         "type": "object",
@@ -99633,6 +101595,1184 @@
         ],
         "additionalProperties": false
       },
+      "RecipeReadinessResponse": {
+        "type": "object",
+        "properties": {
+          "ready": {
+            "type": "boolean"
+          },
+          "channel": {
+            "type": "string",
+            "enum": [
+              "email",
+              "whatsapp"
+            ]
+          },
+          "availability": {
+            "type": "object",
+            "properties": {
+              "shopify": {
+                "type": "boolean"
+              },
+              "journeys": {
+                "type": "boolean"
+              },
+              "whatsapp": {
+                "type": "boolean"
+              },
+              "plan": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "enum": [
+                      "granted",
+                      "denied",
+                      "unreachable",
+                      "disabled"
+                    ]
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "shopify",
+              "journeys",
+              "whatsapp",
+              "plan"
+            ],
+            "additionalProperties": false
+          },
+          "shopify": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "$ref": "#/components/schemas/IntegrationAccountId"
+                  },
+                  "status": {
+                    "$ref": "#/components/schemas/AccountStatus"
+                  },
+                  "shop": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "id",
+                  "status",
+                  "shop"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "publication": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "$ref": "#/components/schemas/TemplatePublicationId"
+                  },
+                  "templateId": {
+                    "$ref": "#/components/schemas/TemplateId"
+                  },
+                  "parameters": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string"
+                        },
+                        "required": {
+                          "type": "boolean"
+                        }
+                      },
+                      "required": [
+                        "name",
+                        "required"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "description": "Top-level inputs of the selected email publication or approved WhatsApp registration."
+                  },
+                  "inputIssues": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "Email input diagnostics and guidance when the journey cannot fill this publication."
+                  }
+                },
+                "required": [
+                  "id",
+                  "templateId"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "email": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "senderId": {
+                    "anyOf": [
+                      {
+                        "$ref": "#/components/schemas/EmailSenderId"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "domainId": {
+                    "anyOf": [
+                      {
+                        "$ref": "#/components/schemas/EmailDomainId"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "address": {
+                    "type": "string"
+                  },
+                  "status": {
+                    "type": "string",
+                    "enum": [
+                      "ready",
+                      "unverified",
+                      "inactive"
+                    ]
+                  }
+                },
+                "required": [
+                  "senderId",
+                  "domainId",
+                  "address",
+                  "status"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "whatsapp": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "accountId": {
+                    "$ref": "#/components/schemas/WhatsAppBusinessAccountId"
+                  },
+                  "address": {
+                    "type": "string"
+                  },
+                  "status": {
+                    "type": "string",
+                    "enum": [
+                      "ready",
+                      "reconnect",
+                      "unverified",
+                      "inactive"
+                    ]
+                  },
+                  "registration": {
+                    "anyOf": [
+                      {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "$ref": "#/components/schemas/TemplateRegistrationId"
+                          },
+                          "status": {
+                            "type": "string",
+                            "enum": [
+                              "draft",
+                              "submitted",
+                              "approved",
+                              "rejected",
+                              "paused",
+                              "disabled"
+                            ]
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "status"
+                        ],
+                        "additionalProperties": false
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  }
+                },
+                "required": [
+                  "accountId",
+                  "address",
+                  "status",
+                  "registration"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "reply": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "endpointId": {
+                    "$ref": "#/components/schemas/MailboxEndpointId"
+                  },
+                  "mailboxId": {
+                    "$ref": "#/components/schemas/MailboxId"
+                  },
+                  "address": {
+                    "type": "string"
+                  },
+                  "status": {
+                    "type": "string",
+                    "enum": [
+                      "ready",
+                      "inactive",
+                      "different_account"
+                    ]
+                  }
+                },
+                "required": [
+                  "endpointId",
+                  "mailboxId",
+                  "address",
+                  "status"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "ready",
+          "channel",
+          "availability",
+          "shopify",
+          "publication",
+          "email",
+          "whatsapp",
+          "reply"
+        ],
+        "additionalProperties": false
+      },
+      "EmailDomainId": {
+        "type": "string",
+        "pattern": "^dom_[0-9a-hjkmnp-tv-z]{16,24}$",
+        "x-samva-brand": "EmailDomainId"
+      },
+      "AccountStatus": {
+        "type": "string",
+        "enum": [
+          "pending",
+          "connected",
+          "needsReconnect"
+        ]
+      },
+      "RecipeCatalogResponse": {
+        "type": "object",
+        "properties": {
+          "recipes": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "enum": [
+                    "post-delivery-check-in"
+                  ]
+                },
+                "title": {
+                  "type": "string"
+                },
+                "trigger": {
+                  "type": "string",
+                  "enum": [
+                    "shopify.order_created",
+                    "shopify.order_fulfilled",
+                    "shopify.order_delivered",
+                    "shopify.refund_created",
+                    "shopify.checkout_started"
+                  ]
+                },
+                "stopEvent": {
+                  "type": "string",
+                  "enum": [
+                    "shopify.order_created",
+                    "shopify.order_fulfilled",
+                    "shopify.order_delivered",
+                    "shopify.refund_created",
+                    "shopify.checkout_started"
+                  ]
+                },
+                "waitDays": {
+                  "type": "integer",
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991
+                },
+                "channels": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "email",
+                      "whatsapp"
+                    ]
+                  }
+                }
+              },
+              "required": [
+                "id",
+                "title",
+                "trigger",
+                "stopEvent",
+                "waitDays",
+                "channels"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "events": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "event": {
+                  "type": "string",
+                  "enum": [
+                    "shopify.order_created",
+                    "shopify.order_fulfilled",
+                    "shopify.order_delivered",
+                    "shopify.refund_created",
+                    "shopify.checkout_started"
+                  ]
+                },
+                "version": {
+                  "type": "integer",
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991
+                },
+                "producer": {
+                  "type": "string"
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/JsonObject"
+                },
+                "paths": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "path": {
+                        "type": "string"
+                      },
+                      "mayBeEmpty": {
+                        "type": "boolean"
+                      }
+                    },
+                    "required": [
+                      "path",
+                      "mayBeEmpty"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "samples": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "fixture": {
+                        "type": "string"
+                      },
+                      "label": {
+                        "type": "string"
+                      },
+                      "properties": {
+                        "$ref": "#/components/schemas/JsonObject"
+                      }
+                    },
+                    "required": [
+                      "fixture",
+                      "label",
+                      "properties"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              },
+              "required": [
+                "event",
+                "version",
+                "producer",
+                "schema",
+                "paths",
+                "samples"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "recipes",
+          "events"
+        ],
+        "additionalProperties": false
+      },
+      "RecipeTestReceipt": {
+        "type": "object",
+        "properties": {
+          "messageId": {
+            "$ref": "#/components/schemas/MessageId"
+          },
+          "state": {
+            "type": "string",
+            "enum": [
+              "queued",
+              "unresolved",
+              "rejected"
+            ]
+          }
+        },
+        "required": [
+          "messageId",
+          "state"
+        ],
+        "additionalProperties": false
+      },
+      "RecipeTestResponse": {
+        "type": "object",
+        "properties": {
+          "messageId": {
+            "$ref": "#/components/schemas/MessageId"
+          }
+        },
+        "required": [
+          "messageId"
+        ],
+        "additionalProperties": false
+      },
+      "RecipeTestPayload": {
+        "anyOf": [
+          {
+            "type": "object",
+            "properties": {
+              "templateId": {
+                "$ref": "#/components/schemas/TemplateId"
+              },
+              "publicationId": {
+                "$ref": "#/components/schemas/TemplatePublicationId"
+              },
+              "fixture": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 100,
+                "x-samva-string-checks": [
+                  {
+                    "id": "effect/schema/isMaxLength",
+                    "payload": {
+                      "maxLength": 100
+                    }
+                  }
+                ]
+              },
+              "templateData": {
+                "$ref": "#/components/schemas/JsonObject"
+              },
+              "channel": {
+                "type": "string",
+                "enum": [
+                  "email"
+                ]
+              },
+              "requestId": {
+                "type": "string",
+                "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|[fF]{8}-[fF]{4}-[fF]{4}-[fF]{4}-[fF]{12})$",
+                "format": "uuid"
+              },
+              "mailboxEndpointId": {
+                "$ref": "#/components/schemas/MailboxEndpointId"
+              },
+              "topicId": {
+                "$ref": "#/components/schemas/TopicId"
+              },
+              "senderId": {
+                "$ref": "#/components/schemas/EmailSenderId"
+              }
+            },
+            "required": [
+              "templateId",
+              "publicationId",
+              "channel",
+              "requestId",
+              "mailboxEndpointId"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "templateId": {
+                "$ref": "#/components/schemas/TemplateId"
+              },
+              "publicationId": {
+                "$ref": "#/components/schemas/TemplatePublicationId"
+              },
+              "fixture": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 100,
+                "x-samva-string-checks": [
+                  {
+                    "id": "effect/schema/isMaxLength",
+                    "payload": {
+                      "maxLength": 100
+                    }
+                  }
+                ]
+              },
+              "templateData": {
+                "$ref": "#/components/schemas/JsonObject"
+              },
+              "channel": {
+                "type": "string",
+                "enum": [
+                  "whatsapp"
+                ]
+              },
+              "eventBindings": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "string",
+                  "maxLength": 160,
+                  "x-samva-string-checks": [
+                    {
+                      "id": "effect/schema/isMaxLength",
+                      "payload": {
+                        "maxLength": 160
+                      }
+                    }
+                  ]
+                }
+              },
+              "requestId": {
+                "type": "string",
+                "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|[fF]{8}-[fF]{4}-[fF]{4}-[fF]{4}-[fF]{12})$",
+                "format": "uuid"
+              },
+              "mailboxEndpointId": {
+                "$ref": "#/components/schemas/MailboxEndpointId"
+              },
+              "topicId": {
+                "$ref": "#/components/schemas/TopicId"
+              },
+              "businessAccountId": {
+                "$ref": "#/components/schemas/WhatsAppBusinessAccountId"
+              },
+              "registrationId": {
+                "$ref": "#/components/schemas/TemplateRegistrationId"
+              },
+              "challengeId": {
+                "type": "string",
+                "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|[fF]{8}-[fF]{4}-[fF]{4}-[fF]{4}-[fF]{12})$",
+                "format": "uuid"
+              }
+            },
+            "required": [
+              "templateId",
+              "publicationId",
+              "channel",
+              "requestId",
+              "mailboxEndpointId",
+              "businessAccountId",
+              "registrationId",
+              "challengeId"
+            ],
+            "additionalProperties": false
+          }
+        ]
+      },
+      "RecipeChallengeStatus": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|[fF]{8}-[fF]{4}-[fF]{4}-[fF]{4}-[fF]{12})$",
+            "format": "uuid"
+          },
+          "expiresAt": {
+            "type": "string"
+          },
+          "observedPhone": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^\\+[1-9]\\d{1,14}$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "confirmedAt": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "expiresAt",
+          "observedPhone",
+          "confirmedAt"
+        ],
+        "additionalProperties": false
+      },
+      "RecipeChallengeStarted": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|[fF]{8}-[fF]{4}-[fF]{4}-[fF]{4}-[fF]{12})$",
+            "format": "uuid"
+          },
+          "expiresAt": {
+            "type": "string"
+          },
+          "address": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "expiresAt",
+          "address",
+          "message"
+        ],
+        "additionalProperties": false
+      },
+      "RecipePreviewResponse": {
+        "anyOf": [
+          {
+            "type": "object",
+            "properties": {
+              "fixture": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 100,
+                "x-samva-string-checks": [
+                  {
+                    "id": "effect/schema/isMaxLength",
+                    "payload": {
+                      "maxLength": 100
+                    }
+                  }
+                ]
+              },
+              "publicationId": {
+                "$ref": "#/components/schemas/TemplatePublicationId"
+              },
+              "channel": {
+                "type": "string",
+                "enum": [
+                  "email"
+                ]
+              },
+              "content": {
+                "type": "object",
+                "properties": {
+                  "subject": {
+                    "type": "string"
+                  },
+                  "preheader": {
+                    "type": "string"
+                  },
+                  "html": {
+                    "type": "string",
+                    "maxLength": 2097152,
+                    "x-samva-string-checks": [
+                      {
+                        "id": "effect/schema/isMaxLength",
+                        "payload": {
+                          "maxLength": 2097152
+                        }
+                      }
+                    ]
+                  },
+                  "text": {
+                    "type": "string",
+                    "maxLength": 2097152,
+                    "x-samva-string-checks": [
+                      {
+                        "id": "effect/schema/isMaxLength",
+                        "payload": {
+                          "maxLength": 2097152
+                        }
+                      }
+                    ]
+                  }
+                },
+                "required": [
+                  "subject",
+                  "html",
+                  "text"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "fixture",
+              "publicationId",
+              "channel",
+              "content"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "fixture": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 100,
+                "x-samva-string-checks": [
+                  {
+                    "id": "effect/schema/isMaxLength",
+                    "payload": {
+                      "maxLength": 100
+                    }
+                  }
+                ]
+              },
+              "publicationId": {
+                "$ref": "#/components/schemas/TemplatePublicationId"
+              },
+              "channel": {
+                "type": "string",
+                "enum": [
+                  "whatsapp"
+                ]
+              },
+              "content": {
+                "$ref": "#/components/schemas/JsonObject"
+              }
+            },
+            "required": [
+              "fixture",
+              "publicationId",
+              "channel",
+              "content"
+            ],
+            "additionalProperties": false
+          }
+        ]
+      },
+      "RecipePreviewPayload": {
+        "anyOf": [
+          {
+            "type": "object",
+            "properties": {
+              "templateId": {
+                "$ref": "#/components/schemas/TemplateId"
+              },
+              "publicationId": {
+                "$ref": "#/components/schemas/TemplatePublicationId"
+              },
+              "fixture": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 100,
+                "x-samva-string-checks": [
+                  {
+                    "id": "effect/schema/isMaxLength",
+                    "payload": {
+                      "maxLength": 100
+                    }
+                  }
+                ]
+              },
+              "templateData": {
+                "$ref": "#/components/schemas/JsonObject"
+              },
+              "channel": {
+                "type": "string",
+                "enum": [
+                  "email"
+                ]
+              }
+            },
+            "required": [
+              "templateId",
+              "publicationId",
+              "channel"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "templateId": {
+                "$ref": "#/components/schemas/TemplateId"
+              },
+              "publicationId": {
+                "$ref": "#/components/schemas/TemplatePublicationId"
+              },
+              "fixture": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 100,
+                "x-samva-string-checks": [
+                  {
+                    "id": "effect/schema/isMaxLength",
+                    "payload": {
+                      "maxLength": 100
+                    }
+                  }
+                ]
+              },
+              "templateData": {
+                "$ref": "#/components/schemas/JsonObject"
+              },
+              "channel": {
+                "type": "string",
+                "enum": [
+                  "whatsapp"
+                ]
+              },
+              "eventBindings": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "string",
+                  "maxLength": 160,
+                  "x-samva-string-checks": [
+                    {
+                      "id": "effect/schema/isMaxLength",
+                      "payload": {
+                        "maxLength": 160
+                      }
+                    }
+                  ]
+                }
+              }
+            },
+            "required": [
+              "templateId",
+              "publicationId",
+              "channel"
+            ],
+            "additionalProperties": false
+          }
+        ]
+      },
+      "ActivatedRecipeSetup": {
+        "type": "object",
+        "properties": {
+          "setup": {
+            "$ref": "#/components/schemas/RecipeSetup"
+          },
+          "journey": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "$ref": "#/components/schemas/JourneyId"
+              },
+              "status": {
+                "$ref": "#/components/schemas/JourneyStatus"
+              },
+              "publishedVersion": {
+                "type": "integer",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              }
+            },
+            "required": [
+              "id",
+              "status",
+              "publishedVersion"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "setup",
+          "journey"
+        ],
+        "additionalProperties": false
+      },
+      "JourneyStatus": {
+        "type": "string",
+        "enum": [
+          "draft",
+          "active",
+          "paused",
+          "archived"
+        ]
+      },
+      "RecipeSetup": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|[fF]{8}-[fF]{4}-[fF]{4}-[fF]{4}-[fF]{12})$",
+            "format": "uuid"
+          },
+          "revision": {
+            "type": "string",
+            "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|[fF]{8}-[fF]{4}-[fF]{4}-[fF]{4}-[fF]{12})$",
+            "format": "uuid"
+          },
+          "references": {
+            "$ref": "#/components/schemas/RecipeSetupReferences"
+          },
+          "updatedAt": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "revision",
+          "references",
+          "updatedAt"
+        ],
+        "additionalProperties": false
+      },
+      "RecipeSetupReferences": {
+        "type": "object",
+        "properties": {
+          "channel": {
+            "type": "string",
+            "enum": [
+              "email",
+              "whatsapp"
+            ]
+          },
+          "templateFamilyId": {
+            "$ref": "#/components/schemas/TemplateFamilyId"
+          },
+          "integrationAccountId": {
+            "$ref": "#/components/schemas/IntegrationAccountId"
+          },
+          "publicationId": {
+            "$ref": "#/components/schemas/TemplatePublicationId"
+          },
+          "senderId": {
+            "$ref": "#/components/schemas/EmailSenderId"
+          },
+          "whatsappAccountId": {
+            "$ref": "#/components/schemas/WhatsAppBusinessAccountId"
+          },
+          "registrationId": {
+            "$ref": "#/components/schemas/TemplateRegistrationId"
+          },
+          "mailboxEndpointId": {
+            "$ref": "#/components/schemas/MailboxEndpointId"
+          },
+          "journeyId": {
+            "$ref": "#/components/schemas/JourneyId"
+          },
+          "eventBindings": {
+            "type": "object",
+            "propertyNames": {
+              "type": "string",
+              "minLength": 1
+            },
+            "additionalProperties": {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "^[a-zA-Z0-9_]+(?:\\.[a-zA-Z0-9_]+)*$"
+            }
+          }
+        },
+        "required": [
+          "channel"
+        ],
+        "additionalProperties": false
+      },
+      "ActivateRecipeSetup": {
+        "type": "object",
+        "properties": {
+          "revision": {
+            "type": "string",
+            "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|[fF]{8}-[fF]{4}-[fF]{4}-[fF]{4}-[fF]{12})$",
+            "format": "uuid"
+          },
+          "selection": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "channel": {
+                    "type": "string",
+                    "enum": [
+                      "email"
+                    ]
+                  },
+                  "publicationId": {
+                    "$ref": "#/components/schemas/TemplatePublicationId"
+                  },
+                  "senderId": {
+                    "$ref": "#/components/schemas/EmailSenderId"
+                  }
+                },
+                "required": [
+                  "channel",
+                  "publicationId"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "channel": {
+                    "type": "string",
+                    "enum": [
+                      "whatsapp"
+                    ]
+                  },
+                  "whatsappAccountId": {
+                    "$ref": "#/components/schemas/WhatsAppBusinessAccountId"
+                  },
+                  "registrationId": {
+                    "$ref": "#/components/schemas/TemplateRegistrationId"
+                  },
+                  "eventBindings": {
+                    "type": "object",
+                    "propertyNames": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "additionalProperties": {
+                      "type": "string",
+                      "minLength": 1,
+                      "pattern": "^[a-zA-Z0-9_]+(?:\\.[a-zA-Z0-9_]+)*$"
+                    }
+                  }
+                },
+                "required": [
+                  "channel",
+                  "whatsappAccountId",
+                  "registrationId",
+                  "eventBindings"
+                ],
+                "additionalProperties": false
+              }
+            ]
+          }
+        },
+        "required": [
+          "revision",
+          "selection"
+        ],
+        "additionalProperties": false
+      },
+      "ReplaceRecipeSetup": {
+        "type": "object",
+        "properties": {
+          "references": {
+            "$ref": "#/components/schemas/RecipeSetupReferences"
+          },
+          "revision": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|[fF]{8}-[fF]{4}-[fF]{4}-[fF]{4}-[fF]{12})$",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "references",
+          "revision"
+        ],
+        "additionalProperties": false
+      },
+      "RecipeSetups": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RecipeSetup"
+            }
+          }
+        },
+        "required": [
+          "items"
+        ],
+        "additionalProperties": false
+      },
+      "RecipeHandoff": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string"
+          },
+          "organizationSlug": {
+            "type": "string"
+          },
+          "setupId": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|[fF]{8}-[fF]{4}-[fF]{4}-[fF]{4}-[fF]{12})$",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "url",
+          "organizationSlug",
+          "setupId"
+        ],
+        "additionalProperties": false
+      },
       "DeleteAccountResponse": {
         "type": "object",
         "properties": {
@@ -99919,14 +103059,6 @@
           }
         },
         "additionalProperties": false
-      },
-      "AccountStatus": {
-        "type": "string",
-        "enum": [
-          "pending",
-          "connected",
-          "needsReconnect"
-        ]
       },
       "IntegrationAccountList": {
         "type": "object",
@@ -102909,15 +106041,6 @@
           "updatedAt"
         ],
         "additionalProperties": false
-      },
-      "JourneyStatus": {
-        "type": "string",
-        "enum": [
-          "draft",
-          "active",
-          "paused",
-          "archived"
-        ]
       },
       "PublishJourneyPayload": {
         "type": "object",
@@ -106560,11 +109683,6 @@
           "domain"
         ],
         "additionalProperties": false
-      },
-      "EmailDomainId": {
-        "type": "string",
-        "pattern": "^dom_[0-9a-hjkmnp-tv-z]{16,24}$",
-        "x-samva-brand": "EmailDomainId"
       },
       "DomainWarmingNotePayload": {
         "type": "object",
@@ -116287,19 +119405,130 @@
       "MessageDeliveryList": {
         "type": "object",
         "properties": {
+          "id": {
+            "$ref": "#/components/schemas/MessageId"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "pending",
+              "scheduled",
+              "queued",
+              "processing",
+              "sent",
+              "delivered",
+              "read",
+              "failed",
+              "bounced",
+              "complained"
+            ]
+          },
+          "skippedRecipients": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SkippedRecipient"
+            }
+          },
           "items": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/MessageDelivery"
+              "$ref": "#/components/schemas/MessageDeliveryObservation"
             }
+          },
+          "reply": {
+            "$ref": "#/components/schemas/MessageReplyObservation"
           }
         },
         "required": [
-          "items"
+          "id",
+          "status",
+          "skippedRecipients",
+          "items",
+          "reply"
         ],
         "additionalProperties": false
       },
-      "MessageDelivery": {
+      "MessageReplyObservation": {
+        "type": "object",
+        "properties": {
+          "endpoints": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "mailboxId": {
+                  "$ref": "#/components/schemas/MailboxId"
+                },
+                "endpointId": {
+                  "$ref": "#/components/schemas/MailboxEndpointId"
+                },
+                "address": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "mailboxId",
+                "endpointId",
+                "address"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "received": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "messageId": {
+                    "$ref": "#/components/schemas/MessageId"
+                  },
+                  "receivedAt": {
+                    "type": "string"
+                  },
+                  "thread": {
+                    "anyOf": [
+                      {
+                        "type": "object",
+                        "properties": {
+                          "mailboxId": {
+                            "$ref": "#/components/schemas/MailboxId"
+                          },
+                          "threadId": {
+                            "$ref": "#/components/schemas/MailboxThreadId"
+                          }
+                        },
+                        "required": [
+                          "mailboxId",
+                          "threadId"
+                        ],
+                        "additionalProperties": false
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  }
+                },
+                "required": [
+                  "messageId",
+                  "receivedAt",
+                  "thread"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "endpoints",
+          "received"
+        ],
+        "additionalProperties": false
+      },
+      "MessageDeliveryObservation": {
         "type": "object",
         "properties": {
           "id": {
@@ -116431,6 +119660,16 @@
           },
           "updatedAt": {
             "type": "string"
+          },
+          "queuedAt": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
         "required": [
@@ -116447,7 +119686,8 @@
           "error",
           "estimatedProviderCost",
           "createdAt",
-          "updatedAt"
+          "updatedAt",
+          "queuedAt"
         ],
         "additionalProperties": false
       },
