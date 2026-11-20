@@ -1,5 +1,20 @@
 # Changelog
 
+## v0.98.0
+
+- 463 operations, 344 paths, 803 schemas, 41 webhook events.
+- Breaking against v0.97.0.
+- Added operations:
+  - `DELETE /v1/mailboxes/{id}/imports/{importId}`
+  - `DELETE /v1/mailboxes/{id}/imports/{importId}/uploads/{archiveId}`
+  - `POST /v1/mailboxes/{id}/imports/{importId}/uploads/{archiveId}/complete`
+  - `POST /v1/mailboxes/{id}/imports/{importId}/uploads/{archiveId}/parts`
+- Changed operations:
+  - `POST /v1/mailboxes/{id}/imports/uploads`
+- Changed schemas:
+  - `CreateMailHistoryUpload`
+
+
 ## v0.97.0
 
 - 459 operations, 341 paths, 803 schemas, 41 webhook events.
