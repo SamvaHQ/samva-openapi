@@ -64023,6 +64023,16 @@
               }
             }
           },
+          "402": {
+            "description": "PaymentRequiredError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentRequiredError"
+                }
+              }
+            }
+          },
           "403": {
             "description": "ForbiddenError",
             "content": {
@@ -64073,6 +64083,16 @@
               }
             }
           },
+          "502": {
+            "description": "BillingProviderError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BillingProviderError"
+                }
+              }
+            }
+          },
           "504": {
             "description": "GatewayTimeoutError",
             "content": {
@@ -64084,7 +64104,7 @@
             }
           }
         },
-        "description": "Registers an mbox archive and returns the import ID, archive ID, and part size. Pass importId to append to a queued import. Request presigned URLs for the parts, upload them, then complete every archive before starting the import.",
+        "description": "Registers an mbox archive and returns the import ID, archive ID, and part size. Pass importId to append to a queued import. Request presigned URLs for the parts, upload them, then complete every archive before starting the import. Returns 402 when the import's archives total more than twice the organization's remaining mailbox storage.",
         "summary": "Create a mail history upload",
         "requestBody": {
           "content": {
