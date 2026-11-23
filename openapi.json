@@ -83334,7 +83334,7 @@
             ]
           },
           "businessAccountId": {
-            "$ref": "#/components/schemas/WhatsAppBusinessAccountId_1"
+            "$ref": "#/components/schemas/WhatsAppBusinessAccountId"
           },
           "approval": {
             "$ref": "#/components/schemas/TemplateRegistrationApproval"
@@ -83343,7 +83343,8 @@
         "required": [
           "provider"
         ],
-        "additionalProperties": false
+        "additionalProperties": false,
+        "description": "For an immediate submission, `businessAccountId` is the connected number to register on and defaults to the number for the template's scope."
       },
       "TemplateRegistrationApproval": {
         "type": "object",
@@ -83352,7 +83353,7 @@
             "$ref": "#/components/schemas/TemplatePublicationId"
           },
           "businessAccountId": {
-            "$ref": "#/components/schemas/WhatsAppBusinessAccountId_2"
+            "$ref": "#/components/schemas/WhatsAppBusinessAccountId"
           },
           "expectedWabaId": {
             "type": "string",
@@ -83392,15 +83393,10 @@
         "additionalProperties": false,
         "description": "For a reviewed submission, the exact publication, workspace revision, number and Meta business account. Omit the separate businessAccountId when supplying approval."
       },
-      "WhatsAppBusinessAccountId_2": {
+      "WhatsAppBusinessAccountId": {
         "type": "string",
         "pattern": "^waba_[0-9a-hjkmnp-tv-z]{16,24}$",
-        "description": "The connected WhatsApp number selected for this submission."
-      },
-      "WhatsAppBusinessAccountId_1": {
-        "type": "string",
-        "pattern": "^waba_[0-9a-hjkmnp-tv-z]{16,24}$",
-        "description": "For an immediate submission, the connected number to register on. Defaults to the number for the template's scope."
+        "x-samva-brand": "WhatsAppBusinessAccountId"
       },
       "WhatsAppSetupLinkUnavailableError": {
         "type": "object",
@@ -83513,11 +83509,6 @@
           "updatedAt"
         ],
         "additionalProperties": false
-      },
-      "WhatsAppBusinessAccountId": {
-        "type": "string",
-        "pattern": "^waba_[0-9a-hjkmnp-tv-z]{16,24}$",
-        "x-samva-brand": "WhatsAppBusinessAccountId"
       },
       "WhatsAppSetupLinkMetadata": {
         "type": "object",

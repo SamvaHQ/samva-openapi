@@ -1,5 +1,16 @@
 # Changelog
 
+## v0.99.0
+
+- 463 operations, 344 paths, 801 schemas, 41 webhook events.
+- Breaking against v0.98.1.
+- Changed schemas:
+  - `SubmitTemplateRegistrationPayload`
+  - `TemplateRegistrationApproval`
+  - `WhatsAppBusinessAccountId_1`
+  - `WhatsAppBusinessAccountId_2`
+
+
 ## v0.98.1
 
 - 463 operations, 344 paths, 803 schemas, 41 webhook events.
