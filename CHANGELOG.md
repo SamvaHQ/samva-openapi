@@ -1,5 +1,22 @@
 # Changelog
 
+## v0.100.0
+
+- 463 operations, 344 paths, 801 schemas, 41 webhook events.
+- Breaking against v0.99.0.
+- Changed operations:
+  - `POST /v1/email/domains/{id}/enable-receiving`
+- Changed schemas:
+  - `ApiKeyOwner`
+  - `Campaign`
+  - `CampaignListItem`
+  - `CampaignRun`
+  - `EmailDomainDetailed`
+  - `EmailDomainPage`
+  - `FromAddressRequiredError`
+  - `ScheduledMessage`
+
+
 ## v0.99.0
 
 - 463 operations, 344 paths, 801 schemas, 41 webhook events.

@@ -7830,7 +7830,7 @@
             }
           }
         },
-        "description": "Permanently deletes a sending domain from the organization.",
+        "description": "Permanently deletes a sending domain from the organization. Removal is asynchronous: a `200` means its teardown was accepted. The domain stays listed with `deleting: true` and sends nothing until teardown finishes, then reads as `404`. A repeat call while teardown runs answers `200` again; once it finishes, a `404` means the domain is gone.",
         "summary": "Remove a sending domain",
         "x-samva-scope": "domains:delete"
       }
@@ -8544,9 +8544,6 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "domain": {
-                    "type": "string"
-                  },
                   "catchAll": {
                     "anyOf": [
                       {
@@ -8581,9 +8578,6 @@
                     ]
                   }
                 },
-                "required": [
-                  "domain"
-                ],
                 "additionalProperties": false
               }
             }
@@ -68435,7 +68429,7 @@
             }
           }
         },
-        "description": "Returns thread summaries. With `q`, semantic and keyword search returns up to 100 best-matching threads in relevance order across cursor pages. It searches subjects, participants, message text including quoted history, and attachment filenames, not attachment contents. New mail can take a few seconds to become searchable. Other filters narrow the searchable set. Without `q`, threads use most recent activity first; `after` and `before` filter by last activity for polling. Pass `nextCursor` back as `cursor` for the next page; it is null on the last page. In a list without `q`, a thread that gains activity while you page moves ahead of the cursor, so a walk lists each thread at most once.",
+        "description": "Returns thread summaries. With `q`, semantic and keyword search returns up to 100 best-matching threads in relevance order across cursor pages. It searches subjects, participants, message text including quoted history, and attachment filenames, not attachment contents. New mail can take a few seconds to become searchable. Other filters narrow the searchable set. Without `q`, threads use most recent activity first; `after` and `before` filter by last activity for polling. Pass `nextCursor` back as `cursor` for the next page; it is null on the last page. In a list without `q`, a thread that gains activity while you page moves ahead of the cursor, so a walk lists each thread at most once. Omit `folder` to list every folder. A thread's folder is set when it is created and does not move on later replies: a thread a send started stays in `sent`, so find replies with `unread: true` and no `folder`.",
         "summary": "List threads in a mailbox",
         "x-samva-scope": "mailboxes:read"
       }
@@ -71761,7 +71755,7 @@
             }
           }
         },
-        "description": "Permanently removes isolated malware from the mailbox's held list. Publishes one `mailbox.message.discarded` event. Retrying returns the same result and publishes nothing. Delete readable Spam through the thread delete endpoint. Only a person with `spam.discard` can discard held mail.",
+        "description": "Permanently removes isolated malware from the mailbox's held list. Publishes one `mailbox.message.discarded` event. Retrying returns the same result and publishes nothing. Delete readable Spam through the thread delete endpoint. Only a person signed in to Samva with `spam.discard` can discard held mail; an API key is rejected with `403`.",
         "summary": "Discard held malware",
         "x-samva-scope": "mailboxes:spam.discard"
       }
@@ -73823,7 +73817,7 @@
             }
           }
         },
-        "description": "Cancels a definitely unsent action and reopens its draft atomically. Only an authorized person who proposed the send or can approve actions may cancel. Accepted sends return 409 with their winning receipt and cannot be withdrawn. An uncertain send requires reconciliation and cannot be cancelled as unsent. Cancelling a send held for approval records `resolution.outcome: cancelled` and publishes one `mailbox.action.resolved` event.",
+        "description": "Cancels a definitely unsent action and reopens its draft atomically. Only an authorized person who proposed the send or can approve actions may cancel; an API key is rejected with `403`, even one with full access. Accepted sends return 409 with their winning receipt and cannot be withdrawn. An uncertain send requires reconciliation and cannot be cancelled as unsent. Cancelling a send held for approval records `resolution.outcome: cancelled` and publishes one `mailbox.action.resolved` event.",
         "summary": "Cancel a mailbox send",
         "x-samva-scope": "mailboxes:manage"
       }
@@ -74026,7 +74020,7 @@
             }
           }
         },
-        "description": "Resumes the same eligible action while preserving its content, message identity, existing retry delays and original deadline. A queued action can resume while cleanup from an ended send attempt waits. A send attempt that is still running or whose status is unknown cannot be retried. Only an authorized person who proposed the send or can approve actions may retry. Automatic waits need no manual Retry. This does not grant new approval or resubmit an accepted or uncertain send.",
+        "description": "Resumes the same eligible action while preserving its content, message identity, existing retry delays and original deadline. A queued action can resume while cleanup from an ended send attempt waits. A send attempt that is still running or whose status is unknown cannot be retried. Only an authorized person who proposed the send or can approve actions may retry; an API key is rejected with `403`, even one with full access. Automatic waits need no manual Retry. This does not grant new approval or resubmit an accepted or uncertain send.",
         "summary": "Resume a mailbox send",
         "x-samva-scope": "mailboxes:manage"
       }
@@ -74229,7 +74223,7 @@
             }
           }
         },
-        "description": "Records approval of a send and returns 202 while it is pending. A send is queued for automatic retry within 15 minutes of approval; repeating approval does not extend this deadline. Accepted, completed, and notSent replays return 200. No expiry applies before approval. Only a person signed in or through OAuth may approve, and never the proposer. Non-send approvals execute synchronously and return 200 with their own execution states. Set `always: true` to add an actor-specific rule allowing matching future actions, subject to policy floors and guards. Remembering an allowance for a hosted agent or API key requires an organization owner or admin; for a hosted agent's integration tool call it lets that tool run without approval for every agent, which only the organization owner may do. A held action's `alwaysAllow` says who may and whether the caller can. A hand-off cannot be always allowed. The action's `resolution` names the approver; approving a held send publishes one `mailbox.action.resolved` event.",
+        "description": "Records approval of a send and returns 202 while it is pending. A send is queued for automatic retry within 15 minutes of approval; repeating approval does not extend this deadline. Accepted, completed, and notSent replays return 200. No expiry applies before approval. Only a person signed in or through OAuth may approve, and never the proposer; an API key is rejected with `403`. Non-send approvals execute synchronously and return 200 with their own execution states. Set `always: true` to add an actor-specific rule allowing matching future actions, subject to policy floors and guards. Remembering an allowance for a hosted agent or API key requires an organization owner or admin; for a hosted agent's integration tool call it lets that tool run without approval for every agent, which only the organization owner may do. A held action's `alwaysAllow` says who may and whether the caller can. A hand-off cannot be always allowed. The action's `resolution` names the approver; approving a held send publishes one `mailbox.action.resolved` event.",
         "summary": "Approve a mailbox action",
         "requestBody": {
           "content": {
@@ -74372,7 +74366,7 @@
             }
           }
         },
-        "description": "Denies an action waiting for approval with a reason and returns it without executing it. Only a person signed in or through OAuth may deny, and never the one who proposed it. The action's `resolution` records the denier and reason; denying a held send publishes one `mailbox.action.resolved` event.",
+        "description": "Denies an action waiting for approval with a reason and returns it without executing it. Only a person signed in or through OAuth may deny, and never the one who proposed it; an API key is rejected with `403`. The action's `resolution` records the denier and reason; denying a held send publishes one `mailbox.action.resolved` event.",
         "summary": "Deny a mailbox action",
         "requestBody": {
           "content": {
@@ -76123,7 +76117,7 @@
             }
           }
         },
-        "description": "Replaces this scope's rules and instructions only when ifVersion matches its current version. A stale version returns a conflict. More specific scopes replace defaults; atLeast floors remain binding. Identical rule matches in one scope are rejected.",
+        "description": "Replaces this scope's rules and instructions only when ifVersion matches its current version. A stale version returns a conflict. More specific scopes replace defaults; atLeast floors remain binding. Identical rule matches in one scope are rejected. An API key changes policy only with organization-wide reach (full access, no namespace, owned by an organization owner or admin): it may set any rule on another key, and on a mailbox it can configure only add atLeast person or never floors or decide: never rules while keeping every existing rule. Its own key, the organization, and agents return 403; a person changes those.",
         "summary": "Set decision rules",
         "requestBody": {
           "content": {
@@ -76274,7 +76268,7 @@
             }
           }
         },
-        "description": "Clears this scope's rules and instructions only when ifVersion matches, and returns the next version. The stored version is retained. Other scopes and subject defaults continue to apply.",
+        "description": "Clears this scope's rules and instructions only when ifVersion matches, and returns the next version. The stored version is retained. Other scopes and subject defaults continue to apply. An API key with organization-wide reach may clear another key's policy; clearing its own key, a mailbox that holds rules, the organization, or an agent returns 403.",
         "summary": "Clear decision rules",
         "x-samva-scope": "mailboxes:manage"
       }
@@ -76863,7 +76857,7 @@
             }
           }
         },
-        "description": "Deletes an empty namespace. A namespace that still holds anything conflicts, and the error names and counts each resource kind that remains. Delete each, or return it to organization level with `DELETE /v1/namespaces/{id}/resources/{type}/{resourceId}`; mailboxes, keys, and webhook endpoints cannot move and are deleted. Messages keep the namespace they ran in.",
+        "description": "Deletes an empty namespace. A namespace that still holds anything conflicts, and the error names and counts each resource kind that remains. Delete each, or return it to organization level with `DELETE /v1/namespaces/{id}/resources/{type}/{resourceId}`; mailboxes and webhook endpoints cannot move and are deleted. Only an enabled API key holds the namespace: revoke the namespace's keys, and deletion retires and detaches each one, keeping its record. Deletion also deletes the namespace's portal links and WhatsApp setup links, so their URLs stop working. Messages keep the namespace they ran in.",
         "summary": "Delete a namespace",
         "x-samva-scope": "organization:update"
       }
@@ -94410,15 +94404,11 @@
           },
           "name": {
             "type": "string"
-          },
-          "email": {
-            "type": "string"
           }
         },
         "required": [
           "id",
-          "name",
-          "email"
+          "name"
         ],
         "additionalProperties": false
       },
@@ -101361,12 +101351,19 @@
             "items": {
               "type": "string"
             }
+          },
+          "addresses": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           }
         },
         "required": [
           "_tag",
           "message",
-          "verifiedDomains"
+          "verifiedDomains",
+          "addresses"
         ],
         "additionalProperties": false,
         "x-category": [
@@ -112055,6 +112052,10 @@
           "isDefault": {
             "type": "boolean"
           },
+          "deleting": {
+            "type": "boolean",
+            "description": "True once a removal was accepted. Removal runs in the background: the domain stays listed and sends nothing while its provider teardown finishes, then it reads as not found."
+          },
           "deliverability": {
             "$ref": "#/components/schemas/DeliverabilityFacts"
           },
@@ -112075,6 +112076,7 @@
           "namespaceId",
           "shared",
           "isDefault",
+          "deleting",
           "deliverability",
           "createdAt",
           "updatedAt"
@@ -113013,6 +113015,10 @@
                 "isDefault": {
                   "type": "boolean"
                 },
+                "deleting": {
+                  "type": "boolean",
+                  "description": "True once a removal was accepted. Removal runs in the background: the domain stays listed and sends nothing while its provider teardown finishes, then it reads as not found."
+                },
                 "deliverability": {
                   "$ref": "#/components/schemas/DeliverabilityFacts"
                 },
@@ -113034,6 +113040,7 @@
                 "namespaceId",
                 "shared",
                 "isDefault",
+                "deleting",
                 "deliverability",
                 "series",
                 "createdAt",
@@ -113684,13 +113691,8 @@
               {
                 "type": "null"
               }
-            ]
-          },
-          "actorEmail": {
-            "type": "string"
-          },
-          "memberRole": {
-            "type": "string"
+            ],
+            "description": "The user id of the member who created it; for an API key, the key owner's user id. Never an email address."
           },
           "createdAt": {
             "type": "string"
@@ -113724,8 +113726,6 @@
           "capacityWarning",
           "lastContactId",
           "createdBy",
-          "actorEmail",
-          "memberRole",
           "createdAt",
           "updatedAt"
         ],
@@ -114628,13 +114628,8 @@
               {
                 "type": "null"
               }
-            ]
-          },
-          "actorEmail": {
-            "type": "string"
-          },
-          "memberRole": {
-            "type": "string"
+            ],
+            "description": "The user id of the member who created it; for an API key, the key owner's user id. Never an email address."
           },
           "createdAt": {
             "type": "string"
@@ -114653,8 +114648,6 @@
           "definition",
           "latestRun",
           "createdBy",
-          "actorEmail",
-          "memberRole",
           "createdAt",
           "updatedAt"
         ],
@@ -115126,13 +115119,8 @@
               {
                 "type": "null"
               }
-            ]
-          },
-          "actorEmail": {
-            "type": "string"
-          },
-          "memberRole": {
-            "type": "string"
+            ],
+            "description": "The user id of the member who created it; for an API key, the key owner's user id. Never an email address."
           },
           "createdAt": {
             "type": "string"
@@ -115154,8 +115142,6 @@
           "definition",
           "latestRun",
           "createdBy",
-          "actorEmail",
-          "memberRole",
           "createdAt",
           "updatedAt",
           "series"
@@ -115328,13 +115314,8 @@
               {
                 "type": "null"
               }
-            ]
-          },
-          "actorEmail": {
-            "type": "string"
-          },
-          "memberRole": {
-            "type": "string"
+            ],
+            "description": "The user id of the member who created it; for an API key, the key owner's user id. Never an email address."
           },
           "createdAt": {
             "type": "string"
@@ -115356,8 +115337,6 @@
           "failureReason",
           "attempts",
           "createdBy",
-          "actorEmail",
-          "memberRole",
           "createdAt",
           "updatedAt"
         ],
