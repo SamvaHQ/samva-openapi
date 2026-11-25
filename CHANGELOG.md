@@ -1,5 +1,14 @@
 # Changelog
 
+## v0.104.1
+
+- 465 operations, 346 paths, 812 schemas, 41 webhook events.
+- Compatible against v0.104.0.
+- Added operations:
+  - `GET /v1/logs`
+  - `GET /v1/logs/{id}`
+
+
 ## v0.104.0
 
 - 463 operations, 344 paths, 800 schemas, 41 webhook events.

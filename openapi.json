@@ -2707,6 +2707,416 @@
         "x-samva-scope": "messages:read"
       }
     },
+    "/v1/logs": {
+      "get": {
+        "tags": [
+          "Logs"
+        ],
+        "operationId": "logs.list",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "maximum": 100,
+                  "exclusiveMinimum": 0,
+                  "description": "Items per page, at most 100."
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "required": false
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "name": "after",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "name": "orderBy",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "timestamp",
+                "recorded"
+              ]
+            },
+            "required": false
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "asc",
+                "desc"
+              ]
+            },
+            "required": false
+          },
+          {
+            "name": "since",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "x-samva-schema": "AbsoluteInstant"
+            },
+            "required": false
+          },
+          {
+            "name": "until",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "x-samva-schema": "AbsoluteInstant"
+            },
+            "required": false
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "name": "event",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "name": "channel",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "sms",
+                "whatsapp",
+                "email"
+              ]
+            },
+            "required": false
+          },
+          {
+            "name": "direction",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "outbound",
+                "inbound"
+              ]
+            },
+            "required": false
+          },
+          {
+            "name": "origin",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "direct",
+                "campaign",
+                "scheduled",
+                "mailbox",
+                "forwarding",
+                "journey",
+                "businessApp"
+              ]
+            },
+            "required": false
+          },
+          {
+            "name": "credential",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "name": "from",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            },
+            "required": false
+          },
+          {
+            "name": "messageId",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/MessageId"
+            },
+            "required": false
+          },
+          {
+            "name": "mailboxId",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/MailboxId"
+            },
+            "required": false
+          },
+          {
+            "name": "requestId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "x-samva-string-checks": [
+                {
+                  "id": "effect/schema/isPattern",
+                  "payload": {
+                    "source": "^req_[a-zA-Z0-9_-]+$",
+                    "flags": ""
+                  }
+                }
+              ]
+            },
+            "required": false
+          }
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "MessageLogPage",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageLogPage"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Lists the organization's message events in its plan's log window. The default sort is by event timestamp. Use orderBy=recorded and order=asc to poll events in ingestion order, including events with older timestamps. Pass the last event's cursor as after. Keep the same sort and direction when paging.",
+        "summary": "List message log events",
+        "x-samva-scope": "messages:read"
+      }
+    },
+    "/v1/logs/{id}": {
+      "get": {
+        "tags": [
+          "Logs"
+        ],
+        "operationId": "logs.get",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/MessageId"
+                },
+                {
+                  "type": "string",
+                  "x-samva-string-checks": [
+                    {
+                      "id": "effect/schema/isPattern",
+                      "payload": {
+                        "source": "^rej_[a-zA-Z0-9]+$",
+                        "flags": ""
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "string",
+                  "x-samva-string-checks": [
+                    {
+                      "id": "effect/schema/isPattern",
+                      "payload": {
+                        "source": "^req_[a-zA-Z0-9_-]+$",
+                        "flags": ""
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            "required": true
+          }
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "LogDetail",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LogDetail"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ResourceNotFoundError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Returns the message and its event timeline, or a rejected submission, by message, rejection, or request ID.",
+        "summary": "Get message log detail",
+        "x-samva-scope": "messages:read"
+      }
+    },
     "/v1/operations": {
       "get": {
         "tags": [
@@ -117288,54 +117698,49 @@
         ],
         "additionalProperties": false
       },
-      "MessageEventPage": {
+      "LogDetail": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/MessageLogDetail"
+          },
+          {
+            "$ref": "#/components/schemas/RejectedLogDetail"
+          }
+        ]
+      },
+      "RejectedLogDetail": {
         "type": "object",
         "properties": {
-          "items": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "id": {
-                  "$ref": "#/components/schemas/MessageEventId"
-                },
-                "messageId": {
-                  "$ref": "#/components/schemas/MessageId"
-                },
-                "eventType": {
-                  "type": "string"
-                },
-                "status": {
-                  "type": "string"
-                },
-                "timestamp": {
-                  "type": "string"
-                },
-                "metadata": {
-                  "anyOf": [
-                    {
-                      "type": "object",
-                      "additionalProperties": {
-                        "$ref": "#/components/schemas/JsonValue"
-                      }
-                    },
-                    {
-                      "type": "null"
-                    }
-                  ]
-                }
-              },
-              "required": [
-                "id",
-                "messageId",
-                "eventType",
-                "status",
-                "timestamp"
-              ],
-              "additionalProperties": false
-            }
+          "kind": {
+            "type": "string",
+            "enum": [
+              "rejected"
+            ]
           },
-          "nextCursor": {
+          "line": {
+            "$ref": "#/components/schemas/LogLine"
+          },
+          "apiRequest": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/LogApiRequest"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "requestBody": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "responseBody": {
             "anyOf": [
               {
                 "type": "string"
@@ -117347,30 +117752,415 @@
           }
         },
         "required": [
-          "items",
-          "nextCursor"
+          "kind",
+          "line",
+          "apiRequest",
+          "requestBody",
+          "responseBody"
         ],
         "additionalProperties": false
       },
-      "MessageEventId": {
-        "type": "string",
-        "pattern": "^mevt_[0-9a-hjkmnp-tv-z]{16,24}$",
-        "x-samva-brand": "MessageEventId"
-      },
-      "ValidateEmailResponse": {
+      "LogApiRequest": {
         "type": "object",
         "properties": {
-          "valid": {
-            "type": "boolean",
+          "requestId": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "method": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "endpoint": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "headers": {
+            "anyOf": [
+              {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "string"
+                }
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "query": {
+            "anyOf": [
+              {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "string"
+                }
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "ipAddress": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "userAgent": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "additionalProperties": false
+      },
+      "LogLine": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "cursor": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": "string"
+          },
+          "event": {
+            "type": "string",
             "enum": [
-              true
+              "accepted",
+              "waiting",
+              "received",
+              "rejected",
+              "created",
+              "queued",
+              "processing",
+              "sent",
+              "delivered",
+              "read",
+              "failed",
+              "bounced",
+              "complained",
+              "replied",
+              "forwarded",
+              "deleted",
+              "archived",
+              "marked_spam",
+              "agent_processing_started",
+              "agent_processing_completed",
+              "agent_handoff",
+              "agent_escalation",
+              "opened",
+              "clicked",
+              "unsubscribed",
+              "whatsapp_read",
+              "whatsapp_deleted",
+              "retry_scheduled",
+              "retry_attempted",
+              "cost_calculated"
+            ]
+          },
+          "messageId": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/MessageId"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "channel": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "sms",
+                  "whatsapp",
+                  "email"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "direction": {
+            "type": "string",
+            "enum": [
+              "outbound",
+              "inbound"
+            ]
+          },
+          "origin": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "direct",
+                  "campaign",
+                  "scheduled",
+                  "mailbox",
+                  "forwarding",
+                  "journey",
+                  "businessApp"
+                ]
+              },
+              {
+                "type": "null"
+              }
             ]
           },
           "from": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/LogSender"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "recipient": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "subject": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "submission": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/LogSubmission"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "requestId": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "errorTag": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "cursor",
+          "timestamp",
+          "event",
+          "messageId",
+          "channel",
+          "direction",
+          "origin",
+          "from",
+          "recipient",
+          "subject",
+          "submission",
+          "requestId",
+          "reason",
+          "errorTag"
+        ],
+        "additionalProperties": false
+      },
+      "LogSubmission": {
+        "type": "object",
+        "properties": {
+          "origin": {
+            "type": "string",
+            "enum": [
+              "direct",
+              "campaign",
+              "scheduled",
+              "mailbox",
+              "forwarding",
+              "journey",
+              "businessApp"
+            ]
+          },
+          "transport": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "http",
+                  "smtp"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "credential": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/LogCredential"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "user": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/LogUser"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "The acting user, or null when unavailable. Present only for callers authenticated with a member session or a member-authorized OAuth token."
+          },
+          "client": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/SubmissionClient"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "origin",
+          "transport",
+          "credential",
+          "client"
+        ],
+        "additionalProperties": false
+      },
+      "SubmissionClient": {
+        "type": "object",
+        "properties": {
+          "surface": {
+            "type": "string",
+            "enum": [
+              "typescript-promise",
+              "typescript-effect",
+              "cli",
+              "mcp"
+            ]
+          },
+          "version": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "surface",
+          "version"
+        ],
+        "additionalProperties": false
+      },
+      "LogUser": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "$ref": "#/components/schemas/UserId"
+          },
+          "email": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "email",
+          "name"
+        ],
+        "additionalProperties": false
+      },
+      "LogCredential": {
+        "anyOf": [
+          {
             "type": "object",
             "properties": {
-              "email": {
-                "type": "string"
+              "kind": {
+                "type": "string",
+                "enum": [
+                  "api_key"
+                ]
+              },
+              "apiKeyId": {
+                "anyOf": [
+                  {
+                    "$ref": "#/components/schemas/ApiKeyId"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
               },
               "name": {
                 "anyOf": [
@@ -117384,224 +118174,416 @@
               }
             },
             "required": [
-              "email",
+              "kind",
+              "apiKeyId",
               "name"
             ],
             "additionalProperties": false
           },
-          "recipientCount": {
-            "type": "integer",
-            "minimum": -9007199254740991,
-            "maximum": 9007199254740991
-          },
-          "content": {
+          {
             "type": "object",
             "properties": {
-              "source": {
+              "kind": {
                 "type": "string",
                 "enum": [
-                  "inline",
-                  "template"
+                  "oauth"
                 ]
               },
-              "subject": {
-                "type": "string"
+              "clientId": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
               },
-              "hasHtml": {
-                "type": "boolean"
-              },
-              "hasText": {
-                "type": "boolean"
+              "name": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
               }
             },
             "required": [
-              "source",
-              "subject",
-              "hasHtml",
-              "hasText"
+              "kind",
+              "clientId",
+              "name"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "type": "string",
+                "enum": [
+                  "session"
+                ]
+              }
+            },
+            "required": [
+              "kind"
             ],
             "additionalProperties": false
           }
-        },
-        "required": [
-          "valid",
-          "from",
-          "recipientCount",
-          "content"
-        ],
-        "additionalProperties": false
+        ]
       },
-      "EmailSendMessagePayload": {
+      "LogSender": {
         "type": "object",
         "properties": {
-          "conversationId": {
+          "address": {
+            "type": "string"
+          },
+          "name": {
             "anyOf": [
               {
-                "$ref": "#/components/schemas/ConversationId"
+                "type": "string"
               },
               {
                 "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "address",
+          "name"
+        ],
+        "additionalProperties": false
+      },
+      "MessageLogDetail": {
+        "type": "object",
+        "properties": {
+          "kind": {
+            "type": "string",
+            "enum": [
+              "message"
+            ]
+          },
+          "requestBody": {
+            "anyOf": [
+              {
+                "type": "string"
               },
               {
                 "type": "null"
               }
             ]
           },
-          "metadata": {
-            "$ref": "#/components/schemas/MessageMetadata"
+          "responseBody": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "deliveries": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "scheduling": {
+                  "anyOf": [
+                    {
+                      "type": "object",
+                      "properties": {
+                        "dueAt": {
+                          "type": "string"
+                        },
+                        "expiresAt": {
+                          "type": "string"
+                        },
+                        "waitReason": {
+                          "anyOf": [
+                            {
+                              "type": "string",
+                              "enum": [
+                                "rate",
+                                "daily-quota",
+                                "domain-health",
+                                "sending-paused",
+                                "upstream-unavailable",
+                                "retry",
+                                "campaign-paused",
+                                "domain-warming",
+                                "onboarding-review",
+                                "content-review",
+                                "screening-unavailable"
+                              ]
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "reviewExpectedAt": {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        }
+                      },
+                      "required": [
+                        "dueAt",
+                        "expiresAt",
+                        "waitReason",
+                        "reviewExpectedAt"
+                      ],
+                      "additionalProperties": false
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "id": {
+                  "type": "string"
+                },
+                "messageId": {
+                  "type": "string"
+                },
+                "recipientId": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "channel": {
+                  "type": "string",
+                  "enum": [
+                    "sms",
+                    "whatsapp",
+                    "email"
+                  ]
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "pending",
+                    "scheduled",
+                    "queued",
+                    "processing",
+                    "sent",
+                    "delivered",
+                    "read",
+                    "failed",
+                    "bounced",
+                    "complained"
+                  ]
+                },
+                "attemptCount": {
+                  "type": "number"
+                },
+                "maxAttempts": {
+                  "type": "number"
+                },
+                "queuedAt": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "claimedAt": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "lastAttemptAt": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "nextRetryAt": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "sentAt": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "deliveredAt": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "readAt": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "failedAt": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "terminalAt": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "errorCode": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "errorMessage": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "errorDetails": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/DeliveryErrorDetails"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "cost": {
+                  "type": "string"
+                },
+                "currency": {
+                  "type": "string"
+                },
+                "idempotencyKey": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "createdAt": {
+                  "type": "string"
+                },
+                "updatedAt": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "scheduling",
+                "id",
+                "messageId",
+                "recipientId",
+                "channel",
+                "status",
+                "attemptCount",
+                "maxAttempts",
+                "queuedAt",
+                "claimedAt",
+                "lastAttemptAt",
+                "nextRetryAt",
+                "sentAt",
+                "deliveredAt",
+                "readAt",
+                "failedAt",
+                "terminalAt",
+                "errorCode",
+                "errorMessage",
+                "errorDetails",
+                "cost",
+                "currency",
+                "idempotencyKey",
+                "createdAt",
+                "updatedAt"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "messageId": {
+            "$ref": "#/components/schemas/MessageId"
           },
           "channel": {
             "type": "string",
             "enum": [
+              "sms",
+              "whatsapp",
               "email"
             ]
           },
-          "to": {
-            "$ref": "#/components/schemas/EmailRecipients"
-          },
-          "cc": {
-            "$ref": "#/components/schemas/EmailCcRecipients"
-          },
-          "bcc": {
-            "$ref": "#/components/schemas/EmailBccRecipients"
-          },
-          "from": {
-            "$ref": "#/components/schemas/EmailSender"
-          },
-          "email": {
-            "$ref": "#/components/schemas/EmailContent"
-          }
-        },
-        "required": [
-          "channel",
-          "to",
-          "email"
-        ],
-        "additionalProperties": false
-      },
-      "EmailContent": {
-        "type": "object",
-        "properties": {
-          "subject": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+          "direction": {
+            "type": "string",
+            "enum": [
+              "outbound",
+              "inbound"
             ]
-          },
-          "html": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "text": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "attachments": {
-            "$ref": "#/components/schemas/EmailAttachments"
-          },
-          "publicationId": {
-            "$ref": "#/components/schemas/TemplatePublicationId"
-          },
-          "inputContractId": {
-            "$ref": "#/components/schemas/TemplateInputContractId"
-          },
-          "templateId": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/TemplateId"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "templateSlug": {
-            "anyOf": [
-              {
-                "type": "string",
-                "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "templateData": {
-            "$ref": "#/components/schemas/TemplateData"
-          },
-          "locale": {
-            "$ref": "#/components/schemas/RenderLocale"
-          },
-          "timeZone": {
-            "$ref": "#/components/schemas/RenderTimeZone"
-          },
-          "inReplyToMessageId": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/MessageId"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "replyTo": {
-            "$ref": "#/components/schemas/ReplyToAddresses"
-          },
-          "topicId": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/TopicId"
-              },
-              {
-                "type": "null"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "The topic for this send. Omit to inherit the template topic; null disables topic inheritance for a direct send. Campaigns require a topic."
-          },
-          "tracking": {
-            "$ref": "#/components/schemas/EmailTrackingOverrideV1"
-          },
-          "footer": {
-            "$ref": "#/components/schemas/EmailFooterOverride"
-          },
-          "headers": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/EmailCustomHeaders"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          }
-        },
-        "additionalProperties": false
-      },
-      "MessageReceipt": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "$ref": "#/components/schemas/MessageId"
           },
           "status": {
             "type": "string",
@@ -117618,30 +118600,51 @@
               "complained"
             ]
           },
-          "waitReason": {
+          "recipients": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "address": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "id",
+                "address"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "recipientCount": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991
+          },
+          "from": {
             "anyOf": [
               {
-                "type": "string",
-                "enum": [
-                  "rate",
-                  "daily-quota",
-                  "domain-health",
-                  "sending-paused",
-                  "upstream-unavailable",
-                  "retry",
-                  "campaign-paused",
-                  "domain-warming",
-                  "onboarding-review",
-                  "content-review",
-                  "screening-unavailable"
-                ]
+                "$ref": "#/components/schemas/LogSender"
               },
               {
                 "type": "null"
               }
             ]
           },
-          "reviewExpectedAt": {
+          "submission": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/LogSubmission"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "subject": {
             "anyOf": [
               {
                 "type": "string"
@@ -117651,186 +118654,108 @@
               }
             ]
           },
-          "skippedRecipients": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/SkippedRecipient"
-            }
+          "acceptedAt": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
           "createdAt": {
             "type": "string"
-          }
-        },
-        "required": [
-          "id",
-          "status",
-          "waitReason",
-          "reviewExpectedAt",
-          "skippedRecipients",
-          "createdAt"
-        ],
-        "additionalProperties": false
-      },
-      "SendMessagePayload": {
-        "anyOf": [
-          {
-            "$ref": "#/components/schemas/EmailSendMessagePayload"
           },
-          {
-            "$ref": "#/components/schemas/SmsSendMessagePayload"
-          },
-          {
-            "$ref": "#/components/schemas/WhatsAppSendMessagePayload"
-          }
-        ]
-      },
-      "WhatsAppSendMessagePayload": {
-        "type": "object",
-        "properties": {
-          "conversationId": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/ConversationId"
-              },
-              {
-                "type": "null"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "metadata": {
-            "$ref": "#/components/schemas/MessageMetadata"
-          },
-          "channel": {
-            "type": "string",
-            "enum": [
-              "whatsapp"
-            ]
-          },
-          "to": {
-            "$ref": "#/components/schemas/WhatsAppRecipients"
-          },
-          "whatsapp": {
-            "$ref": "#/components/schemas/WhatsAppContent"
-          }
-        },
-        "required": [
-          "channel",
-          "to",
-          "whatsapp"
-        ],
-        "additionalProperties": false,
-        "description": "Send WhatsApp messages from your connected business account."
-      },
-      "SmsSendMessagePayload": {
-        "type": "object",
-        "properties": {
-          "conversationId": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/ConversationId"
-              },
-              {
-                "type": "null"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "metadata": {
-            "$ref": "#/components/schemas/MessageMetadata"
-          },
-          "channel": {
-            "type": "string",
-            "enum": [
-              "sms"
-            ]
-          },
-          "to": {
-            "$ref": "#/components/schemas/SmsRecipients"
-          },
-          "sms": {
-            "$ref": "#/components/schemas/SmsContent"
-          }
-        },
-        "required": [
-          "channel",
-          "to",
-          "sms"
-        ],
-        "additionalProperties": false,
-        "description": "The payload is accepted by the contract today and the endpoint answers 403 until the channel launches for your organization."
-      },
-      "EmailAddress": {
-        "type": "object",
-        "properties": {
-          "email": {
+          "updatedAt": {
             "type": "string"
           },
-          "name": {
+          "campaign": {
             "anyOf": [
               {
-                "type": "string"
+                "$ref": "#/components/schemas/LogCampaign"
               },
               {
                 "type": "null"
               }
             ]
+          },
+          "content": {
+            "$ref": "#/components/schemas/MessageContent"
+          },
+          "apiRequest": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/LogApiRequest"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "statusTimeline": {
+            "$ref": "#/components/schemas/LogStatusTimeline"
           }
         },
         "required": [
-          "email",
-          "name"
+          "kind",
+          "requestBody",
+          "responseBody",
+          "deliveries",
+          "messageId",
+          "channel",
+          "direction",
+          "status",
+          "recipients",
+          "recipientCount",
+          "from",
+          "submission",
+          "subject",
+          "acceptedAt",
+          "createdAt",
+          "updatedAt",
+          "campaign",
+          "content",
+          "apiRequest",
+          "statusTimeline"
         ],
         "additionalProperties": false
       },
-      "DeliveryErrorDetails": {
+      "LogStatusTimeline": {
         "type": "object",
         "properties": {
-          "code": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+          "availability": {
+            "type": "string",
+            "enum": [
+              "recorded",
+              "unavailable"
             ]
           },
-          "name": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "message": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "details": {
-            "anyOf": [
-              {
-                "type": "object",
-                "additionalProperties": {
+          "entries": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string"
+                },
+                "at": {
+                  "type": "string"
+                },
+                "reason": {
                   "anyOf": [
                     {
                       "type": "string"
                     },
                     {
-                      "type": "number"
+                      "type": "null"
+                    }
+                  ]
+                },
+                "recipientId": {
+                  "anyOf": [
+                    {
+                      "type": "string"
                     },
                     {
                       "type": "null"
@@ -117838,22 +118763,20 @@
                   ]
                 }
               },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "retryable": {
-            "anyOf": [
-              {
-                "type": "boolean"
-              },
-              {
-                "type": "null"
-              }
-            ]
+              "required": [
+                "status",
+                "at",
+                "reason",
+                "recipientId"
+              ],
+              "additionalProperties": false
+            }
           }
         },
+        "required": [
+          "availability",
+          "entries"
+        ],
         "additionalProperties": false
       },
       "MessageContent": {
@@ -119565,6 +120488,616 @@
         ],
         "additionalProperties": false
       },
+      "LogCampaign": {
+        "type": "object",
+        "properties": {
+          "runId": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "runId",
+          "name"
+        ],
+        "additionalProperties": false
+      },
+      "DeliveryErrorDetails": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "message": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "details": {
+            "anyOf": [
+              {
+                "type": "object",
+                "additionalProperties": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "retryable": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "additionalProperties": false
+      },
+      "MessageLogPage": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LogLine"
+            }
+          },
+          "nextCursor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "items",
+          "nextCursor"
+        ],
+        "additionalProperties": false
+      },
+      "MessageEventPage": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "$ref": "#/components/schemas/MessageEventId"
+                },
+                "messageId": {
+                  "$ref": "#/components/schemas/MessageId"
+                },
+                "eventType": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string"
+                },
+                "timestamp": {
+                  "type": "string"
+                },
+                "metadata": {
+                  "anyOf": [
+                    {
+                      "type": "object",
+                      "additionalProperties": {
+                        "$ref": "#/components/schemas/JsonValue"
+                      }
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              },
+              "required": [
+                "id",
+                "messageId",
+                "eventType",
+                "status",
+                "timestamp"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "nextCursor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "items",
+          "nextCursor"
+        ],
+        "additionalProperties": false
+      },
+      "MessageEventId": {
+        "type": "string",
+        "pattern": "^mevt_[0-9a-hjkmnp-tv-z]{16,24}$",
+        "x-samva-brand": "MessageEventId"
+      },
+      "ValidateEmailResponse": {
+        "type": "object",
+        "properties": {
+          "valid": {
+            "type": "boolean",
+            "enum": [
+              true
+            ]
+          },
+          "from": {
+            "type": "object",
+            "properties": {
+              "email": {
+                "type": "string"
+              },
+              "name": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "email",
+              "name"
+            ],
+            "additionalProperties": false
+          },
+          "recipientCount": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
+          },
+          "content": {
+            "type": "object",
+            "properties": {
+              "source": {
+                "type": "string",
+                "enum": [
+                  "inline",
+                  "template"
+                ]
+              },
+              "subject": {
+                "type": "string"
+              },
+              "hasHtml": {
+                "type": "boolean"
+              },
+              "hasText": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "source",
+              "subject",
+              "hasHtml",
+              "hasText"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "valid",
+          "from",
+          "recipientCount",
+          "content"
+        ],
+        "additionalProperties": false
+      },
+      "EmailSendMessagePayload": {
+        "type": "object",
+        "properties": {
+          "conversationId": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ConversationId"
+              },
+              {
+                "type": "null"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/MessageMetadata"
+          },
+          "channel": {
+            "type": "string",
+            "enum": [
+              "email"
+            ]
+          },
+          "to": {
+            "$ref": "#/components/schemas/EmailRecipients"
+          },
+          "cc": {
+            "$ref": "#/components/schemas/EmailCcRecipients"
+          },
+          "bcc": {
+            "$ref": "#/components/schemas/EmailBccRecipients"
+          },
+          "from": {
+            "$ref": "#/components/schemas/EmailSender"
+          },
+          "email": {
+            "$ref": "#/components/schemas/EmailContent"
+          }
+        },
+        "required": [
+          "channel",
+          "to",
+          "email"
+        ],
+        "additionalProperties": false
+      },
+      "EmailContent": {
+        "type": "object",
+        "properties": {
+          "subject": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "html": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "text": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "attachments": {
+            "$ref": "#/components/schemas/EmailAttachments"
+          },
+          "publicationId": {
+            "$ref": "#/components/schemas/TemplatePublicationId"
+          },
+          "inputContractId": {
+            "$ref": "#/components/schemas/TemplateInputContractId"
+          },
+          "templateId": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/TemplateId"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "templateSlug": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "templateData": {
+            "$ref": "#/components/schemas/TemplateData"
+          },
+          "locale": {
+            "$ref": "#/components/schemas/RenderLocale"
+          },
+          "timeZone": {
+            "$ref": "#/components/schemas/RenderTimeZone"
+          },
+          "inReplyToMessageId": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/MessageId"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "replyTo": {
+            "$ref": "#/components/schemas/ReplyToAddresses"
+          },
+          "topicId": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/TopicId"
+              },
+              {
+                "type": "null"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "The topic for this send. Omit to inherit the template topic; null disables topic inheritance for a direct send. Campaigns require a topic."
+          },
+          "tracking": {
+            "$ref": "#/components/schemas/EmailTrackingOverrideV1"
+          },
+          "footer": {
+            "$ref": "#/components/schemas/EmailFooterOverride"
+          },
+          "headers": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/EmailCustomHeaders"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "additionalProperties": false
+      },
+      "MessageReceipt": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "$ref": "#/components/schemas/MessageId"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "pending",
+              "scheduled",
+              "queued",
+              "processing",
+              "sent",
+              "delivered",
+              "read",
+              "failed",
+              "bounced",
+              "complained"
+            ]
+          },
+          "waitReason": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "rate",
+                  "daily-quota",
+                  "domain-health",
+                  "sending-paused",
+                  "upstream-unavailable",
+                  "retry",
+                  "campaign-paused",
+                  "domain-warming",
+                  "onboarding-review",
+                  "content-review",
+                  "screening-unavailable"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "reviewExpectedAt": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "skippedRecipients": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SkippedRecipient"
+            }
+          },
+          "createdAt": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "status",
+          "waitReason",
+          "reviewExpectedAt",
+          "skippedRecipients",
+          "createdAt"
+        ],
+        "additionalProperties": false
+      },
+      "SendMessagePayload": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/EmailSendMessagePayload"
+          },
+          {
+            "$ref": "#/components/schemas/SmsSendMessagePayload"
+          },
+          {
+            "$ref": "#/components/schemas/WhatsAppSendMessagePayload"
+          }
+        ]
+      },
+      "WhatsAppSendMessagePayload": {
+        "type": "object",
+        "properties": {
+          "conversationId": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ConversationId"
+              },
+              {
+                "type": "null"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/MessageMetadata"
+          },
+          "channel": {
+            "type": "string",
+            "enum": [
+              "whatsapp"
+            ]
+          },
+          "to": {
+            "$ref": "#/components/schemas/WhatsAppRecipients"
+          },
+          "whatsapp": {
+            "$ref": "#/components/schemas/WhatsAppContent"
+          }
+        },
+        "required": [
+          "channel",
+          "to",
+          "whatsapp"
+        ],
+        "additionalProperties": false,
+        "description": "Send WhatsApp messages from your connected business account."
+      },
+      "SmsSendMessagePayload": {
+        "type": "object",
+        "properties": {
+          "conversationId": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ConversationId"
+              },
+              {
+                "type": "null"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/MessageMetadata"
+          },
+          "channel": {
+            "type": "string",
+            "enum": [
+              "sms"
+            ]
+          },
+          "to": {
+            "$ref": "#/components/schemas/SmsRecipients"
+          },
+          "sms": {
+            "$ref": "#/components/schemas/SmsContent"
+          }
+        },
+        "required": [
+          "channel",
+          "to",
+          "sms"
+        ],
+        "additionalProperties": false,
+        "description": "The payload is accepted by the contract today and the endpoint answers 403 until the channel launches for your organization."
+      },
+      "EmailAddress": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "email",
+          "name"
+        ],
+        "additionalProperties": false
+      },
       "MessageDeliveryList": {
         "type": "object",
         "properties": {
@@ -120225,28 +121758,6 @@
         ],
         "additionalProperties": false
       },
-      "SubmissionClient": {
-        "type": "object",
-        "properties": {
-          "surface": {
-            "type": "string",
-            "enum": [
-              "typescript-promise",
-              "typescript-effect",
-              "cli",
-              "mcp"
-            ]
-          },
-          "version": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "surface",
-          "version"
-        ],
-        "additionalProperties": false
-      },
       "SubmissionCredential": {
         "anyOf": [
           {
@@ -120570,6 +122081,10 @@
     {
       "name": "Messages",
       "description": "Send messages and read their delivery state and timeline."
+    },
+    {
+      "name": "Logs",
+      "description": "Message events and rejected submissions"
     },
     {
       "name": "Operations",
