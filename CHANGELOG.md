@@ -1,5 +1,23 @@
 # Changelog
 
+## v0.101.0
+
+- 463 operations, 344 paths, 801 schemas, 41 webhook events.
+- Breaking against v0.100.0.
+- Changed operations:
+  - `DELETE /v1/newsletters/{id}`
+  - `DELETE /v1/newsletters/{id}/domains/{hostname}`
+  - `GET /v1/newsletters`
+  - `GET /v1/newsletters/{id}`
+  - `GET /v1/newsletters/{id}/domains`
+  - `GET /v1/newsletters/{id}/domains/{hostname}`
+  - `PATCH /v1/newsletters/{id}`
+  - `POST /v1/newsletters`
+  - `POST /v1/newsletters/{id}/domains`
+- Changed schemas:
+  - `RecipeReadinessResponse`
+
+
 ## v0.100.0
 
 - 463 operations, 344 paths, 801 schemas, 41 webhook events.

@@ -35697,18 +35697,11 @@
             }
           },
           "403": {
-            "description": "ForbiddenError | FlagDisabledError",
+            "description": "ForbiddenError",
             "content": {
               "application/json": {
                 "schema": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/ForbiddenError"
-                    },
-                    {
-                      "$ref": "#/components/schemas/FlagDisabledError"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/ForbiddenError"
                 }
               }
             }
@@ -35830,18 +35823,11 @@
             }
           },
           "403": {
-            "description": "ForbiddenError | FlagDisabledError",
+            "description": "ForbiddenError",
             "content": {
               "application/json": {
                 "schema": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/ForbiddenError"
-                    },
-                    {
-                      "$ref": "#/components/schemas/FlagDisabledError"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/ForbiddenError"
                 }
               }
             }
@@ -35966,18 +35952,11 @@
             }
           },
           "403": {
-            "description": "ForbiddenError | FlagDisabledError",
+            "description": "ForbiddenError",
             "content": {
               "application/json": {
                 "schema": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/ForbiddenError"
-                    },
-                    {
-                      "$ref": "#/components/schemas/FlagDisabledError"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/ForbiddenError"
                 }
               }
             }
@@ -36107,18 +36086,11 @@
             }
           },
           "403": {
-            "description": "ForbiddenError | FlagDisabledError",
+            "description": "ForbiddenError",
             "content": {
               "application/json": {
                 "schema": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/ForbiddenError"
-                    },
-                    {
-                      "$ref": "#/components/schemas/FlagDisabledError"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/ForbiddenError"
                 }
               }
             }
@@ -36268,18 +36240,11 @@
             }
           },
           "403": {
-            "description": "ForbiddenError | FlagDisabledError",
+            "description": "ForbiddenError",
             "content": {
               "application/json": {
                 "schema": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/ForbiddenError"
-                    },
-                    {
-                      "$ref": "#/components/schemas/FlagDisabledError"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/ForbiddenError"
                 }
               }
             }
@@ -42416,18 +42381,11 @@
             }
           },
           "403": {
-            "description": "ForbiddenError | FlagDisabledError",
+            "description": "ForbiddenError",
             "content": {
               "application/json": {
                 "schema": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/ForbiddenError"
-                    },
-                    {
-                      "$ref": "#/components/schemas/FlagDisabledError"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/ForbiddenError"
                 }
               }
             }
@@ -42685,18 +42643,11 @@
             }
           },
           "403": {
-            "description": "ForbiddenError | FlagDisabledError",
+            "description": "ForbiddenError",
             "content": {
               "application/json": {
                 "schema": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/ForbiddenError"
-                    },
-                    {
-                      "$ref": "#/components/schemas/FlagDisabledError"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/ForbiddenError"
                 }
               }
             }
@@ -42986,18 +42937,11 @@
             }
           },
           "403": {
-            "description": "ForbiddenError | FlagDisabledError",
+            "description": "ForbiddenError",
             "content": {
               "application/json": {
                 "schema": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/ForbiddenError"
-                    },
-                    {
-                      "$ref": "#/components/schemas/FlagDisabledError"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/ForbiddenError"
                 }
               }
             }
@@ -43273,18 +43217,11 @@
             }
           },
           "403": {
-            "description": "ForbiddenError | FlagDisabledError",
+            "description": "ForbiddenError",
             "content": {
               "application/json": {
                 "schema": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/ForbiddenError"
-                    },
-                    {
-                      "$ref": "#/components/schemas/FlagDisabledError"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/ForbiddenError"
                 }
               }
             }
@@ -102265,12 +102202,6 @@
           "availability": {
             "type": "object",
             "properties": {
-              "shopify": {
-                "type": "boolean"
-              },
-              "journeys": {
-                "type": "boolean"
-              },
               "whatsapp": {
                 "type": "boolean"
               },
@@ -102281,8 +102212,7 @@
                     "enum": [
                       "granted",
                       "denied",
-                      "unreachable",
-                      "disabled"
+                      "unreachable"
                     ]
                   },
                   {
@@ -102292,8 +102222,6 @@
               }
             },
             "required": [
-              "shopify",
-              "journeys",
               "whatsapp",
               "plan"
             ],
