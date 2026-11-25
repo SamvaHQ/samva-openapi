@@ -1,5 +1,19 @@
 # Changelog
 
+## v0.102.0
+
+- 463 operations, 344 paths, 800 schemas, 41 webhook events.
+- Breaking against v0.101.0.
+- Changed operations:
+  - `GET /v1/integrations/catalog/search`
+  - `GET /v1/integrations/{integrationId}/tools`
+  - `GET /v1/whatsapp/business-accounts`
+- Changed schemas:
+  - `Integration`
+  - `IntegrationCatalogSearchPage`
+  - `PaginationMeta`
+
+
 ## v0.101.0
 
 - 463 operations, 344 paths, 801 schemas, 41 webhook events.

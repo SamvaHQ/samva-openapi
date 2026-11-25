@@ -29831,22 +29831,28 @@
             "required": false
           },
           {
-            "name": "offset",
+            "name": "limit",
             "in": "query",
             "schema": {
-              "type": "integer",
-              "minimum": 0,
-              "maximum": 9007199254740991
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "maximum": 100,
+                  "exclusiveMinimum": 0,
+                  "description": "Items per page, at most 100."
+                },
+                {
+                  "type": "null"
+                }
+              ]
             },
             "required": false
           },
           {
-            "name": "limit",
+            "name": "cursor",
             "in": "query",
             "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 100
+              "type": "string"
             },
             "required": false
           }
@@ -29928,7 +29934,7 @@
             }
           }
         },
-        "description": "Searches the providers this organization can connect, by key, text or category. Each entry carries its connection requirements and whether it can connect. Follow nextOffset until it is null.",
+        "description": "Searches the providers this organization can connect, by key, text or category. Each entry carries its connection requirements and whether it can connect. Pass nextCursor back as cursor until it is null.",
         "summary": "Search the integrations catalog",
         "x-samva-scope": "agents:read"
       }
@@ -30133,7 +30139,7 @@
             }
           }
         },
-        "description": "Returns a bounded page of installed integrations, newest first, with compact tool summaries. Follow nextCursor and each integration's toolPage.nextOffset for the complete inventory.",
+        "description": "Returns a bounded page of installed integrations, newest first, with compact tool summaries. Follow nextCursor and each integration's toolPage.nextCursor for the complete inventory.",
         "summary": "List integrations",
         "x-samva-scope": "agents:read"
       },
@@ -30261,14 +30267,14 @@
             "required": true
           },
           {
-            "name": "offset",
+            "name": "limit",
             "in": "query",
             "schema": {
               "anyOf": [
                 {
                   "type": "integer",
-                  "minimum": 0,
-                  "maximum": 9007199254740991
+                  "minimum": 1,
+                  "maximum": 50
                 },
                 {
                   "type": "null"
@@ -30278,11 +30284,10 @@
             "required": false
           },
           {
-            "name": "revision",
+            "name": "cursor",
             "in": "query",
             "schema": {
-              "type": "string",
-              "pattern": "^[a-f0-9]{64}$"
+              "type": "string"
             },
             "required": false
           }
@@ -30300,46 +30305,26 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "nextOffset": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/IntegrationToolView"
+                      }
+                    },
+                    "nextCursor": {
                       "anyOf": [
                         {
-                          "type": "integer",
-                          "minimum": 0,
-                          "maximum": 9007199254740991
+                          "type": "string"
                         },
                         {
                           "type": "null"
                         }
                       ]
-                    },
-                    "total": {
-                      "type": "integer",
-                      "minimum": 0,
-                      "maximum": 9007199254740991
-                    },
-                    "revision": {
-                      "type": "string",
-                      "pattern": "^[a-f0-9]{64}$"
-                    },
-                    "offset": {
-                      "type": "integer",
-                      "minimum": 0,
-                      "maximum": 9007199254740991
-                    },
-                    "items": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/IntegrationToolView"
-                      },
-                      "maxItems": 50
                     }
                   },
                   "required": [
-                    "nextOffset",
-                    "total",
-                    "revision",
-                    "offset",
-                    "items"
+                    "items",
+                    "nextCursor"
                   ],
                   "additionalProperties": false
                 }
@@ -30427,7 +30412,7 @@
             }
           }
         },
-        "description": "Returns a page of the tools an integration gives agents. Send the first page's revision with each later offset; if the integration's tools change during the read, the request returns 409 and the read restarts at offset zero.",
+        "description": "Returns a page of the tools an integration gives agents. Pass nextCursor back as cursor. If the integration's tools change during pagination, the request returns 409. Restart without a cursor.",
         "summary": "List integration tools",
         "x-samva-scope": "agents:read"
       }
@@ -30627,7 +30612,7 @@
             }
           }
         },
-        "description": "Returns one tool's full descriptor. A revision that no longer matches the integration's tools returns 409.",
+        "description": "Returns one tool's descriptor in chunks. Pass nextOffset back as offset with the same revision. A revision that no longer matches the integration's tools returns 409.",
         "summary": "Read an integration tool descriptor",
         "x-samva-scope": "agents:read"
       }
@@ -78302,14 +78287,15 @@
         "operationId": "whatsapp.listBusinessAccounts",
         "parameters": [
           {
-            "name": "page",
+            "name": "limit",
             "in": "query",
             "schema": {
               "anyOf": [
                 {
                   "type": "integer",
-                  "minimum": 1,
-                  "maximum": 10000
+                  "maximum": 100,
+                  "exclusiveMinimum": 0,
+                  "description": "Items per page, at most 100."
                 },
                 {
                   "type": "null"
@@ -78319,19 +78305,10 @@
             "required": false
           },
           {
-            "name": "limit",
+            "name": "cursor",
             "in": "query",
             "schema": {
-              "anyOf": [
-                {
-                  "type": "integer",
-                  "minimum": 1,
-                  "maximum": 100
-                },
-                {
-                  "type": "null"
-                }
-              ]
+              "type": "string"
             },
             "required": false
           },
@@ -78610,13 +78587,20 @@
                         "additionalProperties": false
                       }
                     },
-                    "pagination": {
-                      "$ref": "#/components/schemas/PaginationMeta"
+                    "nextCursor": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
                     }
                   },
                   "required": [
                     "items",
-                    "pagination"
+                    "nextCursor"
                   ],
                   "additionalProperties": false
                 }
@@ -78691,7 +78675,7 @@
             }
           }
         },
-        "description": "Returns a paginated list of the organization's connected WhatsApp business accounts.",
+        "description": "Lists connected WhatsApp business accounts, newest first. Pass nextCursor back as cursor to continue.",
         "summary": "List WhatsApp business accounts",
         "x-samva-scope": "whatsappAccounts:read"
       },
@@ -84225,30 +84209,6 @@
           "projectId",
           "handle",
           "categories"
-        ],
-        "additionalProperties": false
-      },
-      "PaginationMeta": {
-        "type": "object",
-        "properties": {
-          "page": {
-            "type": "number"
-          },
-          "limit": {
-            "type": "number"
-          },
-          "total": {
-            "type": "number"
-          },
-          "totalPages": {
-            "type": "number"
-          }
-        },
-        "required": [
-          "page",
-          "limit",
-          "total",
-          "totalPages"
         ],
         "additionalProperties": false
       },
@@ -101499,22 +101459,15 @@
           "toolPage": {
             "type": "object",
             "properties": {
-              "nextOffset": {
+              "nextCursor": {
                 "anyOf": [
                   {
-                    "type": "integer",
-                    "minimum": 0,
-                    "maximum": 9007199254740991
+                    "type": "string"
                   },
                   {
                     "type": "null"
                   }
                 ]
-              },
-              "total": {
-                "type": "integer",
-                "minimum": 0,
-                "maximum": 9007199254740991
               },
               "revision": {
                 "type": "string",
@@ -101522,8 +101475,7 @@
               }
             },
             "required": [
-              "nextOffset",
-              "total",
+              "nextCursor",
               "revision"
             ],
             "additionalProperties": false
@@ -101909,17 +101861,10 @@
               "$ref": "#/components/schemas/IntegrationCatalogSearchEntry"
             }
           },
-          "total": {
-            "type": "integer",
-            "minimum": 0,
-            "maximum": 9007199254740991
-          },
-          "nextOffset": {
+          "nextCursor": {
             "anyOf": [
               {
-                "type": "integer",
-                "minimum": 0,
-                "maximum": 9007199254740991
+                "type": "string"
               },
               {
                 "type": "null"
@@ -101929,8 +101874,7 @@
         },
         "required": [
           "items",
-          "total",
-          "nextOffset"
+          "nextCursor"
         ],
         "additionalProperties": false
       },
