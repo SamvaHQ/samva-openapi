@@ -67455,7 +67455,7 @@
             }
           }
         },
-        "description": "Returns held actions this caller can approve and quarantined messages this caller may release across their visible mailboxes. Counts cover all actionable items, independent of the current cursor page. Metadata only; isolated messages, self approvals, and decisions the credential cannot perform are excluded.",
+        "description": "Returns held actions this caller can approve across their visible mailboxes. Counts cover all actionable items across pages. The queue excludes the caller’s own proposals. Read Spam through the thread list and use the held-mail endpoint for malware metadata.",
         "summary": "List mailbox decisions awaiting you",
         "x-samva-scope": "mailboxes:read"
       }
