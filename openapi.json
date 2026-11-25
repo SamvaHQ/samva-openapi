@@ -3890,18 +3890,11 @@
             }
           },
           "403": {
-            "description": "FlagDisabledError | ForbiddenError",
+            "description": "ForbiddenError",
             "content": {
               "application/json": {
                 "schema": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/FlagDisabledError"
-                    },
-                    {
-                      "$ref": "#/components/schemas/ForbiddenError"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/ForbiddenError"
                 }
               }
             }
@@ -4043,7 +4036,7 @@
             }
           },
           "403": {
-            "description": "ForbiddenError | OnboardingReviewRequiredError | FlagDisabledError",
+            "description": "ForbiddenError | OnboardingReviewRequiredError",
             "content": {
               "application/json": {
                 "schema": {
@@ -4053,9 +4046,6 @@
                     },
                     {
                       "$ref": "#/components/schemas/OnboardingReviewRequiredError"
-                    },
-                    {
-                      "$ref": "#/components/schemas/FlagDisabledError"
                     }
                   ]
                 }
@@ -23748,18 +23738,11 @@
             }
           },
           "403": {
-            "description": "FlagDisabledError | ForbiddenError",
+            "description": "ForbiddenError",
             "content": {
               "application/json": {
                 "schema": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/FlagDisabledError"
-                    },
-                    {
-                      "$ref": "#/components/schemas/ForbiddenError"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/ForbiddenError"
                 }
               }
             }
@@ -24243,18 +24226,11 @@
             }
           },
           "403": {
-            "description": "FlagDisabledError | ForbiddenError",
+            "description": "ForbiddenError",
             "content": {
               "application/json": {
                 "schema": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/FlagDisabledError"
-                    },
-                    {
-                      "$ref": "#/components/schemas/ForbiddenError"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/ForbiddenError"
                 }
               }
             }
@@ -24398,18 +24374,11 @@
             }
           },
           "403": {
-            "description": "FlagDisabledError | ForbiddenError",
+            "description": "ForbiddenError",
             "content": {
               "application/json": {
                 "schema": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/FlagDisabledError"
-                    },
-                    {
-                      "$ref": "#/components/schemas/ForbiddenError"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/ForbiddenError"
                 }
               }
             }
@@ -24671,18 +24640,11 @@
             }
           },
           "403": {
-            "description": "FlagDisabledError | ForbiddenError",
+            "description": "ForbiddenError",
             "content": {
               "application/json": {
                 "schema": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/FlagDisabledError"
-                    },
-                    {
-                      "$ref": "#/components/schemas/ForbiddenError"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/ForbiddenError"
                 }
               }
             }
@@ -27689,18 +27651,11 @@
             }
           },
           "403": {
-            "description": "ForbiddenError | FlagDisabledError",
+            "description": "ForbiddenError",
             "content": {
               "application/json": {
                 "schema": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/ForbiddenError"
-                    },
-                    {
-                      "$ref": "#/components/schemas/FlagDisabledError"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/ForbiddenError"
                 }
               }
             }
@@ -28320,18 +28275,11 @@
             }
           },
           "403": {
-            "description": "ForbiddenError | FlagDisabledError",
+            "description": "ForbiddenError",
             "content": {
               "application/json": {
                 "schema": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/ForbiddenError"
-                    },
-                    {
-                      "$ref": "#/components/schemas/FlagDisabledError"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/ForbiddenError"
                 }
               }
             }
@@ -28574,18 +28522,11 @@
             }
           },
           "403": {
-            "description": "ForbiddenError | FlagDisabledError",
+            "description": "ForbiddenError",
             "content": {
               "application/json": {
                 "schema": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/ForbiddenError"
-                    },
-                    {
-                      "$ref": "#/components/schemas/FlagDisabledError"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/ForbiddenError"
                 }
               }
             }
@@ -28709,18 +28650,11 @@
             }
           },
           "403": {
-            "description": "ForbiddenError | FlagDisabledError",
+            "description": "ForbiddenError",
             "content": {
               "application/json": {
                 "schema": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/ForbiddenError"
-                    },
-                    {
-                      "$ref": "#/components/schemas/FlagDisabledError"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/ForbiddenError"
                 }
               }
             }
@@ -28844,18 +28778,11 @@
             }
           },
           "403": {
-            "description": "ForbiddenError | FlagDisabledError",
+            "description": "ForbiddenError",
             "content": {
               "application/json": {
                 "schema": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/ForbiddenError"
-                    },
-                    {
-                      "$ref": "#/components/schemas/FlagDisabledError"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/ForbiddenError"
                 }
               }
             }
@@ -28990,16 +28917,13 @@
             }
           },
           "403": {
-            "description": "ForbiddenError | FlagDisabledError | OnboardingReviewRequiredError",
+            "description": "ForbiddenError | OnboardingReviewRequiredError",
             "content": {
               "application/json": {
                 "schema": {
                   "anyOf": [
                     {
                       "$ref": "#/components/schemas/ForbiddenError"
-                    },
-                    {
-                      "$ref": "#/components/schemas/FlagDisabledError"
                     },
                     {
                       "$ref": "#/components/schemas/OnboardingReviewRequiredError"
@@ -29493,7 +29417,7 @@
             }
           }
         },
-        "description": "Checks selected resources and current feature availability. A namespace caller sees its reachable resources. Shopify account and plan fields are null, and full recipe readiness requires organization-wide access. Omit the email sender or WhatsApp account to see the sender or number selected for the publication and caller scope. Requires email:read and domains:read for email, or whatsappAccounts:read for WhatsApp.",
+        "description": "Checks selected resources and plan access. A namespace caller sees its reachable resources. Shopify account and plan fields are null, and full recipe readiness requires organization-wide access. Omit the email sender or WhatsApp account to see the sender or number selected for the publication and caller scope. Requires email:read and domains:read for email, or whatsappAccounts:read for WhatsApp.",
         "summary": "Read Shopify post-delivery check-in readiness",
         "x-samva-scope": "messages:read agents:read templates:read mailboxes:read"
       }
@@ -31021,7 +30945,7 @@
             }
           },
           "403": {
-            "description": "ForbiddenError | OnboardingReviewRequiredError | FlagDisabledError",
+            "description": "ForbiddenError | OnboardingReviewRequiredError",
             "content": {
               "application/json": {
                 "schema": {
@@ -31031,9 +30955,6 @@
                     },
                     {
                       "$ref": "#/components/schemas/OnboardingReviewRequiredError"
-                    },
-                    {
-                      "$ref": "#/components/schemas/FlagDisabledError"
                     }
                   ]
                 }
@@ -36344,18 +36265,11 @@
             }
           },
           "403": {
-            "description": "ForbiddenError | FlagDisabledError",
+            "description": "ForbiddenError",
             "content": {
               "application/json": {
                 "schema": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/ForbiddenError"
-                    },
-                    {
-                      "$ref": "#/components/schemas/FlagDisabledError"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/ForbiddenError"
                 }
               }
             }
@@ -37059,18 +36973,11 @@
             }
           },
           "403": {
-            "description": "ForbiddenError | FlagDisabledError",
+            "description": "ForbiddenError",
             "content": {
               "application/json": {
                 "schema": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/ForbiddenError"
-                    },
-                    {
-                      "$ref": "#/components/schemas/FlagDisabledError"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/ForbiddenError"
                 }
               }
             }
@@ -37785,18 +37692,11 @@
             }
           },
           "403": {
-            "description": "ForbiddenError | FlagDisabledError",
+            "description": "ForbiddenError",
             "content": {
               "application/json": {
                 "schema": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/ForbiddenError"
-                    },
-                    {
-                      "$ref": "#/components/schemas/FlagDisabledError"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/ForbiddenError"
                 }
               }
             }
@@ -38495,18 +38395,11 @@
             }
           },
           "403": {
-            "description": "ForbiddenError | FlagDisabledError",
+            "description": "ForbiddenError",
             "content": {
               "application/json": {
                 "schema": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/ForbiddenError"
-                    },
-                    {
-                      "$ref": "#/components/schemas/FlagDisabledError"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/ForbiddenError"
                 }
               }
             }
@@ -38673,18 +38566,11 @@
             }
           },
           "403": {
-            "description": "ForbiddenError | FlagDisabledError",
+            "description": "ForbiddenError",
             "content": {
               "application/json": {
                 "schema": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/ForbiddenError"
-                    },
-                    {
-                      "$ref": "#/components/schemas/FlagDisabledError"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/ForbiddenError"
                 }
               }
             }
@@ -39390,18 +39276,11 @@
             }
           },
           "403": {
-            "description": "ForbiddenError | FlagDisabledError",
+            "description": "ForbiddenError",
             "content": {
               "application/json": {
                 "schema": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/ForbiddenError"
-                    },
-                    {
-                      "$ref": "#/components/schemas/FlagDisabledError"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/ForbiddenError"
                 }
               }
             }
@@ -39952,18 +39831,11 @@
             }
           },
           "403": {
-            "description": "ForbiddenError | FlagDisabledError",
+            "description": "ForbiddenError",
             "content": {
               "application/json": {
                 "schema": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/ForbiddenError"
-                    },
-                    {
-                      "$ref": "#/components/schemas/FlagDisabledError"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/ForbiddenError"
                 }
               }
             }
@@ -40661,18 +40533,11 @@
             }
           },
           "403": {
-            "description": "ForbiddenError | FlagDisabledError",
+            "description": "ForbiddenError",
             "content": {
               "application/json": {
                 "schema": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/ForbiddenError"
-                    },
-                    {
-                      "$ref": "#/components/schemas/FlagDisabledError"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/ForbiddenError"
                 }
               }
             }
@@ -41812,18 +41677,11 @@
             }
           },
           "403": {
-            "description": "ForbiddenError | FlagDisabledError",
+            "description": "ForbiddenError",
             "content": {
               "application/json": {
                 "schema": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/ForbiddenError"
-                    },
-                    {
-                      "$ref": "#/components/schemas/FlagDisabledError"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/ForbiddenError"
                 }
               }
             }
@@ -41983,18 +41841,11 @@
             }
           },
           "403": {
-            "description": "ForbiddenError | FlagDisabledError",
+            "description": "ForbiddenError",
             "content": {
               "application/json": {
                 "schema": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/ForbiddenError"
-                    },
-                    {
-                      "$ref": "#/components/schemas/FlagDisabledError"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/ForbiddenError"
                 }
               }
             }
@@ -42198,18 +42049,11 @@
             }
           },
           "403": {
-            "description": "ForbiddenError | FlagDisabledError",
+            "description": "ForbiddenError",
             "content": {
               "application/json": {
                 "schema": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/ForbiddenError"
-                    },
-                    {
-                      "$ref": "#/components/schemas/FlagDisabledError"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/ForbiddenError"
                 }
               }
             }
@@ -70084,14 +69928,11 @@
             }
           },
           "403": {
-            "description": "FlagDisabledError | MailboxSendRefusedError | OnboardingReviewRequiredError | ForbiddenError",
+            "description": "MailboxSendRefusedError | OnboardingReviewRequiredError | ForbiddenError | FlagDisabledError",
             "content": {
               "application/json": {
                 "schema": {
                   "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/FlagDisabledError"
-                    },
                     {
                       "$ref": "#/components/schemas/MailboxSendRefusedError"
                     },
@@ -70100,6 +69941,9 @@
                     },
                     {
                       "$ref": "#/components/schemas/ForbiddenError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/FlagDisabledError"
                     }
                   ]
                 }
@@ -70807,14 +70651,11 @@
             }
           },
           "403": {
-            "description": "FlagDisabledError | MailboxSendRefusedError | OnboardingReviewRequiredError | ForbiddenError",
+            "description": "MailboxSendRefusedError | OnboardingReviewRequiredError | ForbiddenError | FlagDisabledError",
             "content": {
               "application/json": {
                 "schema": {
                   "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/FlagDisabledError"
-                    },
                     {
                       "$ref": "#/components/schemas/MailboxSendRefusedError"
                     },
@@ -70823,6 +70664,9 @@
                     },
                     {
                       "$ref": "#/components/schemas/ForbiddenError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/FlagDisabledError"
                     }
                   ]
                 }
@@ -71040,14 +70884,11 @@
             }
           },
           "403": {
-            "description": "FlagDisabledError | MailboxSendRefusedError | OnboardingReviewRequiredError | ForbiddenError",
+            "description": "MailboxSendRefusedError | OnboardingReviewRequiredError | ForbiddenError | FlagDisabledError",
             "content": {
               "application/json": {
                 "schema": {
                   "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/FlagDisabledError"
-                    },
                     {
                       "$ref": "#/components/schemas/MailboxSendRefusedError"
                     },
@@ -71056,6 +70897,9 @@
                     },
                     {
                       "$ref": "#/components/schemas/ForbiddenError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/FlagDisabledError"
                     }
                   ]
                 }
@@ -71273,14 +71117,11 @@
             }
           },
           "403": {
-            "description": "FlagDisabledError | MailboxSendRefusedError | OnboardingReviewRequiredError | ForbiddenError",
+            "description": "MailboxSendRefusedError | OnboardingReviewRequiredError | ForbiddenError",
             "content": {
               "application/json": {
                 "schema": {
                   "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/FlagDisabledError"
-                    },
                     {
                       "$ref": "#/components/schemas/MailboxSendRefusedError"
                     },
@@ -73120,14 +72961,11 @@
             }
           },
           "403": {
-            "description": "FlagDisabledError | MailboxSendRefusedError | OnboardingReviewRequiredError | ForbiddenError",
+            "description": "MailboxSendRefusedError | OnboardingReviewRequiredError | ForbiddenError | FlagDisabledError",
             "content": {
               "application/json": {
                 "schema": {
                   "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/FlagDisabledError"
-                    },
                     {
                       "$ref": "#/components/schemas/MailboxSendRefusedError"
                     },
@@ -73136,6 +72974,9 @@
                     },
                     {
                       "$ref": "#/components/schemas/ForbiddenError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/FlagDisabledError"
                     }
                   ]
                 }
@@ -73622,14 +73463,11 @@
             }
           },
           "403": {
-            "description": "FlagDisabledError | MailboxSendRefusedError | OnboardingReviewRequiredError | ForbiddenError",
+            "description": "MailboxSendRefusedError | OnboardingReviewRequiredError | ForbiddenError",
             "content": {
               "application/json": {
                 "schema": {
                   "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/FlagDisabledError"
-                    },
                     {
                       "$ref": "#/components/schemas/MailboxSendRefusedError"
                     },
@@ -73825,14 +73663,11 @@
             }
           },
           "403": {
-            "description": "FlagDisabledError | MailboxSendRefusedError | OnboardingReviewRequiredError | ForbiddenError",
+            "description": "MailboxSendRefusedError | OnboardingReviewRequiredError | ForbiddenError | FlagDisabledError",
             "content": {
               "application/json": {
                 "schema": {
                   "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/FlagDisabledError"
-                    },
                     {
                       "$ref": "#/components/schemas/MailboxSendRefusedError"
                     },
@@ -73841,6 +73676,9 @@
                     },
                     {
                       "$ref": "#/components/schemas/ForbiddenError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/FlagDisabledError"
                     }
                   ]
                 }
@@ -74028,14 +73866,11 @@
             }
           },
           "403": {
-            "description": "FlagDisabledError | MailboxSendRefusedError | OnboardingReviewRequiredError | ForbiddenError",
+            "description": "MailboxSendRefusedError | OnboardingReviewRequiredError | ForbiddenError | FlagDisabledError",
             "content": {
               "application/json": {
                 "schema": {
                   "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/FlagDisabledError"
-                    },
                     {
                       "$ref": "#/components/schemas/MailboxSendRefusedError"
                     },
@@ -74044,6 +73879,9 @@
                     },
                     {
                       "$ref": "#/components/schemas/ForbiddenError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/FlagDisabledError"
                     }
                   ]
                 }
@@ -77652,18 +77490,11 @@
             }
           },
           "403": {
-            "description": "FlagDisabledError | ForbiddenError",
+            "description": "ForbiddenError",
             "content": {
               "application/json": {
                 "schema": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/FlagDisabledError"
-                    },
-                    {
-                      "$ref": "#/components/schemas/ForbiddenError"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/ForbiddenError"
                 }
               }
             }
@@ -77789,18 +77620,11 @@
             }
           },
           "403": {
-            "description": "FlagDisabledError | ForbiddenError",
+            "description": "ForbiddenError",
             "content": {
               "application/json": {
                 "schema": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/FlagDisabledError"
-                    },
-                    {
-                      "$ref": "#/components/schemas/ForbiddenError"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/ForbiddenError"
                 }
               }
             }
@@ -77943,18 +77767,11 @@
             }
           },
           "403": {
-            "description": "FlagDisabledError | ForbiddenError",
+            "description": "ForbiddenError",
             "content": {
               "application/json": {
                 "schema": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/FlagDisabledError"
-                    },
-                    {
-                      "$ref": "#/components/schemas/ForbiddenError"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/ForbiddenError"
                 }
               }
             }
@@ -78088,18 +77905,11 @@
             }
           },
           "403": {
-            "description": "FlagDisabledError | ForbiddenError",
+            "description": "ForbiddenError",
             "content": {
               "application/json": {
                 "schema": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/FlagDisabledError"
-                    },
-                    {
-                      "$ref": "#/components/schemas/ForbiddenError"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/ForbiddenError"
                 }
               }
             }
@@ -78217,18 +78027,11 @@
             }
           },
           "403": {
-            "description": "FlagDisabledError | ForbiddenError",
+            "description": "ForbiddenError",
             "content": {
               "application/json": {
                 "schema": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/FlagDisabledError"
-                    },
-                    {
-                      "$ref": "#/components/schemas/ForbiddenError"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/ForbiddenError"
                 }
               }
             }
@@ -78628,18 +78431,11 @@
             }
           },
           "403": {
-            "description": "ForbiddenError | FlagDisabledError",
+            "description": "ForbiddenError",
             "content": {
               "application/json": {
                 "schema": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/ForbiddenError"
-                    },
-                    {
-                      "$ref": "#/components/schemas/FlagDisabledError"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/ForbiddenError"
                 }
               }
             }
@@ -78950,18 +78746,11 @@
             }
           },
           "403": {
-            "description": "ForbiddenError | FlagDisabledError",
+            "description": "ForbiddenError",
             "content": {
               "application/json": {
                 "schema": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/ForbiddenError"
-                    },
-                    {
-                      "$ref": "#/components/schemas/FlagDisabledError"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/ForbiddenError"
                 }
               }
             }
@@ -79358,18 +79147,11 @@
             }
           },
           "403": {
-            "description": "FlagDisabledError | ForbiddenError",
+            "description": "ForbiddenError",
             "content": {
               "application/json": {
                 "schema": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/FlagDisabledError"
-                    },
-                    {
-                      "$ref": "#/components/schemas/ForbiddenError"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/ForbiddenError"
                 }
               }
             }
@@ -79689,18 +79471,11 @@
             }
           },
           "403": {
-            "description": "FlagDisabledError | ForbiddenError",
+            "description": "ForbiddenError",
             "content": {
               "application/json": {
                 "schema": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/FlagDisabledError"
-                    },
-                    {
-                      "$ref": "#/components/schemas/ForbiddenError"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/ForbiddenError"
                 }
               }
             }
@@ -79851,18 +79626,11 @@
             }
           },
           "403": {
-            "description": "FlagDisabledError | ForbiddenError",
+            "description": "ForbiddenError",
             "content": {
               "application/json": {
                 "schema": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/FlagDisabledError"
-                    },
-                    {
-                      "$ref": "#/components/schemas/ForbiddenError"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/ForbiddenError"
                 }
               }
             }
@@ -80184,18 +79952,11 @@
             }
           },
           "403": {
-            "description": "FlagDisabledError | ForbiddenError",
+            "description": "ForbiddenError",
             "content": {
               "application/json": {
                 "schema": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/FlagDisabledError"
-                    },
-                    {
-                      "$ref": "#/components/schemas/ForbiddenError"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/ForbiddenError"
                 }
               }
             }
@@ -80360,18 +80121,11 @@
             }
           },
           "403": {
-            "description": "FlagDisabledError | ForbiddenError",
+            "description": "ForbiddenError",
             "content": {
               "application/json": {
                 "schema": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/FlagDisabledError"
-                    },
-                    {
-                      "$ref": "#/components/schemas/ForbiddenError"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/ForbiddenError"
                 }
               }
             }
@@ -80483,18 +80237,11 @@
             }
           },
           "403": {
-            "description": "FlagDisabledError | ForbiddenError",
+            "description": "ForbiddenError",
             "content": {
               "application/json": {
                 "schema": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/FlagDisabledError"
-                    },
-                    {
-                      "$ref": "#/components/schemas/ForbiddenError"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/ForbiddenError"
                 }
               }
             }
@@ -80607,18 +80354,11 @@
             }
           },
           "403": {
-            "description": "FlagDisabledError | ForbiddenError",
+            "description": "ForbiddenError",
             "content": {
               "application/json": {
                 "schema": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/FlagDisabledError"
-                    },
-                    {
-                      "$ref": "#/components/schemas/ForbiddenError"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/ForbiddenError"
                 }
               }
             }
@@ -80712,18 +80452,11 @@
             }
           },
           "403": {
-            "description": "FlagDisabledError | ForbiddenError",
+            "description": "ForbiddenError",
             "content": {
               "application/json": {
                 "schema": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/FlagDisabledError"
-                    },
-                    {
-                      "$ref": "#/components/schemas/ForbiddenError"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/ForbiddenError"
                 }
               }
             }
@@ -80827,18 +80560,11 @@
             }
           },
           "403": {
-            "description": "FlagDisabledError | ForbiddenError",
+            "description": "ForbiddenError",
             "content": {
               "application/json": {
                 "schema": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/FlagDisabledError"
-                    },
-                    {
-                      "$ref": "#/components/schemas/ForbiddenError"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/ForbiddenError"
                 }
               }
             }
@@ -80970,18 +80696,11 @@
             }
           },
           "403": {
-            "description": "FlagDisabledError | ForbiddenError",
+            "description": "ForbiddenError",
             "content": {
               "application/json": {
                 "schema": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/FlagDisabledError"
-                    },
-                    {
-                      "$ref": "#/components/schemas/ForbiddenError"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/ForbiddenError"
                 }
               }
             }
@@ -81085,18 +80804,11 @@
             }
           },
           "403": {
-            "description": "FlagDisabledError | ForbiddenError",
+            "description": "ForbiddenError",
             "content": {
               "application/json": {
                 "schema": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/FlagDisabledError"
-                    },
-                    {
-                      "$ref": "#/components/schemas/ForbiddenError"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/ForbiddenError"
                 }
               }
             }
@@ -81235,18 +80947,11 @@
             }
           },
           "403": {
-            "description": "FlagDisabledError | ForbiddenError",
+            "description": "ForbiddenError",
             "content": {
               "application/json": {
                 "schema": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/FlagDisabledError"
-                    },
-                    {
-                      "$ref": "#/components/schemas/ForbiddenError"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/ForbiddenError"
                 }
               }
             }
@@ -81341,18 +81046,11 @@
             }
           },
           "403": {
-            "description": "FlagDisabledError | ForbiddenError",
+            "description": "ForbiddenError",
             "content": {
               "application/json": {
                 "schema": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/FlagDisabledError"
-                    },
-                    {
-                      "$ref": "#/components/schemas/ForbiddenError"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/ForbiddenError"
                 }
               }
             }
@@ -81483,18 +81181,11 @@
             }
           },
           "403": {
-            "description": "FlagDisabledError | ForbiddenError",
+            "description": "ForbiddenError",
             "content": {
               "application/json": {
                 "schema": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/FlagDisabledError"
-                    },
-                    {
-                      "$ref": "#/components/schemas/ForbiddenError"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/ForbiddenError"
                 }
               }
             }
@@ -81615,18 +81306,11 @@
             }
           },
           "403": {
-            "description": "FlagDisabledError | ForbiddenError",
+            "description": "ForbiddenError",
             "content": {
               "application/json": {
                 "schema": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/FlagDisabledError"
-                    },
-                    {
-                      "$ref": "#/components/schemas/ForbiddenError"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/ForbiddenError"
                 }
               }
             }
@@ -81738,18 +81422,11 @@
             }
           },
           "403": {
-            "description": "ForbiddenError | FlagDisabledError",
+            "description": "ForbiddenError",
             "content": {
               "application/json": {
                 "schema": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/ForbiddenError"
-                    },
-                    {
-                      "$ref": "#/components/schemas/FlagDisabledError"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/ForbiddenError"
                 }
               }
             }
@@ -81905,18 +81582,11 @@
             }
           },
           "403": {
-            "description": "ForbiddenError | FlagDisabledError",
+            "description": "ForbiddenError",
             "content": {
               "application/json": {
                 "schema": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/ForbiddenError"
-                    },
-                    {
-                      "$ref": "#/components/schemas/FlagDisabledError"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/ForbiddenError"
                 }
               }
             }
@@ -82010,18 +81680,11 @@
             }
           },
           "403": {
-            "description": "FlagDisabledError | ForbiddenError",
+            "description": "ForbiddenError",
             "content": {
               "application/json": {
                 "schema": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/FlagDisabledError"
-                    },
-                    {
-                      "$ref": "#/components/schemas/ForbiddenError"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/ForbiddenError"
                 }
               }
             }
@@ -82125,18 +81788,11 @@
             }
           },
           "403": {
-            "description": "FlagDisabledError | ForbiddenError",
+            "description": "ForbiddenError",
             "content": {
               "application/json": {
                 "schema": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/FlagDisabledError"
-                    },
-                    {
-                      "$ref": "#/components/schemas/ForbiddenError"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/ForbiddenError"
                 }
               }
             }
@@ -82250,18 +81906,11 @@
             }
           },
           "403": {
-            "description": "ForbiddenError | FlagDisabledError",
+            "description": "ForbiddenError",
             "content": {
               "application/json": {
                 "schema": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/ForbiddenError"
-                    },
-                    {
-                      "$ref": "#/components/schemas/FlagDisabledError"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/ForbiddenError"
                 }
               }
             }
@@ -82410,18 +82059,11 @@
             }
           },
           "403": {
-            "description": "FlagDisabledError | ForbiddenError",
+            "description": "ForbiddenError",
             "content": {
               "application/json": {
                 "schema": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/FlagDisabledError"
-                    },
-                    {
-                      "$ref": "#/components/schemas/ForbiddenError"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/ForbiddenError"
                 }
               }
             }
@@ -82533,18 +82175,11 @@
             }
           },
           "403": {
-            "description": "FlagDisabledError | ForbiddenError",
+            "description": "ForbiddenError",
             "content": {
               "application/json": {
                 "schema": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/FlagDisabledError"
-                    },
-                    {
-                      "$ref": "#/components/schemas/ForbiddenError"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/ForbiddenError"
                 }
               }
             }
@@ -82741,30 +82376,6 @@
         "x-category": [
           "auth"
         ],
-        "x-retryable": false
-      },
-      "FlagDisabledError": {
-        "type": "object",
-        "properties": {
-          "_tag": {
-            "type": "string",
-            "enum": [
-              "FlagDisabledError"
-            ]
-          },
-          "flag": {
-            "type": "string"
-          },
-          "message": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "_tag",
-          "flag",
-          "message"
-        ],
-        "additionalProperties": false,
         "x-retryable": false
       },
       "InternalError": {
@@ -84650,6 +84261,30 @@
           }
         },
         "additionalProperties": false
+      },
+      "FlagDisabledError": {
+        "type": "object",
+        "properties": {
+          "_tag": {
+            "type": "string",
+            "enum": [
+              "FlagDisabledError"
+            ]
+          },
+          "flag": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "_tag",
+          "flag",
+          "message"
+        ],
+        "additionalProperties": false,
+        "x-retryable": false
       },
       "NamespaceResource": {
         "type": "object",
@@ -87130,36 +86765,6 @@
         ],
         "x-retryable": true
       },
-      "WhatsAppServiceWindowClosedError": {
-        "type": "object",
-        "properties": {
-          "_tag": {
-            "type": "string",
-            "enum": [
-              "WhatsAppServiceWindowClosedError"
-            ]
-          },
-          "message": {
-            "type": "string"
-          },
-          "closedAt": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          }
-        },
-        "required": [
-          "_tag",
-          "message",
-          "closedAt"
-        ],
-        "additionalProperties": false
-      },
       "OnboardingReviewRequiredError": {
         "type": "object",
         "properties": {
@@ -87257,6 +86862,36 @@
           "_tag",
           "message",
           "receipt"
+        ],
+        "additionalProperties": false
+      },
+      "WhatsAppServiceWindowClosedError": {
+        "type": "object",
+        "properties": {
+          "_tag": {
+            "type": "string",
+            "enum": [
+              "WhatsAppServiceWindowClosedError"
+            ]
+          },
+          "message": {
+            "type": "string"
+          },
+          "closedAt": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "_tag",
+          "message",
+          "closedAt"
         ],
         "additionalProperties": false
       },
@@ -98149,7 +97784,7 @@
                 "type": "null"
               }
             ],
-            "description": "The channel to start a template for. Defaults to email. WhatsApp starts from Samva's WhatsApp starters and is available where WhatsApp is enabled for the organization."
+            "description": "The channel to start a template for. Defaults to email. WhatsApp starts from Samva's WhatsApp starters."
           },
           "name": {
             "anyOf": [
@@ -98289,7 +97924,7 @@
                 "type": "null"
               }
             ],
-            "description": "The channel to start a template for. Defaults to email. WhatsApp starts from Samva's WhatsApp starters and is available where WhatsApp is enabled for the organization."
+            "description": "The channel to start a template for. Defaults to email. WhatsApp starts from Samva's WhatsApp starters."
           }
         },
         "required": [
@@ -102146,9 +101781,6 @@
           "availability": {
             "type": "object",
             "properties": {
-              "whatsapp": {
-                "type": "boolean"
-              },
               "plan": {
                 "anyOf": [
                   {
@@ -102166,7 +101798,6 @@
               }
             },
             "required": [
-              "whatsapp",
               "plan"
             ],
             "additionalProperties": false

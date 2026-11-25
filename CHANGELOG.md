@@ -1,5 +1,69 @@
 # Changelog
 
+## v0.103.0
+
+- 463 operations, 344 paths, 800 schemas, 41 webhook events.
+- Breaking against v0.102.0.
+- Changed operations:
+  - `DELETE /v1/whatsapp/business-accounts/{accountId}`
+  - `GET /v1/integrations/catalog/recipes/post-delivery-check-in/connections/{provider}`
+  - `GET /v1/integrations/catalog/recipes/post-delivery-check-in/owner-test/whatsapp/{accountId}/challenges/{id}`
+  - `GET /v1/newsletters/{id}/issues`
+  - `GET /v1/newsletters/{id}/issues/document`
+  - `GET /v1/newsletters/{id}/issues/head`
+  - `GET /v1/newsletters/{id}/issues/history`
+  - `GET /v1/newsletters/{id}/issues/workspace`
+  - `GET /v1/templates/{id}/registrations`
+  - `GET /v1/templates/{id}/registrations/{registrationId}`
+  - `GET /v1/whatsapp/business-accounts`
+  - `GET /v1/whatsapp/business-accounts/{accountId}`
+  - `GET /v1/whatsapp/flows`
+  - `GET /v1/whatsapp/flows/{id}`
+  - `GET /v1/whatsapp/flows/{id}/registrations`
+  - `GET /v1/whatsapp/flows/{id}/versions`
+  - `GET /v1/whatsapp/media/{deliveryId}/download-url`
+  - `GET /v1/whatsapp/service-window/billing`
+  - `GET /v1/whatsapp/service-window/status`
+  - `GET /v1/whatsapp/setup-links`
+  - `GET /v1/whatsapp/setup-links/{linkId}`
+  - `GET /v1/whatsapp/stats`
+  - `GET /v1/whatsapp/templates/stats`
+  - `PATCH /v1/newsletters/{id}/issues`
+  - `PATCH /v1/whatsapp/business-accounts/{accountId}`
+  - `POST /v1/campaigns/preview`
+  - `POST /v1/campaigns/test-send`
+  - `POST /v1/integrations/catalog/recipes/post-delivery-check-in/owner-test`
+  - `POST /v1/integrations/catalog/recipes/post-delivery-check-in/owner-test/whatsapp/{accountId}/challenges`
+  - `POST /v1/integrations/catalog/recipes/post-delivery-check-in/owner-test/whatsapp/{accountId}/challenges/{id}/confirm`
+  - `POST /v1/integrations/catalog/recipes/post-delivery-check-in/setups/{id}/activate`
+  - `POST /v1/journeys`
+  - `POST /v1/journeys/{id}/publish`
+  - `POST /v1/journeys/{id}/resume`
+  - `POST /v1/mailboxes/{id}/actions/{actionId}/cancel`
+  - `POST /v1/mailboxes/{id}/messages/{messageId}/forward`
+  - `POST /v1/newsletters/{id}/issues`
+  - `POST /v1/newsletters/{id}/issues/check`
+  - `POST /v1/newsletters/{id}/issues/remove`
+  - `POST /v1/newsletters/{id}/issues/render`
+  - `POST /v1/newsletters/{id}/issues/save`
+  - `POST /v1/subscriptions`
+  - `POST /v1/templates/{id}/registrations`
+  - `POST /v1/whatsapp/business-accounts`
+  - `POST /v1/whatsapp/business-accounts/{accountId}/set-default`
+  - `POST /v1/whatsapp/business-accounts/{accountId}/sync`
+  - `POST /v1/whatsapp/flows`
+  - `POST /v1/whatsapp/flows/encryption-key/rotate`
+  - `POST /v1/whatsapp/flows/{id}/endpoint/rotate-secret`
+  - `POST /v1/whatsapp/flows/{id}/registrations`
+  - `POST /v1/whatsapp/flows/{id}/versions`
+  - `POST /v1/whatsapp/setup-links`
+  - `POST /v1/whatsapp/setup-links/{linkId}/revoke`
+  - `PUT /v1/journeys/{id}/draft`
+  - `PUT /v1/whatsapp/flows/{id}/endpoint`
+- Changed schemas:
+  - `RecipeReadinessResponse`
+
+
 ## v0.102.0
 
 - 463 operations, 344 paths, 800 schemas, 41 webhook events.
