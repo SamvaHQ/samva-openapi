@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.105.0
+
+- 465 operations, 346 paths, 812 schemas, 41 webhook events.
+- Breaking against v0.104.1.
+- Changed operations:
+  - `POST /v1/messages`
+
+
 ## v0.104.1
 
 - 465 operations, 346 paths, 812 schemas, 41 webhook events.

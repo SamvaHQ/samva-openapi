@@ -754,7 +754,7 @@
             "schema": {
               "type": "string",
               "pattern": "^[\\s\\S]{1,255}$",
-              "description": "Optional org-scoped key that makes a send idempotent. Repeating a request with the same key and identical payload replays the original 201 response; reusing the key with different content returns 409.",
+              "description": "Optional org-scoped key that makes a send idempotent. Repeating a request with the same key and identical payload replays the original 201 response after the first send succeeds. While it is in progress, wait for Retry-After and retry with the same key and body. Reusing the key with different content also returns 409, without a retry hint.",
               "x-samva-string-checks": [
                 {
                   "id": "effect/schema/isPattern",
@@ -936,7 +936,7 @@
             }
           }
         },
-        "description": "An email send whose namespace has no sending setup returns ValidationError: share the sender domain with namespaces, or use a sender owned by that namespace. Sending setup that has stopped after failure returns ValidationError; restart or reconcile the domain's sending setup. Setup still in progress returns ConflictError. Sends a message on the requested channel and returns its receipt (id, status, and why it waits when it does) with a 201 Created status. Requires `messages:create` or the send permission of the channel it sends on, such as `email:send`. `channel` selects the payload variant. Email and WhatsApp sends are available. Repeating an identical request with the same optional `Idempotency-Key` header returns the original receipt; reusing the key for different content returns a conflict.",
+        "description": "An email send whose namespace has no sending setup returns ValidationError: share the sender domain with namespaces, or use a sender owned by that namespace. Sending setup that has stopped after failure returns ValidationError; restart or reconcile the domain's sending setup. Setup still in progress returns ConflictError. Sends a message on the requested channel and returns its receipt (id, status, and why it waits when it does) with a 201 Created status. Requires `messages:create` or the send permission of the channel it sends on, such as `email:send`. `channel` selects the payload variant. Email and WhatsApp sends are available. Once a send succeeds, repeating the request with the same `Idempotency-Key` and body returns the original receipt. While it is still in progress, a 409 includes a `Retry-After` header. Reusing the key for different content returns a 409 without a retry hint.",
         "summary": "Send a message",
         "requestBody": {
           "content": {
@@ -26094,7 +26094,7 @@
             }
           }
         },
-        "description": "Creates an agent with a draft and returns it with status 201. The agent answers nothing until its draft is published. The default policy requires a person to approve replies and final actions. The namespace is set at creation and cannot change.",
+        "description": "Creates an agent with a draft and returns it with status 201. The agent answers nothing until its draft is published. The default policy requires a person to approve replies and final actions. API keys need organization-wide reach to create with a custom policy. The namespace is set at creation and cannot change.",
         "summary": "Create an agent",
         "requestBody": {
           "content": {
@@ -26651,7 +26651,7 @@
             }
           }
         },
-        "description": "Replaces the whole draft and returns the agent with a new revision. The request names the revision it read; a stale revision returns 409. Published versions, and the conversations answered on them, do not change. An endpoint answers for one agent at a time: a draft that names an endpoint another agent answers on returns 409. A draft that pins a catalog model returns 402 unless your plan is Growth or Scale, and 422 when the model is not available or does not support the reasoning level.",
+        "description": "Replaces the whole draft and returns the agent with a new revision. The request names the revision it read; a stale revision returns 409. API keys need organization-wide reach to change the draft policy. Published versions, and the conversations answered on them, do not change. An endpoint answers for one agent at a time: a draft that names an endpoint another agent answers on returns 409. A draft that pins a catalog model returns 402 unless your plan is Growth or Scale, and 422 when the model is not available or does not support the reasoning level.",
         "summary": "Replace an agent draft",
         "requestBody": {
           "content": {
@@ -26789,7 +26789,7 @@
             }
           }
         },
-        "description": "Publishes the draft as the next immutable version. Each conversation moves to it from its next agent reply; a reply already running finishes on the version it started on. The request names the revision it read; a stale revision returns 409. Publishing a draft identical to the newest version changes nothing and answers published false. An endpoint answers for one agent at a time: publishing a draft whose endpoint another agent answers on returns 409. The published policy governs review of each proposed action.",
+        "description": "Publishes the draft as the next immutable version. API keys need organization-wide reach to publish a policy change. Each conversation moves to it from its next agent reply; a reply already running finishes on the version it started on. The request names the revision it read; a stale revision returns 409. Publishing a draft identical to the newest version changes nothing and answers published false. An endpoint answers for one agent at a time: publishing a draft whose endpoint another agent answers on returns 409. The published policy governs review of each proposed action.",
         "summary": "Publish an agent",
         "requestBody": {
           "content": {
@@ -26927,7 +26927,7 @@
             }
           }
         },
-        "description": "Publishes a self-contained JavaScript module and its manifest as the next immutable version. Source is stored by its SHA-256 digest without execution. The revision protects the draft read by the publisher; a stale revision returns 409. Publishing the same manifest, source, and definition again returns published false. The manifest controls the model, endpoints, integration grants, and action policy. Draft instructions and knowledge remain editable builder data; the hosted runtime reads instructions and tools from the published module.",
+        "description": "Publishes a self-contained JavaScript module and its manifest as the next immutable version. API keys need organization-wide reach to publish a policy change. Source is stored by its SHA-256 digest without execution. The revision protects the draft read by the publisher; a stale revision returns 409. Publishing the same manifest, source, and definition again returns published false. The manifest controls the model, endpoints, integration grants, and action policy. Draft instructions and knowledge remain editable builder data; the hosted runtime reads instructions and tools from the published module.",
         "summary": "Publish an agent module",
         "requestBody": {
           "content": {
@@ -31170,7 +31170,7 @@
             }
           }
         },
-        "description": "Changes an integration's settings, enabled tools, which tools run without approval, and whether replies using its data need approval. Only an organization owner may change answerWithoutApproval or a tool's runsWithoutApproval: false makes a read tool ask first, true lets a tool that changes something run, each for the tool's current effect. Fields not named keep their values. What an agent may do with the integration is the agent's grant.",
+        "description": "Changes an integration's settings, enabled tools, which tools run without approval, and whether replies using its data need approval. Changing answerWithoutApproval requires an organization owner and, for an API key, organization-wide reach. An organization owner or an API key with organization-wide reach can change a tool's runsWithoutApproval for its current effect. False makes a read tool ask first. True lets a tool that changes something run. Fields not named keep their values. What an agent may do with the integration is the agent's grant.",
         "summary": "Update an integration",
         "requestBody": {
           "content": {
