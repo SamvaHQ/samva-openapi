@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.107.0
+
+- 465 operations, 346 paths, 813 schemas, 41 webhook events.
+- Breaking against v0.106.0.
+- Changed schemas:
+  - `RecordWhatsAppFlowVersionPayload`
+
+
 ## v0.106.0
 
 - 465 operations, 346 paths, 812 schemas, 41 webhook events.

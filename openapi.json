@@ -80739,7 +80739,7 @@
             }
           }
         },
-        "description": "Creates a WhatsApp flow whose versions read `flows/<handle>.json` in the template project. The handle is unique in the organization; the categories are Meta's and go with every version to Meta.",
+        "description": "Creates a WhatsApp flow whose versions read `flows/<handle>.json` in the template project. The handle is unique in its namespace or at organization level; the categories are Meta's and go with every version to Meta.",
         "summary": "Create a flow",
         "requestBody": {
           "content": {
@@ -80836,7 +80836,7 @@
             }
           }
         },
-        "description": "Returns the organization's flows, newest first, each with its current version.",
+        "description": "Returns flows visible to the caller, newest first, each with its current version.",
         "summary": "List flows",
         "x-samva-scope": "templates:read"
       }
@@ -81072,7 +81072,7 @@
             }
           }
         },
-        "description": "Reads the flow's file at a commit on the project's default branch, checks it is Flow JSON Samva sends, and records it as the flow's current version. The same content returns the version that already recorded it.",
+        "description": "Supply Flow JSON to commit the flow's file and record its version, or name a commit and workspace revision to record a file already on the project's default branch. The same content returns the version that already recorded it.",
         "summary": "Record a flow version",
         "requestBody": {
           "content": {
@@ -84087,22 +84087,44 @@
         "additionalProperties": false
       },
       "RecordWhatsAppFlowVersionPayload": {
-        "type": "object",
-        "properties": {
-          "commitSha": {
-            "type": "string",
-            "pattern": "^[a-f0-9]{40}$"
+        "anyOf": [
+          {
+            "type": "object",
+            "properties": {
+              "commitSha": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{40}$"
+              },
+              "expectedWorkspaceRevision": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "commitSha",
+              "expectedWorkspaceRevision"
+            ],
+            "additionalProperties": false
           },
-          "expectedWorkspaceRevision": {
-            "type": "string",
-            "minLength": 1
+          {
+            "type": "object",
+            "properties": {
+              "flowJson": {
+                "$ref": "#/components/schemas/JsonObject"
+              }
+            },
+            "required": [
+              "flowJson"
+            ],
+            "additionalProperties": false
           }
-        },
-        "required": [
-          "commitSha",
-          "expectedWorkspaceRevision"
-        ],
-        "additionalProperties": false
+        ]
+      },
+      "JsonObject": {
+        "type": "object",
+        "additionalProperties": {
+          "$ref": "#/components/schemas/JsonValue"
+        }
       },
       "WhatsAppFlow": {
         "type": "object",
@@ -84144,6 +84166,13 @@
                 "OTHER"
               ]
             }
+          },
+          "submissionHandler": {
+            "type": "string",
+            "enum": [
+              "agent",
+              "app"
+            ]
           },
           "endpoint": {
             "anyOf": [
@@ -84256,6 +84285,13 @@
               ]
             },
             "minItems": 1
+          },
+          "submissionHandler": {
+            "type": "string",
+            "enum": [
+              "agent",
+              "app"
+            ]
           }
         },
         "required": [
@@ -86888,12 +86924,6 @@
         ],
         "additionalProperties": false
       },
-      "JsonObject": {
-        "type": "object",
-        "additionalProperties": {
-          "$ref": "#/components/schemas/JsonValue"
-        }
-      },
       "MailboxSmsEndpointBinding": {
         "type": "object",
         "properties": {
@@ -89306,6 +89336,12 @@
               {
                 "type": "null"
               }
+            ]
+          },
+          "flowSubmissionHandledBy": {
+            "type": "string",
+            "enum": [
+              "app"
             ]
           }
         },
@@ -116774,12 +116810,22 @@
                 }
               }
             ]
+          },
+          "flowActionData": {
+            "$ref": "#/components/schemas/JsonObject_1"
           }
         },
         "required": [
           "templateSlug"
         ],
         "additionalProperties": false
+      },
+      "JsonObject_1": {
+        "type": "object",
+        "description": "Initial screen data for a navigate Flow button.",
+        "additionalProperties": {
+          "$ref": "#/components/schemas/JsonValue"
+        }
       },
       "WhatsAppTemplateData": {
         "type": "object",
@@ -116815,6 +116861,9 @@
                 }
               }
             ]
+          },
+          "flowActionData": {
+            "$ref": "#/components/schemas/JsonObject_1"
           }
         },
         "required": [
@@ -119160,6 +119209,12 @@
       "WhatsAppMessageContent": {
         "type": "object",
         "properties": {
+          "appHandlesFlowSubmission": {
+            "type": "boolean",
+            "enum": [
+              true
+            ]
+          },
           "text": {
             "anyOf": [
               {
@@ -119379,6 +119434,9 @@
                                     "properties": {
                                       "flow_token": {
                                         "type": "string"
+                                      },
+                                      "flow_action_data": {
+                                        "$ref": "#/components/schemas/JsonObject"
                                       }
                                     },
                                     "required": [
@@ -119490,6 +119548,12 @@
               {
                 "type": "null"
               }
+            ]
+          },
+          "submissionHandler": {
+            "type": "string",
+            "enum": [
+              "app"
             ]
           },
           "response": {
@@ -124751,11 +124815,20 @@
                           }
                         ]
                       },
+                      "replyToMetadata": {
+                        "type": "object"
+                      },
                       "whatsapp": {
                         "anyOf": [
                           {
                             "type": "object",
                             "properties": {
+                              "appHandlesFlowSubmission": {
+                                "type": "boolean",
+                                "enum": [
+                                  true
+                                ]
+                              },
                               "text": {
                                 "anyOf": [
                                   {
@@ -124975,6 +125048,9 @@
                                                         "properties": {
                                                           "flow_token": {
                                                             "type": "string"
+                                                          },
+                                                          "flow_action_data": {
+                                                            "type": "object"
                                                           }
                                                         },
                                                         "required": [
@@ -125967,6 +126043,12 @@
                                       {
                                         "type": "null"
                                       }
+                                    ]
+                                  },
+                                  "submissionHandler": {
+                                    "type": "string",
+                                    "enum": [
+                                      "app"
                                     ]
                                   },
                                   "response": {
@@ -129423,6 +129505,12 @@
                       "message": {
                         "type": "object",
                         "properties": {
+                          "flowSubmissionHandledBy": {
+                            "type": "string",
+                            "enum": [
+                              "app"
+                            ]
+                          },
                           "id": {
                             "type": "string",
                             "pattern": "^msg_[0-9a-hjkmnp-tv-z]{16,24}$"
@@ -129750,6 +129838,12 @@
                       "message": {
                         "type": "object",
                         "properties": {
+                          "flowSubmissionHandledBy": {
+                            "type": "string",
+                            "enum": [
+                              "app"
+                            ]
+                          },
                           "id": {
                             "type": "string",
                             "pattern": "^msg_[0-9a-hjkmnp-tv-z]{16,24}$"
