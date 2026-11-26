@@ -23693,7 +23693,7 @@
             }
           }
         },
-        "description": "Records a custom contact event. Identify the contact by exactly one ID, external ID, or email. A missing email or external ID creates a contact; an unknown contact ID returns 404. An organization-scoped idempotency key replays the original event. Event names use letters, digits, underscores, hyphens, and dots, up to 255 characters; contact. and samva. prefixes are reserved. Properties allow at most 50 keys and 32 KiB of UTF-8 JSON. Events are retained for 90 days.",
+        "description": "Records a custom contact event. Identify the contact by exactly one ID, external ID, email, or E.164 phone number. An unmatched external ID, email, or phone number creates a contact; an unknown contact ID returns 404. An idempotency key replays the original event in the credential’s scope. Event names use letters, digits, underscores, hyphens, and dots, up to 255 characters; contact. and samva. prefixes are reserved. Properties allow at most 50 keys and 32 KiB of UTF-8 JSON. Events are retained for 90 days.",
         "summary": "Record a contact event",
         "requestBody": {
           "content": {
@@ -23980,6 +23980,14 @@
         "operationId": "journeys.list",
         "parameters": [
           {
+            "name": "namespaceId",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/NamespaceId"
+            },
+            "required": false
+          },
+          {
             "name": "status",
             "in": "query",
             "schema": {
@@ -24091,7 +24099,7 @@
             }
           }
         },
-        "description": "Returns the organization's journeys, newest first, optionally filtered by status. Pass nextCursor back as cursor for the next page.",
+        "description": "Returns the journeys the caller can access, newest first. Filter by namespaceId or status. Pass nextCursor back as cursor for the next page.",
         "summary": "List journeys",
         "x-samva-scope": "messages:read"
       },
@@ -24218,7 +24226,7 @@
             }
           }
         },
-        "description": "Creates a draft journey from a definition: a trigger, a root node, and a graph of at most 200 nodes that is acyclic and fully reachable. Templates, senders, and groups the definition names must belong to the organization. Requires a plan that includes journeys.",
+        "description": "Creates a draft journey from a definition: a trigger, a root node, and a graph of at most 200 nodes that is acyclic and fully reachable. A namespace key creates in its own namespace. An organization key can pass namespaceId to place the journey in a namespace. The journey can use resources available in its scope. Requires a plan that includes journeys.",
         "summary": "Create a journey",
         "requestBody": {
           "content": {
@@ -105149,6 +105157,19 @@
           "id": {
             "$ref": "#/components/schemas/JourneyRunId"
           },
+          "namespaceId": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/NamespaceId"
+              },
+              {
+                "type": "null"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "journeyId": {
             "$ref": "#/components/schemas/JourneyId"
           },
@@ -105420,6 +105441,19 @@
           "id": {
             "$ref": "#/components/schemas/JourneyRunId"
           },
+          "namespaceId": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/NamespaceId"
+              },
+              {
+                "type": "null"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "journeyId": {
             "$ref": "#/components/schemas/JourneyId"
           },
@@ -105653,23 +105687,48 @@
             "type": "boolean"
           },
           "enrollment": {
-            "type": "object",
-            "properties": {
-              "type": {
-                "type": "string",
-                "enum": [
-                  "shopify_order"
-                ]
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "shopify_order"
+                    ]
+                  },
+                  "shop": {
+                    "$ref": "#/components/schemas/ShopifyShop"
+                  }
+                },
+                "required": [
+                  "type",
+                  "shop"
+                ],
+                "additionalProperties": false
               },
-              "shop": {
-                "$ref": "#/components/schemas/ShopifyShop"
+              {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "event_property"
+                    ]
+                  },
+                  "property": {
+                    "type": "string",
+                    "minLength": 1,
+                    "pattern": "^[a-zA-Z0-9_]+(?:\\.[a-zA-Z0-9_]+)*$"
+                  }
+                },
+                "required": [
+                  "type",
+                  "property"
+                ],
+                "additionalProperties": false
               }
-            },
-            "required": [
-              "type",
-              "shop"
-            ],
-            "additionalProperties": false
+            ]
           }
         },
         "required": [
@@ -105851,6 +105910,18 @@
         "properties": {
           "data": {
             "$ref": "#/components/schemas/JsonObject"
+          },
+          "eventBindings": {
+            "type": "object",
+            "propertyNames": {
+              "type": "string",
+              "minLength": 1
+            },
+            "additionalProperties": {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "^[a-zA-Z0-9_]+(?:\\.[a-zA-Z0-9_]+)*$"
+            }
           }
         },
         "additionalProperties": false
@@ -106276,6 +106347,26 @@
           "eventName": {
             "$ref": "#/components/schemas/JourneyEventName"
           },
+          "correlation": {
+            "type": "object",
+            "properties": {
+              "eventProperty": {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "^[a-zA-Z0-9_]+(?:\\.[a-zA-Z0-9_]+)*$"
+              },
+              "entryProperty": {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "^[a-zA-Z0-9_]+(?:\\.[a-zA-Z0-9_]+)*$"
+              }
+            },
+            "required": [
+              "eventProperty",
+              "entryProperty"
+            ],
+            "additionalProperties": false
+          },
           "timeoutSeconds": {
             "type": "integer",
             "maximum": 7776000,
@@ -106579,6 +106670,19 @@
           "id": {
             "$ref": "#/components/schemas/JourneyId"
           },
+          "namespaceId": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/NamespaceId"
+              },
+              {
+                "type": "null"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "name": {
             "type": "string"
           },
@@ -106714,6 +106818,9 @@
           "name": {
             "$ref": "#/components/schemas/JourneyName"
           },
+          "namespaceId": {
+            "$ref": "#/components/schemas/NamespaceId"
+          },
           "definition": {
             "$ref": "#/components/schemas/JourneyDefinition"
           }
@@ -106755,6 +106862,19 @@
         "properties": {
           "id": {
             "$ref": "#/components/schemas/JourneyId"
+          },
+          "namespaceId": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/NamespaceId"
+              },
+              {
+                "type": "null"
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
           "name": {
             "type": "string"
@@ -107036,6 +107156,9 @@
               },
               "email": {
                 "not": {}
+              },
+              "phone": {
+                "not": {}
               }
             },
             "required": [
@@ -107055,6 +107178,9 @@
               },
               "email": {
                 "not": {}
+              },
+              "phone": {
+                "not": {}
               }
             },
             "required": [
@@ -107073,10 +107199,35 @@
               },
               "externalId": {
                 "not": {}
+              },
+              "phone": {
+                "not": {}
               }
             },
             "required": [
               "email"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "phone": {
+                "type": "string",
+                "pattern": "^\\+[1-9]\\d{1,14}$"
+              },
+              "id": {
+                "not": {}
+              },
+              "externalId": {
+                "not": {}
+              },
+              "email": {
+                "not": {}
+              }
+            },
+            "required": [
+              "phone"
             ],
             "additionalProperties": false
           }
@@ -122128,7 +122279,7 @@
     },
     {
       "name": "Journeys",
-      "description": "Event-triggered, per-contact email flows defined as versioned node graphs"
+      "description": "Versioned event-triggered automations that send email and WhatsApp, wait for events, and publish webhooks"
     },
     {
       "name": "Agents",

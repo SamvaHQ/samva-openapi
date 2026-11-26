@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.106.0
+
+- 465 operations, 346 paths, 812 schemas, 41 webhook events.
+- Breaking against v0.105.1.
+- Changed schemas:
+  - `JourneyDefinition`
+
+
 ## v0.105.1
 
 - 465 operations, 346 paths, 812 schemas, 41 webhook events.
