@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.108.0
+
+- 465 operations, 346 paths, 814 schemas, 41 webhook events.
+- Breaking against v0.107.1.
+- Changed schemas:
+  - `Brand`
+
+
 ## v0.107.1
 
 - 465 operations, 346 paths, 814 schemas, 41 webhook events.

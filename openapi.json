@@ -54039,6 +54039,17 @@
                         "brand": {
                           "type": "object",
                           "properties": {
+                            "id": {
+                              "$ref": "#/components/schemas/BrandId"
+                            },
+                            "binding": {
+                              "type": "string",
+                              "enum": [
+                                "default",
+                                "named",
+                                "embedded"
+                              ]
+                            },
                             "slug": {
                               "type": "string",
                               "pattern": "^[a-z0-9](?:[a-z0-9-]{0,62}[a-z0-9])?$"
@@ -54957,6 +54968,17 @@
                         "brand": {
                           "type": "object",
                           "properties": {
+                            "id": {
+                              "$ref": "#/components/schemas/BrandId"
+                            },
+                            "binding": {
+                              "type": "string",
+                              "enum": [
+                                "default",
+                                "named",
+                                "embedded"
+                              ]
+                            },
                             "slug": {
                               "type": "string",
                               "pattern": "^[a-z0-9](?:[a-z0-9-]{0,62}[a-z0-9])?$"
@@ -58750,7 +58772,16 @@
           "Brands"
         ],
         "operationId": "brands.list",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "namespaceId",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/NamespaceId"
+            },
+            "required": false
+          }
+        ],
         "security": [
           {
             "apiKey": []
@@ -58828,7 +58859,7 @@
             }
           }
         },
-        "description": "Returns the organization's brands, the default brand first.",
+        "description": "Returns brands in the addressed scope, the default first. A namespace caller without brands sees the shared organization brands when no namespaceId is supplied.",
         "summary": "List brands",
         "x-samva-scope": "templates:read"
       },
@@ -58884,6 +58915,16 @@
               }
             }
           },
+          "404": {
+            "description": "ResourceNotFoundError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundError"
+                }
+              }
+            }
+          },
           "409": {
             "description": "ConflictError",
             "content": {
@@ -58925,7 +58966,7 @@
             }
           }
         },
-        "description": "Creates a brand. The CSS must parse as a brand theme; a rejected theme answers 422 with located findings under `fields.css`. With `isDefault`, the new brand becomes the default. An organization holds at most 12 brands; creating one more answers 409 with a `ConflictError`.",
+        "description": "Creates a brand. The CSS must parse as a brand theme; a rejected theme answers 422 with located findings under `fields.css`. The first namespace brand is its default. With `isDefault`, the new brand becomes the default for its scope. Each organization or namespace independently holds at most 12 brands; creating one more answers 409 with a `ConflictError`.",
         "summary": "Create a brand",
         "requestBody": {
           "content": {
@@ -58955,6 +58996,14 @@
               "pattern": "^[a-z0-9](?:[a-z0-9-]{0,62}[a-z0-9])?$"
             },
             "required": true
+          },
+          {
+            "name": "namespaceId",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/NamespaceId"
+            },
+            "required": false
           }
         ],
         "security": [
@@ -59044,7 +59093,7 @@
             }
           }
         },
-        "description": "Returns one brand by its slug.",
+        "description": "Returns a brand by slug in the addressed scope. A namespace caller omitting namespaceId can also look up shared organization brands.",
         "summary": "Get a brand",
         "x-samva-scope": "templates:read"
       },
@@ -59161,7 +59210,7 @@
             }
           }
         },
-        "description": "Updates a brand. Each section given replaces that section whole. Published templates keep the brand they were built against until they are republished.",
+        "description": "Updates a brand. Each section given replaces that section whole. Namespace sends using bare `samva:brand` use the current default.",
         "summary": "Update a brand",
         "requestBody": {
           "content": {
@@ -59189,6 +59238,14 @@
               "pattern": "^[a-z0-9](?:[a-z0-9-]{0,62}[a-z0-9])?$"
             },
             "required": true
+          },
+          {
+            "name": "namespaceId",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/NamespaceId"
+            },
+            "required": false
           }
         ],
         "security": [
@@ -59308,6 +59365,14 @@
               "pattern": "^[a-z0-9](?:[a-z0-9-]{0,62}[a-z0-9])?$"
             },
             "required": true
+          },
+          {
+            "name": "namespaceId",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/NamespaceId"
+            },
+            "required": false
           }
         ],
         "security": [
@@ -59397,7 +59462,7 @@
             }
           }
         },
-        "description": "Makes this brand the organization's default: bare `samva:brand` and domains without a brand resolve to it at their next build or send.",
+        "description": "Makes this brand the default in the addressed organization or namespace.",
         "summary": "Make a brand the default",
         "x-samva-scope": "templates:update"
       }
@@ -96104,10 +96169,20 @@
           "id": {
             "$ref": "#/components/schemas/BrandId"
           },
+          "namespaceId": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/NamespaceId"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "slug": {
             "type": "string",
             "pattern": "^[a-z0-9](?:[a-z0-9-]{0,62}[a-z0-9])?$",
-            "description": "The brand's handle, unique in the organization; `samva:brand/<slug>` names it."
+            "description": "The brand's handle, unique within its organization or namespace."
           },
           "name": {
             "type": "string"
@@ -96139,6 +96214,7 @@
         },
         "required": [
           "id",
+          "namespaceId",
           "slug",
           "name",
           "isDefault",
@@ -96371,6 +96447,16 @@
       "UpdateBrand": {
         "type": "object",
         "properties": {
+          "namespaceId": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/NamespaceId"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "newSlug": {
             "anyOf": [
               {
@@ -96448,6 +96534,16 @@
       "CreateBrand": {
         "type": "object",
         "properties": {
+          "namespaceId": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/NamespaceId"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "slug": {
             "type": "string",
             "pattern": "^[a-z0-9](?:[a-z0-9-]{0,62}[a-z0-9])?$"
