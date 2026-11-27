@@ -106100,44 +106100,25 @@
           },
           {
             "$ref": "#/components/schemas/JourneyEventPredicate"
+          },
+          {
+            "$ref": "#/components/schemas/JourneyEntryEventPropertyPredicate"
           }
         ]
       },
-      "JourneyEventPredicate": {
+      "JourneyEntryEventPropertyPredicate": {
         "type": "object",
         "properties": {
           "type": {
             "type": "string",
             "enum": [
-              "event"
+              "entry_event_property"
             ]
           },
-          "eventName": {
-            "$ref": "#/components/schemas/JourneyEventName"
-          },
-          "occurred": {
-            "type": "boolean"
-          }
-        },
-        "required": [
-          "type",
-          "eventName",
-          "occurred"
-        ],
-        "additionalProperties": false
-      },
-      "JourneyCustomFieldPredicate": {
-        "type": "object",
-        "properties": {
-          "type": {
+          "property": {
             "type": "string",
-            "enum": [
-              "custom_field"
-            ]
-          },
-          "key": {
-            "type": "string",
-            "minLength": 1
+            "minLength": 1,
+            "pattern": "^[a-zA-Z0-9_]+(?:\\.[a-zA-Z0-9_]+)*$"
           },
           "comparison": {
             "$ref": "#/components/schemas/JourneyComparison"
@@ -106145,7 +106126,7 @@
         },
         "required": [
           "type",
-          "key",
+          "property",
           "comparison"
         ],
         "additionalProperties": false
@@ -106256,6 +106237,53 @@
         "required": [
           "operator",
           "value"
+        ],
+        "additionalProperties": false
+      },
+      "JourneyEventPredicate": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "event"
+            ]
+          },
+          "eventName": {
+            "$ref": "#/components/schemas/JourneyEventName"
+          },
+          "occurred": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "type",
+          "eventName",
+          "occurred"
+        ],
+        "additionalProperties": false
+      },
+      "JourneyCustomFieldPredicate": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "custom_field"
+            ]
+          },
+          "key": {
+            "type": "string",
+            "minLength": 1
+          },
+          "comparison": {
+            "$ref": "#/components/schemas/JourneyComparison"
+          }
+        },
+        "required": [
+          "type",
+          "key",
+          "comparison"
         ],
         "additionalProperties": false
       },
@@ -106539,6 +106567,12 @@
               "minLength": 1,
               "pattern": "^[a-zA-Z0-9_]+(?:\\.[a-zA-Z0-9_]+)*$"
             }
+          },
+          "flowActionDataBinding": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^[a-zA-Z0-9_]+(?:\\.[a-zA-Z0-9_]+)*$",
+            "description": "Entry-event property path to the JSON object that initializes a navigate Flow button."
           }
         },
         "required": [
@@ -106604,6 +106638,18 @@
           },
           "templateData": {
             "$ref": "#/components/schemas/JsonObject"
+          },
+          "eventBindings": {
+            "type": "object",
+            "propertyNames": {
+              "type": "string",
+              "minLength": 1
+            },
+            "additionalProperties": {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "^[a-zA-Z0-9_]+(?:\\.[a-zA-Z0-9_]+)*$"
+            }
           }
         },
         "required": [
