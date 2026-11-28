@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.109.3
+
+- 466 operations, 346 paths, 815 schemas, 41 webhook events.
+- Compatible against v0.109.2.
+- Added operations:
+  - `PATCH /v1/email/senders/{id}`
+
+
 ## v0.109.2
 
 - 465 operations, 346 paths, 815 schemas, 41 webhook events.
