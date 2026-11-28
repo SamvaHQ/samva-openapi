@@ -8629,7 +8629,7 @@
             }
           }
         },
-        "description": "Builds the signed Domain Connect apply URL for the selected sending-only or sending-and-receiving service. The sending-and-receiving service writes the apex inbound MX, so it is refused until the domain's receiving is enabled. Manual DNS remains available for either mode.",
+        "description": "Builds the signed Domain Connect apply URL for the selected sending-only or sending-and-receiving service. The sending-and-receiving service writes the apex inbound MX, so it is refused until the domain's receiving is enabled. Manual DNS remains available for either mode. With returnUrl, Samva handles the registrar return and redirects to your app with status and domainId. Omit it to return to the Samva dashboard.",
         "summary": "Build a one-click DNS apply URL",
         "requestBody": {
           "content": {
@@ -8643,6 +8643,9 @@
                       "send-only",
                       "send-and-receive"
                     ]
+                  },
+                  "returnUrl": {
+                    "$ref": "#/components/schemas/DomainConnectReturnUrl"
                   }
                 },
                 "required": [
@@ -10181,6 +10184,14 @@
               "$ref": "#/components/schemas/EmailDomainId"
             },
             "required": true
+          },
+          {
+            "name": "returnUrl",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/DomainConnectReturnUrl"
+            },
+            "required": false
           }
         ],
         "security": [
@@ -10290,7 +10301,7 @@
             }
           }
         },
-        "description": "Builds the signed Domain Connect URL for the current customer-selected tracking host. Samva fills in the host and the certificate validation record; the manual CNAME records remain available.",
+        "description": "Builds the signed Domain Connect URL for the current customer-selected tracking host. Samva fills in the host and certificate validation record. With returnUrl, Samva handles the registrar return and redirects to your app with status, domainId, and customTrackingDomainId. Omit it to return to the Samva dashboard. The manual CNAME records remain available.",
         "summary": "Build an automatic Custom Tracking Domain apply URL",
         "x-samva-scope": "domains:update"
       }
@@ -111741,6 +111752,18 @@
           "url"
         ],
         "additionalProperties": false
+      },
+      "DomainConnectReturnUrl": {
+        "type": "string",
+        "maxLength": 2048,
+        "x-samva-string-checks": [
+          {
+            "id": "effect/schema/isMaxLength",
+            "payload": {
+              "maxLength": 2048
+            }
+          }
+        ]
       },
       "DomainConnectEligibility": {
         "anyOf": [
