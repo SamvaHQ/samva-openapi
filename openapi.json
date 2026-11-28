@@ -46860,6 +46860,16 @@
               }
             }
           },
+          "503": {
+            "description": "ServiceUnavailableError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceUnavailableError"
+                }
+              }
+            }
+          },
           "504": {
             "description": "GatewayTimeoutError",
             "content": {
@@ -46871,7 +46881,7 @@
             }
           }
         },
-        "description": "Registers a `.tsx` file under `templates/` or `emails/` in an existing template project as its own template and returns it with status 201. The file does not need to exist yet; publishing fails until a commit contains it. Repeating the call with the same entry path, name, and slug returns the existing template.",
+        "description": "Registers a `.tsx` file under `templates/` or `emails/` in an existing project as an email or WhatsApp template and returns status 201. The source determines the channel when available. If the entry declares both channels, email is selected unless you pass a channel. For a local or unwritten file, pass its channel or omit it to register email. Publishing checks the channel against the saved commit. Repeating the call with the same entry path, name, and slug returns the existing template.",
         "summary": "Add a template entry",
         "requestBody": {
           "content": {
@@ -98002,6 +98012,14 @@
           "slug": {
             "type": "string",
             "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+          },
+          "channel": {
+            "type": "string",
+            "enum": [
+              "email",
+              "whatsapp"
+            ],
+            "description": "Channel to register when the source is local, or to select from an entry that declares both."
           },
           "description": {
             "anyOf": [
