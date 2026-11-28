@@ -121802,6 +121802,15 @@
             "enum": [
               "pass_through"
             ]
+          },
+          "category": {
+            "type": "string",
+            "enum": [
+              "marketing",
+              "utility",
+              "authentication",
+              "service"
+            ]
           }
         },
         "required": [
@@ -122714,12 +122723,40 @@
                       "cost": {
                         "anyOf": [
                           {
-                            "type": "number"
+                            "type": "number",
+                            "description": "The cost reported by the SMS provider, when available."
                           },
                           {
                             "type": "null"
                           }
                         ]
+                      },
+                      "estimatedProviderCost": {
+                        "type": "object",
+                        "properties": {
+                          "amount": {
+                            "type": "string",
+                            "pattern": "^\\d+\\.\\d+$"
+                          },
+                          "currency": {
+                            "type": "string"
+                          },
+                          "category": {
+                            "type": "string",
+                            "enum": [
+                              "marketing",
+                              "utility",
+                              "authentication",
+                              "service"
+                            ]
+                          }
+                        },
+                        "required": [
+                          "amount",
+                          "currency",
+                          "category"
+                        ],
+                        "additionalProperties": true
                       },
                       "recipient": {
                         "anyOf": [
@@ -123050,12 +123087,40 @@
                       "cost": {
                         "anyOf": [
                           {
-                            "type": "number"
+                            "type": "number",
+                            "description": "The cost reported by the SMS provider, when available."
                           },
                           {
                             "type": "null"
                           }
                         ]
+                      },
+                      "estimatedProviderCost": {
+                        "type": "object",
+                        "properties": {
+                          "amount": {
+                            "type": "string",
+                            "pattern": "^\\d+\\.\\d+$"
+                          },
+                          "currency": {
+                            "type": "string"
+                          },
+                          "category": {
+                            "type": "string",
+                            "enum": [
+                              "marketing",
+                              "utility",
+                              "authentication",
+                              "service"
+                            ]
+                          }
+                        },
+                        "required": [
+                          "amount",
+                          "currency",
+                          "category"
+                        ],
+                        "additionalProperties": true
                       },
                       "recipient": {
                         "anyOf": [
@@ -123386,12 +123451,40 @@
                       "cost": {
                         "anyOf": [
                           {
-                            "type": "number"
+                            "type": "number",
+                            "description": "The cost reported by the SMS provider, when available."
                           },
                           {
                             "type": "null"
                           }
                         ]
+                      },
+                      "estimatedProviderCost": {
+                        "type": "object",
+                        "properties": {
+                          "amount": {
+                            "type": "string",
+                            "pattern": "^\\d+\\.\\d+$"
+                          },
+                          "currency": {
+                            "type": "string"
+                          },
+                          "category": {
+                            "type": "string",
+                            "enum": [
+                              "marketing",
+                              "utility",
+                              "authentication",
+                              "service"
+                            ]
+                          }
+                        },
+                        "required": [
+                          "amount",
+                          "currency",
+                          "category"
+                        ],
+                        "additionalProperties": true
                       },
                       "recipient": {
                         "anyOf": [
@@ -123722,12 +123815,40 @@
                       "cost": {
                         "anyOf": [
                           {
-                            "type": "number"
+                            "type": "number",
+                            "description": "The cost reported by the SMS provider, when available."
                           },
                           {
                             "type": "null"
                           }
                         ]
+                      },
+                      "estimatedProviderCost": {
+                        "type": "object",
+                        "properties": {
+                          "amount": {
+                            "type": "string",
+                            "pattern": "^\\d+\\.\\d+$"
+                          },
+                          "currency": {
+                            "type": "string"
+                          },
+                          "category": {
+                            "type": "string",
+                            "enum": [
+                              "marketing",
+                              "utility",
+                              "authentication",
+                              "service"
+                            ]
+                          }
+                        },
+                        "required": [
+                          "amount",
+                          "currency",
+                          "category"
+                        ],
+                        "additionalProperties": true
                       },
                       "recipient": {
                         "anyOf": [
@@ -124058,12 +124179,40 @@
                       "cost": {
                         "anyOf": [
                           {
-                            "type": "number"
+                            "type": "number",
+                            "description": "The cost reported by the SMS provider, when available."
                           },
                           {
                             "type": "null"
                           }
                         ]
+                      },
+                      "estimatedProviderCost": {
+                        "type": "object",
+                        "properties": {
+                          "amount": {
+                            "type": "string",
+                            "pattern": "^\\d+\\.\\d+$"
+                          },
+                          "currency": {
+                            "type": "string"
+                          },
+                          "category": {
+                            "type": "string",
+                            "enum": [
+                              "marketing",
+                              "utility",
+                              "authentication",
+                              "service"
+                            ]
+                          }
+                        },
+                        "required": [
+                          "amount",
+                          "currency",
+                          "category"
+                        ],
+                        "additionalProperties": true
                       },
                       "recipient": {
                         "type": "string"
@@ -124382,12 +124531,40 @@
                       "cost": {
                         "anyOf": [
                           {
-                            "type": "number"
+                            "type": "number",
+                            "description": "The cost reported by the SMS provider, when available."
                           },
                           {
                             "type": "null"
                           }
                         ]
+                      },
+                      "estimatedProviderCost": {
+                        "type": "object",
+                        "properties": {
+                          "amount": {
+                            "type": "string",
+                            "pattern": "^\\d+\\.\\d+$"
+                          },
+                          "currency": {
+                            "type": "string"
+                          },
+                          "category": {
+                            "type": "string",
+                            "enum": [
+                              "marketing",
+                              "utility",
+                              "authentication",
+                              "service"
+                            ]
+                          }
+                        },
+                        "required": [
+                          "amount",
+                          "currency",
+                          "category"
+                        ],
+                        "additionalProperties": true
                       },
                       "recipient": {
                         "type": "string"
@@ -124706,12 +124883,40 @@
                       "cost": {
                         "anyOf": [
                           {
-                            "type": "number"
+                            "type": "number",
+                            "description": "The cost reported by the SMS provider, when available."
                           },
                           {
                             "type": "null"
                           }
                         ]
+                      },
+                      "estimatedProviderCost": {
+                        "type": "object",
+                        "properties": {
+                          "amount": {
+                            "type": "string",
+                            "pattern": "^\\d+\\.\\d+$"
+                          },
+                          "currency": {
+                            "type": "string"
+                          },
+                          "category": {
+                            "type": "string",
+                            "enum": [
+                              "marketing",
+                              "utility",
+                              "authentication",
+                              "service"
+                            ]
+                          }
+                        },
+                        "required": [
+                          "amount",
+                          "currency",
+                          "category"
+                        ],
+                        "additionalProperties": true
                       },
                       "recipient": {
                         "anyOf": [
