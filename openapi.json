@@ -63038,6 +63038,7 @@
                     "type": "string",
                     "minLength": 1,
                     "maxLength": 32,
+                    "description": "API key name, up to 32 characters.",
                     "x-samva-string-checks": [
                       {
                         "id": "effect/schema/isMaxLength",
@@ -63456,6 +63457,7 @@
                         "type": "string",
                         "minLength": 1,
                         "maxLength": 32,
+                        "description": "API key name, up to 32 characters.",
                         "x-samva-string-checks": [
                           {
                             "id": "effect/schema/isMaxLength",
