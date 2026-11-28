@@ -2841,6 +2841,7 @@
                             "properties": {
                               "amount": {
                                 "type": "number",
+                                "description": "Samva’s monthly charge for this number",
                                 "exclusiveMinimum": 0
                               },
                               "currency": {
@@ -3093,6 +3094,16 @@
               }
             }
           },
+          "402": {
+            "description": "PaymentRequiredError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentRequiredError"
+                }
+              }
+            }
+          },
           "403": {
             "description": "ForbiddenError | FlagDisabledError",
             "content": {
@@ -3158,11 +3169,18 @@
             }
           },
           "502": {
-            "description": "PhoneNumberProvisioningError",
+            "description": "PhoneNumberProvisioningError | BillingProviderError",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PhoneNumberProvisioningError"
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/PhoneNumberProvisioningError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/BillingProviderError"
+                    }
+                  ]
                 }
               }
             }
@@ -3178,7 +3196,7 @@
             }
           }
         },
-        "description": "Order an available US phone number. Poll the number until its status becomes active or failed.",
+        "description": "Order an available US phone number. A payment method is required. Poll until the number becomes active or failed. Monthly billing begins once the number is active.",
         "summary": "Purchase a phone number",
         "requestBody": {
           "content": {
@@ -3769,11 +3787,18 @@
             }
           },
           "502": {
-            "description": "PhoneNumberProvisioningError",
+            "description": "PhoneNumberProvisioningError | BillingProviderError",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PhoneNumberProvisioningError"
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/PhoneNumberProvisioningError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/BillingProviderError"
+                    }
+                  ]
                 }
               }
             }
@@ -64014,6 +64039,18 @@
                             }
                           ]
                         },
+                        "heldPhoneNumbers": {
+                          "anyOf": [
+                            {
+                              "type": "integer",
+                              "minimum": 0,
+                              "maximum": 9007199254740991
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
                         "includedAiCredits": {
                           "anyOf": [
                             {
@@ -64092,6 +64129,7 @@
                         "usedCredits",
                         "overageCredits",
                         "overageCost",
+                        "heldPhoneNumbers",
                         "includedAiCredits",
                         "usedAiCredits",
                         "overageAiCredits",

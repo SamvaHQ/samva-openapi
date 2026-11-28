@@ -1,5 +1,15 @@
 # Changelog
 
+## v0.110.0
+
+- 472 operations, 350 paths, 818 schemas, 41 webhook events.
+- Breaking against v0.109.6.
+- Changed operations:
+  - `DELETE /v1/phone-numbers/{id}`
+  - `GET /v1/organizations/usage`
+  - `POST /v1/phone-numbers`
+
+
 ## v0.109.6
 
 - 472 operations, 350 paths, 818 schemas, 41 webhook events.
