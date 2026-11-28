@@ -106920,6 +106920,23 @@
           "senderId": {
             "$ref": "#/components/schemas/EmailSenderId"
           },
+          "tracking": {
+            "$ref": "#/components/schemas/EmailTrackingOverrideV1"
+          },
+          "topicName": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 1,
+            "description": "Topic name in the run's namespace. Omit to use the template topic or namespace default.",
+            "x-samva-string-checks": [
+              {
+                "id": "effect/schema/isMaxLength",
+                "payload": {
+                  "maxLength": 120
+                }
+              }
+            ]
+          },
           "templateData": {
             "$ref": "#/components/schemas/JsonObject"
           },
