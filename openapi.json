@@ -6500,6 +6500,165 @@
         "x-samva-scope": "messages:read"
       }
     },
+    "/v1/email/domains/{id}/deliverability": {
+      "get": {
+        "tags": [
+          "Email"
+        ],
+        "operationId": "email.getDeliverabilityInsights",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "$ref": "#/components/schemas/EmailDomainId"
+            },
+            "required": true
+          },
+          {
+            "name": "days",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "7",
+                "30"
+              ]
+            },
+            "required": false
+          },
+          {
+            "name": "mailboxProvider",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128,
+              "description": "Request one mailbox provider by its name in the delivery metrics.",
+              "x-samva-string-checks": [
+                {
+                  "id": "effect/schema/isMaxLength",
+                  "payload": {
+                    "maxLength": 128
+                  }
+                }
+              ]
+            },
+            "required": false
+          }
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "DeliverabilityInsights",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeliverabilityInsights"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "PaymentRequiredError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentRequiredError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ResourceNotFoundError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "ServiceUnavailableError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceUnavailableError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Requires the Deliverability Insights add-on. Returns delivery, permanent and transient bounce, and complaint rates by mailbox provider. Includes recommendations and Samva-tracked open and click rates for the sending domain. The report covers the last 7 days by default. Use days=30 for a 30-day report.",
+        "summary": "Get deliverability insights for a sending domain",
+        "x-samva-scope": "analytics:read"
+      }
+    },
     "/v1/email/onboarding-review": {
       "get": {
         "tags": [
@@ -113879,6 +114038,268 @@
         },
         "required": [
           "expectedGeneration"
+        ],
+        "additionalProperties": false
+      },
+      "DeliverabilityInsights": {
+        "type": "object",
+        "properties": {
+          "domain": {
+            "type": "string"
+          },
+          "start": {
+            "type": "string"
+          },
+          "end": {
+            "type": "string"
+          },
+          "providers": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "mailboxProvider": {
+                  "type": "string"
+                },
+                "sent": {
+                  "type": "integer",
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991
+                },
+                "delivered": {
+                  "type": "integer",
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991
+                },
+                "permanentBounces": {
+                  "type": "integer",
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991
+                },
+                "transientBounces": {
+                  "type": "integer",
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991
+                },
+                "complaintEligibleDeliveries": {
+                  "type": "integer",
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991
+                },
+                "complaints": {
+                  "type": "integer",
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991
+                },
+                "deliveryRate": {
+                  "anyOf": [
+                    {
+                      "type": "number",
+                      "minimum": 0
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "description": "A fraction (0.01 is 1%), or null when the denominator is zero."
+                },
+                "permanentBounceRate": {
+                  "anyOf": [
+                    {
+                      "type": "number",
+                      "minimum": 0
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "description": "A fraction (0.01 is 1%), or null when the denominator is zero."
+                },
+                "transientBounceRate": {
+                  "anyOf": [
+                    {
+                      "type": "number",
+                      "minimum": 0
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "description": "A fraction (0.01 is 1%), or null when the denominator is zero."
+                },
+                "complaintRate": {
+                  "anyOf": [
+                    {
+                      "type": "number",
+                      "minimum": 0
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "description": "A fraction (0.01 is 1%), or null when the denominator is zero."
+                }
+              },
+              "required": [
+                "mailboxProvider",
+                "sent",
+                "delivered",
+                "permanentBounces",
+                "transientBounces",
+                "complaintEligibleDeliveries",
+                "complaints",
+                "deliveryRate",
+                "permanentBounceRate",
+                "transientBounceRate",
+                "complaintRate"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "recommendations": {
+            "anyOf": [
+              {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/DeliverabilityRecommendation"
+                }
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Findings for this domain, or null if recommendations are temporarily unavailable."
+          },
+          "samvaTracking": {
+            "type": "object",
+            "properties": {
+              "openEligibleDeliveries": {
+                "type": "integer",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              "clickEligibleDeliveries": {
+                "type": "integer",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              "uniqueOpens": {
+                "type": "integer",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              "uniqueClicks": {
+                "type": "integer",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              "openRate": {
+                "anyOf": [
+                  {
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "A fraction (0.01 is 1%), or null when the denominator is zero."
+              },
+              "clickRate": {
+                "anyOf": [
+                  {
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "A fraction (0.01 is 1%), or null when the denominator is zero."
+              }
+            },
+            "required": [
+              "openEligibleDeliveries",
+              "clickEligibleDeliveries",
+              "uniqueOpens",
+              "uniqueClicks",
+              "openRate",
+              "clickRate"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "domain",
+          "start",
+          "end",
+          "providers",
+          "recommendations",
+          "samvaTracking"
+        ],
+        "additionalProperties": false
+      },
+      "DeliverabilityRecommendation": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "status": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "OPEN",
+                  "FIXED"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "impact": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "HIGH",
+                  "LOW"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "description": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "lastUpdated": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "type",
+          "status",
+          "impact",
+          "description",
+          "lastUpdated"
         ],
         "additionalProperties": false
       },

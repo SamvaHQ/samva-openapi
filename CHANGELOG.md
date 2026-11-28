@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.109.5
+
+- 467 operations, 347 paths, 817 schemas, 41 webhook events.
+- Compatible against v0.109.4.
+- Added operations:
+  - `GET /v1/email/domains/{id}/deliverability`
+
+
 ## v0.109.4
 
 - 466 operations, 346 paths, 815 schemas, 41 webhook events.
