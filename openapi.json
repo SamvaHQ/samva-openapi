@@ -116974,7 +116974,7 @@
             ]
           },
           "flowActionData": {
-            "$ref": "#/components/schemas/JsonObject_1"
+            "$ref": "#/components/schemas/WhatsAppFlowActionData"
           }
         },
         "required": [
@@ -116982,7 +116982,7 @@
         ],
         "additionalProperties": false
       },
-      "JsonObject_1": {
+      "WhatsAppFlowActionData": {
         "type": "object",
         "description": "Initial screen data for a navigate Flow button.",
         "additionalProperties": {
@@ -117025,7 +117025,7 @@
             ]
           },
           "flowActionData": {
-            "$ref": "#/components/schemas/JsonObject_1"
+            "$ref": "#/components/schemas/WhatsAppFlowActionData"
           }
         },
         "required": [

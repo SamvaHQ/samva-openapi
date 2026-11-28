@@ -1,5 +1,15 @@
 # Changelog
 
+## v0.109.0
+
+- 465 operations, 346 paths, 814 schemas, 41 webhook events.
+- Breaking against v0.108.2.
+- Changed schemas:
+  - `JsonObject_1`
+  - `WhatsAppTemplateIdContent`
+  - `WhatsAppTemplateSlugContent`
+
+
 ## v0.108.2
 
 - 465 operations, 346 paths, 814 schemas, 41 webhook events.
