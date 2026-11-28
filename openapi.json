@@ -2707,6 +2707,1093 @@
         "x-samva-scope": "messages:read"
       }
     },
+    "/v1/phone-numbers/available": {
+      "get": {
+        "tags": [
+          "Phone numbers"
+        ],
+        "operationId": "phoneNumbers.searchAvailableNumbers",
+        "parameters": [
+          {
+            "name": "country",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "US"
+              ]
+            },
+            "required": true
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "local",
+                "tollfree",
+                "mobile"
+              ]
+            },
+            "required": false
+          },
+          {
+            "name": "areaCode",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "name": "locality",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 100
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "required": false
+          }
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "phoneNumber": {
+                        "type": "string",
+                        "pattern": "^\\+[1-9]\\d{1,14}$"
+                      },
+                      "friendlyName": {
+                        "type": "string"
+                      },
+                      "capabilities": {
+                        "type": "object",
+                        "properties": {
+                          "voice": {
+                            "type": "boolean"
+                          },
+                          "sms": {
+                            "type": "boolean"
+                          },
+                          "mms": {
+                            "type": "boolean"
+                          }
+                        },
+                        "required": [
+                          "voice",
+                          "sms",
+                          "mms"
+                        ],
+                        "additionalProperties": false
+                      },
+                      "region": {
+                        "anyOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "locality": {
+                        "anyOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "monthlyPrice": {
+                        "anyOf": [
+                          {
+                            "type": "object",
+                            "properties": {
+                              "amount": {
+                                "type": "number",
+                                "exclusiveMinimum": 0
+                              },
+                              "currency": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "amount",
+                              "currency"
+                            ],
+                            "additionalProperties": false
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      }
+                    },
+                    "required": [
+                      "phoneNumber",
+                      "friendlyName",
+                      "capabilities"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "FlagDisabledError | ForbiddenError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/FlagDisabledError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ForbiddenError"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "PhoneNumberProvisioningError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PhoneNumberProvisioningError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Find US phone numbers by type and location. Each result identifies the channels the number supports.",
+        "summary": "Search available phone numbers",
+        "x-samva-scope": "phoneNumbers:read"
+      }
+    },
+    "/v1/phone-numbers": {
+      "post": {
+        "tags": [
+          "Phone numbers"
+        ],
+        "operationId": "phoneNumbers.purchaseNumber",
+        "parameters": [],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "$ref": "#/components/schemas/SmsPhoneNumberId"
+                    },
+                    "namespaceId": {
+                      "anyOf": [
+                        {
+                          "$ref": "#/components/schemas/NamespaceId"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "phoneNumber": {
+                      "type": "string",
+                      "pattern": "^\\+[1-9]\\d{1,14}$"
+                    },
+                    "friendlyName": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "capabilities": {
+                      "type": "object",
+                      "properties": {
+                        "voice": {
+                          "type": "boolean"
+                        },
+                        "sms": {
+                          "type": "boolean"
+                        },
+                        "mms": {
+                          "type": "boolean"
+                        }
+                      },
+                      "required": [
+                        "voice",
+                        "sms",
+                        "mms"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "uses": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "enum": [
+                          "sms",
+                          "whatsapp"
+                        ]
+                      }
+                    },
+                    "numberType": {
+                      "type": "string",
+                      "enum": [
+                        "local",
+                        "tollfree",
+                        "mobile",
+                        "shortcode"
+                      ]
+                    },
+                    "country": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "pending",
+                        "active",
+                        "failed",
+                        "suspended",
+                        "released"
+                      ]
+                    },
+                    "createdAt": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "namespaceId",
+                    "phoneNumber",
+                    "friendlyName",
+                    "capabilities",
+                    "uses",
+                    "numberType",
+                    "country",
+                    "status",
+                    "createdAt"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenError | FlagDisabledError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/ForbiddenError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/FlagDisabledError"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ResourceNotFoundError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "ConflictError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConflictError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "CredentialsError | InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/CredentialsError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/InternalError"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "PhoneNumberProvisioningError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PhoneNumberProvisioningError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Order an available US phone number. Poll the number until its status becomes active or failed.",
+        "summary": "Purchase a phone number",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "phoneNumber": {
+                    "type": "string",
+                    "pattern": "^\\+[1-9]\\d{1,14}$"
+                  },
+                  "friendlyName": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "uses": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "enum": [
+                            "sms",
+                            "whatsapp"
+                          ]
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "namespaceId": {
+                    "anyOf": [
+                      {
+                        "$ref": "#/components/schemas/NamespaceId"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  }
+                },
+                "required": [
+                  "phoneNumber"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          "required": true
+        },
+        "x-samva-scope": "phoneNumbers:create"
+      },
+      "get": {
+        "tags": [
+          "Phone numbers"
+        ],
+        "operationId": "phoneNumbers.listPhoneNumbers",
+        "parameters": [
+          {
+            "name": "namespaceId",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/NamespaceId"
+            },
+            "required": false
+          }
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "$ref": "#/components/schemas/SmsPhoneNumberId"
+                      },
+                      "namespaceId": {
+                        "anyOf": [
+                          {
+                            "$ref": "#/components/schemas/NamespaceId"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "phoneNumber": {
+                        "type": "string",
+                        "pattern": "^\\+[1-9]\\d{1,14}$"
+                      },
+                      "friendlyName": {
+                        "anyOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "capabilities": {
+                        "type": "object",
+                        "properties": {
+                          "voice": {
+                            "type": "boolean"
+                          },
+                          "sms": {
+                            "type": "boolean"
+                          },
+                          "mms": {
+                            "type": "boolean"
+                          }
+                        },
+                        "required": [
+                          "voice",
+                          "sms",
+                          "mms"
+                        ],
+                        "additionalProperties": false
+                      },
+                      "uses": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "enum": [
+                            "sms",
+                            "whatsapp"
+                          ]
+                        }
+                      },
+                      "numberType": {
+                        "type": "string",
+                        "enum": [
+                          "local",
+                          "tollfree",
+                          "mobile",
+                          "shortcode"
+                        ]
+                      },
+                      "country": {
+                        "type": "string"
+                      },
+                      "status": {
+                        "type": "string",
+                        "enum": [
+                          "pending",
+                          "active",
+                          "failed",
+                          "suspended",
+                          "released"
+                        ]
+                      },
+                      "createdAt": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "namespaceId",
+                      "phoneNumber",
+                      "friendlyName",
+                      "capabilities",
+                      "uses",
+                      "numberType",
+                      "country",
+                      "status",
+                      "createdAt"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "FlagDisabledError | ForbiddenError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/FlagDisabledError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ForbiddenError"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "List provisioned phone numbers in the namespaces your credential can reach.",
+        "summary": "List phone numbers",
+        "x-samva-scope": "phoneNumbers:read"
+      }
+    },
+    "/v1/phone-numbers/{id}": {
+      "get": {
+        "tags": [
+          "Phone numbers"
+        ],
+        "operationId": "phoneNumbers.getPhoneNumber",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "$ref": "#/components/schemas/SmsPhoneNumberId"
+            },
+            "required": true
+          }
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "$ref": "#/components/schemas/SmsPhoneNumberId"
+                    },
+                    "namespaceId": {
+                      "anyOf": [
+                        {
+                          "$ref": "#/components/schemas/NamespaceId"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "phoneNumber": {
+                      "type": "string",
+                      "pattern": "^\\+[1-9]\\d{1,14}$"
+                    },
+                    "friendlyName": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "capabilities": {
+                      "type": "object",
+                      "properties": {
+                        "voice": {
+                          "type": "boolean"
+                        },
+                        "sms": {
+                          "type": "boolean"
+                        },
+                        "mms": {
+                          "type": "boolean"
+                        }
+                      },
+                      "required": [
+                        "voice",
+                        "sms",
+                        "mms"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "uses": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "enum": [
+                          "sms",
+                          "whatsapp"
+                        ]
+                      }
+                    },
+                    "numberType": {
+                      "type": "string",
+                      "enum": [
+                        "local",
+                        "tollfree",
+                        "mobile",
+                        "shortcode"
+                      ]
+                    },
+                    "country": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "pending",
+                        "active",
+                        "failed",
+                        "suspended",
+                        "released"
+                      ]
+                    },
+                    "createdAt": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "namespaceId",
+                    "phoneNumber",
+                    "friendlyName",
+                    "capabilities",
+                    "uses",
+                    "numberType",
+                    "country",
+                    "status",
+                    "createdAt"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "FlagDisabledError | ForbiddenError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/FlagDisabledError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ForbiddenError"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ResourceNotFoundError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Read a provisioned phone number and its current order status.",
+        "summary": "Get a phone number",
+        "x-samva-scope": "phoneNumbers:read"
+      },
+      "delete": {
+        "tags": [
+          "Phone numbers"
+        ],
+        "operationId": "phoneNumbers.releasePhoneNumber",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "$ref": "#/components/schemas/SmsPhoneNumberId"
+            },
+            "required": true
+          }
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "success"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "MalformedRequestError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MalformedRequestError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnauthorizedError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "FlagDisabledError | ForbiddenError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/FlagDisabledError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ForbiddenError"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ResourceNotFoundError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFoundError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "ValidationError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "CredentialsError | InternalError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/CredentialsError"
+                    },
+                    {
+                      "$ref": "#/components/schemas/InternalError"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "PhoneNumberProvisioningError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PhoneNumberProvisioningError"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "GatewayTimeoutError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeoutError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Return a number to the provider. Pending orders must settle before the number can be released.",
+        "summary": "Release a phone number",
+        "x-samva-scope": "phoneNumbers:delete"
+      }
+    },
     "/v1/logs": {
       "get": {
         "tags": [
@@ -85201,6 +86288,7 @@
           "domain",
           "sender",
           "whatsappNumber",
+          "phoneNumber",
           "smsNumber",
           "contact",
           "template"
@@ -121594,6 +122682,55 @@
         ],
         "additionalProperties": false
       },
+      "PhoneNumberProvisioningError": {
+        "type": "object",
+        "properties": {
+          "_tag": {
+            "type": "string",
+            "enum": [
+              "PhoneNumberProvisioningError"
+            ]
+          },
+          "reason": {
+            "type": "string",
+            "enum": [
+              "transport",
+              "rejected",
+              "rate_limited",
+              "auth"
+            ]
+          },
+          "message": {
+            "type": "string"
+          },
+          "providerCode": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "statusCode": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "_tag",
+          "reason",
+          "message"
+        ],
+        "additionalProperties": false
+      },
       "MessageEventPage": {
         "type": "object",
         "properties": {
@@ -123085,6 +124222,10 @@
     {
       "name": "Messages",
       "description": "Send messages and read their delivery state and timeline."
+    },
+    {
+      "name": "Phone numbers",
+      "description": "Search, order, and manage phone number inventory."
     },
     {
       "name": "Logs",
